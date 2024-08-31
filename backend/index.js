@@ -25,6 +25,7 @@ const dbconn = async () => {
     console.error(error);
   }
 };
+dbconn()
 
 app.post("/api/signup", (req, res) => {
   try {
@@ -32,17 +33,19 @@ app.post("/api/signup", (req, res) => {
     User.create(req.body)
       .then(() => res.json("User Created Successfully"))
       .catch((err) => res.json(err));
+      console.log("User created");
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Invalid Password or username" });
   }
 });
-app.post("api/login", async(req, res) => {
+app.post("/api/login", async(req, res) => {
     try {
         const {username,password}=req.body
         await User.findOne({username:username,password:password}).then((user)=>{
             if(user){
                 res.json("Success")
+                console.log("Login success")
             }else{
                 res.json("Invalid Credentials")
             }
@@ -50,7 +53,8 @@ app.post("api/login", async(req, res) => {
         })
         
     } catch (error) {
-        
+      console.error(error);
+      res.status(500).json({ message: "Invalid Password or username" });
     }
 });
 
