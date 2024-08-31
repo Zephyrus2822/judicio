@@ -7,6 +7,7 @@ import Navigation from './components/Navigation.jsx'
 import { AuroraBackground } from './components/aurora-background.jsx'
 
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* nav bar er code */}
