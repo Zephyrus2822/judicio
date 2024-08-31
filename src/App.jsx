@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
 import Login from './components/Login'
 import Register from './components/Register'
-import Hero from './components/Hero'
+
 
 
 function App() {
