@@ -12,6 +12,7 @@ const Navigation = () => {
             <li href="#">Contact Us</li>
           </ul>
           <button className="chat">Help</button>
+          <a href="/Login">Login/Register</a>
         </nav>
     </div>
   )
