@@ -12,7 +12,7 @@ const Navigation = () => {
             <li href="#">Contact Us</li>
           </ul>
           <button className="chat">Help</button>
-          <a href="/Login">Login</a>
+          <a className="chat" href="/Login">Login</a>
         </nav>
     </div>
   )
