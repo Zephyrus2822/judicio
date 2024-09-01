@@ -25,37 +25,43 @@ const dbconn = async () => {
     console.error(error);
   }
 };
-dbconn()
+dbconn();
 
-app.post("/api/signup", (req, res) => {
+app.post("/api/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    User.create(req.body)
-      .then(() => res.json("User Created Successfully"))
-      .catch((err) => res.json(err));
-      console.log("User created");
+    await User.findOne({ email: email }).then((user) => {
+      if (user) {
+        res.json("User Already Exists ");
+      } else {
+        User.create(req.body)
+          .then(() => res.json("User Created Successfully"))
+          .catch((err) => res.json(err));
+          // console.log(error)
+      }
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Invalid Password or username" });
   }
 });
-app.post("/api/login", async(req, res) => {
-    try {
-        const {username,password}=req.body
-        await User.findOne({username:username,password:password}).then((user)=>{
-            if(user){
-                res.json("Success")
-                console.log("Login success")
-            }else{
-                res.json("Invalid Credentials")
-            }
-
-        })
-        
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Invalid Password or username" });
-    }
+app.post("/api/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    await User.findOne({ username: username, password: password }).then(
+      (user) => {
+        if (user) {
+          res.json("Success");
+          
+        } else {
+          res.json("Invalid Credentials");
+        }
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Invalid Password or username" });
+  }
 });
 
 app.get("/", (req, res) => {
