@@ -24,59 +24,71 @@ const Login = () => {
     })
   };
   return (
-    <main className="bg-blue-400 relative ">
-      <div className="absolute top-1/2 left-1/2 -translate-x-[50%] translate-y-[30%]  bg-green-400 py-10 px-5 rounded-lg space-y-10">
-        <h1 className="text-3xl text-center font-bold">Login</h1>
-        
-        <form onSubmit={handlesubmit} action="">
-          <div className="input grid grid-cols-2">
-            <label className="text-2xl" htmlFor="">
-              Username :{" "}
-            </label>
-            <input
-              className="text-2xl px-2  outline-none py-2 border-b-2 border-black bg-transparent"
-              placeholder="Username"
-              type="text"
-              name="username"
-              value={username}
-              onChange={(e)=>setusername(e.target.value)}
-              required
-
-            />
+    <section className="bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              Sign in to your account
+            </h1>
+            <form className="space-y-4 md:space-y-6" action="#">
+              <div>
+                <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Username: {" "}</label>
+                <input
+                  type="username"
+                  name="username"
+                  id="username"
+                  value= {username}
+                  onChange={(e)=>setusername(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="name@hex"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password: {" "}</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="••••••••"
+                  value= {password}
+                  onChange={(e)=>setpassword(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-start">
+                  <div className="flex items-center h-5">
+                    <input
+                      id="remember"
+                      aria-describedby="remember"
+                      type="checkbox"
+                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                      required
+                    />
+                  </div>
+                  <div className="ml-3 text-sm">
+                    <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
+                  </div>
+                </div>
+                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+              </div>
+              <button
+                type="submit"
+                className="w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              >
+                Login
+              </button>
+              <p className="text-sm font-light text-gray-500 dark:text-gray-400">{status}
+                Don’t have an account yet? <button onClick={() => navigate('/register')} className="font-medium text-blue-600 hover:underline dark:text-primary-500">{" "}Sign up</button>
+              </p>
+            </form>
           </div>
-          <div className="input grid grid-cols-2">
-            <label className="text-2xl" htmlFor="">
-              Password :{" "}
-            </label>
-            <input
-              className="text-2xl px-2  outline-none py-2 border-b-2 border-black bg-transparent"
-              placeholder="password"
-              type="Password"
-              name="password"
-              value={password}
-              onChange={(e)=>setpassword(e.target.value)}
-              required
-            />
-          </div>
-          <button
-            className="flex justify-center items-center bg-blue-500 text-2xl p-2 rounded-lg w-full mt-10"
-            type="submit"
-          >
-            Login
-          </button>
-        </form>
-        <p className="text-red-600 text-xl text-center">{status}</p>
-        <hr />
-        <p>Don't have an account </p>
-        <Link
-          className="flex justify-center items-center bg-blue-500 text-2xl p-2 rounded-lg"
-          to="/Register"
-        >
-          {" "}
-          Register
-        </Link>
+        </div>
       </div>
-    </main>
+    </section>
   );
 };
 

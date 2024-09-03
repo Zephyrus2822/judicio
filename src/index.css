@@ -39,10 +39,9 @@ nav {
   display: flex;
   height: 100px;
   justify-content: space-between;
-  width: 1850px;
+  width: 2000px;
   margin: 0 auto;
   height: 100px;
-  
   margin: 10px 10px 10px 10px;
 }
 
@@ -61,7 +60,8 @@ nav li {
 }
 
 .chat {
-  margin-right: 60px;
+  margin-right: 20px;
+  margin-left: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +75,7 @@ nav li {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 5px;
+  margin-top: 11px;
   border-radius: 10px;
 }
 
