@@ -4,10 +4,10 @@ This template provides a minimal setup to get React working in Vite with HMR and
  
  basically fork this repository and open it in your respective text editors. 
  in order to start the application: type npm run dev
-                                              if error occurs saying 'vite' not found, write the following command:
-                                              npm install --save-dev vite
+                            if error occurs saying 'vite' not found, write the following command:
+                                        npm install --save-dev vite
 
-                                              server is already hosted at https://judicio-server.onrender.com/
+server is already hosted at https://judicio-server.onrender.com/
 
 And now you should have a working Judicio application in this link: http://localhost:5174/
 
