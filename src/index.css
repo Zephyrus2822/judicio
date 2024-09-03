@@ -11,7 +11,7 @@
 /* Container for the logo */
 .Logo-wrapper {
   display: inline-block;
-  border-bottom: 1px solid black; /* Add border to the wrapper */
+  /* Add border to the wrapper */
 }
 
 /* Actual logo with scale effect */
@@ -29,7 +29,7 @@
 .Logo-wrapper::after {
   content: '';
   display: block;
-  border-bottom: 1px solid black;
+  
   width: 100%;
   transform: scaleX(1.0); 
 }
@@ -42,7 +42,7 @@ nav {
   width: 1850px;
   margin: 0 auto;
   height: 100px;
-  border-bottom: 1px solid black;
+  
   margin: 10px 10px 10px 10px;
 }
 
