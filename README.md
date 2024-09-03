@@ -9,7 +9,7 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 in order to start both front-end and backend: type npm start as well npm run dev (follow sequence for convenience)
 
-And now you should have a working Judicio application in this link: http://localhost:5173/
+And now you should have a working Judicio application in this link: http://localhost:5174/
 
 not to all users of repo: before committing anything to your respective forks, dont forget to use the following commands in right sequence:
 1. git fetch  
