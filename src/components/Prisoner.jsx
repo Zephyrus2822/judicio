@@ -44,6 +44,7 @@ const Prisoner = () => {
   };
 
   return (
+   
     <div className="container">
       <div className="title">Registration</div>
       <div className="content">
@@ -192,12 +193,13 @@ const Prisoner = () => {
                   <span className="gender">Other</span>
                 </label>
               </div>
-            <button  className="button bg-gradient-to-tr from-blue-400 to-red-300 px-2 py-1 rounded-lg flex justify-left text-white font-bold items-center " type="submit">Register</button>
+            <button  className="button w-10/12 text-center bg-gradient-to-tr from-blue-400 to-red-300 px-2 py-1 rounded-lg flex justify-left text-white font-bold items-center " type="submit">Register</button>
             </div>
           </div>
         </form>
       </div>
     </div>
+    
   );
 };
 

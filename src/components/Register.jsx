@@ -10,6 +10,7 @@ const Register = () => {
   const [status, setstatus] = useState("")
   const [showpass, setshowpass] = useState(false)
   const navigate=useNavigate()
+  const isPasswordValid = password.length>=6;
 
   const handlesubmit = (e) => {
     e.preventDefault();
@@ -104,7 +105,8 @@ const Register = () => {
               </div>
 
               <div>
-                <button onClick={handlesubmit} type="submit" className="mt-4 w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                <button onClick={handlesubmit} type="submit" className={`mt-4 ${isPasswordValid ? 'w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800' : 'w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-not-allowed'}`}
+                disabled={!isPasswordValid}>
                   Sign Up
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">

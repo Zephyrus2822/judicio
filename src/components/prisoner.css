@@ -1,31 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 
-/* *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins',sans-serif;
-}*/
-
- /* body{
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-}  */
-
 .container{
   margin-left: 200px;
   margin-top: 50px;
+  margin-right: 20px;
   justify-content: center;
   align-items: center;
   max-width: 800px;
   max-height: 1500px;
-  width: 100%;
-  padding: 25px 30px;
+  width: 800px;
+  padding: 25px 30px 25px 25px;
   border-radius: 5px;
   border: 1px solid black;
   box-shadow: 5px 5px 10px rgba(0,0,0,0.35);
@@ -33,8 +18,7 @@
   background-image: url('./images/navbg.jpeg');
   background-size: cover;
   background-repeat: no repeat;
-  backdrop-filter: blur(100px);
-  -webkit-backdrop-filter: blur(100px);
+ 
   
 }
 .container .title{
@@ -161,15 +145,6 @@ form .input-box span.details{
     border-color: #9b59b6;
   }
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
  
  
  

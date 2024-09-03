@@ -11,6 +11,7 @@
 /* Container for the logo */
 .Logo-wrapper {
   display: inline-block;
+ 
   
   /* Add border to the wrapper */
 }
@@ -19,6 +20,7 @@
 .Logo {
   height: 100px;
   width: 160px;
+  /* background-image: url('./images/mavbg.jpeg'); */
   transition: transform 0.3s ease;
 }
 
@@ -29,8 +31,7 @@
 /* Move the border to the wrapper */
 .Logo-wrapper::after {
   content: '';
-  display: block;
-  
+  display: block;  
   width: 100%;
   transform: scaleX(1.0); 
 }
@@ -64,7 +65,7 @@ nav li {
 }
 
 .chat {
-  margin-right: 170px;
+  margin-right: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
