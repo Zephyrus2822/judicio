@@ -6,7 +6,6 @@ import Home from './components/Home'
 import Prisoner from './components/Prisoner'
 
 
-
 function App() {
   const [count, setCount] = useState(0)
 
@@ -17,6 +16,7 @@ function App() {
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/prisoner' element={<Prisoner/>}></Route>
+      {/* <Route path='/database' element={<db-one/>}></Route> */}
     </Routes>
    </BrowserRouter>
   )

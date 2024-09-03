@@ -11,6 +11,7 @@
 /* Container for the logo */
 .Logo-wrapper {
   display: inline-block;
+  
   /* Add border to the wrapper */
 }
 
@@ -39,10 +40,13 @@ nav {
   display: flex;
   height: 100px;
   justify-content: space-between;
-  width: 1800px;
+  width: 1887px;
   margin: 0 auto;
   height: 100px;
   margin: 10px 10px 10px 10px;
+  background-image: url('./images/navbg.jpeg');
+  background-size: cover;
+  background-repeat: no repeat;
 }
 
 nav ul {
@@ -60,6 +64,7 @@ nav li {
 }
 
 .chat {
+  margin-right: 170px;
   display: flex;
   align-items: center;
   justify-content: center;

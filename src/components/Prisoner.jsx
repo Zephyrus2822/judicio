@@ -142,7 +142,7 @@ const Prisoner = () => {
                 name="crime"
                 value={crime}
                 id=""
-                placeholder="Select crime Offenses"
+                placeholder="Select crime"
               />
               <datalist id="crime">
                 <option value="Cyber Crime"></option>
@@ -154,16 +154,6 @@ const Prisoner = () => {
                 <option value="Crime against Foreigners"></option>
                 <option value="Others"></option>
               </datalist>
-
-              {/* <option value="#" disabled>Select Criminal Offense</option>
-                <option value="1">Cyber Crimes</option>
-                <option value="2">Crimes against SCs and STs</option>
-                <option value="3">Crimes against Women</option>
-                <option value="4">Crimes against Children</option>
-                <option value="5">Offenses against the State</option>
-                <option value="6">Economic Offenses</option>
-                <option value="7">Crimes against Foreigners</option>
-                <option value="8">Others</option> */}
             </div>
             <div className="gender-details">
               <input
