@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   return (
@@ -11,10 +11,17 @@ const Navigation = () => {
               </li>
             <li><a href="/prisoner">Get Verdict</a></li>
             <li>
-              <a href="#">Verdicts Passed</a>
+              {/* <Link href="/tablee">#</Link> */}
+              Verdicts Passed
               </li>
-            <li href="#">About Us</li>
-            <li href="#">Contact Us</li>
+              <li>
+                If Needed 1
+              </li>
+              <li>
+                If Needed 2
+              </li>
+           
+            
           </ul>
           <div><a className="chat" href="/login">Login</a>
           </div>

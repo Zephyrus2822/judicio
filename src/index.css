@@ -41,7 +41,7 @@ nav {
   display: flex;
   height: 100px;
   justify-content: space-between;
-  width: 100vw;
+  width: 99.21vw;
   margin: 0 auto;
   height: 100px;
   background: linear-gradient(135deg, #fce7f3, #f0e4ff, #e0f3ff, #c3e7ff);

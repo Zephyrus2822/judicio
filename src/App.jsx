@@ -4,6 +4,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Home from './components/Home'
 import Prisoner from './components/Prisoner'
+// import Tablee from './components/Tablee'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/prisoner' element={<Prisoner/>}></Route>
+      {/* <Route path='/tablee' element={<Tablee/>}></Route> */}
     </Routes>
    </BrowserRouter>
   )
