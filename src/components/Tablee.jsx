@@ -61,7 +61,7 @@ function Row(props) {
         <TableCell align="right">{row.crime}</TableCell>
         <TableCell align="right">{row.AadharrNum}</TableCell>
         <TableCell align="right">{row.firdate}</TableCell>
-        {/* <TableCell align="right">{row.trialdate}</TableCell> */}
+       
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -73,10 +73,10 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
                     <TableCell>Crime</TableCell>
-                    <TableCell align="right">Prison Status</TableCell>
-                    <TableCell align="right">No of Prisonment</TableCell>
+                    <TableCell>FIR Date</TableCell>
+                    <TableCell align="right">Trial Date</TableCell>
+                    <TableCell align="right">Current Status</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -120,7 +120,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = [createData( "xxxx", "wfoh", "22-22-22", "22-22-22")];
+const rows = [createData("Zephyrus","6246 7282 5609","100","31/41, MegaZord Lane, Berkshire- 69")];
 
 const Tablee = () => {
   return (
@@ -129,11 +129,11 @@ const Tablee = () => {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Crime</TableCell>
-            <TableCell align="right">Aadharr Num</TableCell>
-            <TableCell align="right">FIR Date</TableCell>
-            <TableCell align="right">Trial Date</TableCell>
+            <TableCell align="center" style={{ width: '200px', wordWrap: 'break-word' }}>Name</TableCell>
+            <TableCell align="center" style={{ width: '600px', wordWrap: 'break-word' }}>Aadhar Number</TableCell>
+            <TableCell align="center" style={{ width: '350px', wordWrap: 'break-word' }}>Number of Prisonments</TableCell>
+            <TableCell align="center" style={{ width: '450px', wordWrap: 'break-word' }}>Address</TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>
