@@ -41,11 +41,10 @@ nav {
   display: flex;
   height: 100px;
   justify-content: space-between;
-  width: 1887px;
+  width: 100vw;
   margin: 0 auto;
   height: 100px;
-  margin: 10px 10px 10px 10px;
-  background-image: url('./images/navbg.jpeg');
+  background: linear-gradient(135deg, #fce7f3, #f0e4ff, #e0f3ff, #c3e7ff);
   background-size: cover;
   background-repeat: no repeat;
 }
