@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import bodyParser from "body-parser";
+
 import dotenv from "dotenv";
 import { User } from "./models/user.models.js";
 import bcrypt from "bcryptjs";
@@ -34,7 +34,7 @@ const verifyPassword = async (passwordentered, storedpassword) => {
 const dbconn = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URL);
-    console.log(`Mongo DB connected Successfully : ${conn.connection.host}`);
+    console.log(`Mongo DB connected Successfully : ${conn.connection.host}`)
   } catch (error) {
     console.error(error);
   }
@@ -109,7 +109,7 @@ app.post("/api/prisonerdets", async (req, res) => {
     .catch((err)=>res.json(err))
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: "Every Field is Mandatory" });
+    res.status(500).json({ message: "Every Field is Mandatory" })
   }
 });
 

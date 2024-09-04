@@ -11,8 +11,8 @@ const Navigation = () => {
               </li>
             <li><a href="/prisoner">Get Verdict</a></li>
             <li>
-              {/* <Link href="/tablee">#</Link> */}
-              Verdicts Passed
+              <a href="/verdictspassed">Verdicts Passed</a>
+              
               </li>
               <li>
                 If Needed 1

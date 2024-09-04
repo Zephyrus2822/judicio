@@ -1,36 +1,37 @@
+import React from "react";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-
-function createData(name, calories, fat, carbs, protein, price) {
+function createData(name, AadharrNum, Crime, firdate, trialdate) {
   return {
     name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
+    AadharrNum,
+    Crime,
+    firdate,
+    trialdate,
     history: [
       {
-        date: '2020-01-05',
-        customerId: '11091700',
+        date: "2020-01-05",
+        crime: "Murder",
+        PrisonStatus: "on bail",
         amount: 3,
       },
       {
-        date: '2020-01-02',
-        customerId: 'Anonymous',
+        date: "2020-01-02",
+        crime: "Theft",
+        PrisonStatus: "in prison",
         amount: 1,
       },
     ],
@@ -43,7 +44,7 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -56,10 +57,11 @@ function Row(props) {
         <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
-        <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
-        <TableCell align="right">{row.carbs}</TableCell>
-        <TableCell align="right">{row.protein}</TableCell>
+        <TableCell align="right">{row.name}</TableCell>
+        <TableCell align="right">{row.crime}</TableCell>
+        <TableCell align="right">{row.AadharrNum}</TableCell>
+        <TableCell align="right">{row.firdate}</TableCell>
+        {/* <TableCell align="right">{row.trialdate}</TableCell> */}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -72,9 +74,9 @@ function Row(props) {
                 <TableHead>
                   <TableRow>
                     <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
+                    <TableCell>Crime</TableCell>
+                    <TableCell align="right">Prison Status</TableCell>
+                    <TableCell align="right">No of Prisonment</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -83,11 +85,11 @@ function Row(props) {
                       <TableCell component="th" scope="row">
                         {historyRow.date}
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
+                      <TableCell>{historyRow.crime}</TableCell>
                       <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
+                        {historyRow.PrisonStatus}
                       </TableCell>
+                      <TableCell align="right">{historyRow.amount}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -102,42 +104,36 @@ function Row(props) {
 
 Row.propTypes = {
   row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    AadharrNum: PropTypes.string.isRequired,
+    Crime: PropTypes.string.isRequired,
+    firdate: PropTypes.string.isRequired,
+    trialdate: PropTypes.string.isRequired,
     history: PropTypes.arrayOf(
       PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
-      }),
+        crime: PropTypes.string.isRequired,
+        PrisonStatus: PropTypes.string.isRequired,
+        amount: PropTypes.number.isRequired,
+      })
     ).isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
   }).isRequired,
 };
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-  createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-  createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-];
+const rows = [createData( "xxxx", "wfoh", "22-22-22", "22-22-22")];
 
-export default Tablee = () => {
+const Tablee = () => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Crime</TableCell>
+            <TableCell align="right">Aadharr Num</TableCell>
+            <TableCell align="right">FIR Date</TableCell>
+            <TableCell align="right">Trial Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -148,5 +144,6 @@ export default Tablee = () => {
       </Table>
     </TableContainer>
   );
-}
+};
 
+export default Tablee;
