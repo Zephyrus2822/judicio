@@ -25,14 +25,14 @@ function createData(name, AadharrNum, Crime, firdate, trialdate) {
       {
         date: "2020-01-05",
         crime: "Murder",
-        PrisonStatus: "on bail",
-        amount: 3,
+        PrisonStatus: "in prison",
+        amount: "non-bailable" 
       },
       {
         date: "2020-01-02",
         crime: "Theft",
         PrisonStatus: "in prison",
-        amount: 1,
+        amount: "bailable"
       },
     ],
   };
@@ -61,7 +61,7 @@ function Row(props) {
         <TableCell align="right">{row.crime}</TableCell>
         <TableCell align="right">{row.AadharrNum}</TableCell>
         <TableCell align="right">{row.firdate}</TableCell>
-       
+        {/* <TableCell align="right">{row.trialdate}</TableCell> */}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -120,7 +120,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = [createData("Zephyrus","6246 7282 5609","100","31/41, MegaZord Lane, Berkshire- 69")];
+const rows = [createData("Zephyrus","6246 7282 5609","100","31/41, MegaZord Lne")];
 
 const Tablee = () => {
   return (
@@ -129,10 +129,10 @@ const Tablee = () => {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell align="center" style={{ width: '200px', wordWrap: 'break-word' }}>Name</TableCell>
-            <TableCell align="center" style={{ width: '600px', wordWrap: 'break-word' }}>Aadhar Number</TableCell>
-            <TableCell align="center" style={{ width: '350px', wordWrap: 'break-word' }}>Number of Prisonments</TableCell>
-            <TableCell align="center" style={{ width: '450px', wordWrap: 'break-word' }}>Address</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Aadhar Number</TableCell>
+            <TableCell align="right">Number of Prisonments</TableCell>
+            <TableCell align="right">Address</TableCell>
             
           </TableRow>
         </TableHead>
