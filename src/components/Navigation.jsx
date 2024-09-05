@@ -18,7 +18,7 @@ const Navigation = () => {
                 <a href="/baildetails">Bail Details</a>
               </li>
               <li>
-                If Needed 2
+                <a href="/bailapplication">Apply for Bail</a>
               </li>
            
             
