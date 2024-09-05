@@ -14,27 +14,27 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-function createData(name, AadharrNum, Crime, firdate, trialdate) {
+function createData(name, AadharrNum, firdate, trialdate, Address) {
   return {
     name,
     AadharrNum,
-    Crime,
     firdate,
     trialdate,
+    Address,
     history: [
       {
         date: "2020-01-05",
         crime: "Murder",
         PrisonStatus: "in prison",
-        amount: "non-bailable" 
+        amount: "non-bailable"
       },
       {
         date: "2020-01-02",
         crime: "Theft",
         PrisonStatus: "in prison",
         amount: "bailable"
-      },
-    ],
+      }
+    ]
   };
 }
 
@@ -57,11 +57,10 @@ function Row(props) {
         <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
-        <TableCell align="right">{row.name}</TableCell>
-        <TableCell align="right">{row.crime}</TableCell>
         <TableCell align="right">{row.AadharrNum}</TableCell>
         <TableCell align="right">{row.firdate}</TableCell>
-        {/* <TableCell align="right">{row.trialdate}</TableCell> */}
+        <TableCell align="right">{row.trialdate}</TableCell>
+        <TableCell align="right">{row.Address}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -73,10 +72,10 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
+                    <TableCell>Date</TableCell>
                     <TableCell>Crime</TableCell>
-                    <TableCell>FIR Date</TableCell>
-                    <TableCell align="right">Trial Date</TableCell>
-                    <TableCell align="right">Current Status</TableCell>
+                    <TableCell align="right">Prison Status</TableCell>
+                    <TableCell align="right">Bail Status</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -86,9 +85,7 @@ function Row(props) {
                         {historyRow.date}
                       </TableCell>
                       <TableCell>{historyRow.crime}</TableCell>
-                      <TableCell align="right">
-                        {historyRow.PrisonStatus}
-                      </TableCell>
+                      <TableCell align="right">{historyRow.PrisonStatus}</TableCell>
                       <TableCell align="right">{historyRow.amount}</TableCell>
                     </TableRow>
                   ))}
@@ -106,21 +103,23 @@ Row.propTypes = {
   row: PropTypes.shape({
     name: PropTypes.string.isRequired,
     AadharrNum: PropTypes.string.isRequired,
-    Crime: PropTypes.string.isRequired,
     firdate: PropTypes.string.isRequired,
     trialdate: PropTypes.string.isRequired,
+    Address: PropTypes.string.isRequired,
     history: PropTypes.arrayOf(
       PropTypes.shape({
         date: PropTypes.string.isRequired,
         crime: PropTypes.string.isRequired,
         PrisonStatus: PropTypes.string.isRequired,
-        amount: PropTypes.number.isRequired,
+        amount: PropTypes.string.isRequired
       })
-    ).isRequired,
-  }).isRequired,
+    ).isRequired
+  }).isRequired
 };
 
-const rows = [createData("Zephyrus","6246 7282 5609","100","31/41, MegaZord Lne")];
+const rows = [
+  createData("Zephyrus", "6246 7600 2834", "2023-09-01", "2023-09-10", "X street")
+];
 
 const Tablee = () => {
   return (
@@ -131,9 +130,9 @@ const Tablee = () => {
             <TableCell />
             <TableCell>Name</TableCell>
             <TableCell align="right">Aadhar Number</TableCell>
-            <TableCell align="right">Number of Prisonments</TableCell>
+            <TableCell align="right">FIR Date</TableCell>
+            <TableCell align="right">Trial Date</TableCell>
             <TableCell align="right">Address</TableCell>
-            
           </TableRow>
         </TableHead>
         <TableBody>
