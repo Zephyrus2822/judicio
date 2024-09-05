@@ -15,7 +15,7 @@ const Navigation = () => {
               
               </li>
               <li>
-                If Needed 1
+                <a href="/baildetails">Bail Details</a>
               </li>
               <li>
                 If Needed 2
