@@ -4,6 +4,10 @@ import axios from "axios";
 
 const Prisoner = () => {
   const [Name, setName] = useState("");
+  const [FatherName, setFatherName] = useState("");
+  const [polstn,setpolstn] =useState("");
+  const [age,setage] =useState("");
+  const [voter,setvoter] = useState("");
   const [resadd, setresadd] = useState("");
   const [peradd, setperadd] = useState("");
   const [adharnum, setadharnum] = useState("");
@@ -18,7 +22,11 @@ const Prisoner = () => {
     try {
        axios.post(`${import.meta.env.VITE_DEV_URL}api/prisonerdets`, {
         Name,
+        FatherName,
+        polstn,
+        age,
         resadd,
+        voter,
         peradd,
         adharnum,
         prisonbefore,
@@ -31,6 +39,10 @@ const Prisoner = () => {
       .catch((err)=>console.log(err))
 
       setName("")
+      setFatherName("")
+      setpolstn("")
+      setage("")
+      setvoter("")
       setresadd("")
       setadharnum("")
       setcrime("")
@@ -62,6 +74,28 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
+              <span className="details">Age</span>
+              <input
+                name="age"
+                value={age}
+                onChange={(e) => setage(e.target.value)}
+                type="text"
+                placeholder="Enter Age"
+                required
+              />
+            </div>
+            <div className="input-box">
+              <span className="details">Son Of (S/O)</span>
+              <input
+                name="FatherName"
+                value={FatherName}
+                onChange={(e) => setFatherName(e.target.value)}
+                type="text"
+                placeholder="Enter Father's Name"
+                required
+              />
+            </div>
+            <div className="input-box">
               <span className="details">Residential Address</span>
               <input
                 name="resadd"
@@ -80,6 +114,28 @@ const Prisoner = () => {
                 onChange={(e) => setperadd(e.target.value)}
                 type="text"
                 placeholder="Enter Permanent Address"
+                required
+              />
+            </div>
+            <div className="input-box">
+              <span className="details">Police Station (P/S)</span>
+              <input
+                name="polstn"
+                value={polstn}
+                onChange={(e) => setpolstn(e.target.value)}
+                type="text"
+                placeholder="Tobin Road PS"
+                required
+              />
+            </div>
+            <div className="input-box">
+              <span className="details">Voter ID Number</span>
+              <input
+                name="voter"
+                value={voter}
+                onChange={(e) => setvoter(e.target.value)}
+                type="text"
+                placeholder="Enter Voter ID"
                 required
               />
             </div>

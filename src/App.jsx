@@ -4,11 +4,10 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Home from './components/Home'
 import Prisoner from './components/Prisoner'
-
 import Tablee from './components/Tablee'
 import AboutBail from './components/AboutBail'
 import BailApplication from './components/BailApplication'
-// import Tablee from './components/Tablee'
+
 
 
 function App() {
