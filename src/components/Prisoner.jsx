@@ -27,11 +27,10 @@ const Prisoner = () => {
         age,
         resadd,
         voter,
-        peradd,
+        
         adharnum,
         prisonbefore,
         firdate,
-        datetrial,
         crime,
         
       })
