@@ -146,6 +146,27 @@ form .input-box span.details{
     border-color: #9b59b6;
   }
 
+  .button {
+    width: 83.333333%; /* 10/12 */
+  text-align: center;
+  background-image: linear-gradient(to top right, #63b3ed, #f56565); /* from-blue-400 to-red-300 */
+  padding-left: 0.5rem; /* px-2 */
+  padding-right: 0.5rem; /* px-2 */
+  padding-top: 0.25rem; /* py-1 */
+  padding-bottom: 0.25rem; /* py-1 */
+  border-radius: 0.5rem; /* rounded-lg */
+  display: flex;
+  justify-content: flex-start; /* justify-left */
+  color: #fff; /* text-white */
+  font-weight: bold; /* font-bold */
+  align-items: center; /* items-center */
+  transition: transform 0.3s ease, background-image 0.8s ease; 
+  }
+
+  .button:hover{
+    transform: scale(1.05); /* Scale to 1.05 size */
+    background-image: linear-gradient(to top right, #f56565, #63b3ed);
+  }
  
  
  

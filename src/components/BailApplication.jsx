@@ -118,7 +118,7 @@ const BailApplication = () => {
       >
         Show Application
       </button>
-      <div className="application">
+      <div className="application" style={{border: "1px solid black", marginTop: "20px", marginBottom:"150px"}}>
         {showapplication && (
           <div className="bailapplication w-[55%] mx-auto px-20  py-5 ">
             <div

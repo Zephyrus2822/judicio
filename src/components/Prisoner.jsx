@@ -57,7 +57,7 @@ const Prisoner = () => {
   return (
    
     <div className="container">
-      <div className="title">Registration</div>
+      <div className="title">Register Yourself For Bail Application</div>
       <div className="content">
         <form onSubmit={handleSubmit} action="#">
           <div className="user-details">
@@ -186,9 +186,9 @@ const Prisoner = () => {
             <div className="conviction">
               <label
                 htmlFor="crime"
-                style={{ fontSize: "16px;", fontWeight: "500;" }}
+               
               >
-                Convicted For:
+                <span  style={{ fontSize: "16px;", fontWeight: "800;" }}>Convicted For:</span>
               </label>
 
               <input
@@ -248,7 +248,7 @@ const Prisoner = () => {
                   <span className="gender">Other</span>
                 </label>
               </div>
-            <button  className="button w-10/12 text-center bg-gradient-to-tr from-blue-400 to-red-300 px-2 py-1 rounded-lg flex justify-left text-white font-bold items-center " type="submit">Register</button>
+            <button  className="button" type="submit">Register</button>
             </div>
           </div>
         </form>

@@ -2,7 +2,7 @@
 const ContactUs = () => {
   return (
     
-    <section className="py-1 bg-gray-50  sm:pt-8 lg:pt-12">
+    <section className="py-1 bg-gray-50  sm:pt-8 lg:pt-12" style={{borderTop: "1px solid black"}} >
     <div className="px-4 mx-auto sm:px-3 lg:px-4 max-w-7xl">
         <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
             <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
