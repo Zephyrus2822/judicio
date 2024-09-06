@@ -6,7 +6,7 @@ import Home from './components/Home'
 import Prisoner from './components/Prisoner'
 import Tablee from './components/Tablee'
 import AboutBail from './components/AboutBail'
-import BailApplication from './components/BailApplication'
+
 
 
 
@@ -22,7 +22,7 @@ function App() {
       <Route path='/prisoner' element={<Prisoner/>}></Route>
       <Route path='/verdictspassed' element={<Tablee/>}></Route>
       <Route path='/baildetails' element={<AboutBail/>}></Route>
-      <Route path='/bailapplication' element={<BailApplication/>}></Route>
+   
     </Routes>
    </BrowserRouter>
   )
