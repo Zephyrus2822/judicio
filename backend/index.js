@@ -57,8 +57,9 @@ app.post("/api/signup", async (req, res) => {
       email,
       password: hashPassword,
     });
+    res.json("UserCreated")
 
-    res.status(201).json(newUser);
+    
   } catch (error) {
     console.error(error);
     res.status(500).json("Server error");

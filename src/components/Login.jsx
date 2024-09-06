@@ -17,7 +17,10 @@ const Login = () => {
     .then((response)=>{
       console.log(response)
       if(response.data=="Success"){
+        window.localStorage.setItem("UserNamejudicio",username)
+        window.localStorage.setItem("isLoggedInjudicio",true)
         navigate("/")
+        window.location.reload()
       }else{
         setstatus(response.data)
       }
