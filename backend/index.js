@@ -96,25 +96,37 @@ app.post("/api/prisonerdets", async (req, res) => {
       voter,
 
       adharnum,
-      prisonbefore,
+      prisonedbefore,
       firdate,
       crime,
     } = req.body;
-    await Prisoner.create({
-      Name: Name,
-      ResAddress: resadd,
-      FathersName:FatherName,
-      PoliceStation:polstn,
-      Age: age,
-      ElectionId: voter,
-      AddharNum: adharnum,
-      prisonbefore: prisonbefore,
-      FIRdate: firdate,
-      
-      Crime: crime,
+    Prisoner.findOneAndUpdate({prisonbefore:Prisoner.prisonbefore+prisonedbefore})
+    await Prisoner.findOne({AddharNum:adharnum})
+    .then(user=>{
+      if(user){
+        return res.json("Prisoner already exists");
+        
+      }
+      else{
+         Prisoner.create({
+          Name: Name,
+          ResAddress: resadd,
+          FathersName:FatherName,
+          PoliceStation:polstn,
+          Age: age,
+          ElectionId: voter,
+          AddharNum: adharnum,
+          prisonbefore: prisonedbefore,
+          FIRdate: firdate,
+          
+          Crime: crime,
+        })
+          .then(() => res.json("Added"))
+          .catch((err) => res.json(err));
+        
+      }
     })
-      .then(() => res.json("Added"))
-      .catch((err) => res.json(err));
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Every Field is Mandatory" });

@@ -34,7 +34,7 @@ const Navigation = () => {
         </ul>
         {username && LoggedIn ? (
           <div className="flex justify-center items-center gap-2 ">
-            <h1 className="text-3xl">Hello! {username}</h1>
+            
             <a onClick={signout} className="chat">Logout</a>
           </div>
         ) : (
