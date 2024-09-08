@@ -34,7 +34,6 @@ const Prisoner = () => {
           age,
           resadd,
           voter,
-
           adharnum,
           prisonedbefore,
           firdate,
@@ -96,15 +95,16 @@ const Prisoner = () => {
     }
   };
 
-  // this opens a new popup,  after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
+  //this opens a new popup, after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
 
   return (
+    <div className="background">
     <div className="container">
       <div className="title">Registration</div>
       <div className="content">
         {userstatus && (
           <h1 className="text-center text-2xl ">
-            {userstatus} proceed to Application
+            {userstatus} Proceed to Application
           </h1>
         )}
         
@@ -189,7 +189,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">Aadhar Number</span>
+              <span className="details" >Aadhar Number</span>
               <input
                 name="adharnum"
                 value={adharnum}
@@ -222,7 +222,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">Date of Trial</span>
+              <span className="details" >Date of Trial</span>
               <input
                 name="datetrial"
                 value={datetrial}
@@ -236,8 +236,7 @@ const Prisoner = () => {
             <div className="conviction">
               <label
                 htmlFor="crime"
-                style={{ fontSize: "16px;", fontWeight: "500;" }}
-              >
+                style={{ fontSize: "16px;", fontWeight: "500;" }}>
                 Convicted For:
               </label>
 
@@ -250,6 +249,7 @@ const Prisoner = () => {
                 id=""
                 placeholder="Select crime"
               />
+              
               <datalist id="crime">
                 <option value="Cyber Crime"></option>
                 <option value="Crime against SCs and STs"></option>
@@ -283,11 +283,11 @@ const Prisoner = () => {
                 name="gender"
                 id="dot-3"
               />
-              <span className="gender-title">Gender</span>
+              <span className="gender-title" >Gender</span>
               <div className="category">
                 <label htmlFor="dot-1">
                   <span className="dot one"></span>
-                  <span className="gender">Male</span>
+                  <span className="gender" >Male</span>
                 </label>
                 <label htmlFor="dot-2">
                   <span className="dot two"></span>
@@ -295,13 +295,11 @@ const Prisoner = () => {
                 </label>
                 <label htmlFor="dot-3">
                   <span className="dot three"></span>
-                  <span className="gender">Other</span>
+                  <span className="gender" >Other</span>
                 </label>
               </div>
               <button
-                className="button bg-gradient-to-tr from-blue-400 to-red-300 px-2 py-1 rounded-lg mt-10 text-2xl "
-                type="submit"
-              >
+                className="button" type="submit">
                 Apply for Bail
               </button>
             </div>
@@ -626,6 +624,7 @@ const Prisoner = () => {
           </button>
         )}
       </div>
+    </div>
     </div>
   );
 };
