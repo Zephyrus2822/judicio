@@ -6,9 +6,7 @@ import html2canvas from "html2canvas";
 
 const Prisoner = () => {
   const [showapplication, setshowapplication] = useState(false);
-
   const ref = useRef(null);
-
   const [Name, setName] = useState("");
   const [FatherName, setFatherName] = useState("");
   const [polstn, setpolstn] = useState("");
@@ -22,13 +20,9 @@ const Prisoner = () => {
   const [datetrial, setdatetrial] = useState("");
   const [crime, setcrime] = useState("");
   const [gender, setgender] = useState("");
-
   const [userstatus, setuserstatus] = useState("");
-
   const [BailAmt, setBailAmt] = useState("");
-
   const [status, setstatus] = useState("");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
