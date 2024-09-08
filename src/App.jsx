@@ -22,7 +22,6 @@ function App() {
       <Route path='/prisoner' element={<Prisoner/>}></Route>
       <Route path='/verdictspassed' element={<Tablee/>}></Route>
       <Route path='/baildetails' element={<AboutBail/>}></Route>
-   
     </Routes>
    </BrowserRouter>
   )

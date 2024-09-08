@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import "./prisoner.css";
-
 import axios from "axios";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -478,7 +477,6 @@ const Prisoner = () => {
                   pageBreakBefore: "always",
                   pageBreakAfter: "always",
                   marginLeft: "40px",
-                  // marginRight: "350px",
                   fontFamily: "Roboto",
                   marginTop: "45px",
                   paddingBottom: "40px",
@@ -619,8 +617,7 @@ const Prisoner = () => {
             
             <button
               className="text-xl bg-blue-400 px-2 py-1 rounded-lg ml-[45%] mt-5 mb-5 "
-              onClick={printpdf}
-            >
+              onClick={printpdf}>
               Print Application
             </button>
           </div>
