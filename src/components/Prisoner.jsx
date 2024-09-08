@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import "./prisoner.css";
+
 import axios from "axios";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -51,30 +52,28 @@ const Prisoner = () => {
       console.error(error);
     }
 
-    // try {
-    //   await axios.get(`${import.meta.env.VITE_DEV_URL}api/crimes`)
-    //   .then((response)=>{
-    //     response.data.map(crimes=>{
-    //       // console.log(crimes)
-    //       if(crimes.crime===crime){
-    //         console.log("Found")
-    //         console.log(crimes)
-    //         setstatus(crimes["Bail Status"])
-    //         setBailAmt(crimes["Bail Amount"])
+    try {
+      await axios.get(`${import.meta.env.VITE_DEV_URL}api/crimes`)
+      .then((response)=>{
+        response.data.map(crimes=>{
+          // console.log(crimes)
+          if(crimes.crime===crime){
+            console.log("Found")
+            console.log(crimes)
+            setstatus(crimes["Bail Status"])
+            setBailAmt(crimes["Bail Amount"])
 
-    //         console.log(BailAmt)
-    //       }
-    //     })
-    //     // console.log(response.data)
+            console.log(BailAmt)
+          }
+        })
+        // console.log(response.data)
 
-    //   })
-    // } catch (error) {
+      })
+    } catch (error) {
 
-    // }
+    }
   };
-  
 
-  
   const printpdf = async () => {
     const input = ref.current;
     try {
@@ -107,7 +106,6 @@ const Prisoner = () => {
             {userstatus} proceed to Application
           </h1>
         )}
-        
 
         <form onSubmit={handleSubmit} action="#">
           <div className="user-details">
@@ -369,7 +367,7 @@ const Prisoner = () => {
                   </p>
                   <p style={{ textAlign: "start" }}>
                     P.S. :{" "}
-                    <span className="border-b-2 border-black">{polstn}</span>{" "}
+                    <span className="border-b-2 border-black py-2 ">{polstn}</span>{" "}
                     <br />
                   </p>
                   <p style={{ textAlign: "start" }}>
@@ -385,9 +383,9 @@ const Prisoner = () => {
                 </p>
                 <div className="mx-32 mb-10">
                   <p style={{ textAlign: "start", padding: "5px auto" }}>
-                    I, <span className="border-b-2 border-black">{Name}</span>{" "}
+                    I, <span className="border-b-2 border-black py-2 ">{Name}</span>{" "}
                     S/o. Sh.
-                    <span className="border-b-2 border-black">
+                    <span className="border-b-2 border-black py-2">
                       {FatherName}
                     </span>
                     <br />
@@ -397,7 +395,7 @@ const Prisoner = () => {
                     acquitted by this Hon&#8217;ble Court on ________________ in
                     above said case FIR No. <br />
                     _________________ P.S.{" "}
-                    <span className="border-b-2 border-black">
+                    <span className="border-b-2 border-black py-2 ">
                       {polstn}
                     </span>{" "}
                     U/s _____________ and required to give <br />
@@ -431,18 +429,18 @@ const Prisoner = () => {
                     <u>SURETY BOND</u> <br />
                   </p>
                   <p style={{ textAlign: "start" }}>
-                    I, <span className="border-b-2 border-black">{Name}</span>{" "}
+                    I, <span className="border-b-2 border-black py-2">{Name}</span>{" "}
                     S/o. Sh.
-                    <span className="border-b-2 border-black">
+                    <span className="border-b-2 border-black py-2">
                       {FatherName}
                     </span>{" "}
                     R/o _______________ <br />
                     ____________________________________________________ hereby
                     declare myself for the above said Sh. <br />
-                    <span className="border-b-2 border-black">
+                    <span className="border-b-2 border-black py-2">
                       {Name}
                     </span> S/o{" "}
-                    <span className="border-b-2 border-black">
+                    <span className="border-b-2 border-black py-2">
                       {FatherName}
                     </span>{" "}
                     shall attend the appellate <br />
@@ -495,7 +493,7 @@ const Prisoner = () => {
                   <br />
                   <p>
                     I
-                    <span className="border-b-2 border-black border-dotted">
+                    <span className="border-b-2 border-black py-2 border-dotted">
                       {" "}
                       {Name}{" "}
                     </span>
@@ -503,7 +501,7 @@ const Prisoner = () => {
                     .......................................................................................
                     <br />
                     Aged about{" "}
-                    <span className="border-b-2 border-black border-dotted">
+                    <span className="border-b-2 border-black py-2 border-dotted">
                       {" "}
                       {age}{" "}
                     </span>{" "}
@@ -520,7 +518,7 @@ const Prisoner = () => {
                     ............................
                     <br />
                     .......................... and Election Card No.
-                    <span className="border-b-2 border-black border-dotted">
+                    <span className="border-b-2 border-black py-2 border-dotted">
                       {voter}
                     </span>{" "}
                     <br />
@@ -617,13 +615,17 @@ const Prisoner = () => {
             </div>
           </div>
         )}
+        
         {showapplication && (
-          <button
-            onClick={printpdf}
-            className="text-xl bg-blue-400 px-2 py-1 rounded-lg ml-[45%] mt-5 mb-5 "
-          >
-            Pay the amount and print the application
-          </button>
+          <div>
+            
+            <button
+              className="text-xl bg-blue-400 px-2 py-1 rounded-lg ml-[45%] mt-5 mb-5 "
+              onClick={printpdf}
+            >
+              Print Application
+            </button>
+          </div>
         )}
       </div>
     </div>
