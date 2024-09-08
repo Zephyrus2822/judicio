@@ -373,7 +373,7 @@ const Prisoner = () => {
                   </p>
                   <p style={{ textAlign: "start" }}>
                     P.S. :{" "}
-                    <span className="border-b-2 border-black py-2 py-2">{polstn}</span>{" "}
+                    <span className="border-b-2 border-black py-2 ">{polstn}</span>{" "}
                     <br />
                   </p>
                   <p style={{ textAlign: "start" }}>
