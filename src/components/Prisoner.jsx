@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./prisoner.css";
 import axios from "axios";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const Prisoner = () => {
   const [showapplication, setshowapplication] = useState(false);
+
+  const ref = useRef(null);
 
   const [Name, setName] = useState("");
   const [FatherName, setFatherName] = useState("");
@@ -13,16 +17,22 @@ const Prisoner = () => {
   const [resadd, setresadd] = useState("");
   const [peradd, setperadd] = useState("");
   const [adharnum, setadharnum] = useState("");
-  const [prisonbefore, setprisonbefore] = useState("");
+  const [prisonedbefore, setprisonedbefore] = useState("");
   const [firdate, setfirdate] = useState("");
   const [datetrial, setdatetrial] = useState("");
   const [crime, setcrime] = useState("");
   const [gender, setgender] = useState("");
 
-  const handleSubmit = (e) => {
+  const [userstatus, setuserstatus] = useState("");
+
+  const [BailAmt, setBailAmt] = useState("");
+
+  const [status, setstatus] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      axios
+      await axios
         .post(`${import.meta.env.VITE_DEV_URL}api/prisonerdets`, {
           Name,
           FatherName,
@@ -32,34 +42,79 @@ const Prisoner = () => {
           voter,
 
           adharnum,
-          prisonbefore,
+          prisonedbefore,
           firdate,
           crime,
         })
-        .then((response) => console.log(response))
+        .then((response) => {
+          if (response.data === "Prisoner already exists") {
+            setuserstatus("Prisoner already exists");
+          }
+          console.log(response);
+        })
         .catch((err) => console.log(err));
-
-      // setName("");
-      // setFatherName("");
-      // setpolstn("");
-      // setage("");
-      // setvoter("");
-      // setresadd("");
-      // setadharnum("");
-      // setcrime("");
-      // setdatetrial("");
-      // setfirdate("");
-      // setperadd("");
-      // setprisonbefore("");
     } catch (error) {
       console.error(error);
     }
+
+    // try {
+    //   await axios.get(`${import.meta.env.VITE_DEV_URL}api/crimes`)
+    //   .then((response)=>{
+    //     response.data.map(crimes=>{
+    //       // console.log(crimes)
+    //       if(crimes.crime===crime){
+    //         console.log("Found")
+    //         console.log(crimes)
+    //         setstatus(crimes["Bail Status"])
+    //         setBailAmt(crimes["Bail Amount"])
+
+    //         console.log(BailAmt)
+    //       }
+    //     })
+    //     // console.log(response.data)
+
+    //   })
+    // } catch (error) {
+
+    // }
   };
+  
+
+  
+  const printpdf = async () => {
+    const input = ref.current;
+    try {
+      const canvas = await html2canvas(input);
+      const imgdata = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: "a4",
+        pagesplit: true,
+      });
+
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgdata, "PNG", 0, 0, width, height);
+      pdf.save("document.pdf");
+    } catch (error) {
+      console.error("Error printing the pdf");
+    }
+  };
+
+  // this opens a new popup,  after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
 
   return (
     <div className="container">
       <div className="title">Registration</div>
       <div className="content">
+        {userstatus && (
+          <h1 className="text-center text-2xl ">
+            {userstatus} proceed to Application
+          </h1>
+        )}
+        
+
         <form onSubmit={handleSubmit} action="#">
           <div className="user-details">
             <div className="input-box">
@@ -153,10 +208,10 @@ const Prisoner = () => {
             <div className="input-box">
               <span className="details">No of Prisonment Before</span>
               <input
-                name="prisonbefore"
-                value={prisonbefore}
+                name="prisonedbefore"
+                value={prisonedbefore}
                 type="number"
-                onChange={(e) => setprisonbefore(e.target.value)}
+                onChange={(e) => setprisonedbefore(e.target.value)}
                 placeholder="Enter the no of prisonment before"
                 required
               />
@@ -250,30 +305,57 @@ const Prisoner = () => {
                 </label>
               </div>
               <button
-                className="button w-10/12 text-center bg-gradient-to-tr from-blue-400 to-red-300 px-2 py-1 rounded-lg flex justify-left text-white font-bold items-center "
+                className="button bg-gradient-to-tr from-blue-400 to-red-300 px-2 py-1 rounded-lg mt-10 text-2xl "
                 type="submit"
               >
-                Register
+                Apply for Bail
               </button>
             </div>
           </div>
         </form>
       </div>
-      <button
-        onClick={() => setshowapplication(!showapplication)}
-        className="text-xl bg-blue-400 px-2 py-1 rounded-lg ml-[45%] mt-5 mb-5 "
-      >
-        Show Application
-      </button>
+
+      <div className="btns grid grid-cols-">
+        <div className="status text-center space-y-3 mt-5">
+          <h3 className="text-xl font-semibold ">{status}</h3>
+          <h3 className="text-xl font-semibold ">{BailAmt}</h3>
+        </div>
+        {status === "Bailable" ? (
+          <button
+            onClick={() => setshowapplication(!showapplication)}
+            className="text-xl bg-blue-400 px-2 py-1 rounded-lg   "
+          >
+            Show Application
+          </button>
+        ) : (
+          <div>
+            <button
+              onClick={() => setshowapplication(!showapplication)}
+              className="text-xl bg-blue-400 px-2 py-1 rounded-lg hidden  "
+            >
+              Show Application
+            </button>
+          </div>
+        )}
+        {status === "Non-bailable" && (
+          <h1 className="text-center text-xl mt-5">
+            You are not applicable to apply for the bail
+          </h1>
+        )}
+      </div>
       <div className="application w-full min-h-[80%]">
         {showapplication && (
-          <div className="bailapplication w-[55%] bg-white rounded-lg mx-auto px-20  py-5 ">
+          <div
+            ref={ref}
+            id="bailapplication"
+            className=" bg-white rounded-lg mx-auto px-5  py-5 "
+          >
             <div
               style={{
                 pageBreakBefore: "always",
                 pageBreakAfter: "always",
                 textAlign: "center",
-                marginLeft: "40px",
+                // marginRight: "40px",
                 fontFamily: "Roboto",
                 marginTop: "10px",
               }}
@@ -286,91 +368,119 @@ const Prisoner = () => {
                   BOND & BAIL BOND FOR ATTENDANCE BEFORE THE APPELLANT COURT{" "}
                   <br />
                 </p>
-                <p style={{ textAlign: "start" }}>
-                  In the court of Sh.
-                  ____________________________________________________ <br />
-                </p>
-                <p style={{ textAlign: "start" }}>
-                  P.S. :{" "}
-                  <span className="border-b-2 border-black">{polstn}</span>{" "}
-                  <br />
-                </p>
-                <p style={{ textAlign: "start" }}>
-                  U/S ___________________ <br />
-                </p>
-                <p style={{ textAlign: "start" }}>
-                  FIR No. _________________ <br />
-                </p>
-                <p style={{ fontWeight: "bold" }}>
+                <div className="mx-32">
+                  <p style={{ textAlign: "start" }}>
+                    In the court of Sh.
+                    ____________________________________________________ <br />
+                  </p>
+                  <p style={{ textAlign: "start" }}>
+                    P.S. :{" "}
+                    <span className="border-b-2 border-black">{polstn}</span>{" "}
+                    <br />
+                  </p>
+                  <p style={{ textAlign: "start" }}>
+                    U/S ___________________ <br />
+                  </p>
+                  <p style={{ textAlign: "start" }}>
+                    FIR No. _________________ <br />
+                  </p>
+                </div>
+
+                <p style={{ fontWeight: "bold", marginBottom: "50px" }}>
                   <u>PERSONAL BOND</u> <br />
                 </p>
-                <p style={{ textAlign: "start", padding: "5px auto" }}>
-                  I, <span className="border-b-2 border-black">{Name}</span>{" "}
-                  S/o. Sh.
-                  <span className="border-b-2 border-black">{FatherName}</span>
-                  <br />
-                  R/o
-                  ________________________________________________________________
-                  Having been <br />
-                  acquitted by this Hon&#8217;ble Court on ________________ in
-                  above said case FIR No. <br />
-                  _________________ P.S.{" "}
-                  <span className="border-b-2 border-black">{polstn}</span> U/s
-                  _____________ and required to give <br />
-                  surety for my attendance before the Hon&#8217;ble Court on
-                  condition that I shall attend the Hon&#8217;ble <br />
-                  Appellate Court on every date of hearing in which any appeal
-                  filed against the judgment & <br />
-                  Order of acquittal, passed by this Hon&#8217;ble Court and in
-                  case making default therein I myself <br />
-                  undertake to forfeit to the Govt. of India the sum of Rs.
-                  ____________________ <br />
-                </p>
-                <p style={{ textAlign: "start", padding: "5px auto" }}>
-                  Delhi <br />
-                </p>
-                <p style={{ textAlign: "start", padding: "5px auto" }}>
-                  Date: <br />
-                </p>
-                <p style={{ textAlign: "start", padding: "5px auto" }}>
-                  Signature <br />
-                </p>
-                <p style={{ textAlign: "start", fontWeight: "bold" }}>
-                  <u>SURETY BOND</u> <br />
-                </p>
-                <p style={{ textAlign: "start" }}>
-                  I, <span className="border-b-2 border-black">{Name}</span>{" "}
-                  S/o. Sh.
-                  <span className="border-b-2 border-black">
-                    {FatherName}
-                  </span>{" "}
-                  R/o _______________ <br />
-                  ____________________________________________________ hereby
-                  declare myself for the above said Sh. <br />
-                  <span className="border-b-2 border-black">
-                    {Name}
-                  </span> S/o{" "}
-                  <span className="border-b-2 border-black">{FatherName}</span>{" "}
-                  shall attend the appellate <br />
-                  court every date in which any appeal filed against the
-                  Judgment & Order of acquittal, passed by <br />
-                  this Hon&#8217;ble Court and in case making default therein I
-                  myself undertake to forfeit to the Govt. <br />
-                  of India the sum of Rs. __________________ <br />
-                </p>
-                <p style={{ textAlign: "start" }}>
-                  Dated this ..........................................day of
-                  ....................201 <br />
-                </p>
-                <p>
-                  <br />
-                </p>
-                <p style={{ textAlign: "end" }}>
-                  Signature <br />
-                </p>
-                <p style={{ textAlign: "center", marginRight: "33px" }}>
-                  Presented by:
-                </p>
+                <div className="mx-32 mb-10">
+                  <p style={{ textAlign: "start", padding: "5px auto" }}>
+                    I, <span className="border-b-2 border-black">{Name}</span>{" "}
+                    S/o. Sh.
+                    <span className="border-b-2 border-black">
+                      {FatherName}
+                    </span>
+                    <br />
+                    R/o
+                    ________________________________________________________________
+                    Having been <br />
+                    acquitted by this Hon&#8217;ble Court on ________________ in
+                    above said case FIR No. <br />
+                    _________________ P.S.{" "}
+                    <span className="border-b-2 border-black">
+                      {polstn}
+                    </span>{" "}
+                    U/s _____________ and required to give <br />
+                    surety for my attendance before the Hon&#8217;ble Court on
+                    condition that I shall attend the Hon&#8217;ble <br />
+                    Appellate Court on every date of hearing in which any appeal
+                    filed against the judgment & <br />
+                    Order of acquittal, passed by this Hon&#8217;ble Court and
+                    in case making default therein I myself <br />
+                    undertake to forfeit to the Govt. of India the sum of Rs.
+                    ____________________ <br />
+                  </p>
+                  <p style={{ textAlign: "start", padding: "5px auto" }}>
+                    Delhi <br />
+                  </p>
+                  <p style={{ textAlign: "start", padding: "5px auto" }}>
+                    Date: <br />
+                  </p>
+                  <p style={{ textAlign: "start", padding: "5px auto" }}>
+                    Signature <br />
+                  </p>
+                </div>
+                <div className="mx-32">
+                  <p
+                    style={{
+                      textAlign: "start",
+                      fontWeight: "bold",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <u>SURETY BOND</u> <br />
+                  </p>
+                  <p style={{ textAlign: "start" }}>
+                    I, <span className="border-b-2 border-black">{Name}</span>{" "}
+                    S/o. Sh.
+                    <span className="border-b-2 border-black">
+                      {FatherName}
+                    </span>{" "}
+                    R/o _______________ <br />
+                    ____________________________________________________ hereby
+                    declare myself for the above said Sh. <br />
+                    <span className="border-b-2 border-black">
+                      {Name}
+                    </span> S/o{" "}
+                    <span className="border-b-2 border-black">
+                      {FatherName}
+                    </span>{" "}
+                    shall attend the appellate <br />
+                    court every date in which any appeal filed against the
+                    Judgment & Order of acquittal, passed by <br />
+                    this Hon&#8217;ble Court and in case making default therein
+                    I myself undertake to forfeit to the Govt. <br />
+                    of India the sum of Rs. __________________ <br />
+                  </p>
+                  <p style={{ textAlign: "start" }}>
+                    Dated this ..........................................day of
+                    ....................201 <br />
+                  </p>
+                  <p>
+                    <br />
+                  </p>
+                </div>
+
+                <div className="flex justify-start items-center gap-[400px] mx-32">
+                  <p
+                    style={{
+                      textAlign: "left",
+                      marginRight: "33px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    Presented by:
+                  </p>
+                  <p style={{ textAlign: "center", marginTop: "20px" }}>
+                    Signature <br />
+                  </p>
+                </div>
               </div>
 
               <div
@@ -378,8 +488,10 @@ const Prisoner = () => {
                   pageBreakBefore: "always",
                   pageBreakAfter: "always",
                   marginLeft: "40px",
+                  // marginRight: "350px",
                   fontFamily: "Roboto",
-                  marginTop: "25px",
+                  marginTop: "45px",
+                  paddingBottom: "40px",
                 }}
               >
                 <div>
@@ -477,7 +589,13 @@ const Prisoner = () => {
                     Rs ....................................
                     <br />
                   </p>
-                  <p style={{ fontWeight: "bold", textAlign: "end" }}>
+                  <p
+                    style={{
+                      fontWeight: "bold",
+                      textAlign: "end",
+                      marginRight: "140px",
+                    }}
+                  >
                     <br />
                     DEPONENT <br />
                   </p>
@@ -491,7 +609,13 @@ const Prisoner = () => {
                     is untrue.
                     <br />
                   </p>
-                  <p style={{ fontWeight: "bold", textAlign: "end" }}>
+                  <p
+                    style={{
+                      fontWeight: "bold",
+                      textAlign: "end",
+                      marginRight: "140px",
+                    }}
+                  >
                     DEPONENT <br />
                   </p>
                 </div>
@@ -500,7 +624,10 @@ const Prisoner = () => {
           </div>
         )}
         {showapplication && (
-          <button className="text-xl bg-blue-400 px-2 py-1 rounded-lg ml-[45%] mt-5 mb-5 ">
+          <button
+            onClick={printpdf}
+            className="text-xl bg-blue-400 px-2 py-1 rounded-lg ml-[45%] mt-5 mb-5 "
+          >
             Pay the amount and print the application
           </button>
         )}
