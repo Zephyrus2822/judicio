@@ -85,6 +85,10 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.post('/api/payment',(req,res)=>{
+  
+})
+
 app.post("/api/prisonerdets", async (req, res) => {
   try {
     const {
