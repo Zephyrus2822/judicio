@@ -28,7 +28,7 @@
     "express": "^4.19.2",
     "express-openid-connect": "^2.17.1",
     "express-session": "^1.18.0",
-    "framer-motion": "^11.5.4",
+    "framer-motion": "^11.3.31",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "ka-table": "^11.1.0",
