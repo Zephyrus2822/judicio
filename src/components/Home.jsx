@@ -16,9 +16,9 @@ const Home = () => {
         }}
         className="relative flex flex-col gap-4 items-start justify-center px-2 w-full"
       >
-        <motion.div initial={{x:50 ,opacity:0}} animate={{x:0,opacity:1}} transition={{duration:1 , delay:0.3 ,ease:'easeIn'}} className="text-3xl mx-40 md:text-7xl font-bold text-white mr-[400px] text-center" style={{ fontFamily: "Berkshire Swash", fontSize: "90px"}}>
+        <div className="text-3xl mx-40 md:text-7xl font-bold text-white mr-[400px] text-center" style={{ fontFamily: "Berkshire Swash", fontSize: "90px"}}>
           Welcome to Judicio!
-        </motion.div>
+        </div>
         <div className="font-extralight mx-40 text-base md:text-4xl text-neutral-200 py-4" style={{ fontFamily: "Poppins"}}>
         Justice delayed is Justice denied. <br />With that thought in mind, we have come up with a Bail reckoning system called Judicio. <br />
         Uniting technology and the Constitution of India, <br /> to deliver swift and just outcomes for undertrial individuals—<br /> whether it's enduring justice or timely mercy through Bail. 

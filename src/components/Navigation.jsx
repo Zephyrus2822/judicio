@@ -4,11 +4,11 @@ const Navigation = () => {
   const username = window.localStorage.getItem("UserNamejudicio");
   const LoggedIn = window.localStorage.getItem("isLoggedInjudicio");
 
-  const signout = () => {
+  const signout=()=>{
     window.localStorage.removeItem("UserNamejudicio");
     window.localStorage.removeItem("isLoggedInjudicio");
     window.location.reload();
-  };
+  }
 
   return (
     <div className="header">
@@ -22,25 +22,20 @@ const Navigation = () => {
               Home
             </a>
           </li>
-          {LoggedIn && (
-            <ul>
-              <li>
-                <a href="/prisoner">Get Verdict</a>
-              </li>
-              <li>
-                <a href="/verdictspassed">Verdicts Passed</a>
-              </li>
-              <li>
-                <a href="/baildetails">Bail Details</a>
-              </li>
-            </ul>
-          )}
+          <li>
+            <a href="/prisoner">Get Verdict</a>
+          </li>
+          <li>
+            <a href="/verdictspassed">Verdicts Passed</a>
+          </li>
+          <li>
+            <a href="/baildetails">Bail Details</a>
+          </li>
         </ul>
         {username && LoggedIn ? (
           <div className="flex justify-center items-center gap-2 ">
-            <a onClick={signout} className="chat">
-              Logout
-            </a>
+            
+            <a onClick={signout} className="chat">Logout</a>
           </div>
         ) : (
           <div>
