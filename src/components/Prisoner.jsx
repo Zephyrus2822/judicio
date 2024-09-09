@@ -98,7 +98,7 @@ const Prisoner = () => {
   return (
     <div className="background">
     <div className="container">
-      <div className="title">Registration</div>
+      <div className="title text-white">Registration</div>
       <div className="content">
         {userstatus && (
           <h1 className="text-center text-2xl ">
@@ -109,7 +109,7 @@ const Prisoner = () => {
         <form onSubmit={handleSubmit} action="#">
           <div className="user-details">
             <div className="input-box">
-              <span className="details">Full Name</span>
+              <span className="details text-white">Full Name</span>
               <input
                 name="Name"
                 value={Name}
@@ -120,7 +120,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">Age</span>
+              <span className="details text-white">Age</span>
               <input
                 name="age"
                 value={age}
@@ -131,7 +131,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">Son Of (S/O)</span>
+              <span className="details text-white">Son Of (S/O)</span>
               <input
                 name="FatherName"
                 value={FatherName}
@@ -142,7 +142,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">Residential Address</span>
+              <span className="details text-white">Residential Address</span>
               <input
                 name="resadd"
                 value={resadd}
@@ -153,7 +153,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">Permanent Address (if exists)</span>
+              <span className="details text-white">Permanent Address (if exists)</span>
               <input
                 name="peradd"
                 value={peradd}
@@ -164,7 +164,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">Police Station (P/S)</span>
+              <span className="details text-white">Police Station (P/S)</span>
               <input
                 name="polstn"
                 value={polstn}
@@ -175,7 +175,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">Voter ID Number</span>
+              <span className="details text-white">Voter ID Number</span>
               <input
                 name="voter"
                 value={voter}
@@ -186,7 +186,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details" >Aadhar Number</span>
+              <span className="details text-white" >Aadhar Number</span>
               <input
                 name="adharnum"
                 value={adharnum}
@@ -197,7 +197,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">No of Prisonment Before</span>
+              <span className="details text-white">No of Prisonment Before</span>
               <input
                 name="prisonedbefore"
                 value={prisonedbefore}
@@ -208,7 +208,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details">FIR Lodge Date</span>
+              <span className="details text-white">FIR Lodge Date</span>
               <input
                 name="firdate"
                 value={firdate}
@@ -219,7 +219,7 @@ const Prisoner = () => {
               />
             </div>
             <div className="input-box">
-              <span className="details" >Date of Trial</span>
+              <span className="details text-white" >Date of Trial</span>
               <input
                 name="datetrial"
                 value={datetrial}
@@ -230,22 +230,24 @@ const Prisoner = () => {
               />
             </div>
 
-            <div className="conviction">
-              <label
-                htmlFor="crime"
-                style={{ fontSize: "16px;", fontWeight: "500;" }}>
-                Convicted For:
-              </label>
+            <div className="conviction text-white">
+      <label
+        htmlFor="crime"
+        className="block text-lg font-medium"
+      >
+        Convicted For:
+      </label>
 
-              <input
-                className="rounded border-[2px] ml-3 px-2 py-1"
-                onChange={(e) => setcrime(e.target.value)}
-                list="crime"
-                name="crime"
-                value={crime}
-                id=""
-                placeholder="Select crime"
-              />
+      <input
+        className="rounded border-2 ml-3 px-2 py-1 mt-2"
+        onChange={(e) => setCrime(e.target.value)}
+        list="crime"
+        name="crime"
+        value={crime}
+        id="crime"
+        placeholder="Select crime"
+      />
+  
               
               <datalist id="crime">
                 <option value="Cyber Crime"></option>
@@ -280,19 +282,19 @@ const Prisoner = () => {
                 name="gender"
                 id="dot-3"
               />
-              <span className="gender-title" >Gender</span>
+              <span className="gender-title text-white" >Gender</span>
               <div className="category">
                 <label htmlFor="dot-1">
                   <span className="dot one"></span>
-                  <span className="gender" >Male</span>
+                  <span className="gender text-white" >Male</span>
                 </label>
                 <label htmlFor="dot-2">
                   <span className="dot two"></span>
-                  <span className="gender">Female</span>
+                  <span className="gender text-white">Female</span>
                 </label>
                 <label htmlFor="dot-3">
                   <span className="dot three"></span>
-                  <span className="gender" >Other</span>
+                  <span className="gender text-white" >Other</span>
                 </label>
               </div>
               <button

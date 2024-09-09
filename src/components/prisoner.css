@@ -3,23 +3,34 @@
 
 .background {
   background-image: url('../images/jdcbg2.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 99.23vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align the container to the top */
+  padding-top: 50px; /* Add spacing at the top */
+  box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
 }
-
 
 .container {
   position: relative; 
-  margin-left: 160px;
+  margin-left: 60px;
   margin-right: 20px;
   justify-content: center;
   align-items: center;
-  height: 800px; 
-  width: 790px;
+  height: 700px; 
+  width: 780px;
   padding: 25px 30px 25px 25px; 
-  border: 1px solid rgba(255, 255, 255, 0.3); 
+  border: 5px groove rgba(255, 255, 255, 0.3); 
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #d4d4d4 0%, #a6a6a6 20%, #d4d4d4 40%, #a6a6a6 60%, #d4d4d4 80%, #a6a6a6 100%); 
+  background: rgba(252, 245, 245, 0.25);
+  opacity: 1;
+  visibility: visible;
   backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(20px); 
   overflow: hidden; 
 }
 
@@ -30,7 +41,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('../images/white-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -1; 
@@ -169,35 +179,20 @@ form .input-box span.details{
 
   .button {
     overflow: hidden;
-    width: 160px;
+    width: 240px;
+    height: 90px;
+    margin-top: 20px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid white;
+    color: white;
     transition: all 0.3s ease;
   }
   .button:hover {
      background: #000;
-    color: #fff;
-  }
-  /* .button:before {
-      position: absolute;
-      content: '';
-      display: inline-block;
-      top: -180px;
-      left: 0;
-      width: 30px;
-      height: 100%;
-      background-color: #fff;
-      animation: shiny-btn1 3s ease-in-out infinite;
-  } */
+     color: #fff;
+     transform: scale(1.05);
 
-
-  /* .button:active{
-    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
-                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-      inset -4px -4px 6px 0 rgba(255,255,255,.2),
-      inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
   }
-   */
 
  
  
