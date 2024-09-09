@@ -194,29 +194,6 @@ form .input-box span.details{
 
   }
 
-  .bail-button {
-    overflow: hidden;
-    width: 240px;
-    height: 90px;
-    margin-top: 20px;
-    border-radius: 10px;
-    border: 1px solid white;
-    color: white;
-    transition: all 0.3s ease;
-  }
-
-  .bail-button:hover {
-    background: #000;
-    color: #fff;
-    transform: scale(1.05);
-  }
-
-  .bail-application {
-    justify-content: center;
-    border: 2px ridge gray;
-    border-radius: 5px;
-  }
-
  
  
  
