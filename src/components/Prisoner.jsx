@@ -314,7 +314,7 @@ const Prisoner = () => {
         {status === "Bailable" ? (
           <button
             onClick={() => setshowapplication(!showapplication)}
-            className="text-xl bg-blue-400 px-2 py-1 rounded-lg   "
+            className="bail-button text-xl"
           >
             Show Application
           </button>
@@ -322,14 +322,14 @@ const Prisoner = () => {
           <div>
             <button
               onClick={() => setshowapplication(!showapplication)}
-              className="text-xl bg-blue-400 px-2 py-1 rounded-lg hidden  "
+              className=" bail-button text-xl hidden  "
             >
               Show Application
             </button>
           </div>
         )}
         {status === "Non-bailable" && (
-          <h1 className="text-center text-xl mt-5">
+          <h1 className="text-center text-xl text-white mt-5">
             You are not applicable to apply for the bail
           </h1>
         )}
@@ -346,12 +346,11 @@ const Prisoner = () => {
                 pageBreakBefore: "always",
                 pageBreakAfter: "always",
                 textAlign: "center",
-                // marginRight: "40px",
                 fontFamily: "Roboto",
                 marginTop: "10px",
               }}
             >
-              <div>
+              <div className="bail-application">
                 <p style={{ fontWeight: "bold", marginBottom: "15px" }}>
                   BAIL BOND U/S 437-A CR.P.C. <br />
                 </p>
