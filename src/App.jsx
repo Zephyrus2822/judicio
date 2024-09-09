@@ -13,6 +13,7 @@ function App() {
   const LoggedIn = window.localStorage.getItem("isLoggedInjudicio");
 
   return (
+// <<<<<<< HEAD
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -40,6 +41,8 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
+// =======
+ 
 }
 
 export default App;
