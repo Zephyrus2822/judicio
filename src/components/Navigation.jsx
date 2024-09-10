@@ -17,6 +17,7 @@ const Navigation = () => {
           <img className="Logo" src="./images/judicio-logo.png" alt="logo" />
         </div>
         <ul>
+          
           <li>
             <a className="proj-name" href="/">
               Home
@@ -28,9 +29,7 @@ const Navigation = () => {
           <li>
             <a href="/verdictspassed">Verdicts Passed</a>
           </li>
-          <li>
-            <a href="/baildetails">Bail Details</a>
-          </li>
+          
         </ul>
         {username && LoggedIn ? (
           <div className="flex justify-center items-center gap-2 ">

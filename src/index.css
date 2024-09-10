@@ -8,19 +8,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Container for the logo */
+
 .Logo-wrapper {
   display: inline-block;
- 
-  
-  /* Add border to the wrapper */
 }
 
-/* Actual logo with scale effect */
+
 .Logo {
   height: 100px;
   width: 160px;
-  /* background-image: url('./images/mavbg.jpeg'); */
   transition: transform 0.3s ease;
 }
 
@@ -28,7 +24,7 @@
   transform: scale(1.1);
 }
 
-/* Move the border to the wrapper */
+
 .Logo-wrapper::after {
   content: '';
   display: block;  
@@ -100,6 +96,82 @@ nav li {
 
 .proj-name:hover {
   transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+  .Logo {
+    height: 80px;
+    width: 120px;
+  }
+
+  nav ul {
+    gap: 20px;
+    font-size: 24px;
+  }
+
+  .chat {
+    font-size: 24px;
+    padding: 8px 16px;
+    margin-right: 40px;
+  }
+
+  .proj-name {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+  }
+
+  .chat {
+    font-size: 20px;
+    padding: 6px 12px;
+    margin-right: 20px;
+  }
+
+  .proj-name {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Logo {
+    height: 60px;
+    width: 100px;
+  }
+
+  nav ul {
+    font-size: 18px;
+  }
+
+  .chat {
+    font-size: 18px;
+    padding: 5px 10px;
+    margin-right: 10px;
+  }
+
+  .proj-name {
+    font-size: 18px;
+  }
 }
 
 

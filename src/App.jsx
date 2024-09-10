@@ -5,7 +5,7 @@ import Register from './components/Register'
 import Home from './components/Home'
 import Prisoner from './components/Prisoner'
 import Tablee from './components/Tablee'
-import AboutBail from './components/AboutBail'
+
 
 
 
@@ -21,7 +21,7 @@ function App() {
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/prisoner' element={<Prisoner/>}></Route>
       <Route path='/verdictspassed' element={<Tablee/>}></Route>
-      <Route path='/baildetails' element={<AboutBail/>}></Route>
+      
     </Routes>
    </BrowserRouter>
   )
