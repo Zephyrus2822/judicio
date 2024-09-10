@@ -228,6 +228,11 @@ const Prisoner = () => {
                 required
               />
             </div>
+            <div className="dropdown-containers" style={{ display: "flex",
+                                                          flexDirection: "column",
+                                                          alignItems: "flex-start",
+                                                          gap: "20px"
+            }}>
 
             <div className="conviction text-white">
               <label
@@ -237,7 +242,7 @@ const Prisoner = () => {
               </label>
 
               <input
-                className="rounded border-[2px] ml-3 px-2 py-1"
+                className="rounded border-[2px] ml-5 px-2 py-1"
                 onChange={(e) => setcrime(e.target.value)}
                 list="crime"
                 name="crime"
@@ -258,6 +263,35 @@ const Prisoner = () => {
               </datalist>
             </div>
 
+            <div className="conviction text-white mr-[100px]">
+              <label
+                htmlFor="crime"
+                style={{ fontSize: "16px;", fontWeight: "500;" }}>
+                Criminal Status:
+              </label>
+
+              <input
+                className="rounded border-[2px] ml-3 px-2 py-1"
+                onChange={(e) => setcrime(e.target.value)}
+                list="crime"
+                name="crime"
+                value={crime}
+                id=""
+                placeholder="Select crime"
+              />
+              
+              <datalist id="crime">
+                <option value="Ran Away"></option>
+                <option value="Left Country"></option>
+                <option value="Option 3"></option>
+                <option value="Option 4"></option>
+                <option value="Option 5"></option>
+                <option value="Option 6"></option>
+                <option value="Option 7"></option>
+                <option value="Others"></option>
+              </datalist>
+            </div>
+            </div>
 
             <div className="gender-details">
               <input

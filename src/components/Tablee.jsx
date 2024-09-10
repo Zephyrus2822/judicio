@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Box from '@mui/material/Box';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 
@@ -104,6 +105,9 @@ export default function Tablee() {
   };
 
   return (
+    <Box sx={{ padding: 2, backgroundColor: '#f5f5f5', border: '1px solid black', width: 1800, marginLeft: 5, marginTop: 5, marginBottom: 5,
+               borderRadius: 2.2
+      }} >
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -121,24 +125,22 @@ export default function Tablee() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {prisonerdets
-              // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+            {prisonerdets.map((row) => {
+              return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
+                    return (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format && typeof value === 'number'
+                          ? column.format(value)
+                          : value}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
@@ -152,5 +154,6 @@ export default function Tablee() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+  </Box>
   );
 }
