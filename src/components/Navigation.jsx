@@ -29,6 +29,21 @@ const Navigation = () => {
           <li>
             <a href="/verdictspassed">Verdicts Passed</a>
           </li>
+          <li>
+            <a href="/aboutbail">Information</a>
+          </li>
+          <li>
+            <a href="/addprisoner">Add Prisoner</a>
+          </li>
+          <li>
+            <a href="/updateprisoner">Update Prisoner</a>
+          </li>
+          <li>
+            <a href="#">Eligibility</a>
+          </li>
+          <li>
+            <a href="#">Bail Apply</a>
+          </li>
           
         </ul>
         {username && LoggedIn ? (

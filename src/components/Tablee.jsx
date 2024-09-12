@@ -69,7 +69,7 @@ export default function Tablee() {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_DEV_URL}/api/getprisonerdets` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
-      );
+      ); //   https://judicio-server.onrender.com
       console.log(response.data);
 
       if (response.data) {
@@ -105,8 +105,24 @@ export default function Tablee() {
   };
 
   return (
-    <Box sx={{ padding: 2, backgroundColor: '#f5f5f5', border: '1px solid black', width: 1800, marginLeft: 5, marginTop: 5, marginBottom: 5,
-               borderRadius: 2.2
+    <div className='background-img' style={{   backgroundImage: "url('./images/judicio-bg1.webp')",
+                                               
+                                               backgroundPosition: 'center',
+                                               marginTop: 5,
+                                               marginBottom: 5,
+                                               padding: 5
+     }}>
+    <Box sx={{  padding: 2, 
+    backgroundColor: 'rgba(255, 255, 255, 0.1)', 
+    border: '5px ridge rgba(255, 255, 255, 0.2)', 
+    width: 1800, 
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 5,
+    marginRight: 5,
+    borderRadius: 2.2,
+    backdropFilter: 'blur(20px)', 
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' 
       }} >
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -155,5 +171,6 @@ export default function Tablee() {
       />
     </Paper>
   </Box>
+  </div>
   );
 }
