@@ -18,9 +18,6 @@ const AddPrisoner = () => {
           <label id='aadhar'>Aadhaar Number</label>
           <input type="text" name="aadharnum" id="aadhar" placeholder='#### #### ####'/><br />
 
-          <label id='fir'>FIR Lodge</label>
-          <input type="date" name="firdate" id="fir" placeholder='MM/DD/YYYY'/>
-
           <label id='trial'>Trial</label>
           <input type="date" name="trialdate" id="trial" placeholder='MM/DD/YYYY' /><br />
 
@@ -36,14 +33,25 @@ const AddPrisoner = () => {
             <option value="Unknown"></option>       {/*  in this case there will be instant bail cancellation */}
            <option value="Being Tracked"></option>  {/*  in this case there will be instant bail cancellation */}
           </datalist>
+
+          
+          <label id='crime1'>Crime</label>
+          <input list='crime1' name="crime1" placeholder='Crime Status'/><br />
+
+          <datalist id="crime1">
+                <option value="Cyber Crime"></option>
+                <option value="Crime against SCs and STs"></option>
+                <option value="Crime against Women"></option>
+                <option value="Crime against Children"></option>
+                <option value="Offenses against the state"></option>
+                <option value="Economic Offenses"></option>
+                <option value="Crime against Foreigners"></option>
+                <option value="Others"></option>
+              </datalist>
+
         </form>
-        {/* <div className="drops">
-        <div className="drop drop-1"></div>
-        <div className="drop drop-2"></div>
-    <div className="drop drop-3"></div>
-    <div className="drop drop-4"></div>
-    <div className="drop drop-5"></div>
-  </div> */}
+        
+
       </div>
     </div>
   );

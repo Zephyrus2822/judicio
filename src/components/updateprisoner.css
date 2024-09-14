@@ -32,6 +32,7 @@
   margin-top: 100px;
   margin-bottom: 100px;
   height: 900px;
+  width: 700px;
   border-radius: 20px;
   border-left: 1px solid rgba(255, 255, 255, 0.56);
   border-top: 1px solid rgba(255, 255, 255, 0.56);
@@ -52,12 +53,9 @@
   margin-bottom: 60px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
-  /* transform: translateX(-100%); */
+  
 }
 
-/* .form-addprisoner h1:hover {
-  transform: translateX(0);
-} */
 
 
 
@@ -148,6 +146,7 @@ form:hover {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
+
 
 
 a:focus,
