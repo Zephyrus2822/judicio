@@ -38,12 +38,7 @@ const Navigation = () => {
           <li>
             <a href="/updateprisoner">Update Prisoner</a>
           </li>
-          <li>
-            <a href="#">Eligibility</a>
-          </li>
-          <li>
-            <a href="#">Bail Apply</a>
-          </li>
+          
           
         </ul>
         {username && LoggedIn ? (
