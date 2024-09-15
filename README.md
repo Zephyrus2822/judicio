@@ -17,7 +17,7 @@ for chatbot: do the following commands
 
 Note: if google.generativeai not found error occurs, run pip install google-generativeai
 
-To close virtual environment, type <deactivate> without the angular brackets.
+To close virtual environment, type deactivate. 
 
 
 
