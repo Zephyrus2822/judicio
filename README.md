@@ -12,9 +12,12 @@ for chatbot: do the following commands
 
 1. open new terminal (powershell)
 2. type cd api
-3. type flask run
+3. type venv\Scripts\activate
+4. type flask run
 
 Note: if google.generativeai not found error occurs, run pip install google-generativeai
+
+To close virtual environment, type <deactivate> without the angular brackets.
 
 
 
