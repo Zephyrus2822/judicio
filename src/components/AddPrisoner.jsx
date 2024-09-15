@@ -146,8 +146,8 @@ const AddPrisoner = () => {
           </datalist>
           <button
             type="submit"
-            
-            className="bg-transparent border-2 border-black rounded-lg p-2 text-white ml-52"
+            className="ap-button"
+           
           >
             Add Prisoner
           </button>

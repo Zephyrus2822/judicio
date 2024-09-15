@@ -20,10 +20,6 @@
   transition: transform 0.3s ease;
 }
 
-.Logo:hover {
-  transform: scale(1.1);
-}
-
 
 .Logo-wrapper::after {
   content: '';
@@ -56,7 +52,13 @@ nav ul {
 
 nav li {
   margin-top: 23.5px;
+  transition: transform 0.2s ease;
 }
+
+nav li:hover {
+  transform: scale(1.05);
+}
+
 
 .chat {
   margin-right: 80px;
@@ -88,24 +90,13 @@ nav li {
   -webkit-text-fill-color: transparent;
   font-size: 30px;
   font-weight: 500;
-  transition: transform 0.3s ease;
   font-family: Roboto;
   margin-top: 23.5px;
   cursor: pointer;
 }
 
-.proj-name:hover {
-  transform: scale(1.1);
-}
 
-
-
-
-
-
-
-
-
+//responsiveness-code, dont change
 @media (max-width: 1024px) {
   .Logo {
     height: 80px;
