@@ -10,42 +10,31 @@ const prisonerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    ResAddress: {
-      type: String,
-      required: true,
-    },
-    PoliceStation: {
-      type: String,
-      required: true,
-    },
-    Age: {
-      type: Number,
-      required: true,
-    },
+   
 
     AddharNum: {
       type: String,
       required: true,
       unique: true,
     },
-    ElectionId: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    prisonbefore: {
-      type: String,
-      required: true,
-    },
+
     FIRdate: {
       type: Date,
       default: Date.now(),
+    },
+    Witness:{
+      type:String,
+      required:true
     },
 
     Crime: {
       type: String,
       required: true,
     },
+    status:{
+      type:String,
+      required:true
+    }
   },
   { timestamps: true }
 );
