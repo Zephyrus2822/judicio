@@ -68,7 +68,7 @@ export default function Tablee() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_DEV_URL}api/getprisonerdets` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
+        `https://judicio-server.onrender.com/api/getprisonerdets` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
       ); //   https://judicio-server.onrender.com
       console.log(response.data);
 

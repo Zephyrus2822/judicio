@@ -10,7 +10,7 @@ const AboutBail = () => {
     try {
       const response = await axios.get(
         `https://judicio-server.onrender.com/api/crimes` // replace URL with ${import.meta.env.VITE_DEV_URL} before pushing
-                                                         // https://judicio-server.onrender.com/
+                                                        // https://judicio-server.onrender.com/
       );
       console.log(response.data);
       setCrimes(response.data);
@@ -34,7 +34,7 @@ const AboutBail = () => {
 
   return (
     <main className="px-20 py-10">
-      <h1 className="text-center text-2xl font-bold">Criminal Offenses </h1>
+      <h1 className="text-center text-2xl font-bold">Criminal Offenses</h1>
       <div className="crimes mt-5">
         <div className="offenses mb-5 text-xl font-semibold grid grid-cols-3 justify-center items-center">
           {crimebtn.map((crimebtnn, i) => {
