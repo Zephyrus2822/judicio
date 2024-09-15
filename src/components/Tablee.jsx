@@ -68,7 +68,7 @@ export default function Tablee() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_DEV_URL}/api/getprisonerdets` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
+        `${import.meta.env.VITE_DEV_URL}api/getprisonerdets` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
       ); //   https://judicio-server.onrender.com
       console.log(response.data);
 
@@ -125,7 +125,7 @@ export default function Tablee() {
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' 
       }} >
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer sx={{ minHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

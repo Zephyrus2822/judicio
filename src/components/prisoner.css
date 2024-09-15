@@ -5,7 +5,7 @@
   background-image: url('../images/jdcbg2.png');
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 99.23vw;
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@
   margin-right: 20px;
   justify-content: center;
   align-items: center;
-  height: 700px; 
+  min-height: 700px; 
   width: 780px;
   padding: 25px 30px 25px 25px; 
   border: 5px groove rgba(255, 255, 255, 0.3); 

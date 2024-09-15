@@ -8,6 +8,7 @@ import Tablee from './components/Tablee'
 import AddPrisoner from './components/AddPrisoner'
 import UpdatePrisoner from './components/UpdatePrisoner'
 import AboutBail from './components/AboutBail'
+import Eligibility from './components/Eligibility'
 
 
 
@@ -25,7 +26,8 @@ function App() {
       <Route path='/prisoner' element={<Prisoner/>}></Route>
       <Route path='/verdictspassed' element={<Tablee/>}></Route>
       <Route path='/addprisoner' element={<AddPrisoner/>}></Route>
-      <Route path='updateprisoner' element={<UpdatePrisoner/>}></Route>
+      <Route path='/updateprisoner' element={<UpdatePrisoner/>}></Route>
+      <Route path='/eligiblecriminals' element={<Eligibility/>}></Route>
       <Route path='/aboutbail' element={<AboutBail/>}></Route>
     </Routes>
    </BrowserRouter>
