@@ -316,6 +316,32 @@ const Prisoner = () => {
               </div>
             </div>
           </form>
+          <div className="file-upload-buttons gap-2">
+  <button
+    className="button h-12 mr-5"
+    onClick={() => document.getElementById("aadhar-upload").click()}
+  >
+    Add Aadhar Card
+  </button>
+  <input
+    id="aadhar-upload"
+    type="file"
+    style={{ display: "none" }}
+    onChange={(e) => handleFileUpload(e, setaadharFile)}
+  />
+  <button
+    className="button h-12"
+    onClick={() => document.getElementById("voter-upload").click()}
+  >
+    Add Voter ID
+  </button>
+  <input
+    id="voter-upload"
+    type="file"
+    style={{ display: "none" }}
+    onChange={(e) => handleFileUpload(e, setvoterFile)}
+  />
+</div>
         </div>
 
         <div className="btns grid grid-cols-">
