@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./addprisoner.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddPrisoner = () => {
   const [name, setname] = useState("");
@@ -10,6 +11,8 @@ const AddPrisoner = () => {
   const [crime, setcrime] = useState("");
   const [witness, setwitness] = useState("");
   const [status, setstatus] = useState("");
+
+  const navigate=useNavigate()
 
   const handlesubmit =  (e) => {
     e.preventDefault();
@@ -26,9 +29,10 @@ const AddPrisoner = () => {
           witness,
         })
         .then((response) => {
-          // if (response.data === "Prisoner already exists") {
-          //   // setuserstatus("Prisoner already exists");
-          // }
+          if (response.data === "Prisoner already exists") {
+            // setuserstatus("Prisoner already exists");
+            navigate('/updateprisoner')
+          }
           console.log(response);
           setname("")
           setfathername("")

@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { User } from "./models/user.models.js";
 import bcrypt from "bcryptjs";
 import { Prisoner } from "./models/Prisoner.models.js";
+import { updatedPrisoner } from "./models/updatePrisoner.models.js";
 
 const app = express();
 app.use(
@@ -113,6 +114,28 @@ app.post("/api/prisonerdets", async (req, res) => {
   }
 });
 
+app.post("/api/updatedpriosonerdets",(req,res)=>{
+  const { name, fathername, adharnum, trialdate, crime, status, witness } =
+      req.body;
+      
+  try {
+    
+      updatedPrisoner.create({Name: name,
+        FathersName: fathername,
+        AddharNum: adharnum,
+        FIRdate: trialdate,
+        Crime: crime,
+        Witness: witness,
+        status: status,})
+        .then(()=>res.json("Prisoner updated"))
+   
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error Updating prionser" });
+  }
+})
+
 app.get("/api/getprisonerdets", async (req, res) => {
   try {
     const prionerdetails = await Prisoner.find();
@@ -124,6 +147,9 @@ app.get("/api/getprisonerdets", async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+app.get('/api/getprionerdets/:adharnum',(req,res)=>{
+  console.log(req.params.adharnum)
+})
 
 app.get("/api/crimes", (req, res) => {
   res.json([
