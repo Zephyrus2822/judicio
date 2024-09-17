@@ -10,7 +10,7 @@ const AboutBail = () => {
   const fetchdata = async () => {
     try {
       const response = await axios.get(
-        `https://judicio-server.onrender.com/api/crimes` // replace URL with ${import.meta.env.VITE_DEV_URL} before pushing
+        `${import.meta.env.VITE_DEV_URL}api/crimes` // replace URL with ${import.meta.env.VITE_DEV_URL} before pushing
       );
       console.log(response.data);
       setCrimes(response.data);
@@ -108,6 +108,11 @@ const AboutBail = () => {
                 <span className="font-bold text-xl">Bail Amount:</span>{" "}
                 {crime["Bail Amount"]}
               </p>
+              <p className="text-xl text-white">
+                <span className="font-bold text-xl">Duration:</span>{" "}
+                {crime["duration"]}
+              </p>
+              
               <p className="text-xl text-white">
                 <span className="font-bold text-xl">Criteria:</span>{" "}
                 {crime.Criteria}

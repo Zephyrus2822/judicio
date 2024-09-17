@@ -3,6 +3,7 @@ import "./prisoner.css";
 import axios from "axios";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { FaCloudUploadAlt } from "react-icons/fa";
 
 const Prisoner = () => {
   const [showapplication, setshowapplication] = useState(false);
@@ -23,9 +24,32 @@ const Prisoner = () => {
   const [userstatus, setuserstatus] = useState("");
   const [BailAmt, setBailAmt] = useState("");
   const [status, setstatus] = useState("");
+  const [bailstatus, setbailstatus] = useState("")
+
+  const [adharimage, setadharimage] = useState(null);
+  const [adharimageurl, setadharimageurl] = useState("");
+  const [isuploading, setisuploading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      axios.post(`${import.meta.env.VITE_DEV_URL}api/appliedforbail`,{
+        Name,
+        FatherName,
+        adharnum,
+        adharimageurl,
+        voter,
+        firdate,
+        crime,
+        bailstatus:"Applied for bail"
+      })
+      .then(res=>{
+        console.log(res.data)
+      })
+    } catch (error) {
+      console.error(error)
+    }
 
     try {
       await axios
@@ -68,6 +92,32 @@ const Prisoner = () => {
     }
   };
 
+  const uploadImage = async (e) => {
+    setisuploading(true)
+    e.preventDefault();
+    const data = new FormData();
+    data.append("file", adharimage);
+    data.append("upload_preset", "myCloud");
+    data.append("cloud_name", "dcn17cw7n");
+    try {
+      if (adharimage === null) {
+        return alert("Please upload an image");
+      }
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/dcn17cw7n/image/upload",
+        data
+      );
+
+      setadharimageurl(res.data.url);
+      //   console.log(res.data.url);
+      // Toast.success()
+      alert("image uploaded successfully");
+      setisuploading(false)
+    } catch (error) {
+      console.error("An error occurred while uploading",error);
+    }
+  };
+
   //this opens a new popup, after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
 
   return (
@@ -75,8 +125,6 @@ const Prisoner = () => {
       <div className="container">
         <div className="title text-white">Registration</div>
         <div className="content">
-          
-
           <form onSubmit={handleSubmit} action="#">
             <div className="user-details">
               <div className="input-box">
@@ -310,38 +358,31 @@ const Prisoner = () => {
                     <span className="gender text-white">Other</span>
                   </label>
                 </div>
-                <button className="button" type="submit">
+          <div className="border-2 flex justify-center px-2 items-center border-white rounded-lg gap-2 py-2">
+            <label
+              className=" text-white h-12 mr-5 p-5"
+              
+            >
+              Add Aadhar Card
+            </label>
+            <input
+              onChange={(e) => setadharimage(e.target.files[0])}
+              className=" text-white "
+              type="file"
+              name="adharimage"
+              id="aadhar-upload"
+            />
+            <button disabled={isuploading} className="text-3xl invert" onClick={uploadImage}>
+              <FaCloudUploadAlt />
+            </button>
+          </div>
+            
+                <button disabled={isuploading} className="button" type="submit">
                   Apply for Bail
                 </button>
               </div>
             </div>
           </form>
-          <div className="file-upload-buttons gap-2">
-  <button
-    className="button h-12 mr-5"
-    onClick={() => document.getElementById("aadhar-upload").click()}
-  >
-    Add Aadhar Card
-  </button>
-  <input
-    id="aadhar-upload"
-    type="file"
-    style={{ display: "none" }}
-    onChange={(e) => handleFileUpload(e, setaadharFile)}
-  />
-  <button
-    className="button h-12"
-    onClick={() => document.getElementById("voter-upload").click()}
-  >
-    Add Voter ID
-  </button>
-  <input
-    id="voter-upload"
-    type="file"
-    style={{ display: "none" }}
-    onChange={(e) => handleFileUpload(e, setvoterFile)}
-  />
-</div>
         </div>
 
         <div className="btns grid grid-cols-">

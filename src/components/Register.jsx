@@ -9,10 +9,14 @@ const Register = () => {
   const [password, setpassword] = useState("");
   const [status, setstatus] = useState("");
   const [showpass, setshowpass] = useState(false);
+
+  const [signingUp, setsigningUp] = useState(false)
+
   const navigate = useNavigate();
   const isPasswordValid = password.length >= 6;
 
   const handlesubmit = (e) => {
+    setsigningUp(true)
     e.preventDefault();
     axios
       .post(`${import.meta.env.VITE_DEV_URL}api/signup`, {
@@ -27,7 +31,8 @@ const Register = () => {
           if (response.data == "UserCreated") {
             window.localStorage.setItem("UserNamejudicio", username);
             window.localStorage.setItem("isLoggedInjudicio", true);
-            
+            window.localStorage.setItem("usertype", "Judiciary");
+            setsigningUp(false)
             navigate("/");
             window.location.reload();
           }
@@ -138,9 +143,10 @@ const Register = () => {
                       ? "w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                       : "w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-not-allowed"
                   }`}
-                  disabled={!isPasswordValid}
+                  disabled={!isPasswordValid && signingUp}
+                  
                 >
-                  Sign Up
+                  {signingUp ?(<span>Signing Up</span>):(<span>SignedUp</span>)}
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?
