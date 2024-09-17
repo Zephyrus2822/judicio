@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './chat-bot.css'; // Ensure your CSS file is set up
+import { RiMessage2Fill } from "react-icons/ri";
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);  // To toggle chat visibility
@@ -49,7 +50,7 @@ const ChatBot = () => {
   return (
     <div>
       <button className="chatbot-toggler" onClick={toggleChatBot}>
-        Chat
+      <RiMessage2Fill />
       </button>
       {isOpen && (
         <div className="chatbot">
@@ -72,7 +73,11 @@ const ChatBot = () => {
               spellCheck="false"
               required
             ></textarea>
-            <span id="send-btn" className="material-symbols-rounded" onClick={handleClick}>
+            <span id="send-btn" className="material-symbols-rounded" onClick={handleClick} style={{ border: "1px solid blue",
+                                                                                                    borderRadius: "10px" ,
+                                                                                                    padding: "10px"
+
+            }}>
               SEND
             </span>
           </div>
