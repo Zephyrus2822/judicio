@@ -146,7 +146,7 @@ const Register = () => {
                   disabled={!isPasswordValid && signingUp}
                   
                 >
-                  {signingUp ?(<span>Signing Up</span>):(<span>SignedUp</span>)}
+                  {signingUp ?(<span>Signing Up</span>):(<span>Sign up</span>)}
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?

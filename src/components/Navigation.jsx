@@ -26,10 +26,18 @@ const Navigation = () => {
               Home
             </a>
           </li>
-          {!LoggedIn  && (<li>
-            <a href="/About">Docs</a>
-          </li>)}
-          
+          {!LoggedIn && (
+            <>
+            <li>
+              <a href="/About">Docs</a>
+            </li>
+              <li>
+                <a href="/prisoner">Get Verdict</a>
+              </li>
+            </>
+            
+          )}
+
           {LoggedIn && usertype === "Admin" && (
             <>
               <li>
@@ -46,8 +54,9 @@ const Navigation = () => {
               </li>
             </>
           )}
-          {LoggedIn && usertype=="Judiciary" && (
+          {LoggedIn && usertype == "Judiciary" && (
             <>
+            
               <li>
                 <a href="/prisoner">Get Verdict</a>
               </li>

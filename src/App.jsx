@@ -40,8 +40,8 @@ function App() {
 
           {usertype != "Admin" ? (
             <>
-              <Route path="/prisoner" element={<Prisoner />}></Route>
               <Route path="/aboutbail" element={<AboutBail />}></Route>
+            <Route path="/prisoner" element={<Prisoner />}></Route>
             </>
           ) : (
             <>
