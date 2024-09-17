@@ -4,7 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 const ProtectedRoutes = () => {
     const Auth=window.localStorage.getItem('isLoggedInjudicio')
   return (
-    Auth ? <Outlet/> :<Navigate to='/login'/>
+    Auth? <Outlet/> : <Navigate to='/login'/>
   )
 }
 

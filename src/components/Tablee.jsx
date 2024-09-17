@@ -22,42 +22,28 @@ const columns = [
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'FIRdate',
+    id: 'Firdate',
     label: 'FirDate',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'prisonbefore',
-    label: 'PrisonedBefore',
+    id: 'Status',
+    label: 'Applied for Bail',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
 ];
 
-function createData(name,Addhar, Crime, FirDate,PrisonedBefore) {
+function createData(name,Addhar, Crime, FirDate,AppliedForBail) {
   
-  return { name, Addhar, Crime, FirDate, PrisonedBefore };
+  return { name, Addhar, Crime, FirDate, AppliedForBail };
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354 ,17548713, 3287263),
-  createData('China', 'CN', 1403500365 ,17548713, 9596961),
-  createData('Italy', 'IT', 60483973 ,17548713, 301340),
-  createData('United States', 'US', 327167434 ,17548713, 9833520),
-  createData('Canada', 'CA', 37602103 ,17548713, 9984670),
-  createData('Australia', 'AU', 25475400 ,17548713, 7692024),
-  createData('Germany', 'DE', 83019200 ,17548713, 357578),
-  createData('Ireland', 'IE', 4857000 ,17548713, 70273),
-  createData('Mexico', 'MX', 126577691 ,17548713, 1972550),
-  createData('Japan', 'JP', 126317000 ,17548713, 377973),
-  createData('France', 'FR', 67022000 ,17548713, 640679),
-  createData('United Kingdom', 'GB', 67545757 ,17548713, 242495),
-  createData('Russia', 'RU', 146793744 ,17548713, 17098246),
-  createData('Nigeria', 'NG', 200962417 ,17548713, 923768),
-  createData('Brazil', 'BR', 210147125 ,17548713, 8515767),
+  createData("ckk","ckk","ckk","ckk","ckk")
 ];
 
 export default function Tablee() {
@@ -68,7 +54,7 @@ export default function Tablee() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://judicio-server.onrender.com/api/getprisonerdets` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
+        `${import.meta.env.VITE_DEV_URL}api/applications` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
       ); //   https://judicio-server.onrender.com
       console.log(response.data);
 

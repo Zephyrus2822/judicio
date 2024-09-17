@@ -9,6 +9,11 @@ const Eligibility = () => {
   const [elegiblecriminals, setelegiblecriminals] = useState([]);
   const [diffdate, setdiffdate] = useState("");
   const [eligibilty, seteligibilty] = useState("")
+  
+  
+  
+  
+ 
 
   const fetchcriminals = async () => {
     try {
@@ -22,27 +27,7 @@ const Eligibility = () => {
       console.error("Server Error", error);
     }
   };
-  let eligiblecriminlass;
-  const renderitems = () => {
-     eligiblecriminlass = criminals.filter((criminal) => {
-      const crimeDate = moment(criminal.createdAt).format("YYYY-MM-DD");
-      console.log("Crime date", crimeDate);
-      let currentdate = moment().format("YYYY-MM-DD");
-      console.log("Current date", currentdate);
-      const diff = moment(crimeDate).to(currentdate, "days");
-      setdiffdate(diff);
-      if (diff >= crimes["duration"]) {
-        seteligibilty("Yes")
-      }else{
-        seteligibilty("NO")
-      }
-      console.log("difference bw dates", diffdate);
-      return criminal;
-    });
-    console.log(eligiblecriminlass);
-    setelegiblecriminals(eligiblecriminlass);
-    console.log(elegiblecriminals);
-  };
+  
 
   const fetchCrimes = async (e) => {
     try {
@@ -57,18 +42,52 @@ const Eligibility = () => {
       console.error("Server Error", error);
     }
   };
+  let eligiblecriminlass;
+ 
+  const renderitems = () => {
+     eligiblecriminlass = criminals.filter((criminal) => {
+      const crimeDate = moment(criminal.createdAt).format("YYYY-MM-DD");
+      console.log("Crime date", crimeDate);
+      let currentdate = moment().format("YYYY-MM-DD");
+      console.log("Current date", currentdate);
+      const diff = moment(crimeDate).to(currentdate, "months");
+      setdiffdate(diff);
+      const crimesduration=crimes.filter((crime)=>{
+
+        // console.log(crime["duration"]) 
+        // console.log(crime["duration"])
+        if (diff === crime["duration"]) {
+          seteligibilty("Yes")
+        }else{
+          seteligibilty("NO")
+        }
+      })
+      console.log("difference bw dates", diffdate);
+      return criminal;
+    });
+    console.log(eligiblecriminlass);
+    setelegiblecriminals(eligiblecriminlass);
+    console.log(elegiblecriminals);
+  };
 
   useEffect(() => {
-    fetchCrimes();
-    fetchcriminals();
-    renderitems();
-  }, [elegiblecriminals]);
+    const fetchData = async () => {
+      await fetchCrimes();
+      await fetchcriminals();
+      await renderitems();
+    };
+    fetchData()
+
+  }, []); 
+   
+
+  
 
   return (
     <div className="p-10 text-center h-screen ">
       <h2 className="text-4xl">Eligible Criminals for Bail</h2>
       {/* ... other component content */}
-      <div className="mx-[400px] mt-10">
+      <div className="mx-[300px] mt-10">
         {elegiblecriminals.length >= 0 && (
           <div>
             <table>
@@ -76,6 +95,7 @@ const Eligibility = () => {
                 <tr>
                   <th className="text-2xl text-nowrap  px-10">Name</th>
                   <th className="text-2xl text-nowrap px-10 ">Crime</th>
+                  <th className="text-2xl text-nowrap px-10 ">Addhar Num</th>
                   {/* ... other relevant columns */}
                   <th className="text-2xl text-nowrap px-10 ">
                     Date of Imprisonment
@@ -89,10 +109,11 @@ const Eligibility = () => {
                 </tr>
               </thead>
               <tbody>
-                {elegiblecriminals.map((criminal) => (
-                  <tr key={criminal.id}>
+                {elegiblecriminals.map((criminal,i) => (
+                  <tr key={i}>
                     <td>{criminal.Name}</td>
                     <td>{criminal.Crime}</td>
+                    <td>{criminal.AddharNum}</td>
                     {/* ... other table data */}
                     <td>{moment(criminal.createdAt).format("YYYY-MM-DD")}</td>
                     <td>{diffdate}</td>
