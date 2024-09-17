@@ -5,19 +5,20 @@ import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
-  const [password, setpassword] = useState("");
+  const [passwordd, setpassword] = useState("");
   const [status, setstatus] = useState("");
   const [usertype, setusertype] = useState("");
+
 
   const [isSigningIn, setisSigningIn] = useState(false);
 
   const navigate = useNavigate();
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async(e) => {
     setisSigningIn(true);
     e.preventDefault();
-    axios
-      .post(`${import.meta.env.VITE_DEV_URL}api/login`, { username, password })
+    await axios
+      .post(`${import.meta.env.VITE_DEV_URL}api/login`, { username, passwordd })
       .then((response) => {
         console.log(response.data);
 
@@ -34,6 +35,7 @@ const Login = () => {
           window.location.reload();
         } else {
           setstatus(response.data);
+          setisSigningIn(false)
         }
       });
   };
@@ -74,10 +76,10 @@ const Login = () => {
                 </label>
                 <input
                   type="password"
-                  name="password"
+                  name="passwordd"
                   id="password"
                   placeholder="••••••••"
-                  value={password}
+                  value={passwordd}
                   onChange={(e) => setpassword(e.target.value)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
@@ -116,10 +118,10 @@ const Login = () => {
                 onClick={handlesubmit}
                 className="w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                {isSigningIn ? <span>Logging</span> : <span>Login</span>}
+                {isSigningIn ? <span>Logging in</span> : <span>Login</span>}
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                {status}
+                <h1 className="text-red-500 text-center text-xl">{status}</h1>
                 Don’t have an account yet?{" "}
                 <button
                   onClick={() => navigate("/register")}

@@ -20,7 +20,7 @@ app.use(express.json());
 const port = 3000;
 dotenv.config();
 
-const saltrounds = 4;
+const saltrounds = 2;
 
 const hashedPassword = async (password) => {
   const salt = await bcrypt.genSalt(saltrounds);
@@ -66,24 +66,26 @@ app.post("/api/signup", async (req, res) => {
 });
 app.post("/api/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
-    await User.findOne({ username: username }).then((user) => {
-      if (user) {
-        
-        if (verifyPassword(password, user.password)) {
-          res.json({
-            success: true,
-        message: "Success",
-        user: user
-          });
+    const { username, passwordd } = req.body;
+    
 
-        } else {
-          res.json("Password Incorrect");
-        }
+    const user = await User.findOne({ username: username });
+
+    if (user) {
+      const verified = await bcrypt.compare(passwordd, user.password);
+      
+      if (verified) {
+        res.json({
+          success: true,
+          message: "Success",
+          user: user,
+        });
       } else {
-        res.json("Invalid Credentials");
+        res.json( "Password Incorrect" );
       }
-    });
+    } else {
+      res.json( "Invalid Credentials" );
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Invalid Password or username" });
@@ -91,11 +93,9 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.post("/api/prisonerdets", async (req, res) => {
-  
   try {
     const { name, fathername, adharnum, trialdate, crime, status, witness } =
       req.body;
-   
 
     // Prisoner.findOneAndUpdate({prisonbefore:Prisoner.prisonbefore+prisonedbefore})
     await Prisoner.findOne({ AddharNum: adharnum }).then((user) => {
@@ -121,27 +121,27 @@ app.post("/api/prisonerdets", async (req, res) => {
   }
 });
 
-app.post("/api/updatedpriosonerdets",(req,res)=>{
+app.post("/api/updatedpriosonerdets", (req, res) => {
   const { name, fathername, adharnum, trialdate, crime, status, witness } =
-      req.body;
-      
+    req.body;
+
   try {
-    
-      updatedPrisoner.create({Name: name,
+    updatedPrisoner
+      .create({
+        Name: name,
         FathersName: fathername,
         AddharNum: adharnum,
         FIRdate: trialdate,
         Crime: crime,
         Witness: witness,
-        status: status,})
-        .then(()=>res.json("Prisoner updated"))
-   
-
+        status: status,
+      })
+      .then(() => res.json("Prisoner updated"));
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error Updating prionser" });
   }
-})
+});
 
 app.get("/api/getprisonerdets", async (req, res) => {
   try {
@@ -154,12 +154,13 @@ app.get("/api/getprisonerdets", async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
-app.get('/api/getprionerdets/:adharnum',(req,res)=>{
-  console.log(req.params.adharnum)
-})
+app.get("/api/getprionerdets/:adharnum", (req, res) => {
+  console.log(req.params.adharnum);
+});
 
-app.post('/api/appliedforbail',(req,res)=>{
-  const {Name,
+app.post("/api/appliedforbail", (req, res) => {
+  const {
+    Name,
     FatherName,
     adharnum,
     adharimageurl,
@@ -167,37 +168,36 @@ app.post('/api/appliedforbail',(req,res)=>{
     firdate,
     crime,
 
-    bailstatus}=req.body
-    
-    try {
-      Applications.create({
-        Name,
-        FathersName:FatherName,
-        AddharNum:adharnum,
-        AddharImage:adharimageurl,
-        ElectionId:voter,
-        Firdate:firdate,
-        Crime:crime,
-        Status:bailstatus,
-      })
-      .then(()=>res.json("apllied successfully"))
-    } catch (error) {
-      console.error(err);
-    res.status(500).json({ message: "Server Error" });
-    }
-})
+    bailstatus,
+  } = req.body;
 
-app.get('/api/applications',async(req,res)=>{
   try {
-    const applied= await Applications.find()
-
-    res.json(applied)
-    
+    Applications.create({
+      Name,
+      FathersName: FatherName,
+      AddharNum: adharnum,
+      AddharImage: adharimageurl,
+      ElectionId: voter,
+      Firdate: firdate,
+      Crime: crime,
+      Status: bailstatus,
+    }).then(() => res.json("apllied successfully"));
   } catch (error) {
-    console.error(error)
+    console.error(err);
     res.status(500).json({ message: "Server Error" });
   }
-})
+});
+
+app.get("/api/applications", async (req, res) => {
+  try {
+    const applied = await Applications.find();
+
+    res.json(applied);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 
 app.get("/api/crimes", (req, res) => {
   res.json([
@@ -207,7 +207,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "376 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as bail is rarely granted.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is usually denied unless exceptional circumstances are proven.",
     },
@@ -217,7 +217,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "354A BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000, depending on the circumstances.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is granted if the harassment is non-physical and involves lesser degrees of intimidation.",
     },
@@ -227,7 +227,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "354 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable; bail is usually denied.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "The nature of the offense often leads to bail denial, especially in serious cases.",
     },
@@ -237,7 +237,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "354C BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹20,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted, especially if it’s a first-time offense.",
     },
@@ -247,7 +247,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "354D BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is likely unless the stalking involves repeated or severe intimidation.",
     },
@@ -258,8 +258,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "Not typically applicable due to the grievous nature of the offense.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Courts are stringent in denying bail given the seriousness of the harm caused.",
     },
     {
@@ -268,7 +268,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "304B BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as courts usually deny bail.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is almost always denied due to the seriousness and fatal outcome of the offense.",
     },
@@ -279,8 +279,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "Typically denied, but if granted, can range from ₹20,000 to ₹1,00,000 depending on the circumstances.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail might be granted in cases where allegations are not strongly supported by evidence.",
     },
     {
@@ -289,7 +289,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "366 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as bail is usually denied.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally not granted due to the serious intent behind the crime.",
     },
@@ -300,7 +300,7 @@ app.get("/api/crimes", (req, res) => {
       Section: ["376AB", "376DB BNS", "POCSO Act"],
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as bail is rarely granted.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "The courts are stringent in denying bail due to the vulnerability of the victim.",
     },
@@ -311,8 +311,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable (for aggravated forms)",
       "Bail Amount":
         "Not typically applicable due to the severity of the offense.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is generally denied, particularly if the kidnapping involved harm or ransom.",
     },
     {
@@ -321,7 +321,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "370 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as courts usually deny bail.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Courts typically refuse bail due to the organized nature and severity of the crime.",
     },
@@ -331,7 +331,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "67B of the Information Technology Act",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as courts generally deny bail.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically denied due to the severe impact on the child's dignity and welfare.",
     },
@@ -342,7 +342,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "302 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not applicable as bail is almost never granted.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically denied due to the gravity of the offense. The accused remains in custody until trial or unless exceptional circumstances justify release.",
     },
@@ -353,8 +353,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "Typically denied; if granted, bail could be set very high (₹1,00,000 or more).",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is usually denied, especially if there is clear intent or grievous harm caused. Courts consider the risk of recurrence.",
     },
     {
@@ -364,8 +364,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "Not typically applicable, but if granted, it can be substantial (₹50,000 to ₹2,00,000).",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail may be considered depending on the circumstances leading to the death, such as provocation or lack of intent.",
     },
     {
@@ -374,7 +374,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "325 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is likely if the injury was not life-threatening and there’s no risk of further harm.",
     },
@@ -384,7 +384,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "324 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "If granted, bail could range from ₹25,000 to ₹1,00,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail may be denied if the attack was premeditated or caused severe injury.",
     },
@@ -394,7 +394,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "351 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹5,000 to ₹25,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted as assault is considered a less severe offense unless accompanied by aggravating factors.",
     },
@@ -405,8 +405,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable (for aggravated forms)",
       "Bail Amount":
         "If granted, bail could be set between ₹50,000 and ₹2,00,000.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is typically denied if the kidnapping involved ransom, harm, or if the victim is a minor.",
     },
     {
@@ -415,7 +415,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "506 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is likely if the threat did not lead to serious harm or if it’s a first-time offense.",
     },
@@ -425,7 +425,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "341 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹5,000 to ₹20,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically granted, especially if there was no physical harm.",
     },
@@ -435,7 +435,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "342 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹30,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted, considering the duration and conditions of confinement.",
     },
@@ -445,7 +445,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "304A BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹20,000 to ₹1,00,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is likely, especially in cases of accidental death without criminal intent.",
     },
@@ -455,7 +455,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "499 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically granted as defamation is a non-violent offense.",
     },
@@ -467,7 +467,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "121 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not applicable as bail is almost never granted.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Due to the extremely serious nature of the offense, which threatens national security, bail is typically denied.",
     },
@@ -478,8 +478,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable (depending on the nature of the conspiracy)",
       "Bail Amount":
         "If granted, bail could be substantial, often ₹1,00,000 or more.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is generally denied, particularly if the conspiracy involves serious threats to national security or public order.",
     },
     {
@@ -488,7 +488,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "122 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as courts generally deny bail.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "The courts deny bail due to the direct threat to national security.",
     },
@@ -500,7 +500,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "124 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as bail is rarely granted.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally denied due to the severe implications for state functionaries.",
     },
@@ -510,7 +510,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "124A BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "If granted, bail could range from ₹50,000 to ₹2,00,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is often denied, especially if the sedition involves incitement of violence or public disorder.",
     },
@@ -521,8 +521,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "Not typically applicable; if granted, it can be very high, often ₹1,00,000 or more.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is difficult to obtain, especially if the accused poses a threat to national security or public safety.",
     },
     {
@@ -532,8 +532,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "Not typically applicable due to the seriousness of the offense.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is rarely granted because of the direct threat to state stability and security.",
     },
 
@@ -544,7 +544,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "153A BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "If granted, it could range from ₹50,000 to ₹1,00,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally denied if the act led to public disorder or violence.",
     },
@@ -555,8 +555,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "If granted, the bail amount could be substantial, ranging from ₹50,000 to ₹1,00,000.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is usually denied, particularly if the actions caused significant harm to national unity.",
     },
     {
@@ -566,8 +566,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "If granted, bail could be set between ₹50,000 and ₹1,00,000.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is generally denied if the incitement led to violence or threatened public order.",
     },
 
@@ -578,8 +578,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Bailable",
       "Bail Amount":
         "₹10,000 to ₹50,000, depending on the value of the stolen property.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is typically granted unless the theft involved significant value or aggravated circumstances, such as a repeat offense.",
     },
     {
@@ -588,7 +588,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "383 BNS",
       "Bail Status": "Bailable (for less severe cases)",
       "Bail Amount": "₹20,000 to ₹1,00,000, depending on the severity.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted unless the extortion involved severe threats or significant sums.",
     },
@@ -599,8 +599,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "If granted, bail could be set between ₹50,000 and ₹2,00,000.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is generally denied due to the violent nature of the crime, especially if weapons were used.",
     },
     {
@@ -609,7 +609,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "395 BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "Not typically applicable as bail is rarely granted.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Given the organized and violent nature of dacoity, bail is usually denied.",
     },
@@ -619,7 +619,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "403 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically granted unless the misappropriation involves large sums or breach of trust.",
     },
@@ -629,7 +629,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "405 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹20,000 to ₹1,00,000, depending on the amount involved.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted unless the breach involved significant amounts or public trust (e.g., by a public servant).",
     },
@@ -640,8 +640,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Bailable",
       "Bail Amount":
         "₹10,000 to ₹50,000, depending on the value of the property.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is likely unless the accused is a habitual offender or the property value is high.",
     },
     {
@@ -650,7 +650,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "415 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000, depending on the amount involved.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted unless the cheating caused significant financial harm or involved a large number of victims.",
     },
@@ -660,7 +660,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "442 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹5,000 to ₹30,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically granted unless the trespass was accompanied by violence or threats.",
     },
@@ -670,7 +670,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "441 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹5,000 to ₹20,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted unless the trespass involved significant harm or threat.",
     },
@@ -680,7 +680,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "425 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹5,000 to ₹30,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically granted unless the mischief caused significant property damage or involved public infrastructure.",
     },
@@ -691,8 +691,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Bailable",
       "Bail Amount":
         "₹20,000 to ₹1,00,000, depending on the severity and impact of the forgery.",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is generally granted unless the forgery involved significant financial harm or affected public trust.",
     },
 
@@ -702,7 +702,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "494 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted as it is a non-violent offense, though the accused may need to prove compliance with any prior marriage’s legal dissolution.",
     },
@@ -719,7 +719,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "498A BNS",
       "Bail Status": "Non-bailable",
       "Bail Amount": "If granted, bail can range from ₹20,000 to ₹1,00,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically denied unless there is a lack of strong evidence or if the allegations appear motivated by malice. Courts may also grant anticipatory bail under certain conditions.",
     },
@@ -731,7 +731,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "498 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted as long as the act did not involve significant harm or coercion.",
     },
@@ -742,8 +742,8 @@ app.get("/api/crimes", (req, res) => {
       "Bail Status": "Non-bailable",
       "Bail Amount":
         "Typically denied; if granted, it may be substantial (₹20,000 to ₹1,00,000).",
-      duration:"13",
-        Criteria:
+      duration: "13",
+      Criteria:
         "Bail is usually denied unless the accused can demonstrate that the allegations are unsubstantiated or motivated by external factors.",
     },
 
@@ -754,7 +754,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "493 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹20,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted, but the court may require the accused to refrain from contact with the victim or take other measures to prevent further harm.",
     },
@@ -764,7 +764,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "125 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹30,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is usually granted, but the accused may be required to provide financial support to the deserted party.",
     },
@@ -774,7 +774,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "498B BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted as the offense does not involve violence or severe harm.",
     },
@@ -786,7 +786,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "317 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is generally granted, especially if the abandonment was due to poverty or lack of resources, though the court may impose conditions regarding the welfare of the child.",
     },
@@ -796,7 +796,7 @@ app.get("/api/crimes", (req, res) => {
       Section: "318 BNS",
       "Bail Status": "Bailable",
       "Bail Amount": "₹10,000 to ₹50,000.",
-      duration:"13",
+      duration: "13",
       Criteria:
         "Bail is typically granted, especially if the offense was committed due to fear or societal pressure, but the court may require certain assurances or conditions.",
     },
