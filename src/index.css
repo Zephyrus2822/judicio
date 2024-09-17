@@ -8,17 +8,216 @@
 @tailwind components;
 @tailwind utilities;
 
+/* css of the login-section */
+/* src/components/BackgroundSection.css */
+.login-section {
+  background-image: url('/src/assets/sihimage1.jpg'); /* Path to your image */
+  background-size: cover; /* Cover the entire section */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  text-align: center; /* Center text */
+}
 
-.Logo-wrapper {
-  display: inline-block;
+.login-container { 
+  position: absolute;
+  top : 5px;
+  right : 110px;
+  box-shadow:  3px 4px 6px rgb(234, 83, 28);
+
+}
+
+.about-info { 
+  height: auto;
+  width : 40%;
+  box-shadow: 5px 5px 10px rgb(234, 83, 28);
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 80px;
+  border-radius: 15px;
+  padding: 15px 15px;
+}
+.login-container-1{ 
+  height: auto;
+  width : 35%;
+  box-shadow: 5px 5px 10px rgb(234, 83, 28);
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 80px;
+  border-radius: 15px;
+  padding: 15px 15px;
+}
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.info-1 h1{
+  color: orangered;
+  font-size: 1.5rem;
+  font-family: Robboto;
+  font-weight: 600;
+}
+.info-1 p{
+  color: whitesmoke;
+  font-size: 1.2rem;
+  font-family: Robboto;
+  font-weight: 400;
+}
+
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 80px;
+  font-weight: 600;
+  color: rgb(234, 83, 28) ;
+  box-shadow: 0 0 0 2px rgb(234, 83, 28);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-left: 88px;
+  height: 50px;
+  width: 200px;
+  margin-top: 25px;
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: rgb(234, 83, 28);
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+  right: 16px;
+}
+
+.animated-button .arr-2 {
+  left: -25%;
+}
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color:rgb(234, 83, 28) ;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: whitesmoke;
+  border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+  fill: whitesmoke;
+}
+
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px rgb(234, 83, 28);
+}
+
+.animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+
+
+/*hero-section CSS*/
+.heading { 
+  font-size: 4.5rem;
+  margin-top: 40px;
+  color: rgb(234, 83, 28) ;
+  margin-left: 80px;
+  font-weight: 500;
+  font-family: Founders_grotesk;
+}
+.text-1 { 
+  font-size: 2.5rem;
+  color: lightgray ;
+  margin-left: 88px;
+  font-family: Robboto;
+  font-weight: 500;
+  margin-top: -5px;
+}
+.text-2 { 
+  font-size: 1.5rem;
+  
+  color: green ;
+  margin-left: 88px;
+  font-family: Robboto;
+}
+
+/*video bckground*/
+.video-container {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Hide anything outside the container */
+}
+
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  object-fit: cover;
+  z-index: -1; /* Ensure the video is behind other content */
 }
 
 
 .Logo {
-  height: 100px;
-  width: 160px;
-  transition: transform 0.3s ease;
+  margin-top: 12px;
+  font-size:2rem;
+  color: rgb(234, 83, 28);
+  margin-left: 50px;
+  font-family: Robboto;
 }
+.Logo-1 {
+  margin-top: 12px;
+  font-size:2rem;
+  color: rgb(234, 83, 28);
+  margin-left: -2px;
+  font-family: Robboto;
+
+}
+
 
 
 .Logo-wrapper::after {
@@ -31,32 +230,35 @@
 
 nav {
   display: flex;
-  height: 100px;
+  height: 70px;
   justify-content: space-between;
-  width: 99.21vw;
+  width: 98.9vw;
   margin: 0 auto;
-  background: linear-gradient(135deg, #fce7f3, #f0e4ff, #e0f3ff, #c3e7ff);
-  background-size: cover;
-  background-repeat: no repeat;
+  
+  /*
+  background: linear-gradient(135deg, #fce7f3, #f0e4ff, #e0f3ff, #c3e7ff);*/
+  background-color: black;
+  opacity: 0.9;
 }
 
 nav ul {
   display: flex;
   list-style: none;
-  gap: 30px;
-  font-size: 30px;
+  gap: 50px;
+  font-size: 1.5rem;
   font-weight: 500;
-  color: violet;
-  font-family: Outfit;
+  color: whitesmoke;
+  font-family: Robboto;
 }
 
 nav li {
-  margin-top: 23.5px;
-  transition: transform 0.2s ease;
+  margin-top: 18px;
+  transition: all 0.2s ease-in;
 }
 
 nav li:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+  color: aquamarine;
 }
 
 
@@ -65,35 +267,26 @@ nav li:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70px;
+  height: 40px;
+  width: 120px;
   padding: 10px 20px;
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 500;
   color: #fff;
-  background-color: #045ab6;
+  background-color: rgb(234, 83, 28);
   border: none;
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 11px;
+  margin-top: 15px;
   border-radius: 10px;
 }
 
 .chat:hover {
-  background-color: #011830;
+  background-color: aquamarine;
+  color: black;
 }
 
-.proj-name {
-  background: linear-gradient(90deg, #0768d6, #62f3d4, #54029c, #f806af);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 30px;
-  font-weight: 500;
-  font-family: Roboto;
-  margin-top: 23.5px;
-  cursor: pointer;
-}
 
 
 //responsiveness-code, dont change
