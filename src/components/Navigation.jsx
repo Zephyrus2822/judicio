@@ -18,7 +18,7 @@ const Navigation = () => {
     <div className="header">
       <nav>
         <div className="Logo-wrapper">
-          <img className="Logo" src="./images/judicio-logo.png" alt="logo" />
+          <h1 className="Logo" >Judicio</h1>
         </div>
         <ul>
           <li>
