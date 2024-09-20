@@ -78,16 +78,18 @@ const Eligibility = () => {
     };
     fetchData()
 
-  }, []); 
+  }, [elegiblecriminals]); 
    
 
   
 
   return (
-    <div className="p-10 text-center h-screen ">
+    <div  className="body-container text-white">
+    <div className="p-10 text-center h-screen   ">
+      <div className="border-2 border-slate-300 rounded-lg min-h-screen p-5">
       <h2 className="text-4xl">Eligible Criminals for Bail</h2>
       {/* ... other component content */}
-      <div className="mx-[300px] mt-10">
+      <div className="mx-[250px] mt-10">
         {elegiblecriminals.length >= 0 && (
           <div>
             <table>
@@ -100,9 +102,9 @@ const Eligibility = () => {
                   <th className="text-2xl text-nowrap px-10 ">
                     Date of Imprisonment
                   </th>
-                  <th className="text-2xl text-nowrap px-10 ">
+                  {/* <th className="text-2xl text-nowrap px-10 ">
                     Days Imprisoned
-                  </th>
+                  </th> */}
                   <th className="text-2xl text-nowrap px-10 ">
                     Eligible for Bail
                   </th>
@@ -116,7 +118,7 @@ const Eligibility = () => {
                     <td>{criminal.AddharNum}</td>
                     {/* ... other table data */}
                     <td>{moment(criminal.createdAt).format("YYYY-MM-DD")}</td>
-                    <td>{diffdate}</td>
+                    {/* <td>{diffdate}</td> */}
                     <td>{eligibilty}</td>
                   </tr>
                 ))}
@@ -125,6 +127,8 @@ const Eligibility = () => {
           </div>
         )}
       </div>
+      </div>
+    </div>
     </div>
   );
 };

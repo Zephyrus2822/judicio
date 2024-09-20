@@ -18,7 +18,7 @@ const Navigation = () => {
     <div className="header">
       <nav>
         <div className="Logo-wrapper">
-          <h1 className="Logo" >Judicio</h1>
+          <h1 className="Logo">Judicio</h1>
         </div>
         <ul>
           <li>
@@ -26,49 +26,35 @@ const Navigation = () => {
               Home
             </a>
           </li>
-          {!LoggedIn && (
-            <>
-            <li>
-              <a href="/About">Docs</a>
-            </li>
-              <li>
-                <a href="/prisoner">Get Verdict</a>
-              </li>
-            </>
-            
-          )}
 
-          {LoggedIn && usertype === "Admin" && (
-            <>
-              <li>
-                <a href="/verdictspassed">Verdicts Passed</a>
-              </li>
-              <li>
-                <a href="/addprisoner">Add Prisoner</a>
-              </li>
-              <li>
-                <a href="/updateprisoner">Update Prisoner</a>
-              </li>
-              <li>
-                <a href="/eligiblecriminals">Eligibility</a>
-              </li>
-            </>
-          )}
-          {LoggedIn && usertype == "Judiciary" && (
-            <>
-            
-              <li>
-                <a href="/prisoner">Get Verdict</a>
-              </li>
+          <li>
+            <a href="/About">Docs</a>
+          </li>
+          <li>
+            <a href="/prisoner">Get Verdict</a>
+          </li>
 
-              <li>
-                <a href="/aboutbail">Information</a>
-              </li>
-            </>
-          )}
+          <li>
+            <a href="/verdictspassed">Verdicts Passed</a>
+          </li>
+          <li>
+            <a href="/addprisoner">Add Prisoner</a>
+          </li>
+          <li>
+            <a href="/updateprisoner">Update Prisoner</a>
+          </li>
+          <li>
+            <a href="/eligiblecriminals">Eligibility</a>
+          </li>
+
+        
+          <li>
+            <a href="/aboutbail">Information</a>
+          </li>
         </ul>
         {username && LoggedIn ? (
           <div className="flex justify-center items-center gap-2 ">
+            <h1 className="text-white mt-3 text-2xl">Hi,{username}!</h1>
             <a onClick={signout} className="chat">
               Logout
             </a>
