@@ -20,9 +20,8 @@ const About = () => {
             </div>
             <div className='info-1'>
               <h1>Endpoints</h1>
-              <p>Get/users : Retreives a list of users</p>
-              <p>Post/users : Creates a new User</p>
-              <p>Get/users : Retrieves a user by id</p>
+              <p>Get/Crimes: crime details </p>
+              <p>get/crime/:crime : retrives data about crime the crime mentioned  </p>
             </div>
             <div className='info-1'>
               <h1>Request Format</h1>

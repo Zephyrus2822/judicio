@@ -16,48 +16,29 @@ function App() {
   const username = window.localStorage.getItem("UserNamejudicio");
   const LoggedIn = window.localStorage.getItem("isLoggedInjudicio");
 
-  const usertype = window.localStorage.getItem("isAdmin");
-
+  const usertype = window.localStorage.getItem("usertype");
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         {/* Unauthorized Route */}
-        {!LoggedIn && (
-          <>
-          <Route path="/About" element={<About/>}/>
 
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-          </>
-        )}
+        <Route path="/About" element={<About />} />
 
-        {/* Protected Routes */}
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/login" element={<Navigate to="/" />}></Route>
-          <Route path="/register" element={<Navigate to="/" />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
 
-          {usertype != "Admin" ? (
-            <>
-              <Route path="/aboutbail" element={<AboutBail />}></Route>
-            <Route path="/prisoner" element={<Prisoner />}></Route>
-            </>
-          ) : (
-            <>
-              <Route path="/verdictspassed" element={<Tablee />}></Route>
-              <Route path="/addprisoner" element={<AddPrisoner />}></Route>
-              <Route
-                path="/updateprisoner"
-                element={<UpdatePrisoner />}
-              ></Route>
-              <Route
-                path="/eligiblecriminals"
-                element={<Eligibility />}
-              ></Route>
-            </>
-          )}
-        </Route>
+        <Route path="/login" element={<Navigate to="/" />}></Route>
+        <Route path="/register" element={<Navigate to="/" />}></Route>
+        <Route path="/prisoner" element={<Prisoner />}></Route>
+
+        <Route path="/aboutbail" element={<AboutBail />}></Route>
+
+        <Route path="/verdictspassed" element={<Tablee />}></Route>
+        <Route path="/addprisoner" element={<AddPrisoner />}></Route>
+        <Route path="/updateprisoner" element={<UpdatePrisoner />}></Route>
+        <Route path="/eligiblecriminals" element={<Eligibility />}></Route>
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </BrowserRouter>

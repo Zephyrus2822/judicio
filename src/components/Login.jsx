@@ -18,7 +18,7 @@ const Login = () => {
     setisSigningIn(true);
     e.preventDefault();
     await axios
-      .post(`https://judicio-server.onrender.com/api/login`, { username, passwordd }) // relace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//
+      .post(`${import.meta.env.VITE_DEV_URL}api/login`, { username, passwordd }) // relace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//
       .then((response) => {
         console.log(response.data);
 

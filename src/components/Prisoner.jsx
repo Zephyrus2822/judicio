@@ -86,7 +86,7 @@ const Prisoner = () => {
       const width = pdf.internal.pageSize.getWidth();
       const height = pdf.internal.pageSize.getHeight();
       pdf.addImage(imgdata, "PNG", 0, 0, width, height);
-      pdf.save("document.pdf");
+      pdf.save(`${Name}.pdf`);
     } catch (error) {
       console.error("Error printing the pdf");
     }
@@ -150,7 +150,7 @@ const Prisoner = () => {
                 />
               </div>
               <div className="input-box">
-                <span className="details text-white">Son Of (S/O)</span>
+                <span className="details text-white">Son Of (S/O) (D/O)</span>
                 <input
                   name="FatherName"
                   value={FatherName}
@@ -269,7 +269,7 @@ const Prisoner = () => {
                   </label>
 
                   <input
-                    className="rounded border-[2px] ml-5 px-2 py-1"
+                    className="rounded text-black border-[2px] ml-5 px-2 py-1"
                     onChange={(e) => setcrime(e.target.value)}
                     list="crime"
                     name="crime"
@@ -279,10 +279,10 @@ const Prisoner = () => {
                   />
 
                   <datalist id="crime">
-                    <option value="Cyber Crime"></option>
-                    <option value="Crime against SCs and STs"></option>
-                    <option value="Crime against Women"></option>
-                    <option value="Crime against Children"></option>
+                    <option value="rape"></option>
+                    <option value="Murder"></option>
+                    <option value="Acid Attack"></option>
+                    <option value="Mischief"></option>
                     <option value="Offenses against the state"></option>
                     <option value="Economic Offenses"></option>
                     <option value="Crime against Foreigners"></option>
@@ -290,7 +290,7 @@ const Prisoner = () => {
                   </datalist>
                 </div>
 
-                <div className="conviction text-white mr-[100px]">
+                {/* <div className="conviction text-white mr-[100px]">
                   <label
                     htmlFor="crime"
                     style={{ fontSize: "16px;", fontWeight: "500;" }}
@@ -318,7 +318,7 @@ const Prisoner = () => {
                     <option value="Option 7"></option>
                     <option value="Others"></option>
                   </datalist>
-                </div>
+                </div> */}
               </div>
 
               <div className="gender-details">
@@ -387,8 +387,8 @@ const Prisoner = () => {
 
         <div className="btns grid grid-cols-">
           <div className="status text-center space-y-3 mt-5">
-            <h3 className="text-xl font-semibold ">{status}</h3>
-            <h3 className="text-xl font-semibold ">{BailAmt}</h3>
+            <h3 className="text-3xl text-white font-semibold ">{status}</h3>
+            <h3 className="text-3xl text-white 4font-semibold ">{BailAmt}</h3>
           </div>
           {status === "Bailable" ? (
             <button
