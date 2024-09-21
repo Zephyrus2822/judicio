@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 import { Prisoner } from "./models/Prisoner.models.js";
 import { updatedPrisoner } from "./models/updatePrisoner.models.js";
 import { Applications } from "./models/application.models.js";
+import { Admin } from "./models/admin.models.js";
 
 const app = express();
 app.use(
@@ -64,16 +65,39 @@ app.post("/api/signup", async (req, res) => {
     res.status(500).json("Server error");
   }
 });
+app.post("/api/signupAdmin", async (req, res) => {
+  const { username, email, password } = req.body;
+
+
+  try {
+    const existingAdmin = await Admin.findOne({ email });
+    if (existingAdmin) {
+      return res.status(400).json("Admin already exists");
+    }
+
+    const hashPassword = await hashedPassword(password);
+
+    const newAdmin = await Admin.create({
+      username,
+      email,
+      Password: hashPassword,
+      usertype: "SubAdmin",
+    });
+    res.json("Admin Created");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("Server error");
+  }
+});
 app.post("/api/login", async (req, res) => {
   try {
     const { username, passwordd } = req.body;
-    
 
     const user = await User.findOne({ username: username });
 
     if (user) {
       const verified = await bcrypt.compare(passwordd, user.password);
-      
+
       if (verified) {
         res.json({
           success: true,
@@ -81,16 +105,55 @@ app.post("/api/login", async (req, res) => {
           user: user,
         });
       } else {
-        res.json( "Password Incorrect" );
+        res.json("Password Incorrect");
       }
     } else {
-      res.json( "Invalid Credentials" );
+      res.json("Invalid Credentials");
     }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Invalid Password or username" });
   }
 });
+app.post("/api/loginAdmin", async (req, res) => {
+  const { username, passwordd, usertype } = req.body;
+ 
+  try {
+    const { username, passwordd,usertype } = req.body;
+
+    const user = await Admin.findOne({ username: username ,usertype: usertype});
+
+    if (user) {
+      const verified = await bcrypt.compare(passwordd, user.Password);
+
+      if (verified) {
+        res.json({
+          success: true,
+          message: "Success",
+          user: user,
+        });
+      } else {
+        res.json("Password Incorrect");
+      }
+    } else {
+      res.json("You are not an Admin");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Invalid Password or username" });
+  }
+});
+
+app.get('/api/users',async(req,res)=>{
+ try {
+   const users=await Admin.find()
+ 
+   res.json(users)
+ } catch (error) {
+    res.status(500).json({ message: "Server error" });
+ }
+})
+
 
 app.post("/api/prisonerdets", async (req, res) => {
   try {
@@ -811,8 +874,6 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-
 // digilocker routes
-const digilockerRoutes = require('./routes/digilockerRoutes');
-app.use('/api', digilockerRoutes);
-
+// const digilockerRoutes = require('../../backup/routes/digilockerRoutes.js');
+// app.use('/api', digilockerRoutes);

@@ -4,42 +4,62 @@ import { useNavigate } from "react-router-dom";
 // import { FaEye } from "react-icons/fa6";
 
 const Register = () => {
+  const usertype=window.localStorage.getItem("usertype");
+  
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [status, setstatus] = useState("");
   const [showpass, setshowpass] = useState(false);
+  // const [usertype, setusertype] = useState("");
 
-  const [signingUp, setsigningUp] = useState(false)
+  const [signingUp, setsigningUp] = useState(false);
 
   const navigate = useNavigate();
   const isPasswordValid = password.length >= 6;
 
   const handlesubmit = (e) => {
-    setsigningUp(true)
+    setsigningUp(true);
     e.preventDefault();
-    axios
-      .post(`${import.meta.env.VITE_DEV_URL}api/signup`, {
-        username,
-        email,
-        password,
-      })
-      .then((response) => {
-        try {
+    if (usertype === "Admin") {
+      axios
+        .post(`${import.meta.env.VITE_DEV_URL}api/signupAdmin`, {
+          username,
+          email,
+          password,
+
+        })
+        .then((response) => {
           console.log(response);
-          setstatus(response.data);
-          if (response.data == "UserCreated") {
-            window.localStorage.setItem("UserNamejudicio", username);
-            window.localStorage.setItem("isLoggedInjudicio", true);
-            window.localStorage.setItem("usertype", "Judiciary");
-            setsigningUp(false)
-            navigate("/");
-            window.location.reload();
+        })
+        .catch((err) => {
+          console.error("Server Error", err);
+        });
+    }
+    else {
+      axios
+        .post(`${import.meta.env.VITE_DEV_URL}api/signup`, {
+          username,
+          email,
+          password,
+        })
+        .then((response) => {
+          try {
+            console.log(response);
+            setstatus(response.data);
+            if (response.data == "UserCreated") {
+              window.localStorage.setItem("UserNamejudicio", username);
+              window.localStorage.setItem("isLoggedInjudicio", true);
+              window.localStorage.setItem("usertype", "Judiciary");
+              setsigningUp(false);
+              navigate("/");
+              window.location.reload();
+            }
+          } catch (error) {
+            alert("Server Error");
           }
-        } catch (error) {
-          alert("Server Error");
-        }
-      });
+        });
+    }
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -111,6 +131,7 @@ const Register = () => {
                   </p>
                 )}
               </div>
+              
 
               <div className="flex items-center justify-between">
                 <div className="flex items-start">
@@ -144,9 +165,8 @@ const Register = () => {
                       : "w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-not-allowed"
                   }`}
                   disabled={!isPasswordValid && signingUp}
-                  
                 >
-                  {signingUp ?(<span>Signing Up</span>):(<span>Sign up</span>)}
+                  {signingUp ? <span>Signing Up</span> : <span>Sign up</span>}
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?

@@ -11,6 +11,7 @@ import AboutBail from "./components/AboutBail";
 import Eligibility from "./components/Eligibility";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import About from "./components/About";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const username = window.localStorage.getItem("UserNamejudicio");
@@ -28,6 +29,7 @@ function App() {
 
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/dashboard" element={<Dashboard/>}></Route>
 
         <Route path="/login" element={<Navigate to="/" />}></Route>
         <Route path="/register" element={<Navigate to="/" />}></Route>

@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import dotenv from "dotenv";
+
 import axios from "axios";
-import video from '../assets/video03.mp4';
+import video from "../assets/video03.mp4";
+// import { FcGoogle } from "react-icons/fc";
+// import { useGoogleLogin } from '@react-oauth/google';
 const Login = () => {
+
+
+  // const googleLogin = useGoogleLogin({
+  //   onSuccess: tokenResponse => console.log(tokenResponse),
+   
+  // });
+
   const [username, setUsername] = useState("");
   const [passwordd, setpassword] = useState("");
   const [status, setstatus] = useState("");
   const [usertype, setusertype] = useState("");
-
 
   const [isSigningIn, setisSigningIn] = useState(false);
 
@@ -17,27 +25,77 @@ const Login = () => {
   const handlesubmit = async (e) => {
     setisSigningIn(true);
     e.preventDefault();
-    await axios
-      .post(`${import.meta.env.VITE_DEV_URL}api/login`, { username, passwordd }) // relace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//
-      .then((response) => {
-        console.log(response.data);
-
-        if (response.data["message"] == "Success") {
-          window.localStorage.setItem("UserNamejudicio", username);
-          window.localStorage.setItem("isLoggedInjudicio", true);
-          if (response.data.user["usertype"] === "Admin") {
+    if (usertype === "Admin") {
+      await axios
+        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
+          username,
+          passwordd,
+          usertype,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data["message"] == "Success") {
+            window.localStorage.setItem("UserNamejudicio", username);
+            window.localStorage.setItem("isLoggedInjudicio", true);
             window.localStorage.setItem("usertype", "Admin");
+            setisSigningIn(false);
+            // navigate("/");
+            // window.location.reload();
           } else {
-            window.localStorage.setItem("usertype", "Judiciary");
+            setstatus(res.data);
+            setisSigningIn(false);
           }
-          setisSigningIn(false);
-          navigate("/");
-          window.location.reload();
-        } else {
-          setstatus(response.data);
-          setisSigningIn(false)
-        }
-      });
+        });
+    }
+    if (usertype === "SubAdmin") {
+      await axios
+        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
+          username,
+          passwordd,
+          usertype,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data["message"] == "Success") {
+            window.localStorage.setItem("UserNamejudicio", username);
+            window.localStorage.setItem("isLoggedInjudicio", true);
+            window.localStorage.setItem("usertype", "SubAdmin");
+            setisSigningIn(false);
+            navigate("/");
+            window.location.reload();
+          } else {
+            setstatus(res.data);
+            setisSigningIn(false);
+          }
+        });
+    }
+
+    if (usertype === "User") {
+      await axios
+        .post(`${import.meta.env.VITE_DEV_URL}api/login`, {
+          username,
+          passwordd,
+        }) // relace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//
+        .then((response) => {
+          console.log(response.data);
+
+          if (response.data["message"] == "Success") {
+            window.localStorage.setItem("UserNamejudicio", username);
+            window.localStorage.setItem("isLoggedInjudicio", true);
+            if (response.data.user["usertype"] === "Admin") {
+              window.localStorage.setItem("usertype", "Admin");
+            } else {
+              window.localStorage.setItem("usertype", "Judiciary");
+            }
+            setisSigningIn(false);
+            navigate("/");
+            window.location.reload();
+          } else {
+            setstatus(response.data);
+            setisSigningIn(false);
+          }
+        });
+    }
   };
 
   return (
@@ -89,6 +147,26 @@ const Login = () => {
                     required
                   />
                 </div>
+                <div className="input">
+                  <label
+                    className="block mb-2 text-xl font-medium text-gray-300 dark:text-white "
+                    for="usertype-select"
+                    htmlFor=""
+                  >
+                    Who ?{" "}
+                  </label>
+                  <select
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={(e) => setusertype(e.target.value)}
+                    name="pets"
+                    id="usertype-select"
+                  >
+                    <option value="">--Please choose an option--</option>
+                    <option value="Admin">Admin</option>
+                    <option value="SubAdmin">SubAdmin</option>
+                    <option value="User">User</option>
+                  </select>
+                </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
@@ -125,7 +203,9 @@ const Login = () => {
                   {isSigningIn ? <span>Logging in</span> : <span>Login</span>}
                 </button>
                 <p className="text-sm font-light text-white dark:text-gray-400">
-                  <h1 className="text-gray-400 text-center text-xl">{status}</h1>
+                  <h1 className="text-gray-400 font-bold text-center text-xl">
+                    {status}
+                  </h1>
                   Don’t have an account yet?{" "}
                   <button
                     onClick={() => navigate("/register")}
@@ -136,6 +216,17 @@ const Login = () => {
                   </button>
                 </p>
               </form>
+              {/* <hr /> */}
+              {/* <button
+                className="bg-white text-center w-full py-5 flex justify-center items-center gap-5 font-bold rounded-lg text-2xl"
+                onClick={googleLogin}
+              >
+                Login With Google{" "}
+                <span className="text-2xl">
+                  <FcGoogle />
+                </span>
+              </button> */}
+        
             </div>
           </div>
         </div>
