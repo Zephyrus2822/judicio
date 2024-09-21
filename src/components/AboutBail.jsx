@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaArrowDown } from "react-icons/fa";
+import video from "../assets/video2.mp4";
+
 
 const AboutBail = () => {
   const [crimes, setCrimes] = useState([]);
@@ -10,7 +12,7 @@ const AboutBail = () => {
   const fetchdata = async () => {
     try {
       const response = await axios.get(
-        `https://judicio-server.onrender.com/api/crimes` // replace URL with ${import.meta.env.VITE_DEV_URL} before pushing
+        `${import.meta.env.VITE_DEV_URL}api/crimes` // replace URL with  before pushing
         //https://judicio-server.onrender.com
       );
       console.log(response.data);
@@ -51,6 +53,7 @@ const AboutBail = () => {
         
       }}
     >
+      
       <h1 className="text-center text-2xl text-white font-bold">Criminal Offenses</h1>
       <div className="crimes mt-5">
         <div className="offenses mb-5 text-xl font-semibold grid grid-cols-3 justify-center items-center">
@@ -65,7 +68,7 @@ const AboutBail = () => {
                 }`}
               >
                 <button
-                  className="flex justify-center items-center gap-2 hover:text-xl"
+                  className="flex justify-center items-center gap-2 hover:text-xl "
                   onClick={() => handleButtonClick(i)}
                 >
                   {crimebtnn}{" "}
@@ -93,28 +96,28 @@ const AboutBail = () => {
               }}
               hidden={index + 1 !== crime.id}
             >
-              <h2 className="text-xl text-white">
+              <h2 className="text-xl text-black">
                 <span className="font-bold">Crime :</span>
                 {crime.crime}
               </h2>
-              <p className="text-xl text-white">
+              <p className="text-xl text-black">
                 <span className="font-bold text-xl"> Section:</span>{" "}
                 {crime.Section}
               </p>
-              <p className="text-xl text-white">
+              <p className="text-xl text-black">
                 <span className="font-bold text-xl">Bail Status:</span>{" "}
                 {crime["Bail Status"]}
               </p>
-              <p className="text-xl text-white">
+              <p className="text-xl text-black">
                 <span className="font-bold text-xl">Bail Amount:</span>{" "}
                 {crime["Bail Amount"]}
               </p>
-              <p className="text-xl text-white">
+              <p className="text-xl text-black">
                 <span className="font-bold text-xl">Duration:</span>{" "}
                 {crime["duration"]}
               </p>
               
-              <p className="text-xl text-white">
+              <p className="text-xl text-black">
                 <span className="font-bold text-xl">Criteria:</span>{" "}
                 {crime.Criteria}
               </p>

@@ -55,7 +55,7 @@ export default function Tablee() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://judicio-server.onrender.com/api/applications` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
+        `${import.meta.env.VITE_DEV_URL}api/applications` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
       ); //   https://judicio-server.onrender.com
       console.log(response.data);
 
@@ -92,7 +92,7 @@ export default function Tablee() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full min-h-screen overflow-hidden">
     <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
       <source src={video} type="video/mp4"/>
     </video>

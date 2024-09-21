@@ -50,7 +50,7 @@ const AddPrisoner = () => {
   };
 
   return (
-    <div className="background-video" >
+    <div className="background-video min-h-screen" >
        <video autoPlay muted loop className="video-bg">
           <source src={video} type="video/mp4"/>
         </video>
@@ -60,11 +60,13 @@ const AddPrisoner = () => {
                                               left: '50%',
                                               marginTop: '100px',                                                                                    
       }}>
+
         <form onSubmit={handlesubmit} className="form-addprisoner">
           <h1 className="wel-message">ENTER PRISONER DETAILS:</h1>
 
           <label id="name">NAME</label>
           <input
+          className="text-black"
             type="text"
             name="name"
             id="name"
@@ -159,7 +161,9 @@ const AddPrisoner = () => {
           </datalist>
           <button
             type="submit"
+
             className="ap-button absolute h-10 border-blue-200  w-15 ml-[245px] text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-1.5 py-1.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+
             Add Prisoner
           </button>
         </form>

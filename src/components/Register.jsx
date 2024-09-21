@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 // import { FaEye } from "react-icons/fa6";
 
 const Register = () => {
-  const usertype=window.localStorage.getItem("usertype");
-  
+  const usertype = window.localStorage.getItem("usertype");
+
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -21,45 +21,29 @@ const Register = () => {
   const handlesubmit = (e) => {
     setsigningUp(true);
     e.preventDefault();
-    if (usertype === "Admin") {
-      axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/signupAdmin`, {
-          username,
-          email,
-          password,
 
-        })
-        .then((response) => {
+    axios
+      .post(`${import.meta.env.VITE_DEV_URL}api/signup`, {
+        username,
+        email,
+        password,
+      })
+      .then((response) => {
+        try {
           console.log(response);
-        })
-        .catch((err) => {
-          console.error("Server Error", err);
-        });
-    }
-    else {
-      axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/signup`, {
-          username,
-          email,
-          password,
-        })
-        .then((response) => {
-          try {
-            console.log(response);
-            setstatus(response.data);
-            if (response.data == "UserCreated") {
-              window.localStorage.setItem("UserNamejudicio", username);
-              window.localStorage.setItem("isLoggedInjudicio", true);
-              window.localStorage.setItem("usertype", "Judiciary");
-              setsigningUp(false);
-              navigate("/");
-              window.location.reload();
-            }
-          } catch (error) {
-            alert("Server Error");
+          setstatus(response.data);
+          if (response.data == "UserCreated") {
+            window.localStorage.setItem("UserNamejudicio", username);
+            window.localStorage.setItem("isLoggedInjudicio", true);
+            window.localStorage.setItem("usertype", "Judiciary");
+            setsigningUp(false);
+            navigate("/");
+            window.location.reload();
           }
-        });
-    }
+        } catch (error) {
+          alert("Server Error");
+        }
+      });
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -131,7 +115,6 @@ const Register = () => {
                   </p>
                 )}
               </div>
-              
 
               <div className="flex items-center justify-between">
                 <div className="flex items-start">
