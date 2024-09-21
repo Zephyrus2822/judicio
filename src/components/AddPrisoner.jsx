@@ -50,10 +50,10 @@ const AddPrisoner = () => {
   };
 
   return (
-    <div className="background-video body-container" >
-       {/* <video autoPlay muted loop className="video-bg">
+    <div className="background-video min-h-screen" >
+       <video autoPlay muted loop className="video-bg">
           <source src={video} type="video/mp4"/>
-        </video> */}
+        </video>
     
       <div className="container-ap"  style={{ position: 'absolute',
                                               top: '50%',

@@ -86,7 +86,7 @@ const Eligibility = () => {
         <div className="p-10 text-center h-screen">
           <div className="border-2 border-slate-300 rounded-lg min-h-screen p-5 bg-opacity-70 bg-black">
             <h2 className="text-4xl">Eligible Criminals for Bail</h2>
-            <div className="mx-[250px] mt-10">
+            <div className="mx-[500px] mt-10 ">
               {elegiblecriminals.length >= 0 && (
                 <div>
                   <table>

@@ -155,11 +155,11 @@ const Prisoner = () => {
   //this opens a new popup, after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden justify-center">
+    <div className="relative w-full min-h-screen overflow-hidden justify-center ">
       <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
         <source src={video} type="video/mp4" />
       </video>
-      <div className="container">
+      <div className="ml-[200px] container">
         <div className="title text-white">REGISTRATION</div>
         <div className="content">
           <form onSubmit={handleSubmit} action="#">
@@ -317,7 +317,7 @@ const Prisoner = () => {
                   <datalist id="crime">
                     {crimebtn.map((crime,i)=>(
 
-                    <option key={i} value="Offences Against Women"></option>
+                    <option key={i} value={crime}></option>
                     ))}
                    
                   </datalist>
