@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "./addprisoner.css";
+import "./addprisoner.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import video from '../assets/video04.mp4';
@@ -58,12 +58,11 @@ const AddPrisoner = () => {
       <div className="container-ap"  style={{ position: 'absolute',
                                               top: '50%',
                                               left: '50%',
-                                              marginTop: '100px',
-                                              
-                                             
+                                              marginTop: '100px',                                                                                    
       }}>
-        <form onSubmit={handlesubmit} className="form-addprisoner ">
-          <h1 className="wel-message text-black">ENTER PRISONER DETAILS:</h1>
+
+        <form onSubmit={handlesubmit} className="form-addprisoner">
+          <h1 className="wel-message">ENTER PRISONER DETAILS:</h1>
 
           <label id="name">NAME</label>
           <input
@@ -140,7 +139,7 @@ const AddPrisoner = () => {
             {/*  in this case there will be instant bail cancellation */}
           </datalist>
 
-          <label id="crime1">Crime</label>
+          <label id="crime1">CRIME</label>
           <input
             list="crime1"
             value={crime}
@@ -162,7 +161,9 @@ const AddPrisoner = () => {
           </datalist>
           <button
             type="submit"
-            className="ap-button bg-white rounded-lg px-2 py-2">
+
+            className="ap-button absolute h-10 border-blue-200  w-15 ml-[245px] text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-1.5 py-1.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+
             Add Prisoner
           </button>
         </form>

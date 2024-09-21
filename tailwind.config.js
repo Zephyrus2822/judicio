@@ -14,6 +14,9 @@ module.exports = {
       zIndex: {
         '-10': '-10',
       },
+      fontFamily: {
+        serif: ['Times New Roman', 'serif'],
+      },
       animation: {
         aurora: "aurora 60s linear infinite",
       },

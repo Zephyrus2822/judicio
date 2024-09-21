@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 .body-container {
-  background-image: url('./images/bgv4.jpg');
-  height: 100vh;
+  
+  height: 0vh;
   font-family: 'Montserrat', sans-serif;
 }
 
-.wel-message {
+.welcumm-message {
   font-weight: 800;
-  color: white;
+  color: black;
   opacity: 1;
   font-size: 3.4rem;
   margin-top: 0;
@@ -24,10 +24,11 @@
   top: 50%;
   left: 50%;
   margin-top: 100px;
+ 
 }
 
-.form-addprisoner {
-  background: rgba(255, 255, 255, 0.3);
+.form-updateprisoner {
+  background: rgba(150, 150, 150, 0.45);
   padding: 3em;
   margin-top: 100px;
   margin-bottom: 100px;
@@ -44,7 +45,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.form-addprisoner h1 {
+.form-updateprisoner h1 {
   font-weight: 800;
   color: white;
   opacity: 0.7;
@@ -59,7 +60,7 @@
 
 
 
-.form-addprisoner label {
+.form-updateprisoner label {
   color: white;
   text-align: start;
   align-content: start;
@@ -69,21 +70,21 @@
   font-family: 'Berkshire', swash;
 }
 
-.form-addprisoner a {
+.form-updateprisoner a {
   text-decoration: none;
   color: white;
   font-size: 12px;
 }
 
-.form-addprisoner a:hover {
+.form-updateprisoner a:hover {
   text-shadow: 2px 2px 6px #00000040;
 }
 
-.form-addprisoner a:active {
+.form-updateprisoner a:active {
   text-shadow: none;
 }
 
-.form-addprisoner input {
+.form-updateprisoner input {
   background: transparent;
   width: calc(100% - 100px); /* 100% width minus left margin for alignment */
   padding: 1em;
@@ -103,7 +104,7 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.form-addprisoner input:focus {
+.form-updateprisoner input:focus {
   border-left: 1px solid #8A2BE2; /* Metallic purple border color */
   border-top: 1px solid #8A2BE2;
   box-shadow: 0 0 2px #8A2BE2, 0 0 5px #8A2BE2, 0 0 5px #8A2BE2; /* Metallic purple glow */
@@ -112,27 +113,27 @@
 
 
 
-.form-addprisoner input[type="email"]:focus,
-.form-addprisoner input[type="password"]:focus {
+.form-updateprisoner input[type="email"]:focus,
+.form-updateprisoner input[type="password"]:focus {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
 }
 
-.form-addprisoner input[type="button"] {
+.form-udpateprisoner input[type="button"] {
   margin-top: 10px;
   width: 150px;
   font-size: 1rem;
 }
 
-.form-addprisoner input[type="button"]:hover {
+.form-updateprisoner input[type="button"]:hover {
   cursor: pointer;
 }
 
-.form-addprisoner input[type="button"]:active {
+.form-updateprisoner input[type="button"]:active {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.form-addprisoner input[type="date"] {
+.form-updateprisoner input[type="date"] {
   width: calc(100% - 110px); 
 }
 
