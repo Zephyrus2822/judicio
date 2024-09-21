@@ -67,8 +67,7 @@ app.post("/api/signup", async (req, res) => {
 });
 app.post("/api/signupAdmin", async (req, res) => {
   const { username, email, password } = req.body;
-
-
+  
   try {
     const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
@@ -86,7 +85,7 @@ app.post("/api/signupAdmin", async (req, res) => {
     res.json("Admin Created");
   } catch (error) {
     console.error(error);
-    res.status(500).json("Server error");
+    res.status(500).json(error);
   }
 });
 app.post("/api/login", async (req, res) => {

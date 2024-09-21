@@ -39,8 +39,8 @@ const Login = () => {
             window.localStorage.setItem("isLoggedInjudicio", true);
             window.localStorage.setItem("usertype", "Admin");
             setisSigningIn(false);
-            // navigate("/");
-            // window.location.reload();
+            navigate("/");
+            window.location.reload();
           } else {
             setstatus(res.data);
             setisSigningIn(false);

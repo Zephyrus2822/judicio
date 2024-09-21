@@ -31,7 +31,8 @@ const Prisoner = () => {
   const [isuploading, setisuploading] = useState(false);
   const [crimes, setcrimes] = useState([]);
 
-  // const [index, setindex] = useState(0);
+  const [selectedOption, setselectedOption] = useState(null)
+  const [index, setindex] = useState(0);
 
   const fetchdata = async () => {
     try {
@@ -123,7 +124,7 @@ const Prisoner = () => {
       console.error("Error printing the pdf");
     }
   };
-
+  
   const uploadImage = async (e) => {
     setisuploading(true);
     e.preventDefault();
@@ -304,6 +305,7 @@ const Prisoner = () => {
                     className="rounded text-black border-[2px] ml-5 px-2 py-1"
                     list="crime"
                     name="crime"
+                    
                     id=""
                     placeholder="Select convicted"
                   />
@@ -322,7 +324,7 @@ const Prisoner = () => {
                     htmlFor="crime"
                     style={{ fontSize: "16px;", fontWeight: "500;" }}
                   >
-                    Criminal Status:
+                    Crime:
                   </label>
                   <input
                     className="rounded text-black border-[2px] ml-5 px-2 py-1"
@@ -336,7 +338,7 @@ const Prisoner = () => {
 
                   <datalist id="crimess">
                     {crimes.map((crime, index) => (
-                      <option  key={index} value={crime.crime}></option>
+                      <option hidden={index + 1 !== crime.id}  key={index} value={crime.crime}></option>
                     ))}
                   </datalist>
                 </div>
