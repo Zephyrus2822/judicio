@@ -810,3 +810,9 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+
+// digilocker routes
+const digilockerRoutes = require('./routes/digilockerRoutes');
+app.use('/api', digilockerRoutes);
+
