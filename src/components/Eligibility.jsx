@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "./fonts.css";
+import video from '../assets/video04.mp4';
 
 const Eligibility = () => {
   const [crimes, setcrimes] = useState([]);
@@ -11,10 +12,6 @@ const Eligibility = () => {
   const [eligibilty, seteligibilty] = useState("")
   
   
-  
-  
- 
-
   const fetchcriminals = async () => {
     try {
       await axios
@@ -79,56 +76,47 @@ const Eligibility = () => {
     fetchData()
 
   }, [elegiblecriminals]); 
-   
-
-  
 
   return (
-    <div  className="body-container text-white">
-    <div className="p-10 text-center h-screen   ">
-      <div className="border-2 border-slate-300 rounded-lg min-h-screen p-5">
-      <h2 className="text-4xl">Eligible Criminals for Bail</h2>
-      {/* ... other component content */}
-      <div className="mx-[250px] mt-10">
-        {elegiblecriminals.length >= 0 && (
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th className="text-2xl text-nowrap  px-10">Name</th>
-                  <th className="text-2xl text-nowrap px-10 ">Crime</th>
-                  <th className="text-2xl text-nowrap px-10 ">Addhar Num</th>
-                  {/* ... other relevant columns */}
-                  <th className="text-2xl text-nowrap px-10 ">
-                    Date of Imprisonment
-                  </th>
-                  {/* <th className="text-2xl text-nowrap px-10 ">
-                    Days Imprisoned
-                  </th> */}
-                  <th className="text-2xl text-nowrap px-10 ">
-                    Eligible for Bail
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {elegiblecriminals.map((criminal,i) => (
-                  <tr key={i}>
-                    <td>{criminal.Name}</td>
-                    <td>{criminal.Crime}</td>
-                    <td>{criminal.AddharNum}</td>
-                    {/* ... other table data */}
-                    <td>{moment(criminal.createdAt).format("YYYY-MM-DD")}</td>
-                    {/* <td>{diffdate}</td> */}
-                    <td>{eligibilty}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+    <div className="relative w-full h-screen overflow-hidden">
+      <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
+        <source src={video} type="video/mp4" />
+      </video>
+      <div className="body-container text-white relative z-10">
+        <div className="p-10 text-center h-screen">
+          <div className="border-2 border-slate-300 rounded-lg min-h-screen p-5 bg-opacity-70 bg-black">
+            <h2 className="text-4xl">Eligible Criminals for Bail</h2>
+            <div className="mx-[250px] mt-10">
+              {eligibleCriminals.length >= 0 && (
+                <div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th className="text-2xl text-nowrap px-10">Name</th>
+                        <th className="text-2xl text-nowrap px-10">Crime</th>
+                        <th className="text-2xl text-nowrap px-10">Aadhar Num</th>
+                        <th className="text-2xl text-nowrap px-10">Date of Imprisonment</th>
+                        <th className="text-2xl text-nowrap px-10">Eligible for Bail</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {eligibleCriminals.map((criminal, i) => (
+                        <tr key={i}>
+                          <td>{criminal.Name}</td>
+                          <td>{criminal.Crime}</td>
+                          <td>{criminal.AddharNum}</td>
+                          <td>{moment(criminal.createdAt).format('YYYY-MM-DD')}</td>
+                          <td>{criminal.eligibility}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
           </div>
-        )}
+        </div>
       </div>
-      </div>
-    </div>
     </div>
   );
 };

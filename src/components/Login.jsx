@@ -72,7 +72,7 @@ const Login = () => {
 
     if (usertype === "User") {
       await axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/login`, {
+        .post(` https://judicio-server.onrender.com/api/login`, {
           username,
           passwordd,
         }) // relace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//
@@ -102,15 +102,15 @@ const Login = () => {
     <section className="login-section-1">
       <div className="video-container">
         <video autoPlay muted loop className="video-background">
-          <source src={video} type="video/mp4" />
+          <source src={video} type="video/mp4"/>
         </video>
-        <div className="flex flex-col  px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className="w-full  rounded-lg shadow dark:border mt-24  sm:max-w-md xl:p-0 login-container-1">
+        <div className="flex flex-col px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <div className="w-full mt-15 rounded-lg shadow dark:border mt-24  sm:max-w-md xl:p-0 login-container-1">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-500 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6">
                 <div>
                   <label
                     htmlFor="username"
@@ -125,7 +125,7 @@ const Login = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@hex"
+                    placeholder="Name"
                     required
                   />
                 </div>

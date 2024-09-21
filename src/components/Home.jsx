@@ -14,7 +14,7 @@ const Home = () => {
           Welcome to Judicio!
         </div>
         <div className="text-1">
-          Justice delayed is Justice denied
+          Justice delayed is Justice denied!
         </div>
         <div className='text-2'>
           With that thought in mind, we have come up with

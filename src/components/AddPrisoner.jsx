@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import "./addprisoner.css";
+// import "./addprisoner.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import video from '../assets/video04.mp4';
 
 const AddPrisoner = () => {
   const [name, setname] = useState("");
@@ -49,12 +50,22 @@ const AddPrisoner = () => {
   };
 
   return (
-    <div className="body-container">
-      <div className="container-ap">
+    <div className="background-video" >
+       <video autoPlay muted loop className="video-bg">
+          <source src={video} type="video/mp4"/>
+        </video>
+    
+      <div className="container-ap"  style={{ position: 'absolute',
+                                              top: '50%',
+                                              left: '50%',
+                                              marginTop: '100px',
+                                              
+                                             
+      }}>
         <form onSubmit={handlesubmit} className="form-addprisoner">
-          <h1 className="wel-message">ENTER PRISONER DETAILS:</h1>
+          <h1 className="wel-message text-black">ENTER PRISONER DETAILS:</h1>
 
-          <label id="name">Name of Miscreant</label>
+          <label id="name">NAME</label>
           <input
             type="text"
             name="name"
@@ -65,7 +76,7 @@ const AddPrisoner = () => {
           />
           <br />
 
-          <label id="fathername">S/O</label>
+          <label id="fathername">S/O OR D/O</label>
           <input
             type="text"
             name="fathername"
@@ -76,7 +87,7 @@ const AddPrisoner = () => {
           />
           <br />
 
-          <label id="aadhar">Aadhaar Number</label>
+          <label id="aadhar">AADHAAR NUMBER</label>
           <input
             type="text"
             name="adharnum"
@@ -87,7 +98,7 @@ const AddPrisoner = () => {
           />
           <br />
 
-          <label id="trial">Trial</label>
+          <label id="trial">TRIAL</label>
           <input
             type="date"
             name="trialdate"
@@ -98,7 +109,7 @@ const AddPrisoner = () => {
           />
           <br />
 
-          <label id="testimonial">Testimonial</label>
+          <label id="testimonial">TESTIMONIAL</label>
           <input
             type="text"
             name="witness"
@@ -109,7 +120,7 @@ const AddPrisoner = () => {
           />
           <br />
 
-          <label id="location">Status</label>
+          <label id="location">STATUS</label>
           <input
             list="location"
             name="status"
@@ -156,6 +167,7 @@ const AddPrisoner = () => {
         </form>
       </div>
     </div>
+  
   );
 };
 
