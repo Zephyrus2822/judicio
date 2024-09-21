@@ -26,36 +26,64 @@ const Navigation = () => {
               Home
             </a>
           </li>
-          <li>
-            <a className="proj-name" href="/dashboard">
-              Dashboard
-            </a>
-          </li>
+          {!LoggedIn && (
+            <>
+              <li>
+                <a href="/About">Docs</a>
+              </li>
+              <li>
+                <a href="/prisoner">Get Verdict</a>
+              </li>
+            </>
+          )}
 
-          <li>
-            <a href="/About">Docs</a>
-          </li>
-          <li>
-            <a href="/prisoner">Get Verdict</a>
-          </li>
+          {LoggedIn && usertype === "Admin" && (
+            <>
+            <li>
+              <a href="/dashboard">Dashboard</a>
+            </li>
+              <li>
+                <a href="/verdictspassed">Verdicts Passed</a>
+              </li>
+              <li>
+                <a href="/addprisoner">Add Prisoner</a>
+              </li>
+              <li>
+                <a href="/updateprisoner">Update Prisoner</a>
+              </li>
+              <li>
+                <a href="/eligiblecriminals">Eligibility</a>
+              </li>
+            </>
+          )}
+          {LoggedIn && usertype === "SubAdmin" && (
+            <>
+            
+              <li>
+                <a href="/verdictspassed">Verdicts Passed</a>
+              </li>
+              <li>
+                <a href="/addprisoner">Add Prisoner</a>
+              </li>
+              <li>
+                <a href="/updateprisoner">Update Prisoner</a>
+              </li>
+              <li>
+                <a href="/eligiblecriminals">Eligibility</a>
+              </li>
+            </>
+          )}
+          {LoggedIn && usertype == "Judiciary" && (
+            <>
+              <li>
+                <a href="/prisoner">Get Verdict</a>
+              </li>
 
-          <li>
-            <a href="/verdictspassed">Verdicts Passed</a>
-          </li>
-          <li>
-            <a href="/addprisoner">Add Prisoner</a>
-          </li>
-          <li>
-            <a href="/updateprisoner">Update Prisoner</a>
-          </li>
-          <li>
-            <a href="/eligiblecriminals">Eligibility</a>
-          </li>
-
-        
-          <li>
-            <a href="/aboutbail">Information</a>
-          </li>
+              <li>
+                <a href="/aboutbail">Information</a>
+              </li>
+            </>
+          )}
         </ul>
         {username && LoggedIn ? (
           <div className="flex justify-center items-center gap-2 ">

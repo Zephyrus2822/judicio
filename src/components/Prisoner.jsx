@@ -155,7 +155,7 @@ const Prisoner = () => {
   //this opens a new popup, after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
 
   return (
-    <div className="relative w-full h-screen overflow-hidden justify-center">
+    <div className="relative w-full min-h-screen overflow-hidden justify-center">
       <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
         <source src={video} type="video/mp4" />
       </video>
@@ -446,7 +446,7 @@ const Prisoner = () => {
             <div
               ref={ref}
               id="bailapplication"
-              className="text-white rounded-lg mx-auto px-5  py-5 "
+              className="text-black bg-white rounded-lg mx-auto px-5  py-5 "
             >
               <div
                 style={{

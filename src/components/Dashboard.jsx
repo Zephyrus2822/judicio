@@ -57,7 +57,7 @@ const Dashboard = () => {
        
         <div className="cards  ml-[370px] flex justify-start items-center">
           
-          <div className="w-60 h-32 gap-4 rounded-lg bg-gradient-to-tr from-zinc-100 to-slate-500 font-bold text-black  text-2xl m-10 flex justify-center items-center">
+          <div className="w-60 h-32 gap-4 ml-[260px] rounded-lg bg-gradient-to-tr from-zinc-100 to-slate-500 font-bold text-black  text-2xl m-10 flex justify-center items-center">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

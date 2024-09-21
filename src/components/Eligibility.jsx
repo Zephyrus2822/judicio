@@ -71,7 +71,7 @@ const Eligibility = () => {
     const fetchData = async () => {
       await fetchCrimes();
       await fetchcriminals();
-      await renderitems();
+      renderitems();
     };
     fetchData()
 
@@ -87,7 +87,7 @@ const Eligibility = () => {
           <div className="border-2 border-slate-300 rounded-lg min-h-screen p-5 bg-opacity-70 bg-black">
             <h2 className="text-4xl">Eligible Criminals for Bail</h2>
             <div className="mx-[250px] mt-10">
-              {eligibleCriminals.length >= 0 && (
+              {elegiblecriminals.length >= 0 && (
                 <div>
                   <table>
                     <thead>
@@ -95,18 +95,18 @@ const Eligibility = () => {
                         <th className="text-2xl text-nowrap px-10">Name</th>
                         <th className="text-2xl text-nowrap px-10">Crime</th>
                         <th className="text-2xl text-nowrap px-10">Aadhar Num</th>
-                        <th className="text-2xl text-nowrap px-10">Date of Imprisonment</th>
+                        {/* <th className="text-2xl text-nowrap px-10">Date of Imprisonment</th> */}
                         <th className="text-2xl text-nowrap px-10">Eligible for Bail</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {eligibleCriminals.map((criminal, i) => (
+                      {elegiblecriminals.map((criminal, i) => (
                         <tr key={i}>
                           <td>{criminal.Name}</td>
                           <td>{criminal.Crime}</td>
                           <td>{criminal.AddharNum}</td>
-                          <td>{moment(criminal.createdAt).format('YYYY-MM-DD')}</td>
-                          <td>{criminal.eligibility}</td>
+                          {/* <td>{moment(criminal.createdAt).format('YYYY-MM-DD')}</td> */}
+                          <td>{eligibilty}</td>
                         </tr>
                       ))}
                     </tbody>
