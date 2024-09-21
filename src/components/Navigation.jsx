@@ -26,6 +26,11 @@ const Navigation = () => {
               Home
             </a>
           </li>
+          <li>
+            <a className="proj-name" href="/dashboard">
+              Dashboard
+            </a>
+          </li>
 
           <li>
             <a href="/About">Docs</a>
