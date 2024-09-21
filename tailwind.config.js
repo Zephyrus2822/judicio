@@ -11,6 +11,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      zIndex: {
+        '-10': '-10',
+      },
       animation: {
         aurora: "aurora 60s linear infinite",
       },

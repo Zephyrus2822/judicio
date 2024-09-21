@@ -1,18 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-
-.background {
-  background-image: url('../images/jdcbg2.png');
+/* .background {
+  background: url('./assets/video04.mp4');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
   width: 99.23vw;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align the container to the top */
-  padding-top: 50px; /* Add spacing at the top */
-  box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
-}
+  align-items: flex-start; 
+  padding-top: 50px; 
+  box-sizing: border-box; 
+} */
 
 .container {
   position: relative; 
@@ -25,8 +24,8 @@
   padding: 25px 30px 25px 25px; 
   border: 5px groove rgba(255, 255, 255, 0.3); 
   border-radius: 10px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  background: rgba(252, 245, 245, 0.25);
+  box-shadow: 5px 5px 10px rgb(234, 83, 28);
+  background-color: rgba(0, 0, 0, 0.5);
   opacity: 1;
   visibility: visible;
   backdrop-filter: blur(10px); 
@@ -256,9 +255,9 @@ form .input-box span.details{
 }
  
  
+
  
- 
-  /* @media(max-width: 584px){
+  @media(max-width: 584px){
  .container{
   max-width: 100%;
 }
@@ -281,4 +280,4 @@ form .user-details .input-box{
   .container .content .category{
     flex-direction: column;
   }
-} */
+}

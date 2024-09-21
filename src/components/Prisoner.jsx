@@ -4,6 +4,7 @@ import axios from "axios";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import video from '../assets/video04.mp4';
 
 const Prisoner = () => {
   const [showapplication, setshowapplication] = useState(false);
@@ -114,16 +115,19 @@ const Prisoner = () => {
       alert("image uploaded successfully");
       setisuploading(false)
     } catch (error) {
-      console.error("An error occurred while uploading",error);
+      console.error("An error occurred while uploading", error);
     }
   };
 
   //this opens a new popup, after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
 
   return (
-    <div className="background">
+    <div className="relative w-full h-screen overflow-hidden justify-center">
+      <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
+        <source src={video} type="video/mp4" />
+      </video>
       <div className="container">
-        <div className="title text-white">Registration</div>
+        <div className="title text-white">REGISTRATION</div>
         <div className="content">
           <form onSubmit={handleSubmit} action="#">
             <div className="user-details">
@@ -269,7 +273,7 @@ const Prisoner = () => {
                   </label>
 
                   <input
-                    className="rounded text-black border-[2px] ml-5 px-2 py-1"
+                    className="rounded text-white border-[2px] ml-5 px-2 py-1"
                     onChange={(e) => setcrime(e.target.value)}
                     list="crime"
                     name="crime"
@@ -358,7 +362,7 @@ const Prisoner = () => {
                     <span className="gender text-white">Other</span>
                   </label>
                 </div>
-          <div className="border-2 flex justify-center px-2 items-center border-white rounded-lg gap-2 py-2">
+          <div className="border-2 flex justify-center px-2 items-center botext-white rounded-lg gap-2 py-2">
             <label
               className=" text-white h-12 mr-5 p-5"
               
@@ -418,7 +422,7 @@ const Prisoner = () => {
             <div
               ref={ref}
               id="bailapplication"
-              className=" bg-white rounded-lg mx-auto px-5  py-5 "
+              className="text-white rounded-lg mx-auto px-5  py-5 "
             >
               <div
                 style={{
@@ -445,7 +449,7 @@ const Prisoner = () => {
                     </p>
                     <p style={{ textAlign: "start" }}>
                       P.S. :{" "}
-                      <span className="border-b-2 border-black py-2 ">
+                      <span className="border-b-2 botext-white py-2 ">
                         {polstn}
                       </span>{" "}
                       <br />
@@ -464,11 +468,11 @@ const Prisoner = () => {
                   <div className="mx-32 mb-10">
                     <p style={{ textAlign: "start", padding: "5px auto" }}>
                       I,{" "}
-                      <span className="border-b-2 border-black py-2 ">
+                      <span className="border-b-2 botext-white py-2 ">
                         {Name}
                       </span>{" "}
                       S/o. Sh.
-                      <span className="border-b-2 border-black py-2">
+                      <span className="border-b-2 botext-white py-2">
                         {FatherName}
                       </span>
                       <br />
@@ -478,7 +482,7 @@ const Prisoner = () => {
                       acquitted by this Hon&#8217;ble Court on ________________
                       in above said case FIR No. <br />
                       _________________ P.S.{" "}
-                      <span className="border-b-2 border-black py-2 ">
+                      <span className="border-b-2 botext-white py-2 ">
                         {polstn}
                       </span>{" "}
                       U/s _____________ and required to give <br />
@@ -513,21 +517,21 @@ const Prisoner = () => {
                     </p>
                     <p style={{ textAlign: "start" }}>
                       I,{" "}
-                      <span className="border-b-2 border-black py-2">
+                      <span className="border-b-2 botext-white py-2">
                         {Name}
                       </span>{" "}
                       S/o. Sh.
-                      <span className="border-b-2 border-black py-2">
+                      <span className="border-b-2 botext-white py-2">
                         {FatherName}
                       </span>{" "}
                       R/o _______________ <br />
                       ____________________________________________________
                       hereby declare myself for the above said Sh. <br />
-                      <span className="border-b-2 border-black py-2">
+                      <span className="border-b-2 botext-white py-2">
                         {Name}
                       </span>{" "}
                       S/o{" "}
-                      <span className="border-b-2 border-black py-2">
+                      <span className="border-b-2 botext-white py-2">
                         {FatherName}
                       </span>{" "}
                       shall attend the appellate <br />
@@ -579,7 +583,7 @@ const Prisoner = () => {
                     <br />
                     <p>
                       I
-                      <span className="border-b-2 border-black py-2 border-dotted">
+                      <span className="border-b-2 botext-white py-2 border-dotted">
                         {" "}
                         {Name}{" "}
                       </span>
@@ -587,7 +591,7 @@ const Prisoner = () => {
                       .......................................................................................
                       <br />
                       Aged about{" "}
-                      <span className="border-b-2 border-black py-2 border-dotted">
+                      <span className="border-b-2 botext-white py-2 border-dotted">
                         {" "}
                         {age}{" "}
                       </span>{" "}
@@ -604,7 +608,7 @@ const Prisoner = () => {
                       ............................
                       <br />
                       .......................... and Election Card No.
-                      <span className="border-b-2 border-black py-2 border-dotted">
+                      <span className="border-b-2 botext-white py-2 border-dotted">
                         {voter}
                       </span>{" "}
                       <br />

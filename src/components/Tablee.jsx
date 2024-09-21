@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Box from '@mui/material/Box';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import video from '../assets/video04.mp4';
 
 const columns = [
   { id: 'Name', label: 'Name', minWidth: 170 },
@@ -54,7 +55,7 @@ export default function Tablee() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_DEV_URL}api/applications` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
+        `https://judicio-server.onrender.com/api/applications` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
       ); //   https://judicio-server.onrender.com
       console.log(response.data);
 
@@ -91,72 +92,83 @@ export default function Tablee() {
   };
 
   return (
-    <div className='background-img' style={{   backgroundImage: "url('./images/judicio-bg1.webp')",
-                                               
-                                               backgroundPosition: 'center',
-                                               marginTop: 5,
-                                               marginBottom: 5,
-                                               padding: 5
-     }}>
-    <Box sx={{  padding: 2, 
-    backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-    border: '5px ridge rgba(255, 255, 255, 0.2)', 
-    width: 1800, 
-    marginTop: 5,
-    marginBottom: 5,
-    marginLeft: 5,
-    marginRight: 5,
-    borderRadius: 2.2,
-    backdropFilter: 'blur(20px)', 
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' 
-      }} >
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ minHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {prisonerdets.map((row) => {
-              return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number'
-                          ? column.format(value)
-                          : value}
-                      </TableCell>
-                    );
-                  })}
+    <div className="relative w-full h-screen overflow-hidden">
+    <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
+      <source src={video} type="video/mp4"/>
+    </video>
+    <div
+      className='background-img relative z-10'      
+    >
+      <Box
+        sx={{
+          padding: 2,
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          border: '3px ridge rgba(255, 255, 255, 0.2)',
+          width: 1800,
+          marginTop: 15,
+          marginBottom: 5,
+          marginLeft: 5,
+          marginRight: 5,
+          borderRadius: 2.2,
+          backdropFilter: 'blur(30px)',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.7)',
+        }}
+      >   
+          <Paper sx={{ 
+          width: '100%', 
+          overflow: 'hidden',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)', 
+          backdropFilter: 'blur(30px)', 
+          border: '1px solid rgba(255, 255, 255, 0.7)',
+          borderRadius: '5px'
+          }}>
+          <TableContainer sx={{ minHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth, backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
                 </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
-  </Box>
+              </TableHead>
+              <TableBody>
+                {prisonerdets.map((row) => {
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code} style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align} style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      </Box>
+    </div>
   </div>
   );
 }

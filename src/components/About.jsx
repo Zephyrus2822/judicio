@@ -1,5 +1,6 @@
 import React from 'react'
 import video from '../assets/video03.mp4'
+
 const About = () => {
   return (
     <div>
