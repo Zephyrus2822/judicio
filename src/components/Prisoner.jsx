@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "./prisoner.css";
 import axios from "axios";
 import jsPDF from "jspdf";
@@ -24,31 +24,63 @@ const Prisoner = () => {
   const [userstatus, setuserstatus] = useState("");
   const [BailAmt, setBailAmt] = useState("");
   const [status, setstatus] = useState("");
-  const [bailstatus, setbailstatus] = useState("")
+  const [bailstatus, setbailstatus] = useState("");
 
   const [adharimage, setadharimage] = useState(null);
   const [adharimageurl, setadharimageurl] = useState("");
-  const [isuploading, setisuploading] = useState(false)
+  const [isuploading, setisuploading] = useState(false);
+  const [crimes, setcrimes] = useState([]);
+
+  // const [index, setindex] = useState(0);
+
+  const fetchdata = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_DEV_URL}api/crimes` // replace URL with ${import.meta.env.VITE_DEV_URL} before pushing
+      );
+      console.log(response.data);
+      setcrimes(response.data);
+      console.log(crimes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const crimebtn = [
+    "Offences Against Womens",
+    "Offenses Against Children",
+    "Offenses Against Persons",
+    "Offenses Against the State",
+    "Offenses Against Property",
+    "Offenses Relating to Marriage and Family",
+  ];
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      axios.post(`${import.meta.env.VITE_DEV_URL}api/appliedforbail`,{
-        Name,
-        FatherName,
-        adharnum,
-        adharimageurl,
-        voter,
-        firdate,
-        crime,
-        bailstatus:"Applied for bail"
-      })
-      .then(res=>{
-        console.log(res.data)
-      })
+      axios
+        .post(`${import.meta.env.VITE_DEV_URL}api/appliedforbail`, {
+          Name,
+          FatherName,
+          adharnum,
+          adharimageurl,
+          voter,
+          firdate,
+          crime,
+          bailstatus: "Applied for bail",
+        })
+        .then((res) => {
+          console.log(res.data);
+        });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
 
     try {
@@ -93,7 +125,7 @@ const Prisoner = () => {
   };
 
   const uploadImage = async (e) => {
-    setisuploading(true)
+    setisuploading(true);
     e.preventDefault();
     const data = new FormData();
     data.append("file", adharimage);
@@ -112,9 +144,9 @@ const Prisoner = () => {
       //   console.log(res.data.url);
       // Toast.success()
       alert("image uploaded successfully");
-      setisuploading(false)
+      setisuploading(false);
     } catch (error) {
-      console.error("An error occurred while uploading",error);
+      console.error("An error occurred while uploading", error);
     }
   };
 
@@ -270,55 +302,44 @@ const Prisoner = () => {
 
                   <input
                     className="rounded text-black border-[2px] ml-5 px-2 py-1"
-                    onChange={(e) => setcrime(e.target.value)}
                     list="crime"
                     name="crime"
-                    value={crime}
                     id=""
-                    placeholder="Select crime"
+                    placeholder="Select convicted"
                   />
 
                   <datalist id="crime">
-                    <option value="rape"></option>
-                    <option value="Murder"></option>
-                    <option value="Acid Attack"></option>
-                    <option value="Mischief"></option>
-                    <option value="Offenses against the state"></option>
-                    <option value="Economic Offenses"></option>
-                    <option value="Crime against Foreigners"></option>
-                    <option value="Others"></option>
+                    {crimebtn.map((crime,i)=>(
+
+                    <option key={i} value="Offences Against Women"></option>
+                    ))}
+                   
                   </datalist>
                 </div>
 
-                {/* <div className="conviction text-white mr-[100px]">
+                <div className="conviction text-white mr-[100px]">
                   <label
                     htmlFor="crime"
                     style={{ fontSize: "16px;", fontWeight: "500;" }}
                   >
                     Criminal Status:
                   </label>
-
                   <input
-                    className="rounded border-[2px] ml-3 px-2 py-1"
-                    onChange={(e) => setuserstatus(e.target.value)}
-                    list="crime"
+                    className="rounded text-black border-[2px] ml-5 px-2 py-1"
+                    list="crimess"
                     name="crime"
-                    value={userstatus}
+                    value={crime}
+                    onChange={(e) => setcrime(e.target.value)}
                     id=""
-                    placeholder="Select crime"
+                    placeholder="Select convicted"
                   />
 
-                  <datalist id="crime">
-                    <option value="Ran Away"></option>
-                    <option value="Left Country"></option>
-                    <option value="Option 3"></option>
-                    <option value="Option 4"></option>
-                    <option value="Option 5"></option>
-                    <option value="Option 6"></option>
-                    <option value="Option 7"></option>
-                    <option value="Others"></option>
+                  <datalist id="crimess">
+                    {crimes.map((crime, index) => (
+                      <option  key={index} value={crime.crime}></option>
+                    ))}
                   </datalist>
-                </div> */}
+                </div>
               </div>
 
               <div className="gender-details">
@@ -358,25 +379,26 @@ const Prisoner = () => {
                     <span className="gender text-white">Other</span>
                   </label>
                 </div>
-          <div className="border-2 flex justify-center px-2 items-center border-white rounded-lg gap-2 py-2">
-            <label
-              className=" text-white h-12 mr-5 p-5"
-              
-            >
-              Add Aadhar Card
-            </label>
-            <input
-              onChange={(e) => setadharimage(e.target.files[0])}
-              className=" text-white "
-              type="file"
-              name="adharimage"
-              id="aadhar-upload"
-            />
-            <button disabled={isuploading} className="text-3xl invert" onClick={uploadImage}>
-              <FaCloudUploadAlt />
-            </button>
-          </div>
-            
+                <div className="border-2 flex justify-center px-2 items-center border-white rounded-lg gap-2 py-2">
+                  <label className=" text-white h-12 mr-5 p-5">
+                    Add Aadhar Card
+                  </label>
+                  <input
+                    onChange={(e) => setadharimage(e.target.files[0])}
+                    className=" text-white "
+                    type="file"
+                    name="adharimage"
+                    id="aadhar-upload"
+                  />
+                  <button
+                    disabled={isuploading}
+                    className="text-3xl invert"
+                    onClick={uploadImage}
+                  >
+                    <FaCloudUploadAlt />
+                  </button>
+                </div>
+
                 <button disabled={isuploading} className="button" type="submit">
                   Apply for Bail
                 </button>
