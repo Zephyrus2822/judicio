@@ -2,12 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 
-
 const Dashboard = () => {
 
     const [users, setusers] = useState([])
     const fetchUsers=async()=>{
-        await axios.get(`${import.meta.env.VITE_DEV_URL}api/users`)
+        await axios.get(`https://judicio-server.onrender.com/api/users`) //https://judicio-server.onrender.com/
         .then(res=>{
             console.log(res)
             setusers(res.data)
