@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { auth } from "./firebase";
 
 const Navigation = () => {
   const username = window.localStorage.getItem("UserNamejudicio");
@@ -7,12 +8,18 @@ const Navigation = () => {
   const usertype = window.localStorage.getItem("usertype");
   // const user=window.localStorage.getItem("usertype");
 
-  const signout = () => {
-    window.localStorage.removeItem("UserNamejudicio");
-    window.localStorage.removeItem("isLoggedInjudicio");
-    window.localStorage.removeItem("usertype");
-    window.location.reload();
+  const signout =async () => {
+    try {
+      await auth.signOut();
+      window.localStorage.removeItem("UserNamejudicio");
+      window.localStorage.removeItem("isLoggedInjudicio");
+      window.localStorage.removeItem("usertype");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error Logout ",error.message);
+    }
   };
+
 
   return (
     <div className="header">
@@ -99,6 +106,7 @@ const Navigation = () => {
             </a>
           </div>
         )}
+        
       </nav>
     </div>
   );
