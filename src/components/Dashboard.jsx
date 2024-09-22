@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import video from "../assets/video04.mp4";
+import video3 from '../assets/video2.mp4';
 
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -33,7 +33,7 @@ const Dashboard = () => {
   const [users, setusers] = useState([]);
   const fetchUsers = async () => {
     await axios
-      .get(`${import.meta.env.VITE_DEV_URL}api/users`)
+      .get(`https://judicio-server.onrender.com/api/users`)
       //https://judicio-server.onrender.com/
       .then((res) => {
         console.log(res);
@@ -65,18 +65,18 @@ const Dashboard = () => {
   };
 
   return (
-    <main className="relative min-h-screen w-full bg-gradient-to-r from-blue-400 to-blue-700 font-serif">
+    <div className="video-container3">
       <video
         autoPlay
         muted
         loop
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        className="video-background"
       >
-        <source src={video} type="video/mp4" />
+        <source src={video3} type="video/mp4" />
       </video>
       <div className="relative w-full z-10 ">
         <div className="cards ml-[370px] flex justify-start items-center">
-          <div className="w-60 h-20 gap-4 border-2 border-black rounded-lg bg-orange-600 text-white text-2xl m-20 flex justify-center items-center transition-transform duration-300 transform hover:scale-105 shadow-[4px_4px_10px_rgba(0,0,0,0.5)]">
+          <div className="dashboard-btn">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@ const Dashboard = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-8"
+                className="size-8 text-orange-500"
               >
                 <path
                   strokeLinecap="round"
@@ -93,13 +93,13 @@ const Dashboard = () => {
                 />
               </svg>
             </span>
-            <h2 className="text-bold text-4xl">Users: {users.length}</h2>
+            <h2 >Users: {users.length}</h2>
           </div>
           <button
             onClick={handleClickOpen}
             className="cards ml-[370px] flex justify-start items-center"
           >
-            <div className="w-60 h-20 gap-4 border-2 border-black rounded-lg bg-orange-600 text-white text-2xl m-20 flex justify-center items-center transition-transform duration-300 transform hover:scale-105 shadow-[4px_4px_10px_rgba(0,0,0,0.5)]">
+            <div className="dashboard-btn">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ const Dashboard = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-8"
+                  className="size-8 text-orange-500"
                 >
                   <path
                     strokeLinecap="round"
@@ -116,19 +116,19 @@ const Dashboard = () => {
                   />
                 </svg>
               </span>
-              <h2 className="text-bold text-4xl">Add Users</h2>
+              <h2 >Add Users</h2>
             </div>
           </button>
         </div>
 
-        <div className="bg-white border-2 bg-opacity-30 border-black rounded-lg backdrop-blur-lg min-h-[40vh] w-[60vw] ml-[370px] p-10 flex justify-center items-center shadow-[0_4px_30px_rgba(255,69,0,0.9)]">
+        <div className="dashboard-conatiner border-2 bg-opacity-30 rounded-lg backdrop-blur-lg min-h-[40vh] w-[60vw] ml-[370px] p-10 flex justify-center items-center shadow-[0_4px_30px_rgba(255,69,0,0.9)]">
           <div className="w-full">
             <table className="w-full">
               <thead>
                 <tr className="border-b-2">
-                  <th className="px-5 text-2xl text-center w-1/3">Name</th>
-                  <th className="px-5 text-2xl text-center w-1/3">Email</th>
-                  <th className="px-5 text-2xl text-center w-1/3">User Type</th>
+                  <th className="px-5 text-2xl text-center w-1/3 text-orange-500">Name</th>
+                  <th className="px-5 text-2xl text-center w-1/3 text-orange-500">Email</th>
+                  <th className="px-5 text-2xl text-center w-1/3 text-orange-500">User Type</th>
                 </tr>
               </thead>
               <tbody>
@@ -152,9 +152,10 @@ const Dashboard = () => {
           onClose={handleClose}
           aria-describedby="alert-dialog-slide-description"
         >
+          
           <DialogTitle>{"ADD USER"}</DialogTitle>
           <DialogContent>
-            <form className="space-y-4 md:space-y-6 w-[350px] rounded-lg" action="#">
+            <form className="space-y-4 md:space-y-6 w-[350px] rounded-lg " action="#">
               <div>
                 <label
                   htmlFor="username"
@@ -244,8 +245,8 @@ const Dashboard = () => {
                   type="submit"
                   className={`mt-4 ${
                     isPasswordValid
-                      ? "w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                      : "w-full text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-not-allowed"
+                      ? "w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                      : "w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-not-allowed"
                   }`}
                   disabled={!isPasswordValid && signingUp}
                 >
@@ -255,10 +256,11 @@ const Dashboard = () => {
               </div>
             </form>
           </DialogContent>
+         
           <DialogActions></DialogActions>
         </Dialog>
       </React.Fragment>
-    </main>
+    </div>
   );
 };
 

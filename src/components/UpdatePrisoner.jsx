@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./updateprisoner.css";
 import axios from "axios";
-import video from '../assets/video04.mp4';
+import video from '../assets/video2.mp4';
 
 
 const UpdatePrisoner = () => {
@@ -46,12 +46,12 @@ const UpdatePrisoner = () => {
   };
 
   return (
-    <div className="background-video" >
-      <video autoPlay muted loop className="video-bg">
+    <div className="video-container3" >
+      <video autoPlay muted loop className="video-background">
           <source src={video} type="video/mp4"/>
         </video>
-    <div className="body-container">
-      <div className="container-ap ">
+    <div >
+      
         <form onSubmit={handlesubmit} className="form-updateprisoner">
           <h1 className="welcumm-message">UPDATE PRISONER DETAILS:</h1>
           <label id="name">FULL NAME</label>
@@ -148,7 +148,7 @@ const UpdatePrisoner = () => {
             <option value="Others"></option>
           </datalist>
 
-          <button type="submit" className="absolute h-10 border-blue-200  w-15 ml-[245px] text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-1.5 py-1.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+          <button type="submit" className="form-button">
             Update Prisoner
           </button>
         </form>
@@ -159,7 +159,6 @@ const UpdatePrisoner = () => {
           Fetch
         </button> */}
         <br />
-      </div>
     </div>
     </div>
   );

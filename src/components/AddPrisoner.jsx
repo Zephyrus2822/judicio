@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./addprisoner.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import video from '../assets/video04.mp4';
+import video from '../assets/video2.mp4';
 
 const AddPrisoner = () => {
   const [name, setname] = useState("");
@@ -50,16 +50,12 @@ const AddPrisoner = () => {
   };
 
   return (
-    <div className="background-video min-h-screen" >
-       <video autoPlay muted loop className="video-bg">
+    <div className="video-container3" >
+       <video autoPlay muted loop className="video-background">
           <source src={video} type="video/mp4"/>
         </video>
     
-      <div className="container-ap"  style={{ position: 'absolute',
-                                              top: '50%',
-                                              left: '50%',
-                                              marginTop: '100px',                                                                                    
-      }}>
+      
 
         <form onSubmit={handlesubmit} className="form-addprisoner">
           <h1 className="wel-message">ENTER PRISONER DETAILS:</h1>
@@ -162,12 +158,12 @@ const AddPrisoner = () => {
           <button
             type="submit"
 
-            className="ap-button absolute h-10 border-blue-200  w-15 ml-[245px] text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-1.5 py-1.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+            className="form-button">
 
             Add Prisoner
           </button>
         </form>
-      </div>
+    
     </div>
   
   );

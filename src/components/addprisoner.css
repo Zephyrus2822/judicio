@@ -1,59 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-.body-container {
-  
-  height: 0vh;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.wel-message {
-  font-weight: 800;
-  color: black;
-  opacity: 1;
-  font-size: 3.4rem;
-  margin-top: 0;
-  margin-bottom: 30px;
-  font-family: 'Berkshire', swash;
-  text-align: center;
-  justify-content: center;
-}
-
-.container-ap {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  margin-top: 100px;
- 
-}
 
 .form-addprisoner {
-  background: rgba(150, 150, 150, 0.45);
-  padding: 3em;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  height: 900px;
-  width: 700px;
+  margin-left: 350px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 3rem;
+  height:auto;
+  width: 60%;
   border-radius: 20px;
-  border-left: 1px solid rgba(255, 255, 255, 0.56);
-  border-top: 1px solid rgba(255, 255, 255, 0.56);
-  backdrop-filter: blur(40px);
-  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
-  text-align: start;
-  align-content: start;
-  position: relative;
-  transition: all 0.2s ease-in-out;
+  border: 1px solid  orangered;
+  backdrop-filter: blur(3px);
+  box-shadow: 10px 10px 20px -6px rgb(239, 95, 43);
+  margin-top: 50px;
+  margin-bottom: 200px;
+  transition: all 0.5s ease-in;
 }
 
 .form-addprisoner h1 {
   font-weight: 800;
-  color: white;
+  color: rgb(242, 98, 46);
   opacity: 0.7;
-  font-size: 2.4rem;
+  font-size: 2rem;
+  margin-left: 50px;
   margin-top: 0;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
   
 }
 
@@ -64,25 +35,12 @@
   color: white;
   text-align: start;
   align-content: start;
-  font-weight: 300;
-  font-size: 15px;
-  margin: auto 1.2em;
-  font-family: 'Berkshire', swash;
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin-left: 50px;
+  font-family: 'Poppins';
 }
 
-.form-addprisoner a {
-  text-decoration: none;
-  color: white;
-  font-size: 12px;
-}
-
-.form-addprisoner a:hover {
-  text-shadow: 2px 2px 6px #00000040;
-}
-
-.form-addprisoner a:active {
-  text-shadow: none;
-}
 
 .form-addprisoner input {
   background: transparent;
@@ -94,20 +52,20 @@
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(3px);
   box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
   color: white;
   text-align: start;
-  font-family: Montserrat, sans-serif;
-  font-weight: 500;
+  font-family: 'Poppins';
+  font-weight: 300;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .form-addprisoner input:focus {
-  border-left: 1px solid #8A2BE2; /* Metallic purple border color */
-  border-top: 1px solid #8A2BE2;
-  box-shadow: 0 0 2px #8A2BE2, 0 0 5px #8A2BE2, 0 0 5px #8A2BE2; /* Metallic purple glow */
+  border-left: 1px solid rgb(240, 88, 33); /* Metallic purple border color */
+  border-top: 1px solid rgb(240, 88, 33);
+  box-shadow: 0 0 2px rgb(240, 88, 33), 0 0 5px rgb(240, 88, 33), 0 0 5px rgb(240, 88, 33); /* Metallic purple glow */
   outline: none;
 }
 
@@ -137,9 +95,7 @@
   width: calc(100% - 110px); 
 }
 
-form:hover {
-  margin: 4px;
-}
+
 
 ::placeholder {
   font-family: Montserrat, sans-serif;
@@ -149,11 +105,12 @@ form:hover {
 }
 
 
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
+.form-button {
+  height: 40px;
+  width: 200px;
+  background-color: rgb(239, 97, 45);
+  color: white;
+  border-radius: 10px;
+  font-family: 'Poppins';
+  margin-left: 350px;
 }
