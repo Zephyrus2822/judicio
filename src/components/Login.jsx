@@ -3,15 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import video from "../assets/video03.mp4";
-// import { FcGoogle } from "react-icons/fc";
-// import { useGoogleLogin } from '@react-oauth/google';
+import SignInWithGoogle from "./signInWithGoogle";
+
 const Login = () => {
 
 
-  // const googleLogin = useGoogleLogin({
-  //   onSuccess: tokenResponse => console.log(tokenResponse),
-   
-  // });
+
 
   const [username, setUsername] = useState("");
   const [passwordd, setpassword] = useState("");
@@ -22,11 +19,11 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handlesubmit = async (e) => {
+  const handlesubmit = async (e) => { //yaha async hata do 
     setisSigningIn(true);
     e.preventDefault();
     if (usertype === "Admin") {
-      await axios
+      await axios             /// yaha par await hata do aur try kro
         .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
           username,
           passwordd,
@@ -210,17 +207,8 @@ const Login = () => {
                   </button>
                 </p>
               </form>
-              {/* <hr /> */}
-              {/* <button
-                className="bg-white text-center w-full py-5 flex justify-center items-center gap-5 font-bold rounded-lg text-2xl"
-                onClick={googleLogin}
-              >
-                Login With Google{" "}
-                <span className="text-2xl">
-                  <FcGoogle />
-                </span>
-              </button> */}
-        
+                <SignInWithGoogle/>
+              
             </div>
           </div>
         </div>
