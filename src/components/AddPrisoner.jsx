@@ -1,19 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./addprisoner.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import video from '../assets/video04.mp4';
+import video from "../assets/video04.mp4";
 
 const AddPrisoner = () => {
   const [name, setname] = useState("");
   const [fathername, setfathername] = useState("");
   const [adharnum, setadharnum] = useState("");
   const [trialdate, settrialdate] = useState("");
-  const [crime, setcrime] = useState("");
+  const [crimes, setcrimes] = useState("");
   const [witness, setwitness] = useState("");
   const [status, setstatus] = useState("");
+  const [crime, setcrime] = useState("");
 
   const navigate = useNavigate();
+
+  const fetchdata = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_DEV_URL}api/crimes` // replace URL with ${import.meta.env.VITE_DEV_URL} before pushing
+      );
+      console.log(response.data);
+      setcrimes(response.data);
+      console.log(crimes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
 
   const handlesubmit = (e) => {
     e.preventDefault();
@@ -50,17 +68,21 @@ const AddPrisoner = () => {
   };
 
   return (
-    <div className="background-video min-h-screen" >
-       <video autoPlay muted loop className="video-bg">
-          <source src={video} type="video/mp4"/>
-        </video>
-    
-      <div className="container-ap"  style={{ position: 'absolute',
-                                              top: '50%',
-                                              left: '50%',
-                                              marginTop: '100px',                                                                                    
-      }}>
+    <div className="background-video min-h-screen ">
+      <video autoPlay muted loop className="video-bg">
+        <source src={video} type="video/mp4" />
+      </video>
 
+      <div
+        className="container-ap"
+        style={{
+          position: "absolute",
+          top: "4%",
+          left: "15%",
+          
+          // marginTop: "100px",
+        }}
+      >
         <form onSubmit={handlesubmit} className="form-addprisoner">
           <h1 className="wel-message">ENTER PRISONER DETAILS:</h1>
 
@@ -150,7 +172,9 @@ const AddPrisoner = () => {
           <br />
 
           <datalist id="crime1">
-            <option value="Cyber Crime"></option>
+            {/* {crimes.map((crimee, idx) => (
+              <option key={idx} value={crimee.crime}></option>
+            ))} */}
             <option value="Crime against SCs and STs"></option>
             <option value="Crime against Women"></option>
             <option value="Crime against Children"></option>
@@ -161,13 +185,12 @@ const AddPrisoner = () => {
           </datalist>
           <button
             type="submit"
-
-            className="ap-button absolute h-10 border-blue-200  w-15 ml-[245px] text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-1.5 py-1.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-
+            className="ap-button absolute h-10 border-blue-200  w-15 ml-[245px] text-white bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-1.5 py-1.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
             Add Prisoner
           </button>
         </form>
-    </div>
+      </div>
     </div>
   );
 };

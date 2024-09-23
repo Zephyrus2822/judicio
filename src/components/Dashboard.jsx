@@ -33,7 +33,7 @@ const Dashboard = () => {
   const [users, setusers] = useState([]);
   const fetchUsers = async () => {
     await axios
-      .get(`https://judicio-server.onrender.com/api/users`)
+      .get(`${import.meta.env.VITE_DEV_URL}api/users`)
       //https://judicio-server.onrender.com/
       .then((res) => {
         console.log(res);
@@ -58,7 +58,7 @@ const Dashboard = () => {
       })
       .then((response) => {
         console.log(response);
-        alert("User Registered Successfully");
+       
         window.location.reload();
       })
       .catch((err) => console.error("Server Error", err));
@@ -133,7 +133,7 @@ const Dashboard = () => {
               </thead>
               <tbody>
                 {users.map((user) => (
-                  <tr key={user.Name} className="text-center">
+                  <tr key={user.Name} className="text-center text-white">
                     <td className="px-5">{user.username}</td>
                     <td className="px-5">{user.email}</td>
                     <td className="px-5">{user.usertype}</td>

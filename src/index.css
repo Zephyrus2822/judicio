@@ -148,7 +148,7 @@
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.animated-button:hover {
+/* .animated-button:hover {
   box-shadow: 0 0 0 12px transparent;
   color: whitesmoke;
   border-radius: 12px;
@@ -179,7 +179,7 @@
   width: 220px;
   height: 220px;
   opacity: 1;
-}
+} */
 
 
 /*hero-section CSS*/
@@ -347,7 +347,7 @@ nav li:hover {
 
 
 
-//responsiveness-code, dont change
+/* //responsiveness-code, dont change */
 @media (max-width: 1024px) {
   .Logo {
     height: 80px;
