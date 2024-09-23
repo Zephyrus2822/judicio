@@ -6,14 +6,14 @@
   background: rgba(0, 0, 0, 0.5);
   padding: 3rem;
   height:auto;
-  width: 60%;
+  /* width: 60%; */
   border-radius: 20px;
   border: 1px solid  orangered;
   backdrop-filter: blur(3px);
   box-shadow: 10px 10px 20px -6px rgb(239, 95, 43);
   margin-top: 50px;
-  margin-bottom: 200px;
-  transition: all 0.5s ease-in;
+  /* margin-bottom: 200px; */
+  /* transition: all 0.5s ease-in; */
 }
 
 .form-addprisoner h1 {
@@ -58,7 +58,7 @@
   text-align: start;
   font-family: 'Poppins';
   font-weight: 300;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  /* transition: border-color 0.3s ease, box-shadow 0.3s ease; */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 

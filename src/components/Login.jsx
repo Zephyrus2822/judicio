@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     if (usertype === "Admin") {
       await axios
-        .post(`https://judicio-server.onrender.com/api/loginAdmin`, {
+        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
           username,
           passwordd,
           usertype,
@@ -46,7 +46,7 @@ const Login = () => {
     }
     if (usertype === "SubAdmin") {
       await axios
-        .post(`https://judicio-server.onrender.com/api/loginAdmin`, {
+        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
           username,
           passwordd,
           usertype,
@@ -69,7 +69,7 @@ const Login = () => {
 
     if (usertype === "User") {
       await axios
-        .post(` https://judicio-server.onrender.com/api/login`, {
+        .post(` ${import.meta.env.VITE_DEV_URL}api/login`, {
           username,
           passwordd,
         }) // relace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//

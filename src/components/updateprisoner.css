@@ -86,9 +86,9 @@
   width: calc(100% - 110px); 
 }
 
-form:hover {
+/* form:hover {
   margin: 4px;
-}
+} */
 
 ::placeholder {
   font-family: 'Poppins';

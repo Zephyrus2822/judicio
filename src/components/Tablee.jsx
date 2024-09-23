@@ -57,7 +57,7 @@ export default function Tablee() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://judicio-server.onrender.com/api/applications` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
+        `${import.meta.env.VITE_DEV_URL}api/applications` //replace this with ${import.meta.env.VITE_DEV_URL}/api.getprisonerdets before pushing 
       ); //   https://judicio-server.onrender.com
       console.log(response.data);
 
@@ -123,14 +123,14 @@ export default function Tablee() {
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody className='bg-white'>
                 {prisonerdets.map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    <TableRow   hover role="checkbox" tabIndex={-1} key={row.code}>
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
-                          <TableCell key={column.id} align={column.align}>
+                          <TableCell   key={column.id} align={column.align}>
                             {column.format && typeof value === 'number'
                               ? column.format(value)
                               : value}

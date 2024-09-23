@@ -297,7 +297,7 @@ const Prisoner = () => {
                   gap: "20px",
                 }}
               >
-                <div className="conviction text-white">
+                {/* <div className="conviction text-white">
                   <label
                     htmlFor="crime"
                     style={{ fontSize: "16px;", fontWeight: "500;" }}
@@ -321,7 +321,7 @@ const Prisoner = () => {
                     ))}
                    
                   </datalist>
-                </div>
+                </div> */}
 
                 <div className="conviction text-white mr-[100px]">
                   <label

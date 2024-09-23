@@ -12,7 +12,7 @@ const AboutBail = () => {
   const fetchdata = async () => {
     try {
       const response = await axios.get(
-        `https://judicio-server.onrender.com/api/crimes` // replace URL with  before pushing
+        `${import.meta.env.VITE_DEV_URL}api/crimes` // replace URL with  before pushing
         //https://judicio-server.onrender.com
       );
       console.log(response.data);
