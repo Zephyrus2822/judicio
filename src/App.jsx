@@ -32,16 +32,16 @@ function App() {
             <Route path="/register" element={<Register />}></Route>
           </>
         )}
+        {/* Changing UI Route */}
         <Route path="/verdictspassed" element={<Tablee />}></Route>
         <Route path="/addprisoner" element={<AddPrisoner />}></Route>
         <Route path="/updateprisoner" element={<UpdatePrisoner />}></Route>
-        <Route path="/eligiblecriminals" element={<Eligibility />}></Route>
+        <Route path="/eligiblecriminals"element={<Eligibility />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/aboutbail" element={<AboutBail />}></Route>
-        <Route path="/prisoner" element={<Prisoner />}></Route>
 
         {/* Protected Routes */}
-        {/* <Route element={<ProtectedRoutes />}>
+        {/*<Route element={<ProtectedRoutes />}>
           <Route path="/login" element={<Navigate to="/" />}></Route>
           <Route path="/register" element={<Navigate to="/" />}></Route>
           <Route path="/prisoner" element={<Prisoner />}></Route>
@@ -88,7 +88,7 @@ function App() {
           
             </>
           )}
-        </Route> */}
+        </Route>*/}
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </BrowserRouter>

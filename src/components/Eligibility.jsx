@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "./fonts.css";
-import video from '../assets/video04.mp4';
+import video from '../assets/video2.mp4';
 
 const Eligibility = () => {
   const [crimes, setcrimes] = useState([]);
@@ -78,25 +78,25 @@ const Eligibility = () => {
   }, [elegiblecriminals]); 
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
+    <div className="video-container3">
+      <video autoPlay muted loop className="video-background">
         <source src={video} type="video/mp4" />
       </video>
-      <div className="body-container text-white relative z-10">
+      <div className="body-container text-orange-400  relative z-10">
         <div className="p-10 text-center h-screen">
-          <div className="border-2 border-slate-300 rounded-lg min-h-screen p-5 bg-opacity-70 bg-black">
-            <h2 className="text-4xl">Eligible Criminals for Bail</h2>
-            <div className="mx-[500px] mt-10 ">
+          <div className="border-2 border-orange-300 rounded-lg min-h-screen p-5 bg-opacity-70 bg-black mt-10">
+            <h2 className="text-5xl font-semibold">Eligible Criminals for Bail</h2>
+            <div className="mx-[400px] mt-10 ">
               {elegiblecriminals.length >= 0 && (
                 <div>
                   <table>
                     <thead>
                       <tr>
-                        <th className="text-2xl text-nowrap px-10">Name</th>
-                        <th className="text-2xl text-nowrap px-10">Crime</th>
-                        <th className="text-2xl text-nowrap px-10">Aadhar Num</th>
+                        <th className="text-2xl text-white px-10 font-normal">Name</th>
+                        <th className="text-2xl text-white px-10 font-normal">Crime</th>
+                        <th className="text-2xl text-white px-10 font-normal">Aadhar Num</th>
                         {/* <th className="text-2xl text-nowrap px-10">Date of Imprisonment</th> */}
-                        <th className="text-2xl text-nowrap px-10">Eligible for Bail</th>
+                        <th className="text-2xl text-white font-normal px-10">Eligible for Bail</th>
                       </tr>
                     </thead>
                     <tbody>
