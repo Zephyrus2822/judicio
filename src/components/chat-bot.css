@@ -6,7 +6,7 @@
   position: fixed;
   bottom: 10px;
   right: 10px;
-  background-color: #007bff;
+  background-color: orangered;
   color: white;
   border: none;
   border-radius: 50%;
@@ -44,9 +44,9 @@
 
 /* Chatbot header */
 .chatbot header {
-  background-color: #007bff;
+  background-color: orangered;
   padding: 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 3px ridge #ddd;
   border-radius: 10px 10px 0 0;
   text-align: center;
   font-family: Outfit;
@@ -54,7 +54,7 @@
 
 .chatbot header h2 {
   margin: 0;
-  font-size:18px;
+  font-size: 20px;
 }
 
 /* Chatbox area */
@@ -70,7 +70,7 @@
   margin-bottom: 10px;
   padding: 8px 12px;
   border-radius: 15px;
-  max-width: 80%;
+  max-width: 90%;
   word-wrap: break-word;
   font-size: 18px;
   text-align: start;
@@ -117,7 +117,7 @@
 #send-btn {
   margin-left: 10px;
   cursor: pointer;
-  color: #007bff;
+  color: orangered;
   font-size: 20px;
   transition: transform 0.2s ease;
 }

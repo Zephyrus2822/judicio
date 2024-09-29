@@ -55,7 +55,7 @@ const ChatBot = () => {
       {isOpen && (
         <div className="chatbot">
           <header>
-            <h2>Welcome to Judicio, how may I assist you today?</h2>
+            <h2>Welcome, how may I assist you today?</h2>
           </header>
           <ul className="chatbox">
             {/* Display the chat history (user and bot messages) */}
@@ -73,7 +73,7 @@ const ChatBot = () => {
               spellCheck="false"
               required
             ></textarea>
-            <span id="send-btn" className="material-symbols-rounded" onClick={handleClick} style={{ border: "1px solid blue",
+            <span id="send-btn" className="material-symbols-rounded" onClick={handleClick} style={{ border: "1px solid green",
                                                                                                     borderRadius: "10px" ,
                                                                                                     padding: "10px"
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import axios from "axios";
 import video from "../assets/video03.mp4";
 import SignInWithGoogle from "./SignInWithGoogle"
@@ -72,7 +71,7 @@ const Login = () => {
         .post(` ${import.meta.env.VITE_DEV_URL}api/login`, {
           username,
           passwordd,
-        }) // relace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//
+        }) // replace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//
         .then((response) => {
           console.log(response.data);
 
