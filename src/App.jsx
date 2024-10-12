@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
+import Web3 from "web3"; // Import Web3
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Prisoner from "./components/Prisoner";
@@ -13,14 +14,75 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard";
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Uncaught error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+
 function App() {
+    // MetaMask-related states
+  const [account, setAccount] = useState('');
+  const [isConnected, setIsConnected] = useState(false);
+  
   const username = window.localStorage.getItem("UserNamejudicio");
   const LoggedIn = window.localStorage.getItem("isLoggedInjudicio");
-
   const usertype = window.localStorage.getItem("usertype");
 
+    // MetaMask connection logic
+    useEffect(() => {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        loadMetaMaskData(web3);
+      } else {
+        console.warn("MetaMask not detected. Please install MetaMask!");
+      }
+    }, []);
+  
+      // Function to connect and load MetaMask account
+  const loadMetaMaskData = async (web3) => {
+    try {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const accounts = await web3.eth.getAccounts();
+      setAccount(accounts[0]);
+      setIsConnected(true);
+    } catch (error) {
+      console.warn("User denied MetaMask connection", error);
+    }
+  };
+
   return (
-    <BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <div>
+        {/* MetaMask connection status */}
+        {isConnected ? (
+          <div>
+            <p>Connected with MetaMask: {account}</p>
+          </div>
+        ) : (
+          <div>
+            <p>MetaMask not connected. Please connect your wallet.</p>
+          </div>
+        )}
+      </div>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         {/* Unauthorized Route */}
@@ -92,6 +154,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
