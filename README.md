@@ -22,7 +22,6 @@
 
 - [Problem Statement](#problem_statement)
 - [Idea / Solution](#idea)
-- [Dependencies / Limitations](#limitations)
 - [Future Scope](#future_scope)
 - [Setting up a local environment](#getting_started)
 - [Usage](#usage)
@@ -73,7 +72,7 @@ and testing purposes.
 What things you need to install the software and how to install them.
 
 ```
-NodeJS, MongoDB, Express, React, Python
+NodeJS, MongoDB, Express, React, Python , Metamask , Gaanache 
 ```
 
 ### Installing
@@ -85,10 +84,33 @@ Step - 1:
 ```
 npm install
 ```
+Step - 2:
+
+```
+cd blockchain
+npm install -g truffle
+npm install -g ganache-cli
+npm install @chainlink/contracts
+npm install web3
+npm install axios
+npm install express
+npm install chai
+npm install mocha
+```
 
 Step - 2:
 
 ```
+cd blockchain
+ganache-cli --port 7545
+```
+
+Step - 4:
+Open a New Terminal
+```
+cd blockchain
+truffle migrate 
+cd..
 npm run dev
 ```
 
@@ -109,7 +131,7 @@ Go to this [link](https://judicio.vercel.app/) to use a working, deployed protot
 - [@AnuskaBiswas](https://github.com/anuska2027biswas) - Front - End Developer
 - [@ChandanKumar](https://github.com/Chandan-Kr-dev) - Back - End Developer
 - [@AdbulRehman](https://github.com/Abdul-Rahman-58) - GeminiAPI Training
-- [@AyashBera](https://github.com/Ayash-Bera) - UI/UX Designer 
+- [@AyashBera](https://github.com/Ayash-Bera) - UI/UX Designer & Web3 
 - [@ArnaDutta](https://github.com/arnadutta) - Proof-of-Concept and Design
 
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
