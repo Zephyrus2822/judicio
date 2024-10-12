@@ -72,7 +72,7 @@ and testing purposes.
 What things you need to install the software and how to install them.
 
 ```
-NodeJS, MongoDB, Express, React, Python , Metamask , Gaanache 
+NodeJS, MongoDB, Express, React, Python , Metamask , Ganache 
 ```
 
 ### Installing
