@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import video from "../assets/video03.mp4";
-import SignInWithGoogle from "./SignInWithGoogle"
+import SignInWithGoogle from "./signInWithGoogle";
 
 const Login = () => {
 
