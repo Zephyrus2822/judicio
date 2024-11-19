@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     if (usertype === "Admin") {
       await axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
+        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {  //https://judicio-server.onrender.com
           username,
           passwordd,
           usertype,
@@ -71,7 +71,7 @@ const Login = () => {
         .post(` ${import.meta.env.VITE_DEV_URL}api/login`, {
           username,
           passwordd,
-        }) // replace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com//
+        }) // replace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com/
         .then((response) => {
           console.log(response.data);
 

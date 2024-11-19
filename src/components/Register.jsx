@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import video from "../assets/video03.mp4";
-// import { FaEye } from "react-icons/fa6";
+
 
 const Register = () => {
   const usertype = window.localStorage.getItem("usertype");
@@ -24,7 +24,7 @@ const Register = () => {
     e.preventDefault();
 
     axios
-      .post(`https://judicio-server.onrender.com/api/signup`, {
+      .post(`${import.meta.env.VITE_DEV_URL}api/signup`, {   //https://judicio-server.onrender.com
         username,
         email,
         password,
