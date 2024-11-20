@@ -123,7 +123,7 @@ export default function Tablee() {
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody className='bg-white'>
+              {/* <TableBody className='bg-white'>
                 {prisonerdets.map((row) => {
                   return (
                     <TableRow   hover role="checkbox" tabIndex={-1} key={row.code}>
@@ -140,7 +140,7 @@ export default function Tablee() {
                     </TableRow>
                   );
                 })}
-              </TableBody>
+              </TableBody> */}
             </Table>
           </TableContainer>
           <TablePagination

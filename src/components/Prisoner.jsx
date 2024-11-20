@@ -341,9 +341,9 @@ const Prisoner = () => {
                   />
 
                   <datalist id="crimess">
-                    {crimes.map((crime, index) => (
+                    {/* {crimes.map((crime, index) => (
                       <option hidden={index + 1 !== crime.id}  key={index} value={crime.crime}></option>
-                    ))}
+                    ))} */}
                   </datalist>
                 </div>
               </div>
