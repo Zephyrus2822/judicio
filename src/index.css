@@ -286,16 +286,16 @@
 }
 
 
+
 nav {
   display: flex;
   height: 70px;
   justify-content: space-between;
-  width: 98.9vw;
+  width: auto;
   margin: 0 auto;
 
-  /*
-  background: linear-gradient(135deg, #fce7f3, #f0e4ff, #e0f3ff, #c3e7ff);*/
-  background-color: black;
+ 
+  background-color: hotpink; /*set to black in build version*/
   opacity: 0.9;
 }
 
@@ -316,7 +316,7 @@ nav li {
 
 nav li:hover {
   transform: scale(1.1);
-  color: aquamarine;
+  color: black; /*change to aquamrine later in build version*/
 }
 
 

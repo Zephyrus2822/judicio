@@ -20,7 +20,6 @@ const Navigation = () => {
   //   }
   // };
 
-
   return (
     <div className="header">
       <nav>
@@ -33,64 +32,40 @@ const Navigation = () => {
               Home
             </a>
           </li>
-          
-              <li>
-                <a href="/About">Docs</a>
-              </li>
-              <li>
-                <a href="/prisoner">Get Verdict</a>
-              </li>
-           
 
-          
-            <li>
-              <a href="/dashboard">Dashboard</a>
-            </li>
-              <li>
-                <a href="/verdictspassed">Verdicts Passed</a>
-              </li>
-              <li>
-                <a href="/addprisoner">Add Prisoner</a>
-              </li>
-              <li>
-                <a href="/updateprisoner">Update Prisoner</a>
-              </li>
-              <li>
-                <a href="/eligiblecriminals">Eligibility</a>
-              </li>
-            
-            
-              <li>
-                <a href="/verdictspassed">Verdicts Passed</a>
-              </li>
-              <li>
-                <a href="/addprisoner">Add Prisoner</a>
-              </li>
-              <li>
-                <a href="/updateprisoner">Update Prisoner</a>
-              </li>
-              <li>
-                <a href="/eligiblecriminals">Eligibility</a>
-              </li>
-          
-         
-              <li>
-                <a href="/prisoner">Get Verdict</a>
-              </li>
+          <li>
+            <a href="/About">Docs</a>
+          </li>
+          <li>
+            <a href="/prisoner">Get Verdict</a>
+          </li>
 
-              <li>
-                <a href="/aboutbail">Information</a>
-              </li>
-           
+          <li>
+            <a href="/dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="/verdictspassed">Verdicts Passed</a>
+          </li>
+          <li>
+            <a href="/addprisoner">Add Prisoner</a>
+          </li>
+          <li>
+            <a href="/updateprisoner">Update Prisoner</a>
+          </li>
+          <li>
+            <a href="/eligiblecriminals">Eligibility</a>
+          </li>
+
+          <li>
+            <a href="/aboutbail">Information</a>
+          </li>
         </ul>
-       
-  
-          <div>
-            <a className="chat" href="/login">
-              Login
-            </a>
-          </div>
-       
+
+        <div>
+          <a className="chat" href="/login">
+            Login
+          </a>
+        </div>
       </nav>
     </div>
   );
