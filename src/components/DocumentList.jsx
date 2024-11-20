@@ -17,11 +17,11 @@ const DocumentList = () => {
     <div>
       <h2>Your Documents</h2>
       <ul>
-        {documents.map((doc, index) => (
+        {/* {documents.map((doc, index) => (
           <li key={index}>
             {doc.documentType} - <a href={doc.documentURL}>View</a> - Issued By: {doc.issuedBy}
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );

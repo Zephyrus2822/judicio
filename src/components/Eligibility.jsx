@@ -87,7 +87,7 @@ const Eligibility = () => {
           <div className="border-2 border-orange-300 rounded-lg min-h-screen p-5 bg-opacity-70 bg-black mt-10">
             <h2 className="text-5xl font-semibold">Eligible Criminals for Bail</h2>
             <div className="mx-[500px] mt-10 ">
-              {elegiblecriminals.length >= 0 && (
+              {/* {elegiblecriminals.length >= 0 && (
                 <div>
                   <table>
                     <thead>
@@ -95,7 +95,7 @@ const Eligibility = () => {
                         <th className="text-2xl text-white px-10 font-normal">Name</th>
                         <th className="text-2xl text-white px-10 font-normal">Crime</th>
                         <th className="text-2xl text-white px-10 font-normal">Aadhar Num</th>
-                        {/* <th className="text-2xl text-nowrap px-10">Date of Imprisonment</th> */}
+                        {/* <th className="text-2xl text-nowrap px-10">Date of Imprisonment</th> 
                         <th className="text-2xl text-white font-normal px-10">Eligible for Bail</th>
                       </tr>
                     </thead>
@@ -105,14 +105,14 @@ const Eligibility = () => {
                           <td>{criminal.Name}</td>
                           <td>{criminal.Crime}</td>
                           <td>{criminal.AddharNum}</td>
-                          {/* <td>{moment(criminal.createdAt).format('YYYY-MM-DD')}</td> */}
+                          {/* <td>{moment(criminal.createdAt).format('YYYY-MM-DD')}</td> 
                           <td>{eligibilty}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>

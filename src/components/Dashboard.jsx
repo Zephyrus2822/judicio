@@ -14,7 +14,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
 
-  const usertype = window.localStorage.getItem("usertype");
+  // const usertype = window.localStorage.getItem("usertype");
 
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
@@ -132,13 +132,13 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
+                {/* {users.map((user) => (
                   <tr key={user.Name} className="text-center text-white">
                     <td className="px-5">{user.username}</td>
                     <td className="px-5">{user.email}</td>
                     <td className="px-5">{user.usertype}</td>
                   </tr>
-                ))}
+                ))} */}
               </tbody>
             </table>
           </div>

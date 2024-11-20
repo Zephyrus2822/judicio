@@ -71,7 +71,7 @@ const AboutBail = () => {
           </div>
 
           <div className="justify-center ">
-            <div
+            {/* <div
               className="crime-list-container"
               style={{
                 maxHeight: '1500px', // Adjust the height as needed
@@ -112,7 +112,7 @@ const AboutBail = () => {
                   </p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
         </div>
