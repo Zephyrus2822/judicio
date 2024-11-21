@@ -21,7 +21,7 @@ const Login = () => {
   const handlesubmit = async (e) => { //yaha async hata do 
     setisSigningIn(true);
     e.preventDefault();
-    if (usertype === "Admin") {
+    if (usertype === "The Chief Justice") {
       await axios
         .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {  //https://judicio-server.onrender.com
           username,
@@ -33,7 +33,7 @@ const Login = () => {
           if (res.data["message"] == "Success") {
             window.localStorage.setItem("UserNamejudicio", username);
             window.localStorage.setItem("isLoggedInjudicio", true);
-            window.localStorage.setItem("usertype", "Admin");
+            window.localStorage.setItem("usertype", "The Chief Justice");
             setisSigningIn(false);
             navigate("/");
             window.location.reload();
@@ -43,7 +43,7 @@ const Login = () => {
           }
         });
     }
-    if (usertype === "SubAdmin") {
+    if (usertype === "Judge") {
       await axios
         .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
           username,
@@ -55,7 +55,52 @@ const Login = () => {
           if (res.data["message"] == "Success") {
             window.localStorage.setItem("UserNamejudicio", username);
             window.localStorage.setItem("isLoggedInjudicio", true);
-            window.localStorage.setItem("usertype", "SubAdmin");
+            window.localStorage.setItem("usertype", "Judge");
+            setisSigningIn(false);
+            navigate("/");
+            window.location.reload();
+          } else {
+            setstatus(res.data);
+            setisSigningIn(false);
+          }
+        });
+    }
+    if (usertype === "Middleman") {
+      await axios
+        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
+          username,
+          passwordd,
+          usertype,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data["message"] == "Success") {
+            window.localStorage.setItem("UserNamejudicio", username);
+            window.localStorage.setItem("isLoggedInjudicio", true);
+            window.localStorage.setItem("usertype", "Middleman");
+            setisSigningIn(false);
+            navigate("/");
+            window.location.reload();
+          } else {
+            setstatus(res.data);
+            setisSigningIn(false);
+          }
+        });
+    }
+
+    if (usertype === "Lawyer") {
+      await axios
+        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
+          username,
+          passwordd,
+          usertype,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data["message"] == "Success") {
+            window.localStorage.setItem("UserNamejudicio", username);
+            window.localStorage.setItem("isLoggedInjudicio", true);
+            window.localStorage.setItem("usertype", "Lawyer");
             setisSigningIn(false);
             navigate("/");
             window.location.reload();
@@ -152,8 +197,10 @@ const Login = () => {
                     id="usertype-select"
                   >
                     <option value="">--Please Select User Role--</option>
-                    <option value="Admin">Admin</option>
-                    <option value="SubAdmin">SubAdmin</option>
+                    <option value="The Chief Justice">The Chief Justice</option>
+                    <option value="Judge">Judge</option>
+                    <option value="Lawyer">Lawyer</option>
+                    <option value="Middleman">Middleman</option>
                     <option value="User">User</option>
                   </select>
                 </div>
