@@ -295,7 +295,7 @@ nav {
   margin: 0 auto;
 
  
-  background-color: hotpink; /*set to black in build version*/
+  background-color: black; /*set to black in build version*/
   opacity: 0.9;
 }
 
@@ -316,7 +316,7 @@ nav li {
 
 nav li:hover {
   transform: scale(1.1);
-  color: black; /*change to aquamrine later in build version*/
+  color: grey; /*change to aquamrine later in build version*/
 }
 
 
@@ -470,6 +470,24 @@ nav li:hover {
   border-radius: 12px;
   border: 0.75px solid orange;
   margin-left: 80px;
+  margin-top: 50px;
+}
+
+.dashboard-btn-1 {
+  width: 200px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+  font-size: 1.5rem;
+  border-radius: 12px;
+  border: 0.75px solid orange;
+  margin-left: 140px;
   margin-top: 50px;
 }
 

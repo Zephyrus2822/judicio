@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")).render(
       <Navigation />
       <App />
       <ChatBot />
-      <ContactUs />
+      <ContactUs  />
      
   </StrictMode>
 );

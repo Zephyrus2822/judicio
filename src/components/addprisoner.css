@@ -1,48 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 
-.form-addprisoner {
-  margin-left: 350px;
+.form-addprisoner-1 {
+  
   background: rgba(0, 0, 0, 0.5);
-  padding: 3rem;
+  padding: 1rem;
   height:auto;
-  /* width: 60%; */
+  width: 60%;
   border-radius: 20px;
   border: 1px solid  orangered;
   backdrop-filter: blur(3px);
   box-shadow: 10px 10px 20px -6px rgb(239, 95, 43);
-  margin-top: 50px;
-  /* margin-bottom: 200px; */
-  /* transition: all 0.5s ease-in; */
+  margin-top: 60px;
+  transition: all 0.5s ease-in;
 }
 
-.form-addprisoner h1 {
+.wel-message {
   font-weight: 800;
   color: rgb(242, 98, 46);
   opacity: 0.7;
   font-size: 2rem;
   margin-left: 50px;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  
 }
+     
 
-
-
-
-.form-addprisoner label {
+.form-addprisoner-1 label {
   color: white;
   text-align: start;
   align-content: start;
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-left: 50px;
   font-family: 'Poppins';
 }
 
 
-.form-addprisoner input {
+.form-addprisoner-1 input {
   background: transparent;
   width: calc(100% - 100px); /* 100% width minus left margin for alignment */
   padding: 1em;
@@ -58,11 +54,11 @@
   text-align: start;
   font-family: 'Poppins';
   font-weight: 300;
-  /* transition: border-color 0.3s ease, box-shadow 0.3s ease; */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.form-addprisoner input:focus {
+.form-addprisoner-1 input:focus {
   border-left: 1px solid rgb(240, 88, 33); /* Metallic purple border color */
   border-top: 1px solid rgb(240, 88, 33);
   box-shadow: 0 0 2px rgb(240, 88, 33), 0 0 5px rgb(240, 88, 33), 0 0 5px rgb(240, 88, 33); /* Metallic purple glow */
@@ -71,27 +67,27 @@
 
 
 
-.form-addprisoner input[type="email"]:focus,
+.form-addprisoner-1 input[type="email"]:focus,
 .form-addprisoner input[type="password"]:focus {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
 }
 
-.form-udpateprisoner input[type="button"] {
+.form-udpateprisoner-1 input[type="button"] {
   margin-top: 10px;
   width: 150px;
   font-size: 1rem;
 }
 
-.form-addprisoner input[type="button"]:hover {
+.form-addprisoner-1 input[type="button"]:hover {
   cursor: pointer;
 }
 
-.form-addprisoner input[type="button"]:active {
+.form-addprisoner-1 input[type="button"]:active {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.form-addprisoner input[type="date"] {
+.form-addprisoner-1 input[type="date"] {
   width: calc(100% - 110px); 
 }
 
