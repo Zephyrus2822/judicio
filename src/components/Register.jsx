@@ -52,9 +52,9 @@ const Register = () => {
         <video autoPlay muted loop className="video-background">
           <source src={video} type="video/mp4" />
         </video>
-        <div className="flex flex-col  px-6 py-8 mx-auto md:h-screen lg:py-0 mt-14">
-          <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 login-container-1">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <div className="flex flex-col  px-6 py-8 mx-auto md:h-screen lg:py-0 mt-8">
+          <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 login-container-1">
+            <div className="p-3 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-500 md:text-2xl dark:text-white">
                 Sign Up
               </h1>
@@ -84,6 +84,24 @@ const Register = () => {
                     className="block  text-xl font-medium mb-2 text-gray-300 dark:text-white"
                   >
                     Enter Your email:{" "}
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  "
+                    placeholder="name@company"
+                    value={email}
+                    onChange={(e) => setemail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="Email"
+                    className="block  text-xl font-medium mb-2 text-gray-300 dark:text-white"
+                  >
+                    Enter Phone Number:{" "}
                   </label>
                   <input
                     type="email"

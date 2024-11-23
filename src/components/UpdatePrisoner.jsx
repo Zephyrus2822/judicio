@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./updateprisoner.css";
 import axios from "axios";
 import video from '../assets/video2.mp4';
-
+import ContactUs from './ContactUs'
 
 const UpdatePrisoner = () => {
   const [name, setname] = useState("");
@@ -46,14 +46,15 @@ const UpdatePrisoner = () => {
   };
 
   return (
+    <>
     <div className="video-container3" >
       <video autoPlay muted loop className="video-background">
           <source src={video} type="video/mp4"/>
         </video>
     <div >
-      
+        <div className="flex justify-center items-start align-middle mb-60">
         <form onSubmit={handlesubmit} className="form-updateprisoner">
-          <h1 className="welcumm-message">UPDATE PRISONER DETAILS:</h1>
+          <h1 className="welcumm-message flex justify-center align-middle items-center">UPDATE PRISONER DETAILS:</h1>
           <label id="name">FULL NAME</label>
           <input
             type="text"
@@ -61,7 +62,7 @@ const UpdatePrisoner = () => {
             id="name"
             value={name}
             onChange={(e) => setname(e.target.value)}
-            placeholder="Rudranil Chowdhury"
+            placeholder="Anuska Biswas"
           />
           <br />
 
@@ -152,6 +153,7 @@ const UpdatePrisoner = () => {
             Update Prisoner
           </button>
         </form>
+        </div>
         {/* <button
           onClick={fetchprisoner}
           
@@ -161,6 +163,8 @@ const UpdatePrisoner = () => {
         <br />
     </div>
     </div>
+   
+  </>
   );
 };
 

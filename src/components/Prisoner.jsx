@@ -21,6 +21,8 @@ const Prisoner = () => {
   const [firdate, setfirdate] = useState("");
   const [datetrial, setdatetrial] = useState("");
   const [crime, setcrime] = useState("");
+  const [laywer, setlaywer] = useState("");
+  const [judge, setjudge] = useState("");
   const [gender, setgender] = useState("");
   const [userstatus, setuserstatus] = useState("");
   const [BailAmt, setBailAmt] = useState("");
@@ -31,6 +33,8 @@ const Prisoner = () => {
   const [adharimageurl, setadharimageurl] = useState("");
   const [isuploading, setisuploading] = useState(false);
   const [crimes, setcrimes] = useState([]);
+  const [laywers, setlaywers] = useState([]);
+  const [judges, setjudges] = useState([]);
 
   const [selectedOption, setselectedOption] = useState(null)
   const [index, setindex] = useState(0);
@@ -159,8 +163,8 @@ const Prisoner = () => {
       <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
         <source src={video} type="video/mp4" />
       </video>
-      <div className="ml-[200px] container">
-        <div className="title text-white">REGISTRATION</div>
+      <div className="container">
+        <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-semibold">REGISTRATION</div>
         <div className="content">
           <form onSubmit={handleSubmit} action="#">
             <div className="user-details">
@@ -171,13 +175,14 @@ const Prisoner = () => {
                   value={Name}
                   onChange={(e) => setName(e.target.value)}
                   type="text"
-                  placeholder="Enter your name"
+                  placeholder="Enter Your Name"
                   required
                 />
               </div>
               <div className="input-box">
                 <span className="details text-white">Age</span>
                 <input
+                  className="input-text"
                   name="age"
                   value={age}
                   onChange={(e) => setage(e.target.value)}
@@ -323,12 +328,58 @@ const Prisoner = () => {
                   </datalist>
                 </div> */}
 
-                <div className="conviction text-white mr-[100px]">
+                <div className="conviction text-white mr-[100px] ml-1 mt-10">
                   <label
                     htmlFor="crime"
                     style={{ fontSize: "16px;", fontWeight: "500;" }}
                   >
                     Crime:
+                  </label>
+                  <input
+                    className="rounded text-black border-[2px] ml-5 px-2 py-1"
+                    list="crimess"
+                    name="crime"
+                    value={crime}
+                    onChange={(e) => setcrime(e.target.value)}
+                    id=""
+                    placeholder="Select convicted"
+                  />
+
+                  <datalist id="crimess">
+                    {/* {crimes.map((crime, index) => (
+                      <option hidden={index + 1 !== crime.id}  key={index} value={crime.crime}></option>
+                    ))} */}
+                  </datalist>
+                </div>
+                <div className="conviction text-white mr-[100px]">
+                  <label
+                    htmlFor="crime"
+                    style={{ fontSize: "16px;", fontWeight: "500;" }}
+                  >
+                    Judge :
+                  </label>
+                  <input
+                    className="rounded text-black border-[2px] ml-5 px-2 py-1"
+                    list="crimess"
+                    name="crime"
+                    value={crime}
+                    onChange={(e) => setcrime(e.target.value)}
+                    id=""
+                    placeholder="Select convicted"
+                  />
+
+                  <datalist id="crimess">
+                    {/* {crimes.map((crime, index) => (
+                      <option hidden={index + 1 !== crime.id}  key={index} value={crime.crime}></option>
+                    ))} */}
+                  </datalist>
+                </div>
+                <div className="conviction text-white mr-[100px] -ml-2">
+                  <label
+                    htmlFor="crime"
+                    style={{ fontSize: "16px;", fontWeight: "500;" }}
+                  >
+                    Lawyer :
                   </label>
                   <input
                     className="rounded text-black border-[2px] ml-5 px-2 py-1"

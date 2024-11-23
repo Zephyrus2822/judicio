@@ -2,17 +2,18 @@
 
 
 .form-updateprisoner {
-  margin-left: 350px;
+ 
   background: rgba(0, 0, 0, 0.5);
-  padding: 3rem;
-  height:auto;
+  padding: 1rem;
+  height: auto;
   width: 60%;
   border-radius: 20px;
   border: 1px solid  orangered;
   backdrop-filter: blur(3px);
   box-shadow: 10px 10px 20px -6px rgb(239, 95, 43);
-  margin-top: 50px;
+  margin-top: 80px;
   margin-bottom: 200px;
+  
   transition: all 0.5s ease-in;
 }
 
@@ -20,9 +21,9 @@
   font-weight: 800;
   color: rgb(242, 98, 46);
   opacity: 0.7;
-  font-size: 2.5rem;
-  margin-left: 50px;
-  margin-bottom: 20px;
+  font-size: 2rem;
+ 
+  margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -31,7 +32,7 @@
   text-align: start;
   align-content: start;
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-left: 50px;
   font-family: 'Poppins';
 
@@ -39,7 +40,7 @@
 .form-updateprisoner input {
   background: transparent;
   width: calc(100% - 100px); /* 100% width minus left margin for alignment */
-  padding: 1em;
+  padding: 0.8em;
   margin-bottom: 1em;
   margin-left: 50px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);

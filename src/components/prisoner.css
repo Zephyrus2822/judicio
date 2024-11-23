@@ -15,21 +15,14 @@
 
 .container {
   position: relative; 
-  margin-left: 60px;
-  margin-right: 20px;
   justify-content: center;
   align-items: center;
   min-height: 700px;  
-  width: 680px;
+  width: 80%;
   padding: 25px 30px 25px 25px; 
-  border: 5px groove rgba(255, 255, 255, 0.3); 
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px rgb(234, 83, 28);
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.85);
   opacity: 1;
   visibility: visible;
-  backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(20px); 
   overflow: hidden; 
 }
 
@@ -75,7 +68,6 @@ form .user-details .input-box{
   width: calc(100% / 2 - 20px);
 }
 
-
 form .input-box span.details{
   display: block;
   font-weight: 500;
@@ -86,15 +78,15 @@ form .input-box span.details{
   width: 100%;
   outline: none;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 6px;
   padding-left: 15px;
-  border: 1px solid #ccc;
-  border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
+
 .user-details .input-box input:focus,
 .user-details .input-box input:valid{
-  border-color: #9b59b6;
+  border-color: orangered;
+  
 }
  form .gender-details .gender-title{
   font-size: 20px;
