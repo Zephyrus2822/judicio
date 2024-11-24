@@ -12,8 +12,8 @@ const AboutBail = () => {
   const fetchdata = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_DEV_URL}api/crimes` // replace URL with  before pushing
-        //https://judicio-server.onrender.com
+        `${import.meta.env.VITE_DEV_URL}api/crimes` // replace ${import.meta.env.VITE_DEV_URL} with below before pushing
+        //https://judicio-server.onrender.com/
       );
       console.log(response.data);
       setCrimes(response.data);
@@ -71,10 +71,10 @@ const AboutBail = () => {
           </div>
 
           <div className="justify-center ">
-            {/* <div
+            <div
               className="crime-list-container"
               style={{
-                maxHeight: '1500px', // Adjust the height as needed
+                minHeight: '1500px', // Adjust the height as needed
                 overflowY: 'scroll', // Enables vertical scrollbar
                 paddingRight: '10px', // Optional: adds some space for better look with the scrollbar
               }}
@@ -112,7 +112,7 @@ const AboutBail = () => {
                   </p>
                 </div>
               ))}
-            </div> */}
+            </div>
           </div>
 
         </div>

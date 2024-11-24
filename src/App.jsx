@@ -12,6 +12,7 @@ import Eligibility from "./components/Eligibility";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard";
 import Modal from "./components/Modal";
+import AddCrime from "./components/AddCrime";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ function App() {
           <Route path="/updateprisoner" element={<UpdatePrisoner />} />
           <Route path="/eligiblecriminals" element={<Eligibility />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/addcrime" element={<AddCrime />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>

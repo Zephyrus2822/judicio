@@ -5,10 +5,6 @@ import video from "../assets/video03.mp4";
 import SignInWithGoogle from "./signInWithGoogle";
 
 const Login = () => {
-
-
-
-
   const [username, setUsername] = useState("");
   const [passwordd, setpassword] = useState("");
   const [status, setstatus] = useState("");
@@ -18,19 +14,19 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handlesubmit = async (e) => { //yaha async hata do 
+  const handlesubmit = async (e) => {
     setisSigningIn(true);
     e.preventDefault();
     if (usertype === "The Chief Justice") {
       await axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {  //https://judicio-server.onrender.com
+        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
           username,
           passwordd,
           usertype,
         })
         .then((res) => {
           console.log(res);
-          if (res.data["message"] == "Success") {
+          if (res.data["message"] === "Success") {
             window.localStorage.setItem("UserNamejudicio", username);
             window.localStorage.setItem("isLoggedInjudicio", true);
             window.localStorage.setItem("usertype", "The Chief Justice");
@@ -52,7 +48,7 @@ const Login = () => {
         })
         .then((res) => {
           console.log(res);
-          if (res.data["message"] == "Success") {
+          if (res.data["message"] === "Success") {
             window.localStorage.setItem("UserNamejudicio", username);
             window.localStorage.setItem("isLoggedInjudicio", true);
             window.localStorage.setItem("usertype", "Judge");
@@ -74,7 +70,7 @@ const Login = () => {
         })
         .then((res) => {
           console.log(res);
-          if (res.data["message"] == "Success") {
+          if (res.data["message"] === "Success") {
             window.localStorage.setItem("UserNamejudicio", username);
             window.localStorage.setItem("isLoggedInjudicio", true);
             window.localStorage.setItem("usertype", "Middleman");
@@ -97,7 +93,7 @@ const Login = () => {
         })
         .then((res) => {
           console.log(res);
-          if (res.data["message"] == "Success") {
+          if (res.data["message"] === "Success") {
             window.localStorage.setItem("UserNamejudicio", username);
             window.localStorage.setItem("isLoggedInjudicio", true);
             window.localStorage.setItem("usertype", "Lawyer");
@@ -113,14 +109,14 @@ const Login = () => {
 
     if (usertype === "User") {
       await axios
-        .post(` ${import.meta.env.VITE_DEV_URL}api/login`, {
+        .post(`${import.meta.env.VITE_DEV_URL}api/login`, {
           username,
           passwordd,
-        }) // replace  ${import.meta.env.VITE_DEV_URL} with // https://judicio-server.onrender.com/
+        })
         .then((response) => {
           console.log(response.data);
 
-          if (response.data["message"] == "Success") {
+          if (response.data["message"] === "Success") {
             window.localStorage.setItem("UserNamejudicio", username);
             window.localStorage.setItem("isLoggedInjudicio", true);
             if (response.data.user["usertype"] === "Admin") {
@@ -143,21 +139,21 @@ const Login = () => {
     <section className="login-section-1">
       <div className="video-container">
         <video autoPlay muted loop className="video-background">
-          <source src={video} type="video/mp4"/>
+          <source src={video} type="video/mp4" />
         </video>
         <div className="flex flex-col px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className="w-full mt-15 rounded-lg shadow dark:border mt-24  sm:max-w-md xl:p-0 login-container-1">
+          <div className="w-full mt-15 rounded-lg shadow dark:border mt-24 sm:max-w-md xl:p-0 login-container-1">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-500 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
               <form className="space-y-4 md:space-y-6">
-                <div>
+                <div className="space-y-2">
                   <label
                     htmlFor="username"
-                    className="block mb-2 text-xl font-medium text-gray-300 dark:text-white "
+                    className="block mb-2 text-xl font-medium text-gray-300 dark:text-white"
                   >
-                    Your Username:{" "}
+                    Your Username:
                   </label>
                   <input
                     type="username"
@@ -170,16 +166,16 @@ const Login = () => {
                     required
                   />
                 </div>
-                <div>
+                <div className="space-y-2">
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-xl font-medium text-gray-300 dark:text-white "
+                    className="block mb-2 text-xl font-medium text-gray-300 dark:text-white"
                   >
-                    Password:{" "}
+                    Password:
                   </label>
                   <input
                     type="password"
-                    name="passwordd"
+                    name="password"
                     id="password"
                     placeholder="••••••••"
                     value={passwordd}
@@ -188,12 +184,17 @@ const Login = () => {
                     required
                   />
                 </div>
-                <div className="input">
-                  
+                <div className="space-y-2">
+                  <label
+                    htmlFor="usertype-select"
+                    className="block mb-2 text-xl font-medium text-gray-300 dark:text-white"
+                  >
+                    User Role:
+                  </label>
                   <select
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     onChange={(e) => setusertype(e.target.value)}
-                    name="pets"
+                    name="usertype"
                     id="usertype-select"
                   >
                     <option value="">--Please Select User Role--</option>
@@ -237,24 +238,20 @@ const Login = () => {
                   onClick={handlesubmit}
                   className="w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  {isSigningIn ? <span>Logging in</span> : <span>Login</span>}
+                  Sign in
                 </button>
-                <p className="text-sm font-light text-white dark:text-gray-400">
-                  <h1 className="text-gray-400 font-bold text-center text-xl">
-                    {status}
-                  </h1>
+                {status && <p className="text-orangered">{status}</p>}
+                <p className="text-sm font-light text-gray-300 dark:text-gray-400">
                   Don’t have an account yet?{" "}
-                  <button
-                    onClick={() => navigate("/register")}
-                    className="font-medium text-orange-600 hover:underline dark:text-primary-500"
+                  <Link
+                    to="/signup"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500 text-white"
                   >
-                    {" "}
                     Sign up
-                  </button>
+                  </Link>
                 </p>
+                <SignInWithGoogle />
               </form>
-                <SignInWithGoogle/>
-              
             </div>
           </div>
         </div>

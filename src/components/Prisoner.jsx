@@ -165,8 +165,8 @@ const Prisoner = () => {
       </video>
       <div className="container">
         <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-semibold">REGISTRATION</div>
-        <div className="content">
-          <form onSubmit={handleSubmit} action="#">
+        <div className="content p-5">
+          <form onSubmit={handleSubmit}>
             <div className="user-details">
               <div className="input-box">
                 <span className="details text-white">Full Name</span>
@@ -399,7 +399,7 @@ const Prisoner = () => {
                 </div>
               </div>
 
-              <div className="gender-details">
+              <div className="gender-details ml-2">
                 <input
                   value={gender}
                   onChange={(e) => setgender(e.target.value)}
@@ -456,7 +456,7 @@ const Prisoner = () => {
                   </button>
                 </div>
 
-                <button disabled={isuploading} className="button" type="submit">
+                <button disabled={isuploading} className="button ml-2" type="submit">
                   Apply for Bail
                 </button>
               </div>
