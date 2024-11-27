@@ -12,25 +12,30 @@ import DialogTitle from "@mui/material/DialogTitle";
 // import { TransitionProps } from '@mui/material/transitions';
 
 const Dashboard = () => {
+  // State to manage the open/close state of the dialog
   const [open, setOpen] = useState(false);
 
-  // const usertype = window.localStorage.getItem("usertype");
-
+  // States for user details in the form
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const isPasswordValid = password.length >= 6;
   const [signingUp, setsigningUp] = useState(false);
 
+  // Function to open the dialog
   const handleClickOpen = () => {
     setOpen(true);
   };
 
+  // Function to close the dialog
   const handleClose = () => {
     setOpen(false);
   };
 
+  // State to manage the list of users fetched from the API
   const [users, setusers] = useState([]);
+  
+  // Function to fetch users from the API
   const fetchUsers = async () => {
     await axios
       .get(`${import.meta.env.VITE_DEV_URL}api/users`)
@@ -43,10 +48,13 @@ const Dashboard = () => {
         console.error("Server Error", err);
       });
   };
+
+  // useEffect to fetch users when the component mounts
   useEffect(() => {
     fetchUsers();
   }, []);
 
+  // Function to handle form submission for adding a new user
   const handlesubmit = (e) => {
     e.preventDefault();
 
@@ -93,7 +101,7 @@ const Dashboard = () => {
                 />
               </svg>
             </span>
-            <h2 >Users: {users.length}</h2>
+            <h2>Users: {users.length}</h2>
           </div>
           <button
             onClick={handleClickOpen}
@@ -116,7 +124,7 @@ const Dashboard = () => {
                   />
                 </svg>
               </span>
-              <h2 >Add Users</h2>
+              <h2>Add Users</h2>
             </div>
           </button>
         </div>
@@ -186,13 +194,12 @@ const Dashboard = () => {
                   name="email"
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@company"
+                  placeholder="email"
                   value={email}
                   onChange={(e) => setemail(e.target.value)}
                   required
                 />
               </div>
-
               <div>
                 <label
                   htmlFor="password"
@@ -204,60 +211,28 @@ const Dashboard = () => {
                   type="password"
                   name="password"
                   id="password"
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="password"
+                  className={`bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 ${
+                    isPasswordValid
+                      ? "dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      : "border-red-500"
+                  }`}
                   value={password}
                   onChange={(e) => setpassword(e.target.value)}
                   required
                 />
-                {password.length > 0 && password.length < 6 && (
-                  <p className="text-red-500 text-xs mt-1">
-                    Password must be at least 6 characters.
+                {!isPasswordValid && (
+                  <p className="text-red-500 text-sm mt-1">
+                    Password must be at least 6 characters long.
                   </p>
                 )}
               </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required
-                    />
-                    <div className="ml-3 text-sm">
-                      <label
-                        htmlFor="remember"
-                        className="text-gray-500 dark:text-gray-300"
-                      >
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <button
-                  onClick={handlesubmit}
-                  type="submit"
-                  className={`mt-4 ${
-                    isPasswordValid
-                      ? "w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                      : "w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-not-allowed"
-                  }`}
-                  disabled={!isPasswordValid && signingUp}
-                >
-                  {signingUp ? <span>Adding User</span> : <span>Add user</span>}
-                </button>
-                
-              </div>
             </form>
           </DialogContent>
-         
-          <DialogActions></DialogActions>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button disabled={!isPasswordValid} onClick={handlesubmit}>Add</Button>
+          </DialogActions>
         </Dialog>
       </React.Fragment>
     </div>
@@ -265,5 +240,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-// tailwind config mei bhi changes hai

@@ -14,6 +14,7 @@ import Dashboard from "./components/Dashboard";
 import Modal from "./components/Modal";
 import AddCrime from "./components/AddCrime";
 import UserDashboard from './components/UserDashboard';
+import AdminDashboard from './components/AdminDashboard';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

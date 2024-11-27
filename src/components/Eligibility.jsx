@@ -5,77 +5,81 @@ import "./fonts.css";
 import video from '../assets/video2.mp4';
 
 const Eligibility = () => {
-  const [crimes, setcrimes] = useState([]);
-  const [criminals, setcriminals] = useState([]);
-  const [elegiblecriminals, setelegiblecriminals] = useState([]);
-  const [diffdate, setdiffdate] = useState("");
-  const [eligibilty, seteligibilty] = useState("")
-  
-  
+  // State hooks to manage the data fetched from the API
+  const [crimes, setcrimes] = useState([]); // List of available crimes
+  const [criminals, setcriminals] = useState([]); // List of prisoners
+  const [elegiblecriminals, setelegiblecriminals] = useState([]); // List of criminals eligible for bail
+  const [diffdate, setdiffdate] = useState(""); // To store the difference in time between imprisonment and current date
+  const [eligibilty, seteligibilty] = useState(""); // Eligibility status for bail (Yes/No)
+
+  // Function to fetch list of criminals from the API
   const fetchcriminals = async () => {
     try {
+      // Fetching criminal data from the API
       await axios
         .get(`${import.meta.env.VITE_DEV_URL}api/getprisonerdets`)
         .then((res) => {
-          console.log("criminals", res.data);
-          setcriminals(res.data);
+          console.log("criminals", res.data); // Logging the fetched data
+          setcriminals(res.data); // Setting the criminals data to state
         });
     } catch (error) {
-      console.error("Server Error", error);
+      console.error("Server Error", error); // Handling any errors while fetching data
     }
   };
-  
 
+  // Function to fetch the list of crimes from the API
   const fetchCrimes = async (e) => {
     try {
+      // Fetching crimes data from the API
       await axios
         .get(`${import.meta.env.VITE_DEV_URL}api/crimes`)
         .then((res) => {
-          // console.log(res.data)
-          setcrimes(res.data);
-          // console.log(crimes)
+          setcrimes(res.data); // Setting the crimes data to state
         });
     } catch (error) {
-      console.error("Server Error", error);
+      console.error("Server Error", error); // Handling any errors while fetching data
     }
   };
-  let eligiblecriminlass;
- 
-  const renderitems = () => {
-     eligiblecriminlass = criminals.filter((criminal) => {
-      const crimeDate = moment(criminal.createdAt).format("YYYY-MM-DD");
-      console.log("Crime date", crimeDate);
-      let currentdate = moment().format("YYYY-MM-DD");
-      console.log("Current date", currentdate);
-      const diff = moment(crimeDate).to(currentdate, "months");
-      setdiffdate(diff);
-      const crimesduration=crimes.filter((crime)=>{
 
-        // console.log(crime["duration"]) 
-        // console.log(crime["duration"])
+  // Function to filter and calculate eligibility of criminals for bail based on the duration of their crime
+  let eligiblecriminlass;
+
+  const renderitems = () => {
+    // Filtering criminals based on their eligibility for bail
+    eligiblecriminlass = criminals.filter((criminal) => {
+      const crimeDate = moment(criminal.createdAt).format("YYYY-MM-DD"); // Date of imprisonment
+      let currentdate = moment().format("YYYY-MM-DD"); // Current date
+      const diff = moment(crimeDate).to(currentdate, "months"); // Calculating the difference between current date and crime date in months
+      setdiffdate(diff); // Updating the state with the date difference
+
+      // Checking if the difference matches the crime duration to determine eligibility
+      const crimesduration = crimes.filter((crime) => {
         if (diff === crime["duration"]) {
-          seteligibilty("Yes")
-        }else{
-          seteligibilty("NO")
+          seteligibilty("Yes"); // Eligible for bail if the duration matches
+        } else {
+          seteligibilty("NO"); // Not eligible for bail if the duration does not match
         }
-      })
-      console.log("difference bw dates", diffdate);
+      });
+
+      // Returning the criminal object (you can modify this if needed to display specific details)
       return criminal;
     });
-    console.log(eligiblecriminlass);
+
+    // Setting the list of eligible criminals after filtering
     setelegiblecriminals(eligiblecriminlass);
-    console.log(elegiblecriminals);
+    console.log("Eligible criminals:", eligiblecriminlass); // Logging the eligible criminals
+    console.log("Eligibility Status:", eligibilty); // Logging the eligibility status
   };
 
+  // useEffect hook to fetch data when the component is mounted or when the eligibility status changes
   useEffect(() => {
     const fetchData = async () => {
-      await fetchCrimes();
-      await fetchcriminals();
-      renderitems();
+      await fetchCrimes(); // Fetch crimes data
+      await fetchcriminals(); // Fetch criminals data
+      renderitems(); // Render the filtered eligible criminals
     };
-    fetchData()
-
-  }, [elegiblecriminals]); 
+    fetchData(); // Call the fetchData function on component mount
+  }, [elegiblecriminals]); // Dependency on elegiblecriminals state to trigger effect when eligibility changes
 
   return (
     <div className="video-container3">
@@ -87,6 +91,7 @@ const Eligibility = () => {
           <div className="border-2 border-orange-300 rounded-lg min-h-screen p-5 bg-opacity-70 bg-black mt-10">
             <h2 className="text-5xl font-semibold">Eligible Criminals for Bail</h2>
             <div className="mx-[500px] mt-10 ">
+              {/* Below code is commented out for rendering a table, you can uncomment it to display eligible criminals */}
               {/* {elegiblecriminals.length >= 0 && (
                 <div>
                   <table>

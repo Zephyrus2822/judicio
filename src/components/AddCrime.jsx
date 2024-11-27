@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import "./addcrime.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import video from '../assets/video2.mp4';
+import React, { useState } from "react"; // Importing React and useState hook for state management
+import "./addcrime.css"; // Importing CSS for styling
+import axios from "axios"; // Importing axios for making HTTP requests
+import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
+import video from '../assets/video2.mp4'; // Importing video asset
 
 const AddCrime = () => {
+  // State variables for form fields
   const [name, setname] = useState("");
   const [fathername, setfathername] = useState("");
   const [adharnum, setadharnum] = useState("");
@@ -13,14 +14,15 @@ const AddCrime = () => {
   const [witness, setwitness] = useState("");
   const [status, setstatus] = useState("");
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook for navigation
 
+  // Function to handle form submission
   const handlesubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission behavior
     try {
       axios
         .post(`${import.meta.env.VITE_DEV_URL}api/prisonerdets`, {
-          //replace this URL with ${import.meta.env.VITE_DEV_URL} before pushing
+          // replace this URL with ${import.meta.env.VITE_DEV_URL} before pushing
           name,
           fathername,
           adharnum,
@@ -31,10 +33,11 @@ const AddCrime = () => {
         })
         .then((response) => {
           if (response.data === "Prisoner already exists") {
-            // setuserstatus("Prisoner already exists");
+            // Navigate to update prisoner page if prisoner already exists
             navigate("/updateprisoner");
           }
           console.log(response);
+          // Reset form fields
           setname("");
           setfathername("");
           setadharnum("");
@@ -50,18 +53,20 @@ const AddCrime = () => {
   };
 
   return (
-    <div className="video-container3" >
-       <video autoPlay muted loop className="video-background">
-          <source src={video} type="video/mp4"/>
-        </video>
-  
-        <div className="flex justify-center items-center align-middle">
+    <div className="video-container3">
+      {/* Video background */}
+      <video autoPlay muted loop className="video-background">
+        <source src={video} type="video/mp4" />
+      </video>
+
+      <div className="flex justify-center items-center align-middle">
+        {/* Form for adding a new crime */}
         <form onSubmit={handlesubmit} className="form-addprisoner-1">
           <h1 className="wel-message flex justify-center align-middle items-center">ADD NEW CRIME</h1>
 
+          {/* Crime input field */}
           <label id="name">Crime</label>
           <input
-           
             type="text"
             name="name"
             id="name"
@@ -71,6 +76,7 @@ const AddCrime = () => {
           />
           <br />
 
+          {/* Section input field */}
           <label id="fathername">Section</label>
           <input
             type="text"
@@ -82,6 +88,7 @@ const AddCrime = () => {
           />
           <br />
 
+          {/* Minimum Prison Duration input field */}
           <label id="aadhar">Minimum Prison Duration</label>
           <input
             type="text"
@@ -93,7 +100,7 @@ const AddCrime = () => {
           />
           <br />
 
-
+          {/* Bail Amounts input field */}
           <label id="testimonial">Bail Amounts</label>
           <input
             type="text"
@@ -105,6 +112,7 @@ const AddCrime = () => {
           />
           <br />
 
+          {/* Bail Condition input field with datalist options */}
           <label id="location">Bail Condition</label>
           <input
             list="location"
@@ -118,43 +126,38 @@ const AddCrime = () => {
           <datalist id="location">
             <option value="In India"></option>
             <option value="Outside India"></option>
-            <option value="Unknown"></option>{" "}
-            {/*  in this case there will be instant bail cancellation */}
-            <option value="Being Tracked"></option>{" "}
-            {/*  in this case there will be instant bail cancellation */}
+            <option value="Unknown"></option> {/* In this case there will be instant bail cancellation */}
+            <option value="Being Tracked"></option> {/* In this case there will be instant bail cancellation */}
           </datalist>
 
+          {/* Crime Category dropdown */}
           <label htmlFor="crime-select my-2 p-2">Crime Category</label>
-      <select
-      className="ml-3"
-        id="crime-select"
-        value={crime}
-        name="crime"
-        onChange={(e) => setCrime(e.target.value)}
-        placeholder="Crime Status"
-      >
-        <option value="" disabled hidden>Choose a crime category...</option>
-        <option value="Cyber Crime">Cyber Crime</option>
-        <option value="Crime against SCs and STs">Crime against SCs and STs</option>
-        <option value="Crime against Women">Crime against Women</option>
-        <option value="Crime against Children">Crime against Children</option>
-        <option value="Offenses against the state">Offenses against the state</option>
-        <option value="Economic Offenses">Economic Offenses</option>
-        <option value="Crime against Foreigners">Crime against Foreigners</option>
-        <option value="Others">Others</option>
-      </select>
-      <br />
-          <button
-            type="submit"
+          <select
+            className="ml-3"
+            id="crime-select"
+            value={crime}
+            name="crime"
+            onChange={(e) => setcrime(e.target.value)}
+            placeholder="Crime Status"
+          >
+            <option value="" disabled hidden>Choose a crime category...</option>
+            <option value="Cyber Crime">Cyber Crime</option>
+            <option value="Crime against SCs and STs">Crime against SCs and STs</option>
+            <option value="Crime against Women">Crime against Women</option>
+            <option value="Crime against Children">Crime against Children</option>
+            <option value="Offenses against the state">Offenses against the state</option>
+            <option value="Economic Offenses">Economic Offenses</option>
+            <option value="Crime against Foreigners">Crime against Foreigners</option>
+            <option value="Others">Others</option>
+          </select>
+          <br />
 
-            className="form-button">
-
-            Add Prisoner
-          </button>
+          {/* Submit button */}
+          <button type="submit" className="form-button">Add Prisoner</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default AddCrime;
+export default AddCrime; // Exporting the AddCrime component
