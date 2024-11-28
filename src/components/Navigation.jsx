@@ -28,6 +28,37 @@ const Navigation = () => {
           <h1 className="Logo">Judicio</h1>
         </div>
         <ul>
+        <a className="proj-name" href="/">
+              Home
+            </a>
+            <li>
+                <a href="/About">Docs</a>
+              </li>
+              <li>
+                <a href="/prisoner">Get Verdict</a>
+              </li>
+              <li>
+              <a href="/dashboard">Dashboard</a>
+            </li>
+              <li>
+                <a href="/verdictspassed">Verdicts Passed</a>
+              </li>
+              <li>
+                <a href="/addprisoner">Add Prisoner</a>
+              </li>
+              <li>
+                <a href="/updateprisoner">Update Prisoner</a>
+              </li>
+              <li>
+                <a href="/eligiblecriminals">Eligibility</a>
+              </li>
+              <li>
+                <a href="/aboutbail">Information</a>
+              </li>
+
+        </ul>
+        {/*This is the actual Navbar on production */}
+        {/* <ul>
           <li>
             <a className="proj-name" href="/">
               Home
@@ -91,7 +122,7 @@ const Navigation = () => {
               </li>
             </>
           )}
-        </ul>
+        </ul> */}
         {username && LoggedIn ? (
           <div className="flex justify-center items-center gap-2 ">
             <h1 className="text-white mt-3 text-2xl">Hi,{username}!</h1>

@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const prisonerSchema = new mongoose.Schema(
   {
@@ -17,6 +17,16 @@ const prisonerSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    Contact_info:{
+      type: Object,
+      required: true,
+      default:{
+        Phone: "",
+      
+        Address:""
+      }
+    },
+    
 
     FIRdate: {
       type: Date,
@@ -31,10 +41,15 @@ const prisonerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    status:{
-      type:String,
+    CrimeCategory:{
+      type: String,
       required:true
+    },
+    Complience:{
+      type:String,
+      default:"In Prison"
     }
+    
   },
   { timestamps: true }
 );
