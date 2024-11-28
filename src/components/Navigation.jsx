@@ -38,7 +38,7 @@ const Navigation = () => {
                 <a href="/prisoner">Get Verdict</a>
               </li>
               <li>
-              <a href="/dashboard">Dashboard</a>
+              <a href="/AdminDashboard">AdminDashboard</a>
             </li>
               <li>
                 <a href="/verdictspassed">Verdicts Passed</a>
