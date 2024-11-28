@@ -101,7 +101,7 @@ const AboutBail = () => {
                 paddingRight: '10px', // Optional: adds some space for better look with the scrollbar
               }}
             >
-              {crimes.map((crime, i) => (
+              {crimes.length>0 ? (crimes.map((crime, i) => (
                 <div
                   key={i}
                   className="crime mb-10 border-[1px] p-3 space-y-2 rounded-lg border-black"
@@ -133,7 +133,7 @@ const AboutBail = () => {
                     <span className="font-normal">Criteria:</span> {crime.Criteria}
                   </p>
                 </div>
-              ))}
+              ))):(null)}
             </div>
           </div>
 
