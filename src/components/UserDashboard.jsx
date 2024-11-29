@@ -1,12 +1,12 @@
 import React from 'react'
 // if needed, add external css file AdminDashboard.css
 // to import uncomment the next line 
-// import './UserDashboard.css'
+// import './AdminDashboard.css'
 
-const UserDashboard = () => {
+const userDashboard = () => {
   return (
-    <div>UserDashboard</div>
+    <div>userDashboard</div>
   )
 }
 
-export default UserDashboard
+export default userDashboard
