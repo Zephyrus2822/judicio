@@ -8,6 +8,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Password } from "@mui/icons-material";
 // import Slide from '@mui/material/Slide';
 // import { TransitionProps } from '@mui/material/transitions';
 
@@ -16,10 +17,15 @@ const AdminDashboard = () => {
   const [open, setOpen] = useState(false);
 
   // States for user details in the form
-  const [username, setusername] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const isPasswordValid = password.length >= 6;
+  const [UserName, setUserName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Phone, setPhone] = useState("")
+  const [Name, setName] = useState("")
+  const [Liscensenumber, setLiscensenumber] = useState("")
+  const [AssignedCourt, setAssignedCourt] = useState("")
+  const [userRole, setuserRole] = useState("")
+  const [Password, setPassword] = useState("");
+  const isPasswordValid = Password.length >= 6;
   const [signingUp, setsigningUp] = useState(false);
 
   // Function to open the dialog
@@ -38,7 +44,7 @@ const AdminDashboard = () => {
   // Function to fetch users from the API
   const fetchUsers = async () => {
     await axios
-      .get(`${import.meta.env.VITE_DEV_URL}api/users`)
+      .get(`${import.meta.env.VITE_DEV_URL}auth/users`)
       //https://judicio-server.onrender.com/
       .then((res) => {
         console.log(res);
@@ -59,15 +65,22 @@ const AdminDashboard = () => {
     e.preventDefault();
 
     axios
-      .post(`${import.meta.env.VITE_DEV_URL}api/signupAdmin`, {
-        username,
-        email,
-        password,
+      .post(`${import.meta.env.VITE_DEV_URL}auth/register/officials`, {
+        UserName,
+        Name,
+        Email,
+        Phone,
+        Liscensenumber,
+        AssignedCourt,
+        Password,
+        userRole
       })
       .then((response) => {
         console.log(response);
+        alert(`${userRole} created Successfully`)
+
        
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => console.error("Server Error", err));
   };
@@ -140,13 +153,13 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {users.map((user) => (
+                {users.length>0 ? users.map((user) => (
                   <tr key={user.Name} className="text-center text-white">
-                    <td className="px-5">{user.username}</td>
-                    <td className="px-5">{user.email}</td>
-                    <td className="px-5">{user.usertype}</td>
+                    <td className="px-5">{user.UserName}</td>
+                    <td className="px-5">{user.Email}</td>
+                    <td className="px-5">{user.userRole}</td>
                   </tr>
-                ))} */}
+                )):null}
               </tbody>
             </table>
           </div>
@@ -166,19 +179,91 @@ const AdminDashboard = () => {
             <form className="space-y-4 md:space-y-6 w-[350px] rounded-lg " action="#">
               <div>
                 <label
-                  htmlFor="username"
+                  htmlFor="UserName"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Enter Your Username:{" "}
+                  Enter Your UserName:{" "}
                 </label>
                 <input
-                  type="username"
-                  name="username"
-                  id="username"
+                  type="UserName"
+                  name="UserName"
+                  id="UserName"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setusername(e.target.value)}
+                  placeholder="UserName"
+                  value={UserName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="Name"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Enter Your Name:{" "}
+                </label>
+                <input
+                  type="Name"
+                  name="Name"
+                  id="Name"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Name"
+                  value={Name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="Phone"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Enter  Phone number:{" "}
+                </label>
+                <input
+                  type="Phone"
+                  name="Phone"
+                  id="Phone"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="+9177884411225"
+                  value={Phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="Liscensenumber"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Enter Liscense Number:{" "}
+                </label>
+                <input
+                  type="text"
+                  name="Liscensenumber"
+                  id="Liscensenumber"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Lisense Number"
+                  value={Liscensenumber}
+                  onChange={(e) => setLiscensenumber(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="AssignedCourt"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Allot Court:{" "}
+                </label>
+                <input
+                  type="text"
+                  name="AssignedCourt"
+                  id="AssignedCourt"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="AssignedCourt"
+                  value={AssignedCourt}
+                  onChange={(e) => setAssignedCourt(e.target.value)}
                   required
                 />
               </div>
@@ -187,45 +272,67 @@ const AdminDashboard = () => {
                   htmlFor="Email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Enter Your email:{" "}
+                  Enter Your Email:{" "}
                 </label>
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
+                  type="Email"
+                  name="Email"
+                  id="Email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="email"
-                  value={email}
-                  onChange={(e) => setemail(e.target.value)}
+                  placeholder="Email"
+                  value={Email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
               <div>
                 <label
-                  htmlFor="password"
+                  htmlFor="Password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Enter Your Password:{" "}
                 </label>
                 <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="password"
+                  type="Password"
+                  name="Password"
+                  id="Password"
+                  placeholder="Password"
                   className={`bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 ${
                     isPasswordValid
                       ? "dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       : "border-red-500"
                   }`}
-                  value={password}
-                  onChange={(e) => setpassword(e.target.value)}
+                  value={Password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+
                 {!isPasswordValid && (
                   <p className="text-red-500 text-sm mt-1">
                     Password must be at least 6 characters long.
                   </p>
                 )}
+                <div className="space-y-2">
+                  <label
+                    htmlFor="userRole-select"
+                    className="block mb-2 text-xl font-medium text-gray-300 dark:text-white"
+                  >
+                    User Role:
+                  </label>
+                  <select
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={(e) => setuserRole(e.target.value)}
+                    name="userRole"
+                    id="userRole-select"
+                  >
+                    <option value="">--Please Select User Role--</option>
+                    <option value="The Chief Justice">The Chief Justice</option>
+                    <option value="Judge">Judge</option>
+                    <option value="Lawyer">Lawyer</option>
+                    <option value="Middleman">Middleman</option>
+                    
+                  </select>
+                </div>
               </div>
             </form>
           </DialogContent>

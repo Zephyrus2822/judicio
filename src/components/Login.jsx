@@ -5,134 +5,33 @@ import video from "../assets/video03.mp4";
 import SignInWithGoogle from "./signInWithGoogle";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [passwordd, setpassword] = useState("");
+  const [UserName, setUserName] = useState("");
+  const [Password, setpassword] = useState("");
   const [status, setstatus] = useState("");
-  const [usertype, setusertype] = useState("");
+  const [userRole, setuserRole] = useState("");
 
   const [isSigningIn, setisSigningIn] = useState(false);
 
   const navigate = useNavigate();
 
   const handlesubmit = async (e) => {
-    setisSigningIn(true);
+    // setisSigningIn(true);
     e.preventDefault();
-    if (usertype === "The Chief Justice") {
-      await axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
-          username,
-          passwordd,
-          usertype,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.data["message"] === "Success") {
-            window.localStorage.setItem("UserNamejudicio", username);
-            window.localStorage.setItem("isLoggedInjudicio", true);
-            window.localStorage.setItem("usertype", "The Chief Justice");
-            setisSigningIn(false);
-            navigate("/");
-            window.location.reload();
-          } else {
-            setstatus(res.data);
-            setisSigningIn(false);
-          }
-        });
-    }
-    if (usertype === "Judge") {
-      await axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
-          username,
-          passwordd,
-          usertype,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.data["message"] === "Success") {
-            window.localStorage.setItem("UserNamejudicio", username);
-            window.localStorage.setItem("isLoggedInjudicio", true);
-            window.localStorage.setItem("usertype", "Judge");
-            setisSigningIn(false);
-            navigate("/");
-            window.location.reload();
-          } else {
-            setstatus(res.data);
-            setisSigningIn(false);
-          }
-        });
-    }
-    if (usertype === "Middleman") {
-      await axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
-          username,
-          passwordd,
-          usertype,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.data["message"] === "Success") {
-            window.localStorage.setItem("UserNamejudicio", username);
-            window.localStorage.setItem("isLoggedInjudicio", true);
-            window.localStorage.setItem("usertype", "Middleman");
-            setisSigningIn(false);
-            navigate("/");
-            window.location.reload();
-          } else {
-            setstatus(res.data);
-            setisSigningIn(false);
-          }
-        });
-    }
 
-    if (usertype === "Lawyer") {
-      await axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/loginAdmin`, {
-          username,
-          passwordd,
-          usertype,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.data["message"] === "Success") {
-            window.localStorage.setItem("UserNamejudicio", username);
-            window.localStorage.setItem("isLoggedInjudicio", true);
-            window.localStorage.setItem("usertype", "Lawyer");
-            setisSigningIn(false);
-            navigate("/");
-            window.location.reload();
-          } else {
-            setstatus(res.data);
-            setisSigningIn(false);
-          }
-        });
+    try {
+      await axios.post(`${import.meta.env.VITE_DEV_URL}auth/login`,{UserName,Password,userRole})
+      .then(res=>{
+        console.log(res.data)
+        if(res.data.message==="Success"){
+          console.log(res.data)
+          window.localStorage.setItem('JudicioAccessToken',res.data.token)
+          window.location.reload()
+        }
+      })
+    } catch (error) {
+      console.error(error);
     }
-
-    if (usertype === "User") {
-      await axios
-        .post(`${import.meta.env.VITE_DEV_URL}api/login`, {
-          username,
-          passwordd,
-        })
-        .then((response) => {
-          console.log(response.data);
-
-          if (response.data["message"] === "Success") {
-            window.localStorage.setItem("UserNamejudicio", username);
-            window.localStorage.setItem("isLoggedInjudicio", true);
-            if (response.data.user["usertype"] === "Admin") {
-              window.localStorage.setItem("usertype", "Admin");
-            } else {
-              window.localStorage.setItem("usertype", "Judiciary");
-            }
-            setisSigningIn(false);
-            navigate("/");
-            window.location.reload();
-          } else {
-            setstatus(response.data);
-            setisSigningIn(false);
-          }
-        });
-    }
+    
   };
 
   return (
@@ -150,17 +49,17 @@ const Login = () => {
               <form className="space-y-4 md:space-y-6">
                 <div className="space-y-2">
                   <label
-                    htmlFor="username"
+                    htmlFor="UserName"
                     className="block mb-2 text-xl font-medium text-gray-300 dark:text-white"
                   >
-                    Your Username:
+                    Your UserName:
                   </label>
                   <input
-                    type="username"
-                    name="username"
-                    id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    type="UserName"
+                    name="UserName"
+                    id="UserName"
+                    value={UserName}
+                    onChange={(e) => setUserName(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Name"
                     required
@@ -178,7 +77,7 @@ const Login = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    value={passwordd}
+                    value={Password}
                     onChange={(e) => setpassword(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
@@ -186,23 +85,23 @@ const Login = () => {
                 </div>
                 <div className="space-y-2">
                   <label
-                    htmlFor="usertype-select"
+                    htmlFor="userRole-select"
                     className="block mb-2 text-xl font-medium text-gray-300 dark:text-white"
                   >
                     User Role:
                   </label>
                   <select
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    onChange={(e) => setusertype(e.target.value)}
-                    name="usertype"
-                    id="usertype-select"
+                    onChange={(e) => setuserRole(e.target.value)}
+                    name="userRole"
+                    id="userRole-select"
                   >
                     <option value="">--Please Select User Role--</option>
                     <option value="The Chief Justice">The Chief Justice</option>
                     <option value="Judge">Judge</option>
                     <option value="Lawyer">Lawyer</option>
                     <option value="Middleman">Middleman</option>
-                    <option value="User">User</option>
+                    <option value="user">User</option>
                   </select>
                 </div>
                 <div className="flex items-center justify-between">
@@ -240,18 +139,18 @@ const Login = () => {
                 >
                   Sign in
                 </button>
+              </form>
                 {status && <p className="text-orangered">{status}</p>}
                 <p className="text-sm font-light text-gray-300 dark:text-gray-400">
                   Don’t have an account yet?{" "}
                   <Link
-                    to="/signup"
+                    to="/register"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500 text-white"
                   >
                     Sign up
                   </Link>
                 </p>
                 <SignInWithGoogle />
-              </form>
             </div>
           </div>
         </div>
