@@ -56,8 +56,9 @@ const AboutBail = () => {
     setindex(i);
     setActiveButton(i);
   };
-
+  const isValidArray = Array.isArray(crimes); //checks if 'crimes' is an array, useful for debugging later
   return (
+    
     <>
       {/* Video background container */}
       <div className="video-container2">
@@ -101,7 +102,7 @@ const AboutBail = () => {
                 paddingRight: '10px', // Optional: adds some space for better look with the scrollbar
               }}
             >
-              {crimes.length>0 ? (crimes.map((crime, i) => (
+              {isValidArray && crimes.length>0 ? (crimes.map((crimes, i) => (
                 <div
                   key={i}
                   className="crime mb-10 border-[1px] p-3 space-y-2 rounded-lg border-black"
@@ -112,7 +113,7 @@ const AboutBail = () => {
                     width: '75%',
                     marginLeft: '200px',
                   }}
-                  hidden={index + 1 !== crime.id}
+                  hidden={index + 1 !== crimes.id}
                 >
                   <h2 className="text-xl text-gray-200">
                     <span className="font-normal">Crime :</span> {crime.crime}
@@ -144,3 +145,5 @@ const AboutBail = () => {
 };
 
 export default AboutBail;
+
+
