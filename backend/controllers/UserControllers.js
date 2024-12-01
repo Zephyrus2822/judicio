@@ -9,14 +9,21 @@ dotenv.config();
 const SignUp = async (req, res) => {
   const { UserName, Name, Email, Phone, Password } = req.body;
 
+  if(!UserName || !Name || !Email || !Phone || !Password){
+    return res.status(400).json("Please fill all fields");
+  }
+
   console.log(req.body);
   try {
-    const user = await Users.findOne({ Email: Email });
-    if (user) {
+    const user = await Users.findOne({ Email: Email }||{UserName:UserName}||{Phone:Phone});
+    
+    if (user ) {
       res.json(`User already exists as ${user.userRole} ... Please Login `);
-    } else {
+    } 
+    
+    else {
       const hasedpassword = await bcrypt.hash(Password, 10);
-      const user = await Users.create({
+      const user1 = await Users.create({
         UserName: UserName,
         Email: Email,
         profileInfo: {
@@ -24,12 +31,16 @@ const SignUp = async (req, res) => {
         },
         Phone: Phone,
         password: hasedpassword,
-      });
-      if (user) {
-        res.json({
-          message: "User registered Succesfully",
-          token: generateToken(user),
-        });
+      })
+      if(user1){
+
+        res.status(200).json({
+          message: "UserCreated",
+          token: generateToken(user1),
+        })
+      }
+      else{
+        res.json("Error in creating user");
       }
     }
   } catch (error) {
@@ -50,9 +61,14 @@ const SignUpOfficials = async (req, res) => {
     userRole,
   } = req.body;
 
+
+  if(!UserName || !Name || !Email || !Phone || !Liscensenumber || !AssignedCourt || !Password || !userRole){
+    res.status(400).json("Please fill all fields");
+    return
+  }
   console.log(req.body);
   try {
-    const user = await Users.findOne({ Email: Email });
+    const user = await Users.findOne({ Email: Email }||{Phone:Phone}|| {UserName:UserName});
     if (user) {
       res.json(`User already exists as ${user.userRole} ... Please Login `);
     } else {
@@ -84,22 +100,17 @@ const SignUpOfficials = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { Email, Password, userRole } = req.body;
+  const { UserName, Password, userRole } = req.body;
   console.log(req.body);
 
   try {
-    const user = await Users.findOne({ Email: Email });
+    const user = await Users.findOne({ UserName: UserName });
     if (user) {
       if (user.userRole === userRole) {
-        const isMacth = await bcrypt.compare(Password, user.password);
-        if (isMacth) {
-          // const token=jwt.sign({id:user._id , role: user.userRole},process.env.JWT_SECRET,{expiresIn : "1h"})
-          // res.status(200).json({token})
-          const decode=jwtDecode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MzhlM2YyOWNmZmUyMDg3NGMzMzNiYSIsIm5hbWUiOiJSdWRyYTc2NSIsImVtYWlsIjoicnVkcmFAZ21haWwuY29tIiwidXNlclJvbGUiOiJKdWRnZSIsImlhdCI6MTczMTg0Njc0NywiZXhwIjoxNzMxOTMzMTQ3fQ.HbxN-AQjnBLPnQWhC_uR2F-uRcJOMb3n_rfjXHeHGL0")
-          console.log("Nmae : ",decode.name)
-          console.log("email : ",decode.email)
-          console.log("role : ",decode.userRole)
-          res.json({ message: "Success", token: generateToken(user)  });
+        const isMatch = await bcrypt.compare(Password, user.password);
+        if (isMatch) {
+          
+          res.json({ message: "Success", token: generateToken(user) });
         } else {
           res.json("Password Incorrect ");
         }
@@ -113,4 +124,15 @@ const login = async (req, res) => {
   }
 };
 
-export default { SignUp, SignUpOfficials, login };
+
+const getUsers=async (req,res)=>{
+  try {
+    const users = await Users.find({});
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.json("Error fetching users");
+  }
+}
+
+export default { SignUp, SignUpOfficials, login,getUsers };

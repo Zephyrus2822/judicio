@@ -14,6 +14,7 @@ import AdminDashboard from "./components/AdminDashboard";
 import Modal from "./components/Modal";
 import AddCrime from "./components/AddCrime";
 import UserDashboard from './components/UserDashboard';
+import Judgedashboard from "./components/judgedashboard";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -55,12 +56,13 @@ function App() {
           <Route path="/aboutbail" element={<AboutBail />} />
           <Route path="/verdictspassed" element={<Tablee />} />
           <Route path="/addprisoner" element={<AddPrisoner />} />
-          <Route path="/updateprisoner" element={<UpdatePrisoner />} />
+          {/* <Route path="/updateprisoner" element={<UpdatePrisoner />} /> */}
           <Route path="/eligiblecriminals" element={<Eligibility />} />
           <Route path="/admindashboard" element={<AdminDashboard/>} />
           <Route path="/addcrime" element={<AddCrime />} />
           <Route path="/user" element={<UserDashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/judgedashboard" element={<Judgedashboard/>} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>

@@ -3,13 +3,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import video from "../assets/video03.mp4";
 
-
 const Register = () => {
-  const usertype = window.localStorage.getItem("usertype");
-
-  const [username, setusername] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+  const [UserName, setusername] = useState("");
+  const [Name, setName] = useState("");
+  const [Phone, setPhone] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
   const [status, setstatus] = useState("");
   const [showpass, setshowpass] = useState(false);
   // const [usertype, setusertype] = useState("");
@@ -17,32 +16,35 @@ const Register = () => {
   const [signingUp, setsigningUp] = useState(false);
 
   const navigate = useNavigate();
-  const isPasswordValid = password.length >= 6;
+  const isPasswordValid = Password.length >= 6;
 
-  const handlesubmit = (e) => {
-    setsigningUp(true);
+  const handlesubmit = async (e) => {
+    // setsigningUp(true);
     e.preventDefault();
 
-    axios
-      .post(`${import.meta.env.VITE_DEV_URL}api/signup`, {   //https://judicio-server.onrender.com
-        username,
-        email,
-        password,
+    await axios
+      .post(`${import.meta.env.VITE_DEV_URL}auth/register`, {
+        //https://judicio-server.onrender.com
+        UserName,
+        Name,
+        Email,
+        Phone,
+        Password,
       })
       .then((response) => {
         try {
           console.log(response);
           setstatus(response.data);
-          if (response.data == "UserCreated") {
-            window.localStorage.setItem("UserNamejudicio", username);
-            window.localStorage.setItem("isLoggedInjudicio", true);
-            window.localStorage.setItem("usertype", "Judiciary");
+          if (response.data.message == "UserCreated") {
+            console.log(response.data);
+            window.localStorage.setItem(
+              "JudicioAccessToken",
+              response.data.token
+            );
             setsigningUp(false);
-            navigate("/");
-            window.location.reload();
           }
         } catch (error) {
-          alert("Server Error");
+          alert("Server Error", error);
         }
       });
   };
@@ -59,22 +61,44 @@ const Register = () => {
                 Sign Up
               </h1>
 
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form
+                className="space-y-4 md:space-y-6"
+                action=""
+                onSubmit={handlesubmit}
+              >
                 <div>
                   <label
                     htmlFor="username"
-                    className="block mb-2 text-xl font-medium text-gray-300 dark:text-white"
+                    className="block mb-2 text-xl font-medium text-gray-800 dark:text-white"
                   >
                     Enter Your Username:{" "}
                   </label>
                   <input
                     type="username"
-                    name="username"
+                    name="UserName"
                     id="username"
-                    className="bg-gray-50 border border-gray-300 text-gray-300 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-800 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Username"
-                    value={username}
+                    value={UserName}
                     onChange={(e) => setusername(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="Name"
+                    className="block mb-2 text-xl font-medium text-gray-800 dark:text-white"
+                  >
+                    Enter Your Name:{" "}
+                  </label>
+                  <input
+                    type="text"
+                    name="Name"
+                    id="Name"
+                    className="bg-gray-50 border border-gray-300 text-gray-800 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Name"
+                    value={Name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                   />
                 </div>
@@ -83,16 +107,16 @@ const Register = () => {
                     htmlFor="Email"
                     className="block  text-xl font-medium mb-2 text-gray-300 dark:text-white"
                   >
-                    Enter Your email:{" "}
+                    Enter Your Email:{" "}
                   </label>
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
+                    type="Email"
+                    name="Email"
+                    id="Email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  "
                     placeholder="name@company"
-                    value={email}
-                    onChange={(e) => setemail(e.target.value)}
+                    value={Email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -104,35 +128,35 @@ const Register = () => {
                     Enter Phone Number:{" "}
                   </label>
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
+                    type="text"
+                    name="Phone"
+                    id="Phone"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  "
-                    placeholder="name@company"
-                    value={email}
-                    onChange={(e) => setemail(e.target.value)}
+                    placeholder="+91915364646"
+                    value={Phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     required
                   />
                 </div>
 
                 <div>
                   <label
-                    htmlFor="password"
+                    htmlFor="Password"
                     className="block mb-2 text-xl font-medium text-gray-300 dark:text-white"
                   >
                     Enter Your Password:{" "}
                   </label>
                   <input
-                    type="password"
-                    name="password"
-                    id="password"
+                    type="Password"
+                    name="Password"
+                    id="Password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value={password}
-                    onChange={(e) => setpassword(e.target.value)}
+                    value={Password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                  {password.length > 0 && password.length < 6 && (
+                  {Password.length > 0 && Password.length < 6 && (
                     <p className="text-red-500 text-xs mt-1">
                       Password must be at least 6 characters.
                     </p>
@@ -163,27 +187,27 @@ const Register = () => {
 
                 <div>
                   <button
-                    onClick={handlesubmit}
                     type="submit"
-                    className={`mt-4 ${isPasswordValid
-                      ? "  w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                      : "w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-not-allowed"
-                      }`}
+                    className={`mt-4 ${
+                      isPasswordValid
+                        ? "  w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                        : "w-full text-white bg-orange-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 cursor-not-allowed"
+                    }`}
                     disabled={!isPasswordValid && signingUp}
                   >
                     {signingUp ? <span>Signing Up</span> : <span>Sign up</span>}
                   </button>
-                  <p className="text-sm font-light text-gray-200 dark:text-gray-400">
-                    Already have an account?
-                    <button
-                      onClick={() => navigate("/login")}
-                      className="mt-4 font-medium text-orange-500 hover:underline dark:text-primary-500 ml-1"
-                    >
-                      Sign In
-                    </button>
-                  </p>
                 </div>
               </form>
+              <p className="text-sm font-light text-gray-200 dark:text-gray-400">
+                Already have an account?
+                <button
+                  onClick={() => navigate("/login")}
+                  className="mt-4 font-medium text-orange-500 hover:underline dark:text-primary-500 ml-1"
+                >
+                  Sign In
+                </button>
+              </p>
             </div>
           </div>
         </div>
