@@ -108,7 +108,7 @@ Go to this [link](https://judicio.vercel.app/) to use a working, deployed protot
 - [@RudranilChowdhury](https://github.com/Zephyrus2822) - Front - End Developer
 - [@AnuskaBiswas](https://github.com/anuska2027biswas) - Front - End Developer
 - [@ChandanKumar](https://github.com/Chandan-Kr-dev) - Back - End Developer
-- [@AdbulRehman](https://github.com/Abdul-Rahman-58) - GeminiAPI Training
+- [@AbdulRahman](https://github.com/epsilonstar-02) - GeminiAPI Training
 - [@AyashBera](https://github.com/Ayash-Bera) - UI/UX Designer 
 - [@ArnaDutta](https://github.com/arnadutta) - Proof-of-Concept and Design
 
