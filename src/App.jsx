@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Prisoner from "./components/Prisoner";
 import Tablee from "./components/judgedashboard";
 import AddPrisoner from "./components/AddPrisoner";
+import Dashboard from "./components/dash";
 import UpdatePrisoner from "./components/UpdatePrisoner";
 import AboutBail from "./components/AboutBail";
 import Eligibility from "./components/Eligibility";
@@ -13,7 +14,7 @@ import About from "./components/About";
 import AdminDashboard from "./components/AdminDashboard";
 import Modal from "./components/Modal";
 import AddCrime from "./components/AddCrime";
-import UserDashboard from './components/UserDashboard';
+import UserDashboard from "./components/UserDashboard";
 import Judgedashboard from "./components/judgedashboard";
 
 class ErrorBoundary extends React.Component {
@@ -36,7 +37,9 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return <Modal message="Something went wrong." onClose={this.handleClose} />;
+      return (
+        <Modal message="Something went wrong." onClose={this.handleClose} />
+      );
     }
 
     return this.props.children;
@@ -58,11 +61,12 @@ function App() {
           <Route path="/addprisoner" element={<AddPrisoner />} />
           {/* <Route path="/updateprisoner" element={<UpdatePrisoner />} /> */}
           <Route path="/eligiblecriminals" element={<Eligibility />} />
-          <Route path="/admindashboard" element={<AdminDashboard/>} />
+          <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route path="/addcrime" element={<AddCrime />} />
           <Route path="/user" element={<UserDashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/judgedashboard" element={<Judgedashboard/>} />
+          <Route path="/judgedashboard" element={<Judgedashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
