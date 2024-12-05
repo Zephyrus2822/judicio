@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import video3 from '../assets/video2.mp4';
-
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -54,7 +53,7 @@ const AdminDashboard = () => {
         console.error("Server Error", err);
       });
   };
-
+  const isValidMap = Array.isArray(users);
   // useEffect to fetch users when the component mounts
   useEffect(() => {
     fetchUsers();
@@ -86,7 +85,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="video-container3">
+    <div className="video-container3 flex justify-center">
       <video
         autoPlay
         muted
@@ -96,7 +95,7 @@ const AdminDashboard = () => {
         <source src={video3} type="video/mp4" />
       </video>
       <div className="relative w-full z-10 ">
-        <div className="cards ml-[220px] flex justify-start items-center">
+        <div className="cards my-20 ml-[215px] flex justify-start items-center gap-none">
           <div className="dashboard-btn">
             <span>
               <svg
@@ -120,7 +119,7 @@ const AdminDashboard = () => {
             onClick={handleClickOpen}
             className="cards ml-[370px] flex justify-start items-center"
           >
-            <div className="dashboard-btn-1 ">
+            <div className="dashboard-btn-1">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +141,7 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <div className="dashboard-conatiner border-2 bg-opacity-30 rounded-lg backdrop-blur-lg min-h-[40vh] w-[60vw] ml-[300px] p-10 flex justify-center items-center shadow-[0_4px_30px_rgba(255,69,0,0.9)]">
+        <div className="dashboard-conatiner border-2 bg-opacity-75 rounded-lg backdrop-blur-lg min-h-[40vh] w-[60vw] ml-[300px] p-10 flex justify-center items-center shadow-[0_4px_30px_rgba(255,69,0,0.9)]">
           <div className="w-full">
             <table className="w-full">
               <thead>
@@ -153,7 +152,7 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {users.length>0 ? users.map((user) => (
+                {isValidMap && users.length>0 ? users.map((user) => (
                   <tr key={user.Name} className="text-center text-white">
                     <td className="px-5">{user.UserName}</td>
                     <td className="px-5">{user.Email}</td>
@@ -236,7 +235,7 @@ const AdminDashboard = () => {
                   htmlFor="Liscensenumber"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Enter Liscense Number:{" "}
+                  Enter License Number:{" "}
                 </label>
                 <input
                   type="text"

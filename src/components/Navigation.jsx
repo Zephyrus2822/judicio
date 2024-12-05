@@ -54,6 +54,9 @@ const Navigation = () => {
               <li>
                 <a href="/aboutbail">Information</a>
               </li>
+              <li>
+                <a href="/user">Use Dashboard</a>
+              </li>
 
         </ul>
         

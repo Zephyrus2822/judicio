@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import "./Dash.css";
+import "./dash.css";
+import video2 from "../assets/video2.mp4";
 
-const Dashboard = () => {
+const Dash = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [aadhar, setAadhar] = useState("");
@@ -28,13 +29,18 @@ const Dashboard = () => {
   }, []);
 
   return (
+    <div className="video-container">
+      <video autoPlay muted loop className="video-background">
+          <source src={video2} type="video/mp4" />
+        </video>
     <div className="dashboard-container">
+      <h2 className="title">USER DASHBOARD</h2>
       {error && <p className="error-message">{error}</p>}
       <div className="profile-crime-container">
         <div className="profile-container">
           <div className="profile-image-container">
-            <p className="profile-image">img</p>
-          </div>
+             <img src="#" alt="prisoner-img" />  {/* will be a webcam based screenshot taking system  */}
+          </div>                    
           <div className="profile-details-container">
             <input
               className="input-field"
@@ -98,7 +104,8 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
-export default Dashboard;
+export default Dash;

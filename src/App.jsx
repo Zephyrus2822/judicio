@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Prisoner from "./components/Prisoner";
 import Tablee from "./components/judgedashboard";
 import AddPrisoner from "./components/AddPrisoner";
-import Dashboard from "./components/dash";
+import Dashboard from "./components/Dashboard";
 import UpdatePrisoner from "./components/UpdatePrisoner";
 import AboutBail from "./components/AboutBail";
 import Eligibility from "./components/Eligibility";
@@ -16,6 +16,7 @@ import Modal from "./components/Modal";
 import AddCrime from "./components/AddCrime";
 import UserDashboard from "./components/UserDashboard";
 import Judgedashboard from "./components/judgedashboard";
+import Dash from "./components/Dashboard";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -67,6 +68,7 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/judgedashboard" element={<Judgedashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
+         
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
