@@ -17,6 +17,7 @@ import AddCrime from "./components/AddCrime";
 import UserDashboard from "./components/UserDashboard";
 import Judgedashboard from "./components/judgedashboard";
 import Dash from "./components/Dashboard";
+import IImage from "./components/IImage"; //dont remove these testing things 
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/judgedashboard" element={<Judgedashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
-         
+          <Route path="/test" element={<IImage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
