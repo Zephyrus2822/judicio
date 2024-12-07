@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import video from "../assets/video03.mp4";
-import SignInWithGoogle from "./signInWithGoogle";
+import SignInWithGoogle from "./SignInWithGoogle";
 
 const Login = () => {
   const [UserName, setUserName] = useState("");
@@ -142,7 +142,7 @@ const Login = () => {
               </form>
                 {status && <p className="text-orangered">{status}</p>}
                 <p className="text-sm font-light text-gray-300 dark:text-gray-400">
-                  Don’t have an account yet?{" "}
+                  Do not have an account yet?{" "}
                   <Link
                     to="/register"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500 text-white"
