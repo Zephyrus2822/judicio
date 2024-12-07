@@ -1,4 +1,4 @@
-
+import React from "react";
 const ContactUs = () => {
   return (
     
@@ -9,7 +9,7 @@ const ContactUs = () => {
             <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
             <h1 className="Logo-1" >Judicio</h1>
 
-                <p className="text-base leading-relaxed text-gray-200 mt-7">"Law is the bedrock of a civilized society, ensuring order, justice, and the protection of rights." — Aristotle. This emphasizes the fundamental role of law in maintaining peace and fairness within any community.</p>
+                <p className="text-base leading-relaxed text-gray-200 mt-7">"Law is the bedrock of a civilized society, ensuring order, justice, and the protection of rights." — Aristotle. <br /> This emphasizes the fundamental role of law in maintaining peace and fairness within any community.</p>
 
                 <ul className="flex items-center space-x-3 mt-9">
                     <li>

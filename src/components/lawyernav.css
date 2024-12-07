@@ -1,0 +1,31 @@
+/* sizing of map container */
+.leaflet-container {
+    height: 50vh;
+    width: 80vw;
+    margin-bottom: 20vh;
+    margin-left: 10vw;
+    border: 3px solid black;
+    border-radius: 5px;   
+}
+
+
+/* css for the page itself */
+.main-container {
+    background-color: aqua;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+/* css for custom marker cluster */
+.cluster-icon {
+    background-color: #333;
+    height: 2em;
+    width: 2em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    box-shadow: 0 0 0px 5px #fff;
+}
