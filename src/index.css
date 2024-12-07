@@ -133,7 +133,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
+  width: 15px;
   height: 20px;
   background-color: rgb(234, 83, 28);
   border-radius: 50%;
@@ -148,7 +148,7 @@
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* .animated-button:hover {
+.animated-button:hover {
   box-shadow: 0 0 0 12px transparent;
   color: whitesmoke;
   border-radius: 12px;
@@ -179,7 +179,8 @@
   width: 220px;
   height: 220px;
   opacity: 1;
-} */
+}
+
 
 
 /*hero-section CSS*/
@@ -203,16 +204,16 @@
 
 .text-2 {
   font-size: 1.5rem;
-
   color: green;
   margin-left: 88px;
-  font-family: Robboto;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 /*video bckground*/
 .video-container {
   position: relative;
   height: 100vh;
+  width: 100vw;
   /* Full viewport height */
   overflow: hidden;
   /* Hide anything outside the container */
@@ -221,6 +222,7 @@
 .video-container2 {
   position: relative;
   height: 100vh;
+  width: 100vw;
   /* Full viewport height */
   overflow: hidden;
   /* Hide anything outside the container */
@@ -229,7 +231,8 @@
 
 .video-container3 {
   position: relative;
-  height: 125vh;
+  height: 100vh;
+  width: 100vw;
   /* Full viewport height */
   overflow: hidden;
   /* Hide anything outside the container */
@@ -237,7 +240,8 @@
 }
 .video-container4 {
   position: relative;
-  height: 140vh;
+  height: 100vh;
+  width: 100vw;
   /* Full viewport height */
   overflow: hidden;
   /* Hide anything outside the container */
@@ -264,15 +268,19 @@
   font-size: 2rem;
   color: rgb(234, 83, 28);
   margin-left: 50px;
-  font-family: Robboto;
+  width: 200px;
+  justify-content: start;
+  align-items: start;
+  flex: 1;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.Logo-1 {
+.Logo-h1 {
   margin-top: 12px;
   font-size: 2rem;
   color: rgb(234, 83, 28);
   margin-left: -2px;
-  font-family: Robboto;
+  font-family: 'Times New Roman', Times, serif;
 
 }
 
@@ -289,13 +297,11 @@
 
 nav {
   display: flex;
-  height: 70px;
+  height: 75px;
   justify-content: space-between;
   width: auto;
   margin: 0 auto;
-
- 
-  background-color: black; /*set to black in build version*/
+  background-color: black; 
   opacity: 0.9;
 }
 
@@ -303,10 +309,10 @@ nav ul {
   display: flex;
   list-style: none;
   gap: 50px;
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   font-weight: 500;
   color: whitesmoke;
-  font-family: Robboto;
+  font-family: Roboto;
 }
 
 nav li {
@@ -316,7 +322,7 @@ nav li {
 
 nav li:hover {
   transform: scale(1.1);
-  color: grey; /*change to aquamrine later in build version*/
+  color: aquamarine; 
 }
 
 
@@ -365,9 +371,6 @@ nav li:hover {
     margin-right: 40px;
   }
 
-  .proj-name {
-    font-size: 24px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -417,41 +420,6 @@ nav li:hover {
 }
 
 
-/*Aboutbail CSS*/
-
-.bailbtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 150px;
-
-}
-
-.bailbtn-2 {
-  background-color: rgba(0, 0, 0, 0.4);
-  font-size: 1rem;
-  padding: 10px;
-  border: 0.75px solid orange;
-  transition: all 0.5s ease-in;
-}
-
-.bailbtn-2:hover {
-  background-color: rgb(239, 109, 62);
-  transform: scale(1.2);
-  font-size: 1.1rem;
-}
-
-.bailbox {
-  width: 75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-}
 
 /* changing the CSS of the DASHBOARD*/
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaArrowDown } from "react-icons/fa";
 import video2 from "../assets/video2.mp4";
+import "./aboutbail.css"
 
 /**
  * AboutBail component - Renders a page with a video background and displays

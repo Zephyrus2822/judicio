@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 // import { auth } from "./firebase";
 import { jwtDecode } from "jwt-decode";
+
 import { useState } from "react";
 
 const Navigation = () => {
@@ -27,9 +28,7 @@ const Navigation = () => {
           <h1 className="Logo">Judicio</h1>
         </div>
         <ul>
-        <a className="proj-name" href="/">
-              Home
-            </a>
+        <li><a href="/">Home</a></li>
             <li>
                 <a href="/About">Docs</a>
               </li>
@@ -55,7 +54,7 @@ const Navigation = () => {
                 <a href="/aboutbail">Information</a>
               </li>
               <li>
-                <a href="/user">Use Dashboard</a>
+                <a href="/dashboard">Use Dashboard</a>
               </li>
 
         </ul>
