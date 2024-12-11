@@ -21,7 +21,7 @@ FROM nginx:alpine
 COPY --from=0 /app/dist /usr/share/nginx/html
 
 # Expose port 3000 to the outside world
-EXPOSE 3000
+EXPOSE 5000
 
 # Start Nginx when the container has been started
 CMD ["nginx", "-g", "daemon off;"]
