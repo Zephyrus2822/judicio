@@ -18,7 +18,7 @@ RUN npm run build
 
 # Use a lightweight web server to serve the React application
 FROM nginx:alpine
-COPY --from=0 /app/build /usr/share/nginx/html
+COPY --from=0 /app/dist /usr/share/nginx/html
 
 # Expose port 3000 to the outside world
 EXPOSE 3000
