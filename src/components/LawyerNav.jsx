@@ -151,27 +151,16 @@ const LawyerNav = () => {
   // Add this new useEffect for geolocation
   useEffect(() => {
     const getUserLocation = () => {
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            setUserLocation([latitude, longitude]);
-            
-            // Find nearest city to user's location
-            const nearestCity = findNearestCity([latitude, longitude]);
-            setSelectedCity(nearestCity);
-            setInitialMapCenter([latitude, longitude]);
-          },
-          (error) => {
-            console.warn("Error getting location:", error);
-            // Fallback to default location (Kolkata)
-            setInitialMapCenter(lawyers.Kolkata[0].geocode);
-          }
-        );
-      } else {
-        console.warn("Geolocation not supported");
-        setInitialMapCenter(lawyers.Kolkata[0].geocode);
-      }
+      // Hardcoded coordinates for Belgaum area
+      const hardcodedLatitude = 15.789910;
+      const hardcodedLongitude = 74.481126;
+      
+      setUserLocation([hardcodedLatitude, hardcodedLongitude]);
+      
+      // Find nearest city to user's location
+      const nearestCity = findNearestCity([hardcodedLatitude, hardcodedLongitude]);
+      setSelectedCity(nearestCity);
+      setInitialMapCenter([hardcodedLatitude, hardcodedLongitude]);
     };
 
     getUserLocation();
@@ -249,7 +238,7 @@ const LawyerNav = () => {
         {initialMapCenter && (
           <MapContainer
             center={initialMapCenter}
-            zoom={6}
+            zoom={5}
             key={`${selectedCity}-${selectedType}`}
           >
             <MapUpdater center={locations[selectedCity][0].geocode} />
