@@ -141,14 +141,15 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <div className="dashboard-conatiner border-2 bg-opacity-75 rounded-lg backdrop-blur-lg min-h-[40vh] w-[60vw] ml-[300px] p-10 flex justify-center items-center shadow-[0_4px_30px_rgba(255,69,0,0.9)]">
+        <div className="dashboard-conatiner border-2 bg-opacity-75 rounded-lg backdrop-blur-lg min-h-[40vh] w-[70vw] ml-[300px] p-10 flex justify-center items-center shadow-[0_4px_30px_rgba(255,69,0,0.9)]">
           <div className="w-full">
             <table className="w-full">
               <thead>
                 <tr className="border-b-2">
-                  <th className="px-5 text-2xl text-center w-1/3 text-orange-500">Name</th>
-                  <th className="px-5 text-2xl text-center w-1/3 text-orange-500">Email</th>
-                  <th className="px-5 text-2xl text-center w-1/3 text-orange-500">User Type</th>
+                  <th className="px-5 text-2xl text-center w-1/4 text-orange-500">Name</th>
+                  <th className="px-5 text-2xl text-center w-1/4 text-orange-500">Email</th>
+                  <th className="px-5 text-2xl text-center w-1/4 text-orange-500">Court</th>
+                  <th className="px-5 text-2xl text-center w-1/4 text-orange-500">User Type</th>
                 </tr>
               </thead>
               <tbody>
@@ -156,6 +157,7 @@ const AdminDashboard = () => {
                   <tr key={user.Name} className="text-center text-white">
                     <td className="px-5">{user.UserName}</td>
                     <td className="px-5">{user.Email}</td>
+                    <td className="px-5">{user.profileInfo.AssignedCourt}</td>
                     <td className="px-5">{user.userRole}</td>
                   </tr>
                 )):null}

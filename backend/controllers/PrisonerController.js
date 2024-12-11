@@ -4,19 +4,21 @@ import { Prisoner } from "../models/Prisoner.models.js";
 const addprisoner = async (req, res) => {
   const { Name, Fname, adharnum, firdate, Address, Phone, witness, crime } =
     req.body;
+  console.log(Name, Fname, adharnum, firdate, Address, Phone, witness, crime)
 
   try {
+    
     const prisoner = await Prisoner.findOne({ AddharNum: adharnum });
     if (prisoner) {
       return res.status(400).json("Prisoner already exists");
     } else {
         const crimess=await crimes.findOne({Crime:crime})
-        console.log(crimess)
+        // console.log(crimess)
         const addprisoner=await Prisoner.create({
         Name: Name,
         FathersName: Fname,
         AddharNum: adharnum,
-        contact_info: {
+        Contact_info: {
           Phone: Phone,
           Address: Address,
         },
