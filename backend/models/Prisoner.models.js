@@ -41,6 +41,7 @@ const prisonerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    
     CrimeCategory:{
       type: String,
       required:true
