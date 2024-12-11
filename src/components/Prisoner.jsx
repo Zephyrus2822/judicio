@@ -5,6 +5,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import video from "../assets/video04.mp4";
+import Swal from "sweetalert2";
 
 const Prisoner = () => {
   {
@@ -36,6 +37,7 @@ const Prisoner = () => {
   const [minbailamt, setminbailamt] = useState("");
   const [maxbailamt, setmaxbailamt] = useState("");
   const [status, setstatus] = useState("");
+  const [Phone, setPhone] = useState("")
   const [bailstatus, setbailstatus] = useState("");
 
   const [adharimage, setadharimage] = useState(null);
@@ -124,6 +126,7 @@ const Prisoner = () => {
         Name,
         FName,
         Adharnum  , 
+        Phone,
         adharimageurl,
         EId,
         FirDate,
@@ -134,6 +137,14 @@ const Prisoner = () => {
       })
       .then(res=>{
         console.log(res)
+        if(res.data==='Application submitted successfully'){
+          Swal.fire({
+            title: "Application Submitted Successfully",
+            text: "Your application has been submitted successfully. You will receive a confirmation via email shortly.",
+            icon: "success",
+            confirmButtonText: "Close",
+          })
+        }
         // alert("Application submitted successfully")
       })
     }
@@ -234,6 +245,17 @@ const Prisoner = () => {
                   name="FName"
                   value={FName}
                   onChange={(e) => setFName(e.target.value)}
+                  type="text"
+                  placeholder="Enter Father's Name"
+                  required
+                />
+              </div>
+              <div className="input-box">
+                <span className="details text-white">Phone number</span>
+                <input
+                  name="FName"
+                  value={Phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   type="text"
                   placeholder="Enter Father's Name"
                   required

@@ -45,7 +45,7 @@ const Dash = () => {
       <video autoPlay muted loop className="video-background">
         <source src={video2} type="video/mp4" />
       </video>
-      <div className="dashboard-container">
+      {/* <div className="dashboard-container">
         <h2 className="title">USER DASHBOARD</h2>
         {error && <p className="error-message">{error}</p>}
         <div className="profile-crime-container">
@@ -130,7 +130,32 @@ const Dash = () => {
           />
           <button className="capture-button" onClick={capture}>Capture Screenshot</button>
         </Popup>
-      )}
+      )} */}
+      <section className="text-center mt-5 mx-">
+        <div className="mx-auto text-white">
+          <h1 className="text-2xl text-white">Applied Appliactions</h1>
+          <table>
+            <thead className="text-2xl ">
+              <tr className="">
+                <th className="px-5">Application Id</th>
+                <th className="px-5">Applicant Name</th>
+                <th className="px-5">Crime</th>
+                <th className="px-5">Lawyer Applied</th>
+                <th className="px-8">Status</th>
+              </tr>
+            </thead>
+            <tbody className="text-xl font-semibold ">
+              <tr>
+                <td>vhfbev</td>
+                <td>vkjebfwv</td>
+                <td>rbqi</td>
+                <td>kre</td>
+                <td>gw</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
 };
