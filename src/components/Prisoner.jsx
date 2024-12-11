@@ -19,34 +19,44 @@ const Prisoner = () => {
   const [showapplication, setshowapplication] = useState(false);
   const ref = useRef(null);
   const [Name, setName] = useState("");
-  const [FatherName, setFatherName] = useState("");
+  const [FName, setFName] = useState("");
   const [polstn, setpolstn] = useState("");
   const [age, setage] = useState("");
-  const [voter, setvoter] = useState("");
+  const [EId, setEId] = useState("");
   const [resadd, setresadd] = useState("");
   const [peradd, setperadd] = useState("");
-  const [adharnum, setadharnum] = useState("");
+  const [Adharnum, setAdharnum]=useState("");
   const [prisonedbefore, setprisonedbefore] = useState("");
-  const [firdate, setfirdate] = useState("");
-  const [datetrial, setdatetrial] = useState("");
+  const [FirDate, setfirdate] = useState("");
+  const [TrialDate, setTrialDate] = useState("");
   const [crimecat, setcrimecat] = useState("");
   const [crime, setcrime] = useState("");
   const [gender, setgender] = useState("");
   const [userstatus, setuserstatus] = useState("");
-  const [BailAmt, setBailAmt] = useState("");
+  const [minbailamt, setminbailamt] = useState("");
+  const [maxbailamt, setmaxbailamt] = useState("");
   const [status, setstatus] = useState("");
   const [bailstatus, setbailstatus] = useState("");
 
   const [adharimage, setadharimage] = useState(null);
   const [adharimageurl, setadharimageurl] = useState("");
+  // Name,
+  //       FName,
+        // Adharnum      adharimg,
+  //       EId,
+  //       FirDate,
+  //       Crime,
+        // JudgeName,
+  //       LawyerName,
+  //       TrialDate,
 
-{
+  {
     /*form status*/
   }
   const [isuploading, setisuploading] = useState(false);
 
-  const [lawyer, setlawyer] = useState("");
-  const [judge, setjudge] = useState("");
+  const [LawyerName, setLawyerName] = useState("");
+  const [JudgeName, setJudgeName] = useState("");
 
   const [selectedOption, setselectedOption] = useState(null);
   const [index, setindex] = useState(0);
@@ -56,6 +66,7 @@ const Prisoner = () => {
       const users = await axios.get(
         `${import.meta.env.VITE_DEV_URL}auth/users`
       );
+      // console.log(users)
       const crimes = await axios.get(
         `${import.meta.env.VITE_DEV_URL}api/cases/crimes`
       );
@@ -73,10 +84,10 @@ const Prisoner = () => {
     fetchdata();
   }, []);
 
-  const judgesss = Users.filter((user) => user.userRole === "Judge");
-  console.log(judgesss);
-  const Lawyersss = Users.filter((user) => user.userRole === "Lawyer");
-  console.log(Lawyersss);
+  const JudgeNamesss = Users.filter((user) => user.userRole === "Judge");
+  console.log(JudgeNamesss);
+  const LawyerNamesss = Users.filter((user) => user.userRole === "Lawyer");
+  console.log(LawyerNamesss);
 
   const crimeCategory = [
     "Offence Against Women",
@@ -90,17 +101,42 @@ const Prisoner = () => {
   ];
   const crimess = crimes.filter((crime) => crime.CrimeCategory === crimecat);
 
-  console.log(crimes);
+  // console.log(crimes);
   // const crimecatnn=crimes.filter(crime=>crime.crimeCategory===crimecat)
   // console.log(crimecatnn)
 
-  const check=async(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // const applicable=crime.
-  }
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const applicable = crimes.filter((cr) => cr.Crime === crime);
+    console.log(applicable[0]);
+    setminbailamt(applicable[0].BailDetails.MinBailAmount);
+    setmaxbailamt(applicable[0].BailDetails.MaxBailAmount);
 
+    if (applicable[0].BailDetails.Bailable === "No") {
+      setstatus(
+        "your Crime is not applicable for Bail . Kindly contact the nearest Court "
+      );
+    } else {
+      setstatus(
+        "your Crime is applicable for Bail . please download the Application"
+      );
+      axios.post(`${import.meta.env.VITE_DEV_URL}api/applications/apply`, {
+        Name,
+        FName,
+        Adharnum  , 
+        adharimageurl,
+        EId,
+        FirDate,
+        crime,
+        JudgeName,
+        LawyerName,
+        TrialDate,
+      })
+      .then(res=>{
+        console.log(res)
+        // alert("Application submitted successfully")
+      })
+    }
   };
 
   const printpdf = async () => {
@@ -195,9 +231,9 @@ const Prisoner = () => {
               <div className="input-box">
                 <span className="details text-white">Son Of (S/O) (D/O)</span>
                 <input
-                  name="FatherName"
-                  value={FatherName}
-                  onChange={(e) => setFatherName(e.target.value)}
+                  name="FName"
+                  value={FName}
+                  onChange={(e) => setFName(e.target.value)}
                   type="text"
                   placeholder="Enter Father's Name"
                   required
@@ -238,22 +274,22 @@ const Prisoner = () => {
                 />
               </div>
               <div className="input-box">
-                <span className="details text-white">Voter ID Number</span>
+                <span className="details text-white">EId ID Number</span>
                 <input
-                  name="voter"
-                  value={voter}
-                  onChange={(e) => setvoter(e.target.value)}
+                  name="EId"
+                  value={EId}
+                  onChange={(e) => setEId(e.target.value)}
                   type="text"
-                  placeholder="Enter Voter ID"
+                  placeholder="Enter EId ID"
                   required
                 />
               </div>
               <div className="input-box">
                 <span className="details text-white">Aadhar Number</span>
                 <input
-                  name="adharnum"
-                  value={adharnum}
-                  onChange={(e) => setadharnum(e.target.value)}
+                  name="Adharnum"             
+                  value={Adharnum}
+                  onChange={(e) => setAdharnum(e.target.value)}
                   type="text"
                   placeholder="Enter Aadhar number"
                   required
@@ -276,7 +312,7 @@ const Prisoner = () => {
                 <span className="details text-white">FIR Lodge Date</span>
                 <input
                   name="firdate"
-                  value={firdate}
+                  value={FirDate}
                   onChange={(e) => setfirdate(e.target.value)}
                   type="date"
                   placeholder="Enter FIR date"
@@ -286,9 +322,9 @@ const Prisoner = () => {
               <div className="input-box">
                 <span className="details text-white">Date of Trial</span>
                 <input
-                  name="datetrial"
-                  value={datetrial}
-                  onChange={(e) => setdatetrial(e.target.value)}
+                  name="TrialDate"
+                  value={TrialDate}
+                  onChange={(e) => setTrialDate(e.target.value)}
                   type="date"
                   placeholder="Enter password"
                   required
@@ -333,35 +369,34 @@ const Prisoner = () => {
                   ))}
                 </select>
 
-                {/* Judges */}
-                <label htmlFor="">Judges</label>
+                {/* JudgeNames */}
+                <label htmlFor="">JudgeNames</label>
                 <select
                   name=""
-                  value={judge}
-                  onChange={(e) => setjudge(e.target.value)}
+                  value={JudgeName}
+                  onChange={(e) => setJudgeName(e.target.value)}
                   id=""
                 >
-                  <option value="">Select your Judge</option>
-                  {judgesss.map((judge, i) => (
-                    <option key={i}>{judge.profileInfo.Name}</option>
+                  <option value="">Select your JudgeName</option>
+                  {JudgeNamesss.map((JudgeName, i) => (
+                    <option key={i} value={JudgeName.Email}>{JudgeName.profileInfo.Name}</option>
                   ))}
                 </select>
 
-                {/* Lawyers */}
-                
-                <label htmlFor="">Lawyers</label>
+                {/* LawyerNames */}
+
+                <label htmlFor="">LawyerNames</label>
                 <select
                   name=""
-                  value={lawyer}
-                  onChange={(e) => setlawyer(e.target.value)}
+                  value={LawyerName}
+                  onChange={(e) => setLawyerName(e.target.value)}
                   id=""
                 >
-                  <option value="">Select your Lawyer</option>
-                  {Lawyersss.map((lawyer, i) => (
-                    <option key={i}>{lawyer.profileInfo.Name}</option>
+                  <option value="">Select your LawyerName</option>
+                  {LawyerNamesss.map((LawyerName, i) => (
+                    <option key={i} value={LawyerName.Email}>{LawyerName.profileInfo.Name}</option>
                   ))}
                 </select>
-                
               </div>
 
               <div className="gender-details ml-2">
@@ -434,11 +469,17 @@ const Prisoner = () => {
         </div>
 
         <div className="btns grid grid-cols-">
-          <div className="status text-center space-y-3 mt-5">
-            <h3 className="text-3xl text-white font-semibold ">{status}</h3>
-            <h3 className="text-3xl text-white 4font-semibold ">{BailAmt}</h3>
-          </div>
-          {status === "Bailable" ? (
+          {status.length > 0 ? (
+            <div className="status text-center space-y-3 mt-5">
+              <h3 className="text-3xl text-white font-semibold ">{status}</h3>
+              <h3 className="text-3xl text-white font-semibold ">
+                Bail Amount Ranges from {minbailamt} - {maxbailamt}
+              </h3>
+            </div>
+          ) : null}
+
+          {status ===
+          "your Crime is applicable for Bail . please download the Application" ? (
             <button
               onClick={() => setshowapplication(!showapplication)}
               className="button"
@@ -517,7 +558,7 @@ const Prisoner = () => {
                       </span>{" "}
                       S/o. Sh.
                       <span className="border-b-2 botext-white py-2">
-                        {FatherName}
+                        {FName}
                       </span>
                       <br />
                       R/o
@@ -566,7 +607,7 @@ const Prisoner = () => {
                       </span>{" "}
                       S/o. Sh.
                       <span className="border-b-2 botext-white py-2">
-                        {FatherName}
+                        {FName}
                       </span>{" "}
                       R/o _______________ <br />
                       ____________________________________________________
@@ -576,7 +617,7 @@ const Prisoner = () => {
                       </span>{" "}
                       S/o{" "}
                       <span className="border-b-2 botext-white py-2">
-                        {FatherName}
+                        {FName}
                       </span>{" "}
                       shall attend the appellate <br />
                       court every date in which any appeal filed against the
@@ -653,7 +694,7 @@ const Prisoner = () => {
                       <br />
                       .......................... and Election Card No.
                       <span className="border-b-2 botext-white py-2 border-dotted">
-                        {voter}
+                        {EId}
                       </span>{" "}
                       <br />
                     </p>

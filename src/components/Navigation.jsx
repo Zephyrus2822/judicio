@@ -59,6 +59,9 @@ const Navigation = () => {
               <li>
                 <a href="/judgedashboard">Judge's Dashboard</a>
               </li>
+              <li>
+                <a href="/map">map shit</a>
+              </li>
 
         </ul>
         

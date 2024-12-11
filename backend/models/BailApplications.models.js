@@ -44,9 +44,10 @@ const applicationSchema=new mongoose.Schema({
         },
         
         Crime: {
-            type: String,
-            required: true,
+            type:Array,
+            default:[]
         },
+        
           
     },
     Status:{

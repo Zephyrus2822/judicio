@@ -2,7 +2,7 @@ import { crimes } from "../models/crime.models.js";
 import { Prisoner } from "../models/Prisoner.models.js";
 
 const addprisoner = async (req, res) => {
-  const { Name, Fname, adharnum, firdate, Address, Phone, witness, crime } =
+  const { Name, Fname, adharnum, firdate, Address, Phone, witness, crime} =
     req.body;
   console.log(Name, Fname, adharnum, firdate, Address, Phone, witness, crime)
 
