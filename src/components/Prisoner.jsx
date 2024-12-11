@@ -4,15 +4,18 @@ import axios from "axios";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import video from '../assets/video04.mp4';
+import video from "../assets/video04.mp4";
 
 const Prisoner = () => {
-  {/*geting api details*/}
-  const [Users, setUsers] = useState([])
+  {
+    /*geting api details*/
+  }
+  const [Users, setUsers] = useState([]);
   const [crimes, setcrimes] = useState([]);
 
-
-  {/*information*/}
+  {
+    /*information*/
+  }
   const [showapplication, setshowapplication] = useState(false);
   const ref = useRef(null);
   const [Name, setName] = useState("");
@@ -26,31 +29,36 @@ const Prisoner = () => {
   const [prisonedbefore, setprisonedbefore] = useState("");
   const [firdate, setfirdate] = useState("");
   const [datetrial, setdatetrial] = useState("");
-  const [conviction, setconviction] = useState("")
+  const [crimecat, setcrimecat] = useState("");
   const [crime, setcrime] = useState("");
   const [gender, setgender] = useState("");
   const [userstatus, setuserstatus] = useState("");
   const [BailAmt, setBailAmt] = useState("");
   const [status, setstatus] = useState("");
   const [bailstatus, setbailstatus] = useState("");
-  
+
   const [adharimage, setadharimage] = useState(null);
   const [adharimageurl, setadharimageurl] = useState("");
 
-  {/*form status*/}
+{
+    /*form status*/
+  }
   const [isuploading, setisuploading] = useState(false);
-  
 
   const [lawyer, setlawyer] = useState("");
   const [judge, setjudge] = useState("");
- 
-  const [selectedOption, setselectedOption] = useState(null)
+
+  const [selectedOption, setselectedOption] = useState(null);
   const [index, setindex] = useState(0);
 
   const fetchdata = async () => {
     try {
-      const users=await axios.get(`${import.meta.env.VITE_DEV_URL}auth/users`)
-      const crimes=await axios.get(`${import.meta.env.VITE_DEV_URL}api/cases/crimes`)
+      const users = await axios.get(
+        `${import.meta.env.VITE_DEV_URL}auth/users`
+      );
+      const crimes = await axios.get(
+        `${import.meta.env.VITE_DEV_URL}api/cases/crimes`
+      );
 
       // console.log(crimes)
       setcrimes(crimes.data);
@@ -65,19 +73,34 @@ const Prisoner = () => {
     fetchdata();
   }, []);
 
-  const judgesss=Users.filter(user=>user.userRole==="Judge")
-  // console.log(judgesss)
-  const Lawyersss=Users.filter(user=>user.userRole==="Lawyer")
-  // console.log(Lawyersss)
-  
-  console.log(crimes)
-  // const convictionnn=crimes.filter(crime=>crime.crimeCategory===conviction)
-  // console.log(convictionnn)
+  const judgesss = Users.filter((user) => user.userRole === "Judge");
+  console.log(judgesss);
+  const Lawyersss = Users.filter((user) => user.userRole === "Lawyer");
+  console.log(Lawyersss);
 
+  const crimeCategory = [
+    "Offence Against Women",
+    "Offence Against Children",
+    "Offence Against Persons",
+    "Offence Against the State",
+    "Offence Against Property",
+    "Offence Relating to Marriage and Family",
+    "Offenses Against Foreigners",
+    "Economic Offenses",
+  ];
+  const crimess = crimes.filter((crime) => crime.CrimeCategory === crimecat);
+
+  console.log(crimes);
+  // const crimecatnn=crimes.filter(crime=>crime.crimeCategory===crimecat)
+  // console.log(crimecatnn)
+
+  const check=async(e)=>{
+    e.preventDefault();
+    // const applicable=crime.
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
   };
 
   const printpdf = async () => {
@@ -100,7 +123,7 @@ const Prisoner = () => {
       console.error("Error printing the pdf");
     }
   };
-  
+
   const uploadImage = async (e) => {
     setisuploading(true);
     e.preventDefault();
@@ -123,7 +146,7 @@ const Prisoner = () => {
       alert("image uploaded successfully");
       setisuploading(false);
     } catch (error) {
-      console.error("An error occurred while uploading",  error);
+      console.error("An error occurred while uploading", error);
     }
   };
 
@@ -131,11 +154,18 @@ const Prisoner = () => {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden justify-center ">
-      <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z--10">
+      <video
+        autoPlay
+        muted
+        loop
+        className="absolute top-0 left-0 w-full h-full object-cover z--10"
+      >
         <source src={video} type="video/mp4" />
       </video>
       <div className="container">
-        <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-semibold">REGISTRATION</div>
+        <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-semibold">
+          REGISTRATION
+        </div>
         <div className="content p-5">
           <form onSubmit={handleSubmit}>
             <div className="user-details">
@@ -275,100 +305,63 @@ const Prisoner = () => {
                   gap: "20px",
                 }}
               >
-                <div className="conviction text-white">
-                  <label
-                    htmlFor="crime"
-                    style={{ fontSize: "16px;", fontWeight: "500;" }}
-                  >
-                    Convicted For:
-                  </label>
+                {/* crimeCategory */}
+                {/* crimeCategory */}
 
-                  <select name="conviction" id="conviction"/>
+                <label htmlFor="">Crime Category</label>
+                <select
+                  value={crimecat}
+                  onChange={(e) => setcrimecat(e.target.value)}
+                >
+                  <option value="">Select Crime Category</option>
+                  {crimeCategory.map((cat) => (
+                    <option key={cat}>{cat}</option>
+                  ))}
+                </select>
 
-                  
-
-                  <datalist id="conviction">
-                    {crimes.length>0 ? crimes.map((crime,i)=>(
-
-                    <option key={i} value={crime.CrimeCategory}/>
-                    )):null}
-                   
-                  </datalist>
-                </div>
-
-                <div className="conviction text-white mr-[100px] ml-1 mt-10">
-                  <label
-                    htmlFor="crime"
-                    style={{ fontSize: "16px;", fontWeight: "500;" }}
-                  >
-                    Crime:
-                  </label>
-                  <input
-                    className="rounded text-black border-[2px] ml-5 px-2 py-1"
-                    list="crimess"
-                    name="crime"
-                    value={crime}
-                    onChange={(e) => setcrime(e.target.value)}
-                    id=""
-                    placeholder="Select convicted"
-                  />
-
-                  <datalist id="crimess">
-                    {/* {crimes.map((crime, index) => (
-                      <option hidden={index + 1 !== crime.id}  key={index} value={crime.crime}></option>
-                    ))} */}
-                  </datalist>
-                </div>
+                {/*Crimes*/}
+                <label id="crime1">CRIME</label>
+                <select
+                  name=""
+                  value={crime}
+                  onChange={(e) => setcrime(e.target.value)}
+                  id=""
+                >
+                  <option value="">Select Crime</option>
+                  {crimess.map((crimee, i) => (
+                    <option key={i}>{crimee.Crime}</option>
+                  ))}
+                </select>
 
                 {/* Judges */}
-                <div className="conviction text-white mr-[100px]">
-                  <label
-                    htmlFor="judge"
-                    style={{ fontSize: "16px;", fontWeight: "500;" }}
-                  >
-                    Judge :
-                  </label>
-                  <input
-                    className="rounded text-black border-[2px] ml-5 px-2 py-1"
-                    list="judges"
-                    name="judge"
-                    value={judge}
-                    onChange={(e) => setjudge(e.target.value)}
-                    id=""
-                    placeholder="Select your Judge to apply"
-                  />
-
-                  <datalist id="judges">
-                     {judgesss.length>0 ?judgesss.map((judge, i) => (
-                      <option   key={index} value={judge.profileInfo.Name}></option>
-                    )):null} 
-                  </datalist>
-                </div>
+                <label htmlFor="">Judges</label>
+                <select
+                  name=""
+                  value={judge}
+                  onChange={(e) => setjudge(e.target.value)}
+                  id=""
+                >
+                  <option value="">Select your Judge</option>
+                  {judgesss.map((judge, i) => (
+                    <option key={i}>{judge.profileInfo.Name}</option>
+                  ))}
+                </select>
 
                 {/* Lawyers */}
-                <div className="conviction text-white mr-[100px] -ml-2">
-                  <label
-                    htmlFor="Lawyer"
-                    style={{ fontSize: "16px;", fontWeight: "500;" }}
-                  >
-                    Lawyer :
-                  </label>
-                  <input
-                    className="rounded text-black border-[2px] ml-5 px-2 py-1"
-                    list="Lawyers"
-                    name="Lawyers"
-                    value={lawyer}
-                    onChange={(e) => setlawyer(e.target.value)}
-                    id=""
-                    placeholder="Select Lawyer"
-                  />
-
-                  <datalist id="Lawyers">
-                  {Lawyersss.length>0?Lawyersss.map((lawyer, index) => (
-                      <option  key={index} value={lawyer.profileInfo.Name}></option>
-                    )):null} 
-                  </datalist>
-                </div>
+                
+                <label htmlFor="">Lawyers</label>
+                <select
+                  name=""
+                  value={lawyer}
+                  onChange={(e) => setlawyer(e.target.value)}
+                  id=""
+                >
+                  <option value="">Select your Lawyer</option>
+                  {Lawyersss.map((lawyer, i) => (
+                    <option key={i}>{lawyer.profileInfo.Name}</option>
+                  ))}
+                </select>
+                
               </div>
 
               <div className="gender-details ml-2">
@@ -428,8 +421,12 @@ const Prisoner = () => {
                   </button>
                 </div>
 
-                <button disabled={isuploading} className="button ml-2" type="submit">
-                  Apply for Bail
+                <button
+                  disabled={isuploading}
+                  className="button ml-2"
+                  type="submit"
+                >
+                  Check for Bail
                 </button>
               </div>
             </div>
