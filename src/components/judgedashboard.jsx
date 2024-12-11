@@ -20,6 +20,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import App from "../App";
 
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
+
 export default function Judgedashboard() {
   const [open, setOpen] = useState(false);
 
@@ -68,6 +71,17 @@ export default function Judgedashboard() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  //sending email
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    axios.get(`${import.meta.env.VITE_DEV_URL}send-email`)
+    .then(res=>{
+      console.log(res)
+    })
   };
   return (
     <div className="video-container">
@@ -126,18 +140,12 @@ export default function Judgedashboard() {
             >
               <DialogTitle>{"Enter Message"}</DialogTitle>
               <DialogContent>
-                <form action="" onSubmit={handlesubmit}>
-                  {/* <label htmlFor="">Enter Message</label> */}
+                <form className="h-40 w-80" ref={form} onSubmit={sendEmail}>
+                  
+                  
+                  <textarea className="text-2xl" placeholder="Enter the Message" name="message" />
                   <br />
-                  <input
-                    value={message}
-                    onChange={(e) => setmessage(e.target.value)}
-                    className="border-black px-2 py-1 rounded-md"
-                    type="text"
-                    placeholder="Enter the message for accepting or rejecting"
-                  />
-                  <br />
-                  <button type="submit">Submit</button>
+                  <input className="border-2 border-black px-2 py-1 text-xl" type="submit" value="Send" />
                 </form>
               </DialogContent>
               <DialogActions>
