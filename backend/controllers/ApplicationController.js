@@ -7,6 +7,7 @@ const apply = async (req, res) => {
   const {
     Name,
     FName,
+    Phone,
     Adharnum,
     adharimageurl,
     EId,
@@ -17,16 +18,7 @@ const apply = async (req, res) => {
     TrialDate,
   } = req.body;
   console.log(req.body);
-  console.log( Name,
-    FName,
-    Adharnum,
-    adharimageurl,
-    EId,
-    FirDate,
-    crime,
-    JudgeName,
-    LawyerName,
-    TrialDate,)
+  
 
   try {
     
@@ -46,6 +38,7 @@ const apply = async (req, res) => {
       applicantInfo: {
         prisoner_id: applicant._id,
         Name: Name,
+        Phone:Phone,
         FathersName: FName,
         AddharNum: Adharnum,
         AddharImage: adharimageurl,

@@ -23,12 +23,12 @@ const AboutBail = () => {
   const fetchdata = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_DEV_URL}api/crimes` // replace ${import.meta.env.VITE_DEV_URL} with below before pushing
+        `${import.meta.env.VITE_DEV_URL}api/cases/crimes` // replace ${import.meta.env.VITE_DEV_URL} with below before pushing
         //https://judicio-server.onrender.com/
       );
       console.log(response.data);
       setCrimes(response.data);
-      console.log(crimes);
+      
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +57,11 @@ const AboutBail = () => {
     setindex(i);
     setActiveButton(i);
   };
-  const isValidArray = Array.isArray(crimes); //checks if 'crimes' is an array, useful for debugging later
+
+  const listedCrime=crimes.filter(crimee=>crimee.CrimeCategory===crimebtn[index])
+  console.log(crimebtn[index])
+  console.log(listedCrime)
+  // const isValidArray = Array.isArray(crimes); //checks if 'crimes' is an array, useful for debugging later
   return (
     
     <>
@@ -103,7 +107,7 @@ const AboutBail = () => {
                 paddingRight: '10px', // Optional: adds some space for better look with the scrollbar
               }}
             >
-              {isValidArray && crimes.length>0 ? (crimes.map((crimes, i) => (
+              { crimes.length>0 ? (crimes.map((crime, i) => (
                 <div
                   key={i}
                   className="crime mb-10 border-[1px] p-3 space-y-2 rounded-lg border-black"
@@ -114,7 +118,7 @@ const AboutBail = () => {
                     width: '75%',
                     marginLeft: '200px',
                   }}
-                  hidden={index + 1 !== crimes.id}
+                  
                 >
                   <h2 className="text-xl text-gray-200">
                     <span className="font-normal">Crime :</span> {crime.crime}
