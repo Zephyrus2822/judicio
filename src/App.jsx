@@ -72,6 +72,7 @@ function App() {
           <Route path="/judgedashboard" element={<Judgedashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/test" element={<IImage />} />
+          <Route path="/map" element={<LawyerNav />} /> 
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>

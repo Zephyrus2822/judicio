@@ -18,7 +18,10 @@ const ChatBot = () => {
 
     try {
       // Display the user's message in the chat
-      setMessages([...messages, { sender: 'You', text: message }]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: 'You', text: message }
+      ]);
 
       const requestUrl = 'http://localhost:5000/chat';  // Backend URL
       const requestBody = { message };
@@ -37,7 +40,6 @@ const ChatBot = () => {
       // Display the bot's response in the chat
       setMessages((prevMessages) => [
         ...prevMessages,
-        { sender: 'You', text: message },
         { sender: 'Bot', text: responseData.response }
       ]);
 
@@ -50,7 +52,7 @@ const ChatBot = () => {
   return (
     <div>
       <button className="chatbot-toggler" onClick={toggleChatBot}>
-      <RiMessage2Fill />
+        <RiMessage2Fill />
       </button>
       {isOpen && (
         <div className="chatbot">
@@ -60,7 +62,15 @@ const ChatBot = () => {
           <ul className="chatbox">
             {/* Display the chat history (user and bot messages) */}
             {messages.map((msg, index) => (
-              <li key={index} className={`chat ${msg.sender === 'You' ? 'outgoing' : 'incoming'}`}>
+              <li
+                key={index}
+                className={`chat ${msg.sender === 'You' ? 'outgoing' : 'incoming'}`}
+                style={{
+                  alignSelf: msg.sender === 'You' ? 'flex-end' : 'flex-start',
+                  marginLeft: msg.sender === 'You' ? 'auto' : '0',
+                  marginRight: msg.sender === 'You' ? '0' : 'auto'
+                }}
+              >
                 <p>{msg.text}</p>
               </li>
             ))}
@@ -73,11 +83,16 @@ const ChatBot = () => {
               spellCheck="false"
               required
             ></textarea>
-            <span id="send-btn" className="material-symbols-rounded" onClick={handleClick} style={{ border: "1px solid green",
-                                                                                                    borderRadius: "10px" ,
-                                                                                                    padding: "10px"
-
-            }}>
+            <span
+              id="send-btn"
+              className="material-symbols-rounded"
+              onClick={handleClick}
+              style={{
+                border: "1px solid green",
+                borderRadius: "10px",
+                padding: "10px"
+              }}
+            >
               SEND
             </span>
           </div>

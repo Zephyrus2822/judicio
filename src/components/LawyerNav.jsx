@@ -147,81 +147,6 @@ const LawyerNav = () => {
     });
   };
 
-  // Determine which data to use based on selected type
-  const locations = selectedType === "lawyers" ? lawyers : courts;
-
-  // Add this new useEffect for geolocation
-  useEffect(() => {
-    const getUserLocation = () => {
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            setUserLocation([latitude, longitude]);
-            
-            // Find nearest city to user's location
-            const nearestCity = findNearestCity([latitude, longitude]);
-            setSelectedCity(nearestCity);
-            setInitialMapCenter([latitude, longitude]);
-          },
-          (error) => {
-            console.warn("Error getting location:", error);
-            // Fallback to default location (Kolkata)
-            setInitialMapCenter(lawyers.Kolkata[0].geocode);
-          }
-        );
-      } else {
-        console.warn("Geolocation not supported");
-        setInitialMapCenter(lawyers.Kolkata[0].geocode);
-      }
-    };
-
-    getUserLocation();
-  }, []);
-
-  // Helper function to find nearest city
-  const findNearestCity = (userCoords) => {
-    let nearestCity = "Kolkata";
-    let shortestDistance = Infinity;
-
-    // Calculate distance to each city's first location
-    Object.entries(lawyers).forEach(([city, locations]) => {
-      const cityCoords = locations[0].geocode;
-      const distance = calculateDistance(
-        userCoords[0],
-        userCoords[1],
-        cityCoords[0],
-        cityCoords[1]
-      );
-
-      if (distance < shortestDistance) {
-        shortestDistance = distance;
-        nearestCity = city;
-      }
-    });
-
-    return nearestCity;
-  };
-
-  // Helper function to calculate distance between coordinates using Haversine formula
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const R = 6371; // Earth's radius in kilometers
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(lat1)) *
-        Math.cos(toRad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  };
-
-  const toRad = (value) => {
-    return (value * Math.PI) / 180;
-  };
-
   return (
     <div className="main-container items-center justify-between p-2">
       <div className="title w-full items-center mt-[50px]">
@@ -248,47 +173,29 @@ const LawyerNav = () => {
       </div>
 
       <div className="map-container h-60 w-85 border-rounded border-2px solid black mt-[20px]">
-        {initialMapCenter && (
-          <MapContainer
-            center={initialMapCenter}
-            zoom={6}
-            key={`${selectedCity}-${selectedType}`}
+        <MapContainer
+          center={lawyers[selectedCity][0].geocode}
+          zoom={6}
+          key={selectedCity}
+        >
+          <MapUpdater center={lawyers[selectedCity][0].geocode} />
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <MarkerClusterGroup
+            chunkedloading
+            iconCreateFunction={createCustomClusterIcon}
           >
-            <MapUpdater center={locations[selectedCity][0].geocode} />
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <MarkerClusterGroup
-              chunkedloading
-              iconCreateFunction={createCustomClusterIcon}
-            >
-              {/* Add user location marker if available */}
-              {userLocation && (
-                <Marker 
-                  position={userLocation}
-                  icon={new Icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                  })}
-                >
-                  <Popup>
-                    <h3>Your Location</h3>
-                  </Popup>
-                </Marker>
-              )}
-              {locations[selectedCity].map((marker, idx) => (
-                <Marker key={idx} position={marker.geocode}>
-                  <Popup>
-                    <h3>{marker.name}</h3>
-                  </Popup>
-                </Marker>
-              ))}
-            </MarkerClusterGroup>
-          </MapContainer>
-        )}
+            {lawyers[selectedCity].map((marker, idx) => (
+              <Marker key={idx} position={marker.geocode}>
+                <Popup>
+                  <h3>{marker.name}</h3>
+                </Popup>
+              </Marker>
+            ))}
+          </MarkerClusterGroup>
+        </MapContainer>
       </div>
 
       <div className="help ml-[150px] mt-[130px]">
