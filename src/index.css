@@ -212,7 +212,7 @@
 /*video bckground*/
 .video-container {
   position: relative;
-  height: 100vh;
+  height: 130vh;
   width: 100vw;
   /* Full viewport height */
   overflow: hidden;
@@ -221,7 +221,7 @@
 
 .video-container2 {
   position: relative;
-  height: 100vh;
+  height: 130vh;
   width: 100vw;
   /* Full viewport height */
   overflow: hidden;
@@ -231,7 +231,7 @@
 
 .video-container3 {
   position: relative;
-  height: 100vh;
+  height: 130vh;
   width: 100vw;
   /* Full viewport height */
   overflow: hidden;
@@ -240,7 +240,7 @@
 }
 .video-container4 {
   position: relative;
-  height: 100vh;
+  height: 130vh;
   width: 100vw;
   /* Full viewport height */
   overflow: hidden;
