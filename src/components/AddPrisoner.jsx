@@ -3,6 +3,7 @@ import "./addprisoner.css"; // Importing CSS for styling
 import axios from "axios"; // Importing axios for making HTTP requests
 import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
 import video from '../assets/video2.mp4'; // Importing video asset
+import Swal from 'sweetalert2'
 
 const AddPrisoner = () => {
 
@@ -30,7 +31,7 @@ const AddPrisoner = () => {
   const fetchdata=async()=>{
     try {
       const crimes=await axios.get(`${import.meta.env.VITE_DEV_URL}api/cases/crimes`)
-      console.log(crimes)
+      // console.log(crimes)
       setcrimeList(crimes.data)
     } catch (error) {
       console.error(error)
@@ -53,7 +54,7 @@ const AddPrisoner = () => {
   },[])
 
   const crimess=crimeList.filter(crime=>crime.CrimeCategory===crimecat)
-  console.log(crimess)
+  // console.log(crimess)
   
   // Function to handle form submission
   const handlesubmit = (e) => {
@@ -65,9 +66,17 @@ const AddPrisoner = () => {
           Name, Fname, adharnum, firdate, Address, Phone, witness, crime
         })
         .then((response) => {
-          if (response.data === "Prisoner already exists") {
+          console.log(response)
+          if (response.data === "Prisoner added successfully") {
             // Navigate to update prisoner page if prisoner already exists
-            navigate("/updateprisoner");
+            Swal.fire({
+              title:response.data,
+              icon:"success",
+
+            })
+          }else{
+            // navigate("/updateprisoner");
+
           }
           console.log(response);
           // Reset form fields

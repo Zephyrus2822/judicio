@@ -52,9 +52,11 @@
     "react-leaflet-cluster": "^2.1.0",
     "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^6.26.1",
+    "react-toastify": "^10.0.6",
     "react-webcam": "^7.2.0",
     "sass": "^1.78.0",
     "styled-components": "^6.1.13",
+    "sweetalert2": "^11.14.5",
     "tailwind-merge": "^2.5.2",
     "web3": "^4.13.0"
   },

@@ -8,41 +8,50 @@ const apply = async (req, res) => {
     Name,
     FName,
     Adharnum,
-    adharimg,
+    adharimageurl,
     EId,
     FirDate,
-    Crime,
+    crime,
     JudgeName,
     LawyerName,
     TrialDate,
   } = req.body;
   console.log(req.body);
+  console.log( Name,
+    FName,
+    Adharnum,
+    adharimageurl,
+    EId,
+    FirDate,
+    crime,
+    JudgeName,
+    LawyerName,
+    TrialDate,)
 
   try {
-    const judge = await Users.findOne({ Email: JudgeName });
-    const Lawyer = await Users.findOne({ Email: LawyerName });
-    const crimeCat = await crimes.findOne({ Crime: Crime });
+    
+    const crimeCat = await crimes.findOne({ Crime: crime });
 
     if (await applications.findOne({ ProfileInfo: { AddharNum: Adharnum } })) {
       return res.json("Already applied for Bail");
     }
     const applicant = await Prisoner.findOne({ AddharNum: Adharnum });
-    if (!(await Prisoner.findOne({ AddharNum: Adharnum }))) {
-      return res.json("Prisoner Does not exists in Databsae");
-    }
+    // if (!(await Prisoner.findOne({ AddharNum: Adharnum }))) {
+    //   return res.json("Prisoner Does not exists in Databsae");
+    // }
     const Application = await applications.create({
       CrimeCategory_id: crimeCat.CrimeCategory,
-      lawyer_id: Lawyer._id,
-      Judge_id: judge._id,
+      lawyerName: LawyerName,
+      JudgeName: JudgeName,
       applicantInfo: {
         prisoner_id: applicant._id,
         Name: Name,
         FathersName: FName,
         AddharNum: Adharnum,
-        AddharImage: adharimg,
+        AddharImage: adharimageurl,
         ElectionId: EId,
         Firdate: FirDate,
-        Crime: Crime,
+        Crime: crime,
       },
       Descision_Date: TrialDate,
     });
@@ -51,7 +60,7 @@ const apply = async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    res.json("Error in applying for bail");
+    res.json("Error in applying for bail",error);
   }
 };
 
