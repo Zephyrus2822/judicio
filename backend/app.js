@@ -6,7 +6,9 @@ import bodyParser from "body-parser";
 import caseRouter from "./routes/caseRoutes.js";
 import applicationRouter from "./routes/applicationRoutes.js";
 import prisonerRouter from "./routes/prisonerRotes.js";
-import sendSms from "./controllers/SmsController.js";
+
+import { Resend } from 'resend';
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -34,7 +36,24 @@ app.use('/api/applications',applicationRouter)
 
 app.use('/api/prisoners',prisonerRouter)
 
-app.post('/send-sms',sendSms)
+const resend = new Resend('re_AV2CGuKT_81siCzYDoVq8Xk7m8BKqHGFF');
+app.get("/send-email", async (req, res) => {
+  const { data, error } = await resend.emails.send({
+    from: "Acme <onboarding@resend.dev>",
+    to: ["chandanramgar@gmail.com"],
+    subject: "hello world",
+    html: "<strong>it works!</strong>",
+  });
+  console.log(data)
+
+  if (error) {
+    return res.status(400).json({ error });
+  }
+
+  res.status(200).json({ data });
+});
+
+
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");

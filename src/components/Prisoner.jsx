@@ -366,21 +366,23 @@ const Prisoner = () => {
                 {/* crimeCategory */}
                 {/* crimeCategory */}
 
-                <label htmlFor="">Crime Category</label>
+                <label className="text-3xl text-white" htmlFor="">Crime Category</label>
                 <select
+                className="text-xl"
                   value={crimecat}
                   onChange={(e) => setcrimecat(e.target.value)}
                 >
-                  <option value="">Select Crime Category</option>
+                  <option  value="">Select Crime Category</option>
                   {crimeCategory.map((cat) => (
                     <option key={cat}>{cat}</option>
                   ))}
                 </select>
 
                 {/*Crimes*/}
-                <label id="crime1">CRIME</label>
+                <label className="text-3xl text-white" id="crime1">CRIME</label>
                 <select
                   name=""
+                  className="text-xl "
                   value={crime}
                   onChange={(e) => setcrime(e.target.value)}
                   id=""
@@ -392,7 +394,7 @@ const Prisoner = () => {
                 </select>
 
                 {/* JudgeNames */}
-                <label htmlFor="">JudgeNames</label>
+                {/* <label htmlFor="">JudgeNames</label>
                 <select
                   name=""
                   value={JudgeName}
@@ -403,13 +405,14 @@ const Prisoner = () => {
                   {JudgeNamesss.map((JudgeName, i) => (
                     <option key={i} value={JudgeName.profileInfo.Name}>{JudgeName.profileInfo.Name}</option>
                   ))}
-                </select>
+                </select> */}
 
                 {/* LawyerNames */}
 
-                <label htmlFor="">LawyerNames</label>
+                <label className="text-3xl text-white" htmlFor="">LawyerNames</label>
                 <select
                   name=""
+                  className="text-xl "
                   value={LawyerName}
                   onChange={(e) => setLawyerName(e.target.value)}
                   id=""
