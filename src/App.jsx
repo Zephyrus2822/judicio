@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import "leaflet/dist/leaflet.css" //leaflet css dont remove
+import "leaflet/dist/leaflet.css"; // Don't remove
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
@@ -18,8 +18,10 @@ import AddCrime from "./components/AddCrime";
 import UserDashboard from "./components/UserDashboard";
 import Judgedashboard from "./components/judgedashboard";
 import Dash from "./components/Dashboard";
-import IImage from "./components/IImage"; //dont remove these testing things 
+import IImage from "./components/IImage"; // Don't remove these testing things
 import LawyerNav from "./components/LawyerNav";
+import VerdictPassed from "./components/VerdictPassed";
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -60,7 +62,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/prisoner" element={<Prisoner />} />
           <Route path="/aboutbail" element={<AboutBail />} />
-          <Route path="/verdictspassed" element={<Tablee />} />
+          <Route path="/verdictspassed" element={<VerdictPassed />} />
           <Route path="/addprisoner" element={<AddPrisoner />} />
           <Route path="/updateprisoner" element={<UpdatePrisoner />} />
           <Route path="/eligiblecriminals" element={<Eligibility />} />
@@ -71,7 +73,9 @@ function App() {
           <Route path="/judgedashboard" element={<Judgedashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/test" element={<IImage />} />
+
           <Route path="/map" element={<LawyerNav />} />
+
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>

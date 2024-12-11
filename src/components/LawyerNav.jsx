@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from "react";
 import "./lawyernav.css";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
@@ -219,14 +221,22 @@ const LawyerNav = () => {
 
       <div className="dropdown-container mt-[20px]">
         <select value={selectedCity} onChange={handleCityChange}>
-          {Object.keys(locations).map((city) => (
+
+          {Object.keys(selectedType === "lawyers" ? lawyers : courts).map((city) => (
+
             <option key={city} value={city}>
               {city}
             </option>
           ))}
         </select>
 
-        <select value={selectedType} onChange={handleTypeChange} className="ml-4">
+        
+        <select 
+          value={selectedType} 
+          onChange={handleTypeChange}
+          className="ml-4"
+        >
+
           <option value="lawyers">Lawyers</option>
           <option value="courts">Courts</option>
         </select>
@@ -286,3 +296,5 @@ const LawyerNav = () => {
 };
 
 export default LawyerNav;
+
+

@@ -60,7 +60,7 @@ const Navigation = () => {
                 <a href="/judgedashboard">Judge's Dashboard</a>
               </li>
               <li>
-                <a href="/map">map shit</a>
+                <a href="/map">Nearby Locations</a>
               </li>
 
         </ul>

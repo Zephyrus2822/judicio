@@ -37,10 +37,12 @@ export default function Judgedashboard() {
           <tbody className='text-xl font-semibold'>
             <tr>
               <td>45646464654</td>
-              <td>Chandan Kumar</td>
-              <td>Murder</td>
-              <td>lawyer</td>
+              <td>Anuska Biswas</td>
+              <td>Defamation</td>
+              <td>Abdul Rehman</td>
               <td>Applied</td>
+              <td><button className="border-lime-100 bg-white text-green-700 px-2 py-1 mr-2 text-xl rounded-md ">Accept</button></td>
+              <td><button className="border-lime-100  bg-white text-red-600 px-2 py-1  text-xl rounded-md ">Reject</button></td>
             </tr>
           </tbody>
         </table>
