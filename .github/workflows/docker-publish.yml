@@ -28,7 +28,7 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/audio-spectracli:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/judicio:latest
 
       - name: Logout from Docker Hub
         run: docker logout

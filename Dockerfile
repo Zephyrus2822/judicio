@@ -10,8 +10,8 @@ COPY package*.json ./
 # Install the application dependencies
 RUN npm install
 
-# Copy the rest of the application code to the container
-COPY . .
+# Copy the rest of the application code to the container - source and destination path same 
+COPY . . 
 
 # Build the React application
 RUN npm run build
