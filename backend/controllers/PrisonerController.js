@@ -4,13 +4,14 @@ import { Prisoner } from "../models/Prisoner.models.js";
 const addprisoner = async (req, res) => {
   const { Name, Fname, adharnum, firdate, Address, Phone, witness, crime} =
     req.body;
+    console.log(req.body);
   console.log(Name, Fname, adharnum, firdate, Address, Phone, witness, crime)
 
   try {
     
     const prisoner = await Prisoner.findOne({ AddharNum: adharnum });
     if (prisoner) {
-      return res.status(400).json("Prisoner already exists");
+      res.json("Prisoner already exists");
     } else {
         const crimess=await crimes.findOne({Crime:crime})
         // console.log(crimess)
@@ -33,7 +34,7 @@ const addprisoner = async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    resizeBy.json("error adding prisoner ");
+    resizeBy.json("error adding prisoner ",error);
   }
 };
 

@@ -379,7 +379,7 @@ const Prisoner = () => {
                 >
                   <option value="">Select your JudgeName</option>
                   {JudgeNamesss.map((JudgeName, i) => (
-                    <option key={i} value={JudgeName.Email}>{JudgeName.profileInfo.Name}</option>
+                    <option key={i} value={JudgeName.profileInfo.Name}>{JudgeName.profileInfo.Name}</option>
                   ))}
                 </select>
 
@@ -394,7 +394,7 @@ const Prisoner = () => {
                 >
                   <option value="">Select your LawyerName</option>
                   {LawyerNamesss.map((LawyerName, i) => (
-                    <option key={i} value={LawyerName.Email}>{LawyerName.profileInfo.Name}</option>
+                    <option key={i} value={LawyerName.profileInfo.Name}>{LawyerName.profileInfo.Name}</option>
                   ))}
                 </select>
               </div>

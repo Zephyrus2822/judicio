@@ -5,13 +5,13 @@ const applicationSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    lawyer_id:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Users'
+    lawyerName:{
+        type:String,
+        required:true
     },
-    Judge_id:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Users'
+    JudgeName:{
+        type:String,
+        required:true
     },
     applicantInfo:{
         prisoner_id:{

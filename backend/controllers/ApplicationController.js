@@ -29,10 +29,7 @@ const apply = async (req, res) => {
     TrialDate,)
 
   try {
-    const judge = await Users.findOne({Email:JudgeName});
-    console.log(judge)
-    const Lawyer = await Users.findOne({Email:LawyerName});
-    console.log(Lawyer)
+    
     const crimeCat = await crimes.findOne({ Crime: crime });
 
     if (await applications.findOne({ ProfileInfo: { AddharNum: Adharnum } })) {
@@ -44,8 +41,8 @@ const apply = async (req, res) => {
     // }
     const Application = await applications.create({
       CrimeCategory_id: crimeCat.CrimeCategory,
-      lawyer_id: Lawyer._id,
-      Judge_id: judge._id,
+      lawyerName: LawyerName,
+      JudgeName: JudgeName,
       applicantInfo: {
         prisoner_id: applicant._id,
         Name: Name,
