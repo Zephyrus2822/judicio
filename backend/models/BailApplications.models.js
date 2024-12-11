@@ -26,6 +26,10 @@ const applicationSchema=new mongoose.Schema({
             type: String,
             required: true,
         },
+        Phone:{
+            type: String,
+            required: true,
+        },
         AddharNum: {
             type: String,
             required: true,
