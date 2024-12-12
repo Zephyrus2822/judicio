@@ -6,10 +6,11 @@ const Home = () => {
 
 
     <div>
-      <div className="video-container">
+      {/* <div className="video-container">
         <video autoPlay muted loop className="video-background">
           <source src={video} type="video/mp4" />
-        </video>
+        </video> */}
+        <div className="image-container">
         <div className="heading">
           Welcome to Judicio!
         </div>
@@ -53,9 +54,10 @@ const Home = () => {
         </button>
         </div>
       </div>
+        </div>
 
-
-    </div>
+    
+    
   );
 };
 

@@ -21,16 +21,16 @@ const GovernmentForum = () => {
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="grievance" className="label">Grievance:</label>
+        <label htmlFor="grievance" className="label">Grievance: (Please keep within 200 words.)</label>
         <textarea id="grievance" className="textarea"></textarea>
-        <p>Please keep the above within 200 words.</p>
+       
       </div>
       <div className="form-group">
         <label className="label"></label>
         <div className="yes-no-container1">
             <h4>Do you want to transfer your case to higher authorities ?</h4>
           <button className="yes-no-btn"><a href="https://mail.google.com/mail/u/0/#inbox?compose=newhttps://mail.google.com/mail/u/0/#inbox?compose=CllgCJZXhnRlzNcMdLfRcvGZXMqtHBvlpKKgFvTtcDKknMnWDQlpDBwhWwhtFRRwTNJRMNQXDZL">Yes</a></button>
-          <button className="yes-no-btn">No</button>
+          <button className="yes-no-btn"><a href="/home">No</a></button>
         </div>
       </div>
 

@@ -54,6 +54,7 @@ html, body {
   /* Label styles */
   .label {
     display: block;
+    margin-top: 20px;
     font-size: 16px;
     color: #333;
     margin-bottom: 8px;
@@ -93,7 +94,7 @@ html, body {
     padding: 10px 20px;
     font-size: 20px;
     color: black;
-    background-color: aqua;
+    background-color: lightblue;
     border: 1px solid blue;
     border-radius: 4px;
     cursor: pointer;
