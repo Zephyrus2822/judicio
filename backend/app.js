@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: "*",
-
+    
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -35,6 +35,12 @@ app.use('/api/cases',caseRouter)
 app.use('/api/applications',applicationRouter)
 
 app.use('/api/prisoners',prisonerRouter)
+
+import prevCases from './data/prevCases.json' assert { type: 'json' };
+
+app.get('/getprevCases',(req,res)=>{
+  res.json(prevCases)
+})
 
 const resend = new Resend('re_AV2CGuKT_81siCzYDoVq8Xk7m8BKqHGFF');
 app.get("/send-email", async (req, res) => {

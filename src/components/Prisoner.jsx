@@ -113,6 +113,7 @@ const Prisoner = () => {
     console.log(applicable[0]);
     setminbailamt(applicable[0].BailDetails.MinBailAmount);
     setmaxbailamt(applicable[0].BailDetails.MaxBailAmount);
+    setisuploading(true)
 
     if (applicable[0].BailDetails.Bailable === "No") {
       setstatus(
@@ -140,11 +141,19 @@ const Prisoner = () => {
         if(res.data==='Application submitted successfully'){
           Swal.fire({
             title: "Application Submitted Successfully",
-            text: "Your application has been submitted successfully. You will receive a confirmation via email shortly.",
+            text: "Your application has been submitted successfully.Kindly proceed to application.",
             icon: "success",
             
           })
+          setisuploading(false)
+        }else{
+          Swal.fire({
+            title: "Error",
+            text: "An error occurred while submitting your application. Please try again.",
+            icon: "error",
+          })
         }
+        setisuploading(false)
         // alert("Application submitted successfully")
       })
     }
@@ -190,7 +199,11 @@ const Prisoner = () => {
       setadharimageurl(res.data.url);
       //   console.log(res.data.url);
       // Toast.success()
-      alert("image uploaded successfully");
+      Swal.fire({
+        title: "Image Uploaded Successfully",
+        text: "Your image has been uploaded successfully",
+        icon: "success",
+      })
       setisuploading(false);
     } catch (error) {
       console.error("An error occurred while uploading", error);

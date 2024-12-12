@@ -222,7 +222,7 @@ const LawyerNav = () => {
       </div>
 
       <div className="dropdown-container mt-[20px] text-black px-2 py-1">
-        <select value={selectedCity} onChange={handleCityChange}>
+        {/* <select value={selectedCity} onChange={handleCityChange}>
 
           {Object.keys(selectedType === "lawyers" ? lawyers : courts).map((city) => (
 
@@ -230,18 +230,18 @@ const LawyerNav = () => {
               {city}
             </option>
           ))}
-        </select>
+        </select> */}
 
         
-        <select 
+        {/* <select 
           value={selectedType} 
-          onChange={handleTypeChange}
+          
           className="ml-4 text-black"
         >
 
           <option value="lawyers">Lawyers</option>
           <option value="courts">Courts</option>
-        </select>
+        </select> */}
       <div className="flex items-center justify-center gap-2 mt-[20px]">
         <CityDropdown 
           selectedCity={selectedCity}

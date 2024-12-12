@@ -47,13 +47,15 @@ const Eligibility = () => {
                   <th>Adhar Num</th>
                   <th>Crime</th>
                   <th>Status</th>
+                  <th>Prison Duration</th>
                 </tr>
                 {prisoners.map((prison,i)=>(
                   <tr className="space-x-4" key={i}>
-                    <td>{prison.Name}</td>
-                    <td>{prison.AddharNum}</td>
-                    <td>{prison.Crime}</td>
-                    <td>{prison.Complience}</td>
+                    <td className="text-center">{prison.Name}</td>
+                    <td className="text-center">{prison.AddharNum}</td>
+                    <td className="text-center">{prison.Crime}</td>
+                    <td className="text-center">{prison.Complience}</td>
+                    <td className="text-center">{moment(prison.createdAt).format("mm")} Months</td>
                     <button className="bg-white text-green-500 text-xl px-2 py-1 ">Apply</button>
                   </tr>
                 ))}

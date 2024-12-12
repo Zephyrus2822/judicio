@@ -22,6 +22,7 @@ import IImage from "./components/IImage"; // Don't remove these testing things
 import LawyerNav from "./components/LawyerNav";
 import VerdictPassed from "./components/VerdictPassed";
 import { generateToken } from "./firebase.js";
+import PrevCases from "./components/PrevCases.jsx";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -80,6 +81,7 @@ function App() {
           <Route path="/judgedashboard" element={<Judgedashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/test" element={<IImage />} />
+          <Route path="/prevcases" element={<PrevCases />} />
 
           <Route path="/map" element={<LawyerNav />} />
 
