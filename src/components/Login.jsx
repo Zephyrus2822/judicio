@@ -36,10 +36,7 @@ const Login = () => {
 
   return (
     <section className="login-section-1">
-      <div className="video-container">
-        <video autoPlay muted loop className="video-background">
-          <source src={video} type="video/mp4" />
-        </video>
+      <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
         <div className="flex flex-col px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full mt-15 rounded-lg shadow dark:border mt-24 sm:max-w-md xl:p-0 login-container-1">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

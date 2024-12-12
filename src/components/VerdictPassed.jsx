@@ -35,10 +35,8 @@ const VerdictPassed = () => {
   
 
   return (
-    <div className="video-container">
-      <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
-        <source src={video} type="video/mp4" />
-      </video>
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
+
       <div className="pt-20 pb-40">
       <div className=" text-center text-white mx-auto bg-slate-950 rounded-md p-5 opacity-70">
         <h1 className="text-3xl pt-10 pb-12 font-bold">Application Records</h1>

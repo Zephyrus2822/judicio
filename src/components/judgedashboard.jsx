@@ -31,11 +31,12 @@ export default function Judgedashboard() {
   const [applications, setapplications] = useState([]);
   const [Phone, setPhone] = useState("");
   const [message, setmessage] = useState("");
+  const [applicationId, setapplicationId] = useState("")
 
-  const handleClickOpen = (ph) => {
-    console.log(ph);
+  const handleClickOpen = (id) => {
+    
     setOpen(true);
-    setPhone(ph);
+    setapplicationId(id);
     console.log(Phone);
   };
 
@@ -44,15 +45,51 @@ export default function Judgedashboard() {
     setOpen(false);
   };
 
-  const handlereject=()=>{
-    {/*handleClickOpen(application.applicantInfo.Phone)*/}
-    Swal.fire({
-      title: "Application rejected successfully",
-     
-      icon: "success",
-      confirmButtonText: "OK",
-    })
-  }
+  const handleAccept = async () => {
+
+    console.log(applicationId);
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_DEV_URL}api/applications/accept`,
+        { applicationId }
+      );
+      if (res) {
+        console.log(res.data);
+        Swal.fire({
+          title: "Application accepted successfully",
+
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlereject = async (applicationId) => {
+    {
+      /*handleClickOpen(application.applicantInfo.Phone)*/
+    }
+    console.log(applicationId);
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_DEV_URL}api/applications/reject`,
+        { applicationId }
+      );
+      if (res) {
+        console.log(res.data);
+        Swal.fire({
+          title: "Application rejected successfully",
+
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fetchdata = async () => {
     try {
@@ -72,7 +109,7 @@ export default function Judgedashboard() {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
-    handleClose()
+    handleClose();
     // try {
     //   axios.post()
     // } catch (error) {
@@ -80,25 +117,31 @@ export default function Judgedashboard() {
     // }
     Swal.fire({
       title: "Message Sent Successfully",
-     
+
       icon: "success",
       confirmButtonText: "OK",
-    })
+    });
   };
 
   //sending email
-  
+
   return (
-    <div className="video-container">
-      <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
-        <source src={video} type="video/mp4" />
-      </video>
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       <div className="pt-20 pb-40">
         <div className=" text-center text-white mx-auto bg-slate-950 rounded-md p-5 opacity-70">
           <div className="flex justify-center items-center gap-10">
-
-          <h1 className="text-3xl pt-10 pb-12 font-bold">Application Records</h1>
-          <a href="/prevcases" className="text-2xl font-bold text-white flex justify-center items-center">Help <span className="font-bold"><  IoMdHelpCircleOutline /></span></a>
+            <h1 className="text-3xl pt-10 pb-12 font-bold">
+              Application Records
+            </h1>
+            <a
+              href="/prevcases"
+              className="text-2xl font-bold text-white flex justify-center items-center"
+            >
+              Help{" "}
+              <span className="font-bold">
+                <IoMdHelpCircleOutline />
+              </span>
+            </a>
           </div>
           <table className="w-full border-collapse">
             <thead className="text-2xl border-b border-orange-500">
@@ -116,29 +159,34 @@ export default function Judgedashboard() {
               {applications.map((application, i) => (
                 <tr className="border-b border-orange-500" key={i}>
                   <td className="px-5 py-3 text-center">{application._id}</td>
-                  <td className="px-5 py-3 text-center">{application.applicantInfo.Name}</td>
-                  <td className="px-5 py-3 text-center">{application.applicantInfo.Crime[0]}</td>
-                  <td className="px-5 py-3 text-center">{application.lawyerName}</td>
-                  <td className="px-8 py-3 text-center">{application.Status}</td>
-                  <td className="px-8 py-3 flex gap-4 justify-center">
-                  <button
-                    onClick={() =>
-                      handleClickOpen(application.applicantInfo.Phone)
-                    }
-                    className="border-lime-100 bg-white text-green-700 px-2 py-1 mr-2 text-xl rounded-md "
-                  >
-                    Accept
-                  </button>
-                  <button
-                    onClick={ handlereject
-                      
-                      
-                    }
-                    className="border-lime-100  bg-white text-red-600 px-2 py-1  text-xl rounded-md "
-                  >
-                    Reject
-                  </button>
+                  <td className="px-5 py-3 text-center">
+                    {application.applicantInfo.Name}
                   </td>
+                  <td className="px-5 py-3 text-center">
+                    {application.applicantInfo.Crime[0]}
+                  </td>
+                  <td className="px-5 py-3 text-center">
+                    {application.lawyerName}
+                  </td>
+                  <td className="px-8 py-3 text-center">
+                    {application.Status}
+                  </td>
+                  {application.Status === "Pending" ? (
+                    <td className="px-8 py-3 flex gap-4 justify-center">
+                      <button
+                        onClick={() => handleClickOpen(application._id)}
+                        className="border-lime-100 bg-white text-green-700 px-2 py-1 mr-2 text-xl rounded-md "
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => handlereject(application._id)}
+                        className="border-lime-100  bg-white text-red-600 px-2 py-1  text-xl rounded-md "
+                      >
+                        Reject
+                      </button>
+                    </td>
+                  ) : null}
                 </tr>
               ))}
             </tbody>
@@ -152,16 +200,28 @@ export default function Judgedashboard() {
               onClose={handleClose}
               aria-describedby="alert-dialog-slide-description"
             >
-              <DialogTitle className="text-center">{"Enter Message"}</DialogTitle>
+              <DialogTitle className="text-center">
+                {"Enter Message"}
+              </DialogTitle>
               <DialogContent>
-                <form className="h-70 w-80 text-center"  onSubmit={handlesubmit}>
-                  
-                  
-                  <textarea className="text-2xl border-2 border-black px-2 py-2 rounded-md text-black" placeholder="Enter the Message" name="message" />
+                <form className="h-70 w-80 text-center" onSubmit={handleAccept}>
+                  <textarea
+                    className="text-2xl border-2 border-black px-2 py-2 rounded-md text-black"
+                    placeholder="Enter the Message"
+                    name="message"
+                  />
                   <br />
-                  <input className="border-2 border-black text-black px-2 py-1 rounded-md my-1 " type="date" placeholder="DD-MM-YYYY " />
+                  <input
+                    className="border-2 border-black text-black px-2 py-1 rounded-md my-1 "
+                    type="date"
+                    placeholder="DD-MM-YYYY "
+                  />
                   <br />
-                  <input className="border-2 border-black px-2 py-1 text-xl " type="submit" value="Send" />
+                  <input
+                    className="border-2 border-black px-2 py-1 text-xl "
+                    type="submit"
+                    value="Send"
+                  />
                 </form>
               </DialogContent>
               <DialogActions>

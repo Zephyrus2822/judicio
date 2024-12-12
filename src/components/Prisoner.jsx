@@ -213,15 +213,7 @@ const Prisoner = () => {
   //this opens a new popup, after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden justify-center ">
-      <video
-        autoPlay
-        muted
-        loop
-        className="absolute top-0 left-0 w-full h-full object-cover z--10"
-      >
-        <source src={video} type="video/mp4" />
-      </video>
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       <div className="container">
         <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-bold mt-3">
           APPLY FOR BAIL

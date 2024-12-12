@@ -100,10 +100,7 @@ const UpdatePrisoner = () => {
   return (
     <>
       {/* Video background */}
-      <div className="video-container3">
-        <video autoPlay muted loop className="video-background">
-          <source src={video} type="video/mp4" />
-        </video>
+      <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
         
         {/* Main content container */}
         <div>

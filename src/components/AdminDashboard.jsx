@@ -85,15 +85,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="video-container3 flex justify-center">
-      <video
-        autoPlay
-        muted
-        loop
-        className="video-background"
-      >
-        <source src={video3} type="video/mp4" />
-      </video>
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       <div className="relative w-full z-10 ">
         <div className="cards my-20 ml-[215px] flex justify-start items-center gap-none">
           <div className="dashboard-btn">

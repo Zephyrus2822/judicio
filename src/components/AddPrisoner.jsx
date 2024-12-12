@@ -95,11 +95,8 @@ const AddPrisoner = () => {
   };
 
   return (
-    <div className="video-container3">
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       {/* Video background */}
-      <video autoPlay muted loop className="video-background">
-        <source src={video} type="video/mp4" />
-      </video>
 
       <div className="flex justify-center items-center align-middle">
         {/* Form for adding a new prisoner */}
