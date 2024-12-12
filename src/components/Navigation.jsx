@@ -25,7 +25,7 @@ const Navigation = () => {
     <div className="header">
       <nav>
         <div className="Logo-wrapper">
-          <h1 className="Logo">Judicio</h1>
+          <h1 className="Logo font-['Playfair_Display'] text-4xl font-bold italic">Judicio</h1>
         </div>
         <ul>
         <li><a href="/">Home</a></li>

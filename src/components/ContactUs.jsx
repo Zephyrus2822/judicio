@@ -61,7 +61,7 @@ const ContactUs = () => {
 
                 <ul className="mt-6 space-y-4">
                     <li>
-                        <a href="/home" title="" className="flex text-base text-gray-500 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Home </a>
+                        <a href="/home" title="" className="flex text-base text-white transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Home </a>
                     </li>
 
                     <li>

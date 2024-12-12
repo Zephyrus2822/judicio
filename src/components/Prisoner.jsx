@@ -9,13 +9,13 @@ import Swal from "sweetalert2";
 
 const Prisoner = () => {
   {
-    /*geting api details*/
+    /geting api details/
   }
   const [Users, setUsers] = useState([]);
   const [crimes, setcrimes] = useState([]);
 
   {
-    /*information*/
+    /information/
   }
   const [showapplication, setshowapplication] = useState(false);
   const ref = useRef(null);
@@ -53,7 +53,7 @@ const Prisoner = () => {
   //       TrialDate,
 
   {
-    /*form status*/
+    //form status/
   }
   const [isuploading, setisuploading] = useState(false);
 
@@ -733,7 +733,16 @@ const Prisoner = () => {
                       <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      3. That deponent is working as
+                      3. That deponent is
+                      ...................................................................................
+                      <br />
+                      of the deponent and deponent has full control over him/her
+                      and capable to produce him/her <br />
+                      before this hon&#8217;ble court.
+                      <br />
+                    </p>
+                    <p style={{ marginLeft: "20px" }}>
+                      4. That deponent is working as
                       ........................................ at
                       ...............................
                       <br />
@@ -741,11 +750,11 @@ const Prisoner = () => {
                       ................... per month. <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      4. That deponent is the owner of household articles valued
+                      5. That deponent is the owner of household articles valued
                       about of Rs.
                       .............................................................
                       <br />
-                      5. That deponent is the owner of the immovable property
+                      6. That deponent is the owner of the immovable property
                       bearing No. ............................
                       <br />
                     </p>
@@ -758,12 +767,12 @@ const Prisoner = () => {
                       <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      6. That deponent undertakes to produce the accused before
+                      7. That deponent undertakes to produce the accused before
                       the honourable court on every date <br />
                       of hearing. <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      7. That I have an F.D.R. No
+                      8. That I have an F.D.R. No
                       ................................................... Issued
                       by
                       ...........................................................
@@ -773,7 +782,7 @@ const Prisoner = () => {
                       <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      8. That I own a vehicle No
+                      9. That I own a vehicle No
                       .......................................................
                       make .......................................
                       <br />

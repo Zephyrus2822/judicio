@@ -29,3 +29,22 @@
     font-size: 1.2rem;
     box-shadow: 0 0 0px 5px #fff;
 }
+
+/* Dropdown and toggle styling */
+.dropdown-container select {
+    min-width: 120px;
+    height: 32px;
+}
+
+.toggle-container {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+}
+
+/* If needed, add specific Switch component styles */
+.toggle-container .switch {
+    height: 24px;
+    width: 48px;
+    padding: 0;
+}

@@ -1,0 +1,20 @@
+.city-dropdown button {
+  background-color: white;
+  border: 1px solid #dee2e6;
+  color: #212529;
+  padding: 0.375rem 1rem;
+  font-size: 14px;
+}
+
+.city-dropdown button:hover,
+.city-dropdown button:focus {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #212529;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #e9ecef;
+  color: #212529;
+} 
