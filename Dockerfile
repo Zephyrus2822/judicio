@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:alpine
 COPY --from=0 /app/dist /usr/share/nginx/html
 
-# Expose port 80 to the outside world
+# Expose port 3000 to the outside world
 EXPOSE 80
 
 # Start Nginx when the container has been started

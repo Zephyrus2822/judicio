@@ -353,60 +353,78 @@ const Prisoner = () => {
                 />
               </div>
 
-              <div className="dropdown-containers" style={{
-  display: "flex",
-  flexDirection: "row", // Changed to row for horizontal alignment
-  alignItems: "flex-start",
-  justifyContent: "space-between", // Adjust spacing between divs
-  gap: "10px",
-  fontWeight: "400",
-  color: "black",
-  marginLeft: "10px"
-}}>
-  <div className="crime-category-div" style={{ display: "flex", flexDirection: "column", flex: 2 }}>
-    <label className="mt-8 text-white">Crime Category</label>
-    <select
-      value={crimecat}
-      onChange={(e) => setcrimecat(e.target.value)}
-    >
-      <option value="">Select Crime Category </option>
-      {crimeCategory.map((cat) => (
-        <option key={cat}>{cat}</option>
-      ))}
-    </select>
-  </div>
+              {/*About Crimes*/}
+              <div
+                className="dropdown-containers"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  gap: "20px",
+                }}
+              >
+                {/* crimeCategory */}
+                {/* crimeCategory */}
 
-  <div className="crime-div" style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-    <label className="text-white" id="crime1">CRIME</label>
-    <select
-      name=""
-      value={crime}
-      onChange={(e) => setcrime(e.target.value)}
-      id=""
-    >
-      <option className="h-14" value="">Select Crime</option>
-      {crimess.map((crimee, i) => (
-        <option key={i}>{crimee.Crime}</option>
-      ))}
-    </select>
-  </div>
+                <label className="text-3xl text-white" htmlFor="">Crime Category</label>
+                <select
+                className="text-xl"
+                  value={crimecat}
+                  onChange={(e) => setcrimecat(e.target.value)}
+                >
+                  <option  value="">Select Crime Category</option>
+                  {crimeCategory.map((cat) => (
+                    <option key={cat}>{cat}</option>
+                  ))}
+                </select>
 
-  <div className="lawyer-div" style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-    <label className="text-white">Lawyer Name</label>
-    <select
-      name=""
-      value={LawyerName}
-      onChange={(e) => setLawyerName(e.target.value)}
-      id=""
-    >
-      <option value="">Select your LawyerName</option>
-      {LawyerNamesss.map((LawyerName, i) => (
-        <option key={i} value={LawyerName.profileInfo.Name}>{LawyerName.profileInfo.Name}</option>
-      ))}
-    </select>
-  </div>
-</div>
-              <div className="gender-details mr-6">
+                {/*Crimes*/}
+                <label className="text-3xl text-white" id="crime1">CRIME</label>
+                <select
+                  name=""
+                  className="text-xl "
+                  value={crime}
+                  onChange={(e) => setcrime(e.target.value)}
+                  id=""
+                >
+                  <option value="">Select Crime</option>
+                  {crimess.map((crimee, i) => (
+                    <option key={i}>{crimee.Crime}</option>
+                  ))}
+                </select>
+
+                {/* JudgeNames */}
+                {/* <label htmlFor="">JudgeNames</label>
+                <select
+                  name=""
+                  value={JudgeName}
+                  onChange={(e) => setJudgeName(e.target.value)}
+                  id=""
+                >
+                  <option value="">Select your JudgeName</option>
+                  {JudgeNamesss.map((JudgeName, i) => (
+                    <option key={i} value={JudgeName.profileInfo.Name}>{JudgeName.profileInfo.Name}</option>
+                  ))}
+                </select> */}
+
+                {/* LawyerNames */}
+
+                <label className="text-3xl text-white" htmlFor="">LawyerNames</label>
+                <select
+                  name=""
+                  className="text-xl "
+                  value={LawyerName}
+                  onChange={(e) => setLawyerName(e.target.value)}
+                  id=""
+                >
+                  <option value="">Select your LawyerName</option>
+                  {LawyerNamesss.map((LawyerName, i) => (
+                    <option key={i} value={LawyerName.profileInfo.Name}>{LawyerName.profileInfo.Name}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="gender-details ml-2">
                 <input
                   value={gender}
                   onChange={(e) => setgender(e.target.value)}

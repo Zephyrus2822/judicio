@@ -12,7 +12,28 @@ import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import video from '../assets/video2.mp4';
+
+
 const VerdictPassed = () => {
+  const [applications, setapplications] = useState([])
+
+  const fetchdata = async () => {
+    try {
+      const application = await axios.get(
+        `${import.meta.env.VITE_DEV_URL}api/applications/getapplications`
+      );
+      console.log(application.data);
+      setapplications(application.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+  
+
   return (
     <div className="video-container">
       <video autoPlay muted loop className="video-background">
@@ -32,13 +53,16 @@ const VerdictPassed = () => {
             </tr>
           </thead>
           <tbody className='text-xl font-semibold'>
-            <tr>
-              <td>45646464654</td>
-              <td>Anuska Biswas</td>
-              <td>Defamation</td>
-              <td>Abdul Rehman</td>
-              <td>Applied</td>
-            </tr>
+            {applications.map((application,i)=>(
+              <tr>
+                <td>{application._id}</td>
+                <td>{application.applicantInfo.Name}</td>
+                <td>{application.applicantInfo.Crime[0]}</td>
+                <td>{application.lawyerName}</td>
+                <td>{application.Status}</td>
+              </tr>
+            ))}
+            
           </tbody>
         </table>
       </div>
