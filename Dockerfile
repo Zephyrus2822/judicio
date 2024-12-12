@@ -1,32 +1,27 @@
-# Use multi-stage build for optimized Docker image
-FROM node:20-alpine AS build
+# Use an official Node.js runtime as a parent image
+FROM node:lts-bookworm-slim
 
-# Set working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy package files first to leverage Docker cache
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install dependencies
+# Install the application dependencies
 RUN npm install
 
-# Copy source code
-COPY . .
+# Copy the rest of the application code to the container - source and destination path same 
+COPY . . 
 
-# Build the application
+# Build the React application
 RUN npm run build
 
-# Production stage
+# Use a lightweight web server to serve the React application
 FROM nginx:alpine
+COPY --from=0 /app/dist /usr/share/nginx/html
 
-# Copy custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy built assets from build stage
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Expose port 80
+# Expose port 3000 to the outside world
 EXPOSE 80
 
-# Start Nginx
+# Start Nginx when the container has been started
 CMD ["nginx", "-g", "daemon off;"]
