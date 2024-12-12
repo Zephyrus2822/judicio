@@ -33,7 +33,7 @@ const Navigation = () => {
                 <a href="/About">Docs</a>
               </li>
               <li>
-                <a href="/prisoner">Get Verdict</a>
+                <a href="/prisoner">Bail Calculation</a>
               </li>
               <li>
               <a href="/AdminDashboard">Admin Dashboard</a>
