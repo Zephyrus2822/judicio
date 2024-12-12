@@ -142,7 +142,7 @@ const Prisoner = () => {
             title: "Application Submitted Successfully",
             text: "Your application has been submitted successfully. You will receive a confirmation via email shortly.",
             icon: "success",
-            confirmButtonText: "Close",
+            
           })
         }
         // alert("Application submitted successfully")
@@ -210,8 +210,8 @@ const Prisoner = () => {
         <source src={video} type="video/mp4" />
       </video>
       <div className="container">
-        <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-semibold">
-          REGISTRATION
+        <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-bold mt-3">
+          APPLY FOR BAIL
         </div>
         <div className="content p-5">
           <form onSubmit={handleSubmit}>
@@ -366,9 +366,9 @@ const Prisoner = () => {
                 {/* crimeCategory */}
                 {/* crimeCategory */}
 
-                <label className="text-3xl text-white" htmlFor="">Crime Category</label>
+                <label className="text-2xl text-white" htmlFor="">Crime Category</label>
                 <select
-                className="text-xl"
+                className="text-xl text-black"
                   value={crimecat}
                   onChange={(e) => setcrimecat(e.target.value)}
                 >
@@ -379,10 +379,10 @@ const Prisoner = () => {
                 </select>
 
                 {/*Crimes*/}
-                <label className="text-3xl text-white" id="crime1">CRIME</label>
+                <label className="text-2xl text-white" id="crime1">CRIME</label>
                 <select
                   name=""
-                  className="text-xl "
+                  className="text-xl text-black"
                   value={crime}
                   onChange={(e) => setcrime(e.target.value)}
                   id=""
@@ -409,10 +409,10 @@ const Prisoner = () => {
 
                 {/* LawyerNames */}
 
-                <label className="text-3xl text-white" htmlFor="">LawyerNames</label>
+                <label className="text-2xl text-white" htmlFor="">LawyerNames</label>
                 <select
                   name=""
-                  className="text-xl "
+                  className="text-xl text-black "
                   value={LawyerName}
                   onChange={(e) => setLawyerName(e.target.value)}
                   id=""
@@ -507,7 +507,7 @@ const Prisoner = () => {
           "your Crime is applicable for Bail . please download the Application" ? (
             <button
               onClick={() => setshowapplication(!showapplication)}
-              className="button"
+              className="button mx-[900px] my-5 text-2xl "
             >
               Show Application
             </button>
@@ -515,7 +515,7 @@ const Prisoner = () => {
             <div>
               <button
                 onClick={() => setshowapplication(!showapplication)}
-                className=" bail-button text-xl hidden  "
+                className="bail-button text-xl hidden  "
               >
                 Show Application
               </button>
@@ -532,7 +532,7 @@ const Prisoner = () => {
             <div
               ref={ref}
               id="bailapplication"
-              className="text-black bg-white rounded-lg mx-auto px-5  py-5 "
+              className="text-black bg-white rounded-lg mx-auto px-5  py-5  w-[1000px]"
             >
               <div
                 style={{
@@ -828,7 +828,7 @@ const Prisoner = () => {
           {showapplication && (
             <div>
               <button
-                className="text-xl bg-blue-400 px-2 py-1 rounded-lg ml-[45%] mt-5 mb-5 "
+                className="button text-xl  px-2  rounded-lg ml-[45%] mt-5 mb-5 "
                 onClick={printpdf}
               >
                 Print Application

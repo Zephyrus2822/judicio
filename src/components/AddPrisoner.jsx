@@ -104,7 +104,7 @@ const AddPrisoner = () => {
       <div className="flex justify-center items-center align-middle">
         {/* Form for adding a new prisoner */}
         <form onSubmit={handlesubmit} className="form-addprisoner-1">
-          <h1 className="wel-message flex justify-center align-middle items-center">ENTER PRISONER DETAILS:</h1>
+          <h1 className="wel-message flex justify-center align-middle items-center">Report An FIR</h1>
 
           {/* Name input field */}
           <label id="Name">Name</label>
