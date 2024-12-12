@@ -6,11 +6,7 @@ const Home = () => {
 
 
     <div>
-      {/* <div className="video-container">
-        <video autoPlay muted loop className="video-background">
-          <source src={video} type="video/mp4" />
-        </video> */}
-        <div className="image-container">
+      <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
         <div className="heading">
           Welcome to Judicio!
         </div>

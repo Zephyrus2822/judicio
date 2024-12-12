@@ -7,7 +7,7 @@ import caseRouter from "./routes/caseRoutes.js";
 import applicationRouter from "./routes/applicationRoutes.js";
 import prisonerRouter from "./routes/prisonerRotes.js";
 
-import { Resend } from 'resend';
+// import { Resend } from 'resend';
 
 
 const app = express();
@@ -42,22 +42,10 @@ app.get('/getprevCases',(req,res)=>{
   res.json(prevCases)
 })
 
-const resend = new Resend('re_AV2CGuKT_81siCzYDoVq8Xk7m8BKqHGFF');
-app.get("/send-email", async (req, res) => {
-  const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
-    to: ["chandanramgar@gmail.com"],
-    subject: "hello world",
-    html: "<strong>it works!</strong>",
-  });
-  console.log(data)
-
-  if (error) {
-    return res.status(400).json({ error });
-  }
-
-  res.status(200).json({ data });
-});
+import crimes from './data/crimes.json' assert { type: 'json' };
+app.get('/getcrimes',(req,res)=>{
+  res.json(crimes)
+})
 
 
 

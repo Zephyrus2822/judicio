@@ -95,6 +95,7 @@ const acceptApplication = async (req, res) => {
 };
 const RejectApplication = async (req, res) => {
   const { applicationId } = req.body;
+  console.log(applicationId)
   console.log(req.body);
   try {
     const application = await applications.findByIdAndUpdate(applicationId, {

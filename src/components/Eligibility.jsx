@@ -29,13 +29,15 @@ const Eligibility = () => {
     fetch()
   },[])
 
+  const handleApply=(applicationId)=>{
+    console.log(applicationId)
+    // TODO: send applicationId to backend for processing
+
+  }
   
 
   return (
-    <div className="video-container3">
-      <video autoPlay muted loop className="video-background">
-        <source src={video} type="video/mp4" />
-      </video>
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       <div className="body-container text-orange-400  relative z-10">
         <div className="p-10 text-center h-screen">
           <div className="border-2 border-orange-300 rounded-lg min-h-screen p-5 bg-opacity-70 bg-black mt-10">
@@ -48,6 +50,7 @@ const Eligibility = () => {
                   <th>Crime</th>
                   <th>Status</th>
                   <th>Prison Duration</th>
+                  <th></th>
                 </tr>
                 {prisoners.map((prison,i)=>(
                   <tr className="space-x-4" key={i}>
@@ -56,7 +59,7 @@ const Eligibility = () => {
                     <td className="text-center">{prison.Crime}</td>
                     <td className="text-center">{prison.Complience}</td>
                     <td className="text-center">{moment(prison.createdAt).format("mm")} Months</td>
-                    <button className="bg-white text-green-500 text-xl px-2 py-1 ">Apply</button>
+                    <button onClick={()=>handleApply(prison._id)} className="bg-white text-green-500 text-xl px-2 py-1 ">Apply</button>
                   </tr>
                 ))}
                 

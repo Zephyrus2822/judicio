@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaArrowDown } from "react-icons/fa";
-import video2 from "../assets/video2.mp4";
 import "./aboutbail.css";
 
 const AboutBail = () => {
@@ -12,8 +11,9 @@ const AboutBail = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_DEV_URL}api/crimes`
+        `${import.meta.env.VITE_DEV_URL}getcrimes`
       );
+      console.log(response.data);
       setCrimes(response.data);
     } catch (error) {
       console.log(error);
@@ -42,16 +42,14 @@ const AboutBail = () => {
 
   return (
     <>
-      <div className="video-container2">
-        <video autoPlay muted loop className="video-background">
-          <source src={video2} type="video/mp4" />
-        </video>
+      <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
+        
 
         <h1 className="text-center text-5xl text-orange-500 font-bold mt-4 mb-2 p-4">
           Criminal Offenses
         </h1>
 
-        <div className="crimes mt-5">
+        <div className="crimes mt-5 ">
           <div className="bailbtn-container">
             {crimebtn.map((crimebtnn, i) => {
               return (
@@ -75,14 +73,10 @@ const AboutBail = () => {
 
           <div className="justify-center">
             <div
-              className="crime-list-container"
-              style={{
-                minHeight: "1500px",
-                overflowY: "scroll",
-                paddingRight: "10px",
-              }}
+              className="crime-list-container h-[30vh]"
+              
             >
-              {isValidArray && crimes.length > 0
+              {crimes.length > 0
                 ? crimes.map((crime, i) => (
                     <div
                       key={i}

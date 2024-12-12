@@ -63,10 +63,7 @@ const Dash = () => {
   console.log(userapplication)
 
   return (
-    <div className="video-container">
-      <video autoPlay muted loop className="video-background">
-        <source src={video2} type="video/mp4" />
-      </video>
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       <div className="dashboard-container">
         <h2 className="title">USER DASHBOARD</h2>
         {error && <p className="error-message">{error}</p>}
