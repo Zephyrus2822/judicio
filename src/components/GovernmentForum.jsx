@@ -29,13 +29,13 @@ const GovernmentForum = () => {
         <label className="label"></label>
         <div className="yes-no-container1">
             <h4>Do you want to transfer your case to higher authorities ?</h4>
-          <button className="yes-no-btn">Yes</button>
+          <button className="yes-no-btn"><a href="https://mail.google.com/mail/u/0/#inbox?compose=newhttps://mail.google.com/mail/u/0/#inbox?compose=CllgCJZXhnRlzNcMdLfRcvGZXMqtHBvlpKKgFvTtcDKknMnWDQlpDBwhWwhtFRRwTNJRMNQXDZL">Yes</a></button>
           <button className="yes-no-btn">No</button>
         </div>
       </div>
 
     
-      <div className="w-full"><button className="send-button"><a href="https://mail.google.com/mail/u/0/#inbox?compose=newhttps://mail.google.com/mail/u/0/#inbox?compose=CllgCJZXhnRlzNcMdLfRcvGZXMqtHBvlpKKgFvTtcDKknMnWDQlpDBwhWwhtFRRwTNJRMNQXDZL"></a>SEND</button></div>
+      
     </div>
     </div>
   );
