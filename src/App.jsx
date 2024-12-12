@@ -23,6 +23,7 @@ import LawyerNav from "./components/LawyerNav";
 import VerdictPassed from "./components/VerdictPassed";
 import GovernmentForum from "./components/GovernmentForum.jsx";
 import { generateToken } from "./firebase.js";
+import PrevCases from "./components/PrevCases.jsx";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -82,6 +83,7 @@ function App() {
           <Route path="/forums" element={<GovernmentForum />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/test" element={<IImage />} />
+          <Route path="/prevcases" element={<PrevCases />} />
 
           <Route path="/map" element={<LawyerNav />} />
 

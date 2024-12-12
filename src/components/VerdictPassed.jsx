@@ -40,7 +40,7 @@ const VerdictPassed = () => {
         <source src={video} type="video/mp4" />
       </video>
       <div className="pt-20 pb-40">
-      <div className="table text-center text-white mx-auto bg-slate-950 rounded-md p-5 opacity-70">
+      <div className=" text-center text-white mx-auto bg-slate-950 rounded-md p-5 opacity-70">
         <h1 className="text-3xl pt-10 pb-12 font-bold">Application Records</h1>
         <table className="w-full border-collapse">
           <thead className="text-2xl border-b border-orange-500">
@@ -55,11 +55,11 @@ const VerdictPassed = () => {
           <tbody className='text-xl font-semibold'>
             {applications.map((application,i)=>(
               <tr className="border-b border-orange-500">
-                <td className="px-5 py-3">{application._id}</td>
-                <td className="px-5 py-3">{application.applicantInfo.Name}</td>
-                <td className="px-5 py-3">{application.applicantInfo.Crime[0]}</td>
-                <td className="px-5 py-3">{application.lawyerName}</td>
-                <td className="px-5 py-3">{application.Status}</td>
+                <td className="px-5 py-3 text-center">{application._id}</td>
+                <td className="px-5 py-3 text-center">{application.applicantInfo.Name}</td>
+                <td className="px-5 py-3 text-center">{application.applicantInfo.Crime[0]}</td>
+                <td className="px-5 py-3 text-center">{application.lawyerName}</td>
+                <td className="px-5 py-3 text-center">{application.Status}</td>
               </tr>
             ))}
             

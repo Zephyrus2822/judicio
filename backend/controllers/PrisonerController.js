@@ -34,7 +34,7 @@ const addprisoner = async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    resizeBy.json("error adding prisoner ",error);
+    res.json("error adding prisoner");
   }
 };
 

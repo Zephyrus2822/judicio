@@ -1,8 +1,10 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import Webcam from "react-webcam";
 import Popup from "./Popup"; // Import the Popup component
 import "./dash.css";
 import video2 from "../assets/video2.mp4";
+import axios from "axios";
+
 
 const Dash = () => {
   const [name, setName] = useState("");
@@ -39,6 +41,26 @@ const Dash = () => {
     setImage(imageSrc);
     setShowWebcam(false);
   }, [webcamRef, setImage, setShowWebcam]);
+
+  const [applications, setapplications] = useState([])
+
+  const fetch=async()=>{
+    try {
+      const application = await axios.get(
+        `${import.meta.env.VITE_DEV_URL}api/applications/getapplications`
+      );
+      console.log(application.data);
+      setapplications(application.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  useEffect(()=>{
+    fetch();
+  },[])
+
+  const userapplication=applications.filter(app=>app.applicantInfo.Name==="Ayash Bera")
+  console.log(userapplication)
 
   return (
     <div className="video-container">
@@ -96,21 +118,30 @@ const Dash = () => {
           <table>
             <thead>
               <tr>
-                <th>Application Id</th>
-                <th>Applicant Name</th>
-                <th>Crime</th>
-                <th>Lawyer Applied</th>
-                <th>Status</th>
+                <th className="text-center">Application Id</th>
+                <th className="text-center">Applicant Name</th>
+                <th className="text-center">Crime</th>
+                <th className="text-center">Lawyer Applied</th>
+                <th className="text-center">Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>vhfbev</td>
-                <td>vkjebfwv</td>
-                <td>rbqi</td>
-                <td>kre</td>
-                <td>gw</td>
-              </tr>
+              {userapplication.map(userapp=>(
+                <tr key={userapp._id}>
+                  <td className="text-center">{userapp._id}</td>
+                  <td className="text-center">{userapp.applicantInfo.Name}</td>
+                  <td className="text-center">{userapp.applicantInfo.Crime[0]}</td>
+                  <td className="text-center">{userapp.lawyerName}</td>
+                  <td className="text-center">{userapp.Status}</td>
+                </tr>
+              ))}
+              {/* <tr>
+                <td>54979464vwvw9494</td>
+                <td>Abdul Rahman</td>
+                <td>Murder</td>
+                <td>Rudranil Chawdhry</td>
+                <td>Applied</td>
+              </tr> */}
               {/* Add more rows as needed */}
             </tbody>
           </table>
