@@ -219,7 +219,7 @@ const LawyerNav = () => {
         <h1 className="font-bold text-orangered">LEGAL SERVICES NEAR YOU</h1>
       </div>
 
-      <div className="dropdown-container mt-[20px]">
+      <div className="dropdown-container mt-[20px] text-black px-2 py-1">
         <select value={selectedCity} onChange={handleCityChange}>
 
           {Object.keys(selectedType === "lawyers" ? lawyers : courts).map((city) => (
@@ -234,7 +234,7 @@ const LawyerNav = () => {
         <select 
           value={selectedType} 
           onChange={handleTypeChange}
-          className="ml-4"
+          className="ml-4 text-black"
         >
 
           <option value="lawyers">Lawyers</option>

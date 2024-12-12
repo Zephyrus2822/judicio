@@ -85,30 +85,31 @@ export default function Judgedashboard() {
   };
   return (
     <div className="video-container">
-      <video autoPlay muted loop className="video-background">
+      <video autoPlay muted loop className="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
         <source src={video} type="video/mp4" />
       </video>
-      <div className="p-10 ">
-        <div className="table text-center text-white mx-auto bg-slate-950 rounded-md p-5">
-          <h1 className="text-3xl p-5">Application Records</h1>
-          <table>
-            <thead className="text-2xl ">
+      <div className="pt-20 pb-40">
+        <div className="table text-center text-white mx-auto bg-slate-950 rounded-md p-5 opacity-70">
+          <h1 className="text-3xl pt-10 pb-12 font-bold">Application Records</h1>
+          <table className="w-full border-collapse">
+            <thead className="text-2xl border-b border-orange-500">
               <tr className="">
-                <th className="px-5">Application Id</th>
-                <th className="px-5">Applicant Name</th>
-                <th className="px-5">Crime</th>
-                <th className="px-5">Lawyer Applied</th>
-                <th className="px-8">Status</th>
+                <th className="px-5 py-3">Application Id</th>
+                <th className="px-5 py-3">Applicant Name</th>
+                <th className="px-5 py-3">Crime</th>
+                <th className="px-5 py-3">Lawyer Applied</th>
+                <th className="px-5 py-3">Status</th>
               </tr>
             </thead>
             <tbody className="text-xl font-semibold ">
               {applications.map((application, i) => (
-                <tr key={i}>
-                  <td>{application._id}</td>
-                  <td>{application.applicantInfo.Name}</td>
-                  <td>{application.applicantInfo.Crime[0]}</td>
-                  <td>{application.lawyerName}</td>
-                  <td>{application.Status}</td>
+                <tr className="border-b border-orange-500" key={i}>
+                  <td className="px-5 py-3">{application._id}</td>
+                  <td className="px-5 py-3">{application.applicantInfo.Name}</td>
+                  <td className="px-5 py-3">{application.applicantInfo.Crime[0]}</td>
+                  <td className="px-5 py-3">{application.lawyerName}</td>
+                  <td className="px-8 py-3">{application.Status}</td>
+                  <td className="px-8 py-3 flex gap-4 justify-center">
                   <button
                     onClick={() =>
                       handleClickOpen(application.applicantInfo.Phone)
@@ -125,6 +126,7 @@ export default function Judgedashboard() {
                   >
                     Reject
                   </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

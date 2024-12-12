@@ -44,9 +44,9 @@ const Navigation = () => {
               <li>
                 <a href="/addprisoner">Add Prisoner</a>
               </li>
-              {/* <li>
+              <li>
                 <a href="/updateprisoner">Update Prisoner</a>
-              </li> */}
+              </li>
               <li>
                 <a href="/eligiblecriminals">Eligibility</a>
               </li>

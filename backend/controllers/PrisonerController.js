@@ -38,6 +38,18 @@ const addprisoner = async (req, res) => {
   }
 };
 
+const updateprisoner = async (req, res) => {
+  const {adharnum,enquiryimageurl}=req.body;
+  console.log(req.body);
+  const response=await Prisoner.findOneAndUpdate({AddharNum:adharnum},{ $set: { EnqiryReport: enquiryimageurl }})
+  if(response){
+    res.json("Enquiry Report updated successfully")
+  }else{
+    res.json("Error updating Enquiry Report")
+  }
+
+}
+
 const getprisoner = async (req, res) => {
   try {
     const prisoners = await Prisoner.find({});
@@ -48,4 +60,4 @@ const getprisoner = async (req, res) => {
   }
 };
 
-export default { addprisoner, getprisoner };
+export default { addprisoner, getprisoner,updateprisoner };
