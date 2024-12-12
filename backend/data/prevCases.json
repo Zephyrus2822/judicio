@@ -1,0 +1,258 @@
+[
+    {
+        "title": "Gurbaksh Singh Sibbia vs. State of Punjab",
+        "case_id": "1980 AIR 1632",
+        "date_of_judgement": "April 9, 1980",
+        "plaintiff": "Gurbaksh Singh Sibbia",
+        "defendant": "State of Punjab",
+        "act": "Criminal Procedure Code, 1973 (Section 438)",
+        "judge": [
+            "Justice Y.V. Chandrachud",
+            "Justice P.N. Bhagwati",
+            "Justice N.L. Untwalia",
+            "Justice R.S. Pathak",
+            "Justice O. Chinnappa Reddy"
+        ],
+        "type_of_offence": "Non-bailable offense",
+        "citations": [
+            "AIR 1980 SC 1632",
+            "1980 SCR (3) 413"
+        ],
+        "headnote_sent": "The Supreme Court clarified the conditions under which anticipatory bail can be granted, stating that the applicant must show reasonable grounds to believe that they may be arrested, not merely a vague fear. The Court also stated that anticipatory bail can be granted even after an FIR is filed, provided the applicant hasn't been arrested yet.",
+        "judgement_sent": "The judgment emphasized that anticipatory bail cannot be granted post-arrest, and the Court must evaluate whether the applicant has a valid reason to apprehend arrest for a non-bailable offense."
+    },
+    {
+        "title": "Satender Kumar Antil vs. Central Bureau Of Investigation",
+        "case_id": "2022 SCC OnLine SC 832",
+        "date_of_judgement": "October 7, 2022",
+        "plaintiff": "Satender Kumar Antil",
+        "defendant": "Central Bureau of Investigation",
+        "act": "Criminal Procedure Code, 1973",
+        "judge": [
+            "Justice A.M. Khanwilkar",
+            "Justice Dinesh Maheshwari"
+        ],
+        "type_of_offence": "Corruption, Money Laundering",
+        "citations": [
+            "2022 SCC OnLine SC 832"
+        ],
+        "headnote_sent": "The Supreme Court addressed the issue of undertrial prisoners and the conditions under which bail should be granted. The Court stressed that bail is the rule, and jail is the exception, especially in non-serious offenses.",
+        "judgement_sent": "The judgment urged for the need for bail reforms and emphasized that courts should balance the seriousness of the offense with the right to bail, ensuring fair treatment of undertrials."
+    },
+    {
+        "title": "Rasiklal v. Kishore s/o Khanchand Wadhwani",
+        "case_id": "AIR 2009 SC 1341",
+        "date_of_judgement": "2009",
+        "plaintiff": "Rasiklal",
+        "defendant": "Kishore s/o Khanchand Wadhwani",
+        "act": "Criminal Procedure Code, 1973 (Section 436)",
+        "judge": [
+            "Justice P. Sathasivam",
+            "Justice B.S. Chauhan"
+        ],
+        "type_of_offence": "Bailable offense",
+        "citations": [
+            "AIR 2009 SC 1341"
+        ],
+        "headnote_sent": "The Supreme Court ruled that in the case of bailable offenses, bail is an unconditional right. A magistrate cannot deny bail based on the seriousness of the offense, and the accused should be immediately released after the bail is granted.",
+        "judgement_sent": "The Court held that the grant of bail for bailable offenses is a right and should not be denied unless specific conditions are violated. The Court emphasized that the seriousness of the offense cannot be a valid ground for refusing bail in such cases."
+    },
+    {
+        "title": "Sushila Aggarwal vs State (NCT of Delhi)",
+        "case_id": "2020 SCC OnLine SC 346",
+        "date_of_judgement": "January 29, 2020",
+        "plaintiff": "Sushila Aggarwal",
+        "defendant": "State (NCT of Delhi)",
+        "act": "Criminal Procedure Code, 1973 (Section 438)",
+        "judge": [
+            "Justice R.F. Nariman",
+            "Justice S. Ravindra Bhat"
+        ],
+        "type_of_offence": "Non-bailable offense",
+        "citations": [
+            "2020 SCC OnLine SC 346"
+        ],
+        "headnote_sent": "This case established that anticipatory bail must be considered with caution and that the right to anticipate arrest does not interfere with the police's right to investigate. The Supreme Court also addressed the proper conditions to be applied when granting anticipatory bail.",
+        "judgement_sent": "The Court reinforced the importance of investigating agencies having the ability to collect material evidence even when anticipatory bail is granted."
+    },
+    {
+        "title": "State of Rajasthan v. Balchand",
+        "case_id": "1977 AIR 2447",
+        "date_of_judgement": "1977",
+        "plaintiff": "State of Rajasthan",
+        "defendant": "Balchand",
+        "act": "Criminal Procedure Code, 1973",
+        "judge": [
+            "Justice P.N. Bhagwati",
+            "Justice R.S. Pathak"
+        ],
+        "type_of_offence": "Non-bailable offense",
+        "citations": [
+            "AIR 1977 SC 2447"
+        ],
+        "headnote_sent": "This case laid down the principle that bail should not be denied as a form of punishment. Bail is the rule, and jail is the exception, unless the accused poses a threat to public order or is a flight risk.",
+        "judgement_sent": "The Court emphasized the need for judicial discretion in granting bail, stressing that bail should be the default in non-serious offenses."
+    },
+    {
+        "title": "K.K. Verma v. State of Uttar Pradesh",
+        "case_id": "1987",
+        "date_of_judgement": "1987",
+        "plaintiff": "K.K. Verma",
+        "defendant": "State of Uttar Pradesh",
+        "act": "Criminal Procedure Code, 1973",
+        "judge": [
+            "Justice V.R. Krishna Iyer",
+            "Justice S.M. Fazal Ali"
+        ],
+        "type_of_offence": "Non-bailable offense",
+        "citations": [
+            "1987 AIR 2564"
+        ],
+        "headnote_sent": "The case focused on the need to weigh the seriousness of the offense and the likelihood of the accused tampering with evidence when deciding on bail.",
+        "judgement_sent": "The judgment balanced the seriousness of the offense with the rights of the accused, establishing a framework for judicial discretion in bail decisions."
+    },
+    {
+        "title": "Babu Lal v. Union of India",
+        "case_id": "2016",
+        "date_of_judgement": "2016",
+        "plaintiff": "Babu Lal",
+        "defendant": "Union of India",
+        "act": "Narcotic Drugs and Psychotropic Substances Act (NDPS)",
+        "judge": [
+            "Justice P. Sathasivam",
+            "Justice Dipak Misra"
+        ],
+        "type_of_offence": "Narcotics-related offenses",
+        "citations": [
+            "2016 SCC OnLine SC 736"
+        ],
+        "headnote_sent": "This case discussed bail provisions in narcotics-related offenses, highlighting how courts should handle bail applications in light of the quantity of substances involved.",
+        "judgement_sent": "The Court directed that bail should be denied for major drug-related offenses unless there is a clear lack of sufficient evidence."
+    },
+    {
+        "title": "Toofan Singh v. State of Tamil Nadu",
+        "case_id": "2013",
+        "date_of_judgement": "2013",
+        "plaintiff": "Toofan Singh",
+        "defendant": "State of Tamil Nadu",
+        "act": "Narcotic Drugs and Psychotropic Substances Act",
+        "judge": [
+            "Justice R.M. Lodha",
+            "Justice S.A. Bobde"
+        ],
+        "type_of_offence": "Narcotic offense",
+        "citations": [
+            "2013 AIR SC 2977"
+        ],
+        "headnote_sent": "This case clarified that statements made under the NDPS Act to police officers cannot be used unless specific conditions are met.",
+        "judgement_sent": "The Court examined the application of anticipatory bail under the NDPS Act, focusing on the admissibility of statements and the role of the police in investigations."
+    },
+    {
+        "title": "State of Punjab v. Baldev Singh",
+        "case_id": "1999",
+        "date_of_judgement": "1999",
+        "plaintiff": "State of Punjab",
+        "defendant": "Baldev Singh",
+        "act": "Narcotic Drugs and Psychotropic Substances Act (NDPS)",
+        "judge": [
+            "Justice R.S. Pathak",
+            "Justice K.R. Rao"
+        ],
+        "type_of_offence": "Drug-related offense",
+        "citations": [
+            "1999 AIR SC 1628"
+        ],
+        "headnote_sent": "This case emphasized that offenses under the NDPS Act are non-bailable but provided detailed guidelines on granting bail in specific circumstances, especially concerning the quantity of drugs involved.",
+        "judgement_sent": "The Court set guidelines for granting bail in narcotics cases and affirmed that bail is not an automatic right under the NDPS Act."
+    },
+    {
+        "title": "Manoj Kumar vs State of Delhi",
+        "case_id": "2018",
+        "date_of_judgement": "2018",
+        "plaintiff": "Manoj Kumar",
+        "defendant": "State of Delhi",
+        "act": "Criminal Procedure Code, 1973",
+        "judge": [
+            "Justice A.K. Sikri",
+            "Justice Ashok Bhushan"
+        ],
+        "type_of_offence": "Non-bailable offense",
+        "citations": [
+            "2018 SCC OnLine SC 1575"
+        ],
+        "headnote_sent": "This case focused on anticipatory bail applications and set important precedents for the judicial scrutiny needed before granting anticipatory bail.",
+        "judgement_sent": "The Court ruled on the discretion of courts to grant anticipatory bail in serious criminal cases, especially when there was a risk of the accused evading arrest."
+    },
+    {
+        "title": "Gurdev Singh v. State of Punjab",
+        "case_id": "2021",
+        "date_of_judgement": "2021",
+        "plaintiff": "Gurdev Singh",
+        "defendant": "State of Punjab",
+        "act": "Narcotic Drugs and Psychotropic Substances Act",
+        "judge": [
+            "Justice S. Abdul Nazeer",
+            "Justice Indira Banerjee"
+        ],
+        "type_of_offence": "Narcotics-related offense",
+        "citations": [
+            "2021 SCC OnLine SC 110"
+        ],
+        "headnote_sent": "The Supreme Court examined the bail application under the NDPS Act and clarified how bail should be considered in cases involving smaller quantities of narcotics.",
+        "judgement_sent": "The Court emphasized that small quantities of narcotics could be a valid consideration for granting bail under specific conditions."
+    },
+    {
+        "title": "Harjit Singh v. State of Punjab",
+        "case_id": "2014",
+        "date_of_judgement": "2014",
+        "plaintiff": "Harjit Singh",
+        "defendant": "State of Punjab",
+        "act": "Criminal Procedure Code, 1973",
+        "judge": [
+            "Justice G.S. Singhvi",
+            "Justice R.K. Agrawal"
+        ],
+        "type_of_offence": "Non-bailable offense",
+        "citations": [
+            "2014 SCC OnLine SC 437"
+        ],
+        "headnote_sent": "The case dealt with anticipatory bail and set out how the court should evaluate the gravity of the offense and the likelihood of the accused fleeing when considering bail.",
+        "judgement_sent": "The Court focused on the need for proportionality between the seriousness of the offense and the rights of the accused when considering anticipatory bail."
+    },
+    {
+        "title": "Pooja Pal v. Union of India",
+        "case_id": "2020",
+        "date_of_judgement": "2020",
+        "plaintiff": "Pooja Pal",
+        "defendant": "Union of India",
+        "act": "Criminal Procedure Code",
+        "judge": [
+            "Justice B.V. Nagarathna",
+            "Justice Dinesh Maheshwari"
+        ],
+        "type_of_offence": "Non-bailable offense",
+        "citations": [
+            "2020 SCC OnLine SC 1757"
+        ],
+        "headnote_sent": "This case highlighted how women and minors should be treated with special consideration when applying for bail, emphasizing their right to be treated fairly during legal proceedings.",
+        "judgement_sent": "The judgment underlined that bail in such cases should be granted with special considerations to protect women and children from potential harm."
+    },
+    {
+        "title": "Kailash Yadav v. State of U.P.",
+        "case_id": "2021",
+        "date_of_judgement": "2021",
+        "plaintiff": "Kailash Yadav",
+        "defendant": "State of U.P.",
+        "act": "Criminal Procedure Code",
+        "judge": [
+            "Justice P.S. Narayana",
+            "Justice S.R. Rao"
+        ],
+        "type_of_offence": "Violent crime",
+        "citations": [
+            "2021 SCC OnLine SC 819"
+        ],
+        "headnote_sent": "This case examined how the prior criminal record of an accused should be taken into account when deciding on bail in violent crimes.",
+        "judgement_sent": "The Court ruled that an accused's previous criminal history should be considered a relevant factor when granting bail in serious offenses."
+    }
+]

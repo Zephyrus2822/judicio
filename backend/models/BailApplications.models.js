@@ -11,7 +11,7 @@ const applicationSchema=new mongoose.Schema({
     },
     JudgeName:{
         type:String,
-        required:true
+        
     },
     applicantInfo:{
         prisoner_id:{

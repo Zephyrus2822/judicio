@@ -75,7 +75,7 @@ const AddPrisoner = () => {
 
             })
           }else{
-            // navigate("/updateprisoner");
+            navigate("/updateprisoner");
 
           }
           console.log(response);
@@ -181,14 +181,14 @@ const AddPrisoner = () => {
 
           {/* crimeCategory */}
 
-          <label htmlFor="">Crime Category</label>
+          <label htmlFor="">Crime Category : </label>
           <select value={crimecat} onChange={e=>setcrimecat(e.target.value)}>
             <option value="">Select Crime Category</option>
             {crimeCategory.map(cat=><option key={cat}>{cat}</option>)}
           </select>
 
           {/* Crime input field with datalist options */}
-          <label id="crime1">CRIME</label>
+          <label id="crime1">CRIME : </label>
           <select name="" value={crime} onChange={e=>setcrime(e.target.value)} id="">
             <option value="">Select Crime</option>
             {crimess.map((crimee,i)=><option key={i}>{crimee.Crime}</option>)}
@@ -197,7 +197,7 @@ const AddPrisoner = () => {
           {/* Submit button */}
           <button
             type="submit"
-            className="form-button">
+            className="form-button mx-[450px]">
             Add Prisoner
           </button>
         </form>
