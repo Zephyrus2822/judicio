@@ -1,10 +1,19 @@
-
-
 import React, { useState, useEffect } from "react";
 import "./lawyernav.css";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { Icon, divIcon, point } from "leaflet";
+import Switch from "./Switch";
+import CityDropdown from './CityDropdown';
+import './CityDropdown.css';
+
+const MapUpdater = ({ center }) => {
+  const map = useMap();
+  useEffect(() => {
+    map.setView(center);
+  }, [center, map]);
+  return null;
+};
 
 const LawyerNav = () => {
   const [selectedCity, setSelectedCity] = useState("Kolkata");
@@ -12,6 +21,7 @@ const LawyerNav = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [initialMapCenter, setInitialMapCenter] = useState(null);
 
+  // Data objects
   const lawyers = {
     Kolkata: [
       {
@@ -122,20 +132,9 @@ const LawyerNav = () => {
     ],
   };
 
+  // Helper functions
   const handleCityChange = (e) => {
     setSelectedCity(e.target.value);
-  };
-
-  const handleTypeChange = (e) => {
-    setSelectedType(e.target.value);
-  };
-
-  const MapUpdater = ({ center }) => {
-    const map = useMap();
-    useEffect(() => {
-      map.setView(center);
-    }, [center, map]);
-    return null;
   };
 
   const createCustomClusterIcon = (cluster) => {
@@ -146,8 +145,47 @@ const LawyerNav = () => {
     });
   };
 
-  const locations = selectedType === "lawyers" ? lawyers : courts;
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const R = 6371;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) *
+        Math.cos(toRad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
 
+  const toRad = (value) => {
+    return (value * Math.PI) / 180;
+  };
+
+  const findNearestCity = (userCoords) => {
+    let nearestCity = "Kolkata";
+    let shortestDistance = Infinity;
+
+    Object.entries(lawyers).forEach(([city, locations]) => {
+      const cityCoords = locations[0].geocode;
+      const distance = calculateDistance(
+        userCoords[0],
+        userCoords[1],
+        cityCoords[0],
+        cityCoords[1]
+      );
+
+      if (distance < shortestDistance) {
+        shortestDistance = distance;
+        nearestCity = city;
+      }
+    });
+
+    return nearestCity;
+  };
+
+  // Effects
   useEffect(() => {
     const getUserLocation = () => {
       if ("geolocation" in navigator) {
@@ -173,45 +211,9 @@ const LawyerNav = () => {
     getUserLocation();
   }, []);
 
-  const findNearestCity = (userCoords) => {
-    let nearestCity = "Kolkata";
-    let shortestDistance = Infinity;
+  const locations = selectedType === "lawyers" ? lawyers : courts;
 
-    Object.entries(lawyers).forEach(([city, locations]) => {
-      const cityCoords = locations[0].geocode;
-      const distance = calculateDistance(
-        userCoords[0],
-        userCoords[1],
-        cityCoords[0],
-        cityCoords[1]
-      );
-
-      if (distance < shortestDistance) {
-        shortestDistance = distance;
-        nearestCity = city;
-      }
-    });
-
-    return nearestCity;
-  };
-
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const R = 6371;
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(lat1)) *
-        Math.cos(toRad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  };
-
-  const toRad = (value) => {
-    return (value * Math.PI) / 180;
-  };
+  const cities = Object.keys(lawyers);
 
   return (
     <div className="main-container items-center justify-between p-2">
@@ -219,27 +221,21 @@ const LawyerNav = () => {
         <h1 className="font-bold text-orangered">LEGAL SERVICES NEAR YOU</h1>
       </div>
 
-      <div className="dropdown-container mt-[20px]">
-        <select value={selectedCity} onChange={handleCityChange}>
+      <div className="flex items-center justify-center gap-2 mt-[20px]">
+        <CityDropdown 
+          selectedCity={selectedCity}
+          onCityChange={(city) => setSelectedCity(city)}
+          cities={cities}
+        />
 
-          {Object.keys(selectedType === "lawyers" ? lawyers : courts).map((city) => (
-
-            <option key={city} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-
-        
-        <select 
-          value={selectedType} 
-          onChange={handleTypeChange}
-          className="ml-4"
-        >
-
-          <option value="lawyers">Lawyers</option>
-          <option value="courts">Courts</option>
-        </select>
+        <div className="inline-flex items-center">
+          <Switch
+            checked={selectedType === "lawyers"}
+            onChange={() => setSelectedType(selectedType === "lawyers" ? "courts" : "lawyers")}
+          >
+            {selectedType === "lawyers" ? "L" : "C"}
+          </Switch>
+        </div>
       </div>
 
       <div className="map-container h-60 w-85 border-rounded border-2px solid black mt-[20px]">
@@ -288,7 +284,7 @@ const LawyerNav = () => {
 
       <div className="help ml-[150px] mt-[130px]">
         <p className="items-center">
-          In case of any complaints, contact us <a href="/contactus">here</a>.
+          <a href="/contactus"></a>.
         </p>
       </div>
     </div>
