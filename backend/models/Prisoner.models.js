@@ -36,6 +36,11 @@ const prisonerSchema = new mongoose.Schema(
       type:String,
       required:true
     },
+    EnquiryReport:{
+      type: String,
+      default: "",
+      
+    },
 
     Crime: {
       type: String,

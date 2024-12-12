@@ -18,14 +18,11 @@ const updateprisonerSchema = new mongoose.Schema(
       
     },
 
-    FIRdate: {
+    Trialdate: {
       type: Date,
       default: Date.now(),
     },
-    Witness:{
-      type:String,
-      required:true
-    },
+    
 
     Crime: {
       type: String,
