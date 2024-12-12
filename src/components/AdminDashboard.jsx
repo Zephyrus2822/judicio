@@ -87,7 +87,8 @@ const AdminDashboard = () => {
   return (
     <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       <div className="relative w-full z-10 ">
-        <div className="cards my-20 ml-[215px] flex justify-start items-center gap-none">
+        <h1 className="underline ml-[450px] mt-[100px] text-4xl font-extrabold text-white">ADMINISTRATOR DASHBOARD</h1>
+        <div className="cards my-20 ml-[150px] flex justify-start items-center gap-none">
           <div className="dashboard-btn">
             <span>
               <svg
@@ -109,7 +110,7 @@ const AdminDashboard = () => {
           </div>
           <button
             onClick={handleClickOpen}
-            className="cards ml-[370px] flex justify-start items-center"
+            className="cards ml-[500px] flex justify-start items-center"
           >
             <div className="dashboard-btn-1">
               <span>
@@ -133,7 +134,7 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <div className="dashboard-conatiner border-2 bg-opacity-75 rounded-lg backdrop-blur-lg min-h-[40vh] w-[70vw] ml-[300px] p-10 flex justify-center items-center shadow-[0_4px_30px_rgba(255,69,0,0.9)]">
+        <div className="dashboard-conatiner border-2 bg-opacity-75 rounded-lg backdrop-blur-lg min-h-[40vh] w-[70vw] ml-[220px] p-10 flex justify-center items-center shadow-[0_4px_30px_rgba(255,69,0,0.9)]">
           <div className="w-full">
             <table className="w-full">
               <thead>

@@ -24,8 +24,9 @@ const Navigation = () => {
   return (
     <div className="header">
       <nav>
-        <div className="Logo-wrapper">
-          <h1 className="Logo font-['Playfair_Display'] text-4xl font-bold italic">Judicio</h1>
+      <div className="Logo-wrapper flex items-start">
+        <img src="../../public/images/justice3.png" alt="img" className="h-100" />
+        <h1 className="Logo font-['Playfair_Display'] text-4xl font-bold italic">Judicio</h1>
         </div>
         <ul>
         <li><a href="/">Home</a></li>
@@ -33,7 +34,7 @@ const Navigation = () => {
                 <a href="/About">Docs</a>
               </li>
               <li>
-                <a href="/prisoner">Get Verdict</a>
+                <a href="/prisoner">Bail Calculate</a>
               </li>
               <li>
               <a href="/AdminDashboard">Admin Dashboard</a>

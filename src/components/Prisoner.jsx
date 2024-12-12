@@ -6,16 +6,18 @@ import html2canvas from "html2canvas";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import video from "../assets/video04.mp4";
 import Swal from "sweetalert2";
+import CrimeAddPopUp from "./CrimeAddPopUp";
+
 
 const Prisoner = () => {
   {
-    /geting api details/
+    //getting api details
   }
   const [Users, setUsers] = useState([]);
   const [crimes, setcrimes] = useState([]);
 
   {
-    /information/
+    // information
   }
   const [showapplication, setshowapplication] = useState(false);
   const ref = useRef(null);
@@ -85,6 +87,14 @@ const Prisoner = () => {
   useEffect(() => {
     fetchdata();
   }, []);
+
+  const isArray = (value) => {
+    return Array.isArray(value);
+  };
+
+  if (!isArray(Users)) {
+    return <div>Users data is not in the correct format</div>;
+  }
 
   const JudgeNamesss = Users.filter((user) => user.userRole === "Judge");
   console.log(JudgeNamesss);
