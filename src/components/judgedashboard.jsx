@@ -147,6 +147,7 @@ export default function Judgedashboard() {
                   
                   <textarea className="text-2xl" placeholder="Enter the Message" name="message" />
                   <br />
+                  <input type="text" placeholder="Enter the date for Hearing " />
                   <input className="border-2 border-black px-2 py-1 text-xl" type="submit" value="Send" />
                 </form>
               </DialogContent>
