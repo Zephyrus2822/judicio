@@ -37,8 +37,9 @@
   height: auto;
   width: 40%;
   box-shadow: 5px 5px 10px rgb(234, 83, 28);
-  background-color: rgba(0, 0, 0, 0.5);
-  margin-top: 80px;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: Outfit;
+  margin-top: 10px;
   border-radius: 15px;
   padding: 15px 15px;
 }
@@ -69,7 +70,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 0px;
   height: auto;
   width: auto;
   padding: 2px;
@@ -271,7 +272,7 @@
   width: 200px;
   justify-content: start;
   align-items: start;
-  flex: 1;
+  display: flex;
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -301,7 +302,7 @@ nav {
   justify-content: space-between;
   width: auto;
   margin: 0 auto;
-  background-color: black; 
+  background-color: whitesmoke; 
   opacity: 0.9;
 }
 
@@ -311,7 +312,7 @@ nav ul {
   gap: 50px;
   font-size: 1.15rem;
   font-weight: 500;
-  color: whitesmoke;
+  color: #2d2d2d;
   font-family: Roboto;
 }
 
@@ -322,7 +323,7 @@ nav li {
 
 nav li:hover {
   transform: scale(1.1);
-  color: aquamarine; 
+  color: black; 
 }
 
 

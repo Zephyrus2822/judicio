@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./updateprisoner.css";
 import axios from "axios";
 import video from '../assets/video2.mp4'; // Importing background video
 import ContactUs from './ContactUs' // Importing a Contact Us component (though not used in this code)
+import { FaCloudUploadAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const UpdatePrisoner = () => {
   // State hooks to manage form data
@@ -11,8 +13,12 @@ const UpdatePrisoner = () => {
   const [adharnum, setadharnum] = useState(""); // Aadhar number of the prisoner
   const [trialdate, settrialdate] = useState(""); // Trial date
   const [crime, setcrime] = useState(""); // Type of crime the prisoner was convicted for
-  const [witness, setwitness] = useState(""); // Testimonial or witness statement
-  const [status, setstatus] = useState(""); // Current status of the prisoner
+  const [isuploading, setisuploading] = useState(false)
+  
+  const [adharimage, setadharimage] = useState("")
+  const [enquiryimageurl, setenquiryimageurl] = useState("")
+
+  const [crimes, setcrimes] = useState([])
 
   // Handles form submission when the user clicks the "Update Prisoner" button
   const handlesubmit = (e) => {
@@ -20,17 +26,20 @@ const UpdatePrisoner = () => {
     try {
       // Sending a POST request to update prisoner details
       axios
-        .post(`https://judicio-server.onrender.com/updatedpriosonerdets`, {
+        .post(`${import.meta.env.VITE_DEV_URL}api/prisoners/updateprisoners`, {
           // API endpoint to update prisoner details
-          name,
-          fathername,
           adharnum,
-          trialdate,
-          crime,
-          status,
-          witness,
+          enquiryimageurl,
         })
         .then((res) => {
+          if(res.data==="Enquiry Report updated successfully"){
+            Swal.fire({
+              title: "Enquiry Report Updated Successfully",
+              text: "Your enquiry report has been updated successfully. You will receive a confirmation via email shortly.",
+              icon: "success",
+              confirmButtonText: "Close",
+            })
+          }
           console.log(res); // Log the response after successful submission
         });
     } catch (error) {
@@ -38,27 +47,60 @@ const UpdatePrisoner = () => {
     }
   };
 
+  
+
+  const uploadImage = async (e) => {
+    setisuploading(true);
+    e.preventDefault();
+    const data = new FormData();
+    data.append("file", adharimage);
+    data.append("upload_preset", "myCloud");
+    data.append("cloud_name", "dcn17cw7n");
+    try {
+      if (adharimage === null) {
+        return alert("Please upload an image");
+      }
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/dcn17cw7n/image/upload",
+        data
+      );
+
+      setenquiryimageurl(res.data.url);
+      //   console.log(res.data.url);
+      // Toast.success()
+      alert("image uploaded successfully");
+      setisuploading(false);
+    } catch (error) {
+      console.error("An error occurred while uploading", error);
+    }
+  };
+
+
   // Fetches prisoner details based on their Aadhar number (not currently used in the form)
   const fetchprisoner = async () => {
     try {
       // Sending a GET request to fetch prisoner details using the Aadhar number
-      axios
-        .get(`${import.meta.env.VITE_DEV_URL}api/getpriosonerdets/${adharnum}`)
+      await axios
+        .get(`${import.meta.env.VITE_DEV_URL}api/prisoners/getprisoners`)
         .then((res) => {
           console.log(res); // Log the response from the API
         });
+
+        const crimes=await axios.get(`${import.meta.env.VITE_DEV_URL}api/cases/crimes`)
+      console.log(crimes)
+      setcrimes(crimes.data);
     } catch (error) {
       console.error("Error fetching prisoner details:", error); // Log any errors during the fetch process
     }
   };
+  useEffect(()=>{
+    fetchprisoner()
+  },[])
 
   return (
     <>
       {/* Video background */}
-      <div className="video-container3">
-        <video autoPlay muted loop className="video-background">
-          <source src={video} type="video/mp4" />
-        </video>
+      <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
         
         {/* Main content container */}
         <div>
@@ -115,37 +157,6 @@ const UpdatePrisoner = () => {
               />
               <br />
 
-              {/* Witness Testimonial input */}
-              <label id="testimonial">TESTIMONIAL</label>
-              <input
-                type="text"
-                name="testimonial"
-                id="testimonal"
-                value={witness}
-                onChange={(e) => setwitness(e.target.value)} // Update state with input value
-                placeholder="I witnessed this person doing...."
-              />
-              <br />
-
-              {/* Location Status input */}
-              <label id="location">STATUS</label>
-              <input
-                list="location"
-                name="location"
-                value={status}
-                onChange={(e) => setstatus(e.target.value)} // Update state with input value
-                placeholder="Location Status"
-              />
-              <br />
-
-              {/* Predefined list for location status */}
-              <datalist id="location">
-                <option value="In India"></option>
-                <option value="Outside India"></option>
-                <option value="Unknown"></option>
-                <option value="Being Tracked"></option> {/* Bail is canceled if the status is "Being Tracked" */}
-              </datalist>
-
               {/* Crime Conviction input */}
               <label id="crime1">CONVICTED FOR:</label>
               <input
@@ -158,19 +169,35 @@ const UpdatePrisoner = () => {
               <br />
 
               {/* Predefined list for crime types */}
-              <datalist id="crime1">
-                <option value="Cyber Crime"></option>
-                <option value="Crime against SCs and STs"></option>
-                <option value="Crime against Women"></option>
-                <option value="Crime against Children"></option>
-                <option value="Offenses against the state"></option>
-                <option value="Economic Offenses"></option>
-                <option value="Crime against Foreigners"></option>
-                <option value="Others"></option>
-              </datalist>
+              <div className="border-2 flex justify-center px-2 items-center border-white rounded-lg gap-2 py-2">
+                  <label className=" text-white h-12 mr-5 p-1">
+                    Add Enquiry Report
+                  </label>
+                  <input
+                    onChange={(e) => setadharimage(e.target.files[0])}
+                    className=" text-white "
+                    type="file"
+                    name="adharimage"
+                    id="aadhar-upload"
+                  />
+                  <button
+                    disabled={isuploading}
+                    className="text-3xl invert"
+                    onClick={uploadImage}
+                  >
+                    <FaCloudUploadAlt />
+                  </button>
+                </div>
+
+              
+
+              
+
+              
+              
 
               {/* Submit button to update prisoner details */}
-              <button type="submit" className="form-button">
+              <button type="submit" className="form-button mx-[500px]">
                 Update Prisoner
               </button>
             </form>

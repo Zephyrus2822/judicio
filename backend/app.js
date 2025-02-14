@@ -6,14 +6,16 @@ import bodyParser from "body-parser";
 import caseRouter from "./routes/caseRoutes.js";
 import applicationRouter from "./routes/applicationRoutes.js";
 import prisonerRouter from "./routes/prisonerRotes.js";
-import sendSms from "./controllers/SmsController.js";
+
+// import { Resend } from 'resend';
+
 
 const app = express();
 app.use(bodyParser.json());
 app.use(
   cors({
     origin: "*",
-
+    
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -34,7 +36,18 @@ app.use('/api/applications',applicationRouter)
 
 app.use('/api/prisoners',prisonerRouter)
 
-app.post('/send-sms',sendSms)
+import prevCases from './data/prevCases.json' assert { type: 'json' };
+
+app.get('/getprevCases',(req,res)=>{
+  res.json(prevCases)
+})
+
+import crimes from './data/crimes.json' assert { type: 'json' };
+app.get('/getcrimes',(req,res)=>{
+  res.json(crimes)
+})
+
+
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");

@@ -75,7 +75,7 @@ const AddPrisoner = () => {
 
             })
           }else{
-            // navigate("/updateprisoner");
+            navigate("/updateprisoner");
 
           }
           console.log(response);
@@ -95,16 +95,13 @@ const AddPrisoner = () => {
   };
 
   return (
-    <div className="video-container3">
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       {/* Video background */}
-      <video autoPlay muted loop className="video-background">
-        <source src={video} type="video/mp4" />
-      </video>
 
       <div className="flex justify-center items-center align-middle">
         {/* Form for adding a new prisoner */}
         <form onSubmit={handlesubmit} className="form-addprisoner-1">
-          <h1 className="wel-message flex justify-center align-middle items-center">ENTER PRISONER DETAILS:</h1>
+          <h1 className="wel-message flex justify-center align-middle items-center">Report An FIR</h1>
 
           {/* Name input field */}
           <label id="Name">Name</label>
@@ -181,14 +178,14 @@ const AddPrisoner = () => {
 
           {/* crimeCategory */}
 
-          <label htmlFor="">Crime Category</label>
+          <label htmlFor="">Crime Category : </label>
           <select value={crimecat} onChange={e=>setcrimecat(e.target.value)}>
             <option value="">Select Crime Category</option>
             {crimeCategory.map(cat=><option key={cat}>{cat}</option>)}
           </select>
 
           {/* Crime input field with datalist options */}
-          <label id="crime1">CRIME</label>
+          <label id="crime1">CRIME : </label>
           <select name="" value={crime} onChange={e=>setcrime(e.target.value)} id="">
             <option value="">Select Crime</option>
             {crimess.map((crimee,i)=><option key={i}>{crimee.Crime}</option>)}
@@ -197,7 +194,7 @@ const AddPrisoner = () => {
           {/* Submit button */}
           <button
             type="submit"
-            className="form-button">
+            className="form-button mx-[450px]">
             Add Prisoner
           </button>
         </form>

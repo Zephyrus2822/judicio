@@ -1,0 +1,127 @@
+/* Remove default body margins and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;  /* Ensure full height */
+  }
+  
+  /* Ensure no margin or padding is added by the body */
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Background container */
+  .background-container {
+    background-image: url('../../public/images/bg4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    padding: 30px;
+    z-index: -1;
+    margin: 0;
+  }
+  
+  /* Forum container styles */
+  .forum-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    height: 82vh;  
+    width: 49vw;
+    margin-left: 23.5vw;
+    margin-right: 25vw;
+    background-color: rgba(245, 245, 245, 0.9); /* Semi-transparent background */
+    border-radius: 15px;
+    box-shadow: 
+      0 -4px 8px rgba(255, 165, 0, 0.8), 
+      4px 0 8px rgba(255, 165, 0, 0.8), 
+      0 4px 8px rgba(0, 0, 0, 0.8), 
+      -4px 0 8px rgba(0, 0, 0, 0.8);
+    margin-top: 0; /* Remove extra top margin */
+  }
+  
+  /* Form group styles */
+  .form-group {
+    margin-bottom: 20px;
+    gap: 5px;
+    margin-left: 15px;
+    width: 45vw;
+  }
+  
+  /* Label styles */
+  .label {
+    display: block;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+  
+  /* Input and textarea styling */
+  .input, .textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .select .option {
+    height: 50px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+  }
+  
+  .textarea {
+    height: 100px;
+    margin-bottom: 100px;
+  }
+  
+  /* Yes-No button styles */
+  .yes-no-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .yes-no-btn {
+    padding: 10px 20px;
+    font-size: 20px;
+    color: black;
+    background-color: lightblue;
+    border: 1px solid blue;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 30px;
+    margin-top: 10px;
+  }
+  
+  .yes-no-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Send button */
+  .send-button {
+    margin-left: 575px;
+    border: 2px ridge black;
+    border-radius: 3px;
+    padding: 5px;
+    margin-top: 0px;
+    width: 120px;
+    height: 50px;
+    font-size: 25px;
+    transition: transform 0.2s ease;
+  }
+  
+  .send-button:hover {
+    transform: scale(1.1);
+    background-color: aqua;
+    border-color: blue;
+  }
+  

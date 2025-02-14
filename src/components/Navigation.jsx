@@ -16,6 +16,7 @@ const Navigation = () => {
 
   return (
     <div className="header">
+
       <nav className="flex justify-between items-center p-4 bg-white shadow-md relative">
         <div className="Logo-wrapper">
           <h1 className="Logo">Judicio</h1>

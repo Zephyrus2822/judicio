@@ -6,16 +6,18 @@ import html2canvas from "html2canvas";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import video from "../assets/video04.mp4";
 import Swal from "sweetalert2";
+import CrimeAddPopUp from "./CrimeAddPopUp";
+
 
 const Prisoner = () => {
   {
-    /*geting api details*/
+    //getting api details
   }
   const [Users, setUsers] = useState([]);
   const [crimes, setcrimes] = useState([]);
 
   {
-    /*information*/
+    // information
   }
   const [showapplication, setshowapplication] = useState(false);
   const ref = useRef(null);
@@ -53,7 +55,7 @@ const Prisoner = () => {
   //       TrialDate,
 
   {
-    /*form status*/
+    //form status/
   }
   const [isuploading, setisuploading] = useState(false);
 
@@ -86,6 +88,14 @@ const Prisoner = () => {
     fetchdata();
   }, []);
 
+  const isArray = (value) => {
+    return Array.isArray(value);
+  };
+
+  if (!isArray(Users)) {
+    return <div>Users data is not in the correct format</div>;
+  }
+
   const JudgeNamesss = Users.filter((user) => user.userRole === "Judge");
   console.log(JudgeNamesss);
   const LawyerNamesss = Users.filter((user) => user.userRole === "Lawyer");
@@ -113,6 +123,7 @@ const Prisoner = () => {
     console.log(applicable[0]);
     setminbailamt(applicable[0].BailDetails.MinBailAmount);
     setmaxbailamt(applicable[0].BailDetails.MaxBailAmount);
+    setisuploading(true)
 
     if (applicable[0].BailDetails.Bailable === "No") {
       setstatus(
@@ -140,11 +151,19 @@ const Prisoner = () => {
         if(res.data==='Application submitted successfully'){
           Swal.fire({
             title: "Application Submitted Successfully",
-            text: "Your application has been submitted successfully. You will receive a confirmation via email shortly.",
+            text: "Your application has been submitted successfully.Kindly proceed to application.",
             icon: "success",
-            confirmButtonText: "Close",
+            
+          })
+          setisuploading(false)
+        }else{
+          Swal.fire({
+            title: "Error",
+            text: "An error occurred while submitting your application. Please try again.",
+            icon: "error",
           })
         }
+        setisuploading(false)
         // alert("Application submitted successfully")
       })
     }
@@ -190,7 +209,11 @@ const Prisoner = () => {
       setadharimageurl(res.data.url);
       //   console.log(res.data.url);
       // Toast.success()
-      alert("image uploaded successfully");
+      Swal.fire({
+        title: "Image Uploaded Successfully",
+        text: "Your image has been uploaded successfully",
+        icon: "success",
+      })
       setisuploading(false);
     } catch (error) {
       console.error("An error occurred while uploading", error);
@@ -200,18 +223,10 @@ const Prisoner = () => {
   //this opens a new popup, after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden justify-center ">
-      <video
-        autoPlay
-        muted
-        loop
-        className="absolute top-0 left-0 w-full h-full object-cover z--10"
-      >
-        <source src={video} type="video/mp4" />
-      </video>
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
       <div className="container">
-        <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-semibold">
-          REGISTRATION
+        <div className="flex justify-center align-middle items-center text-orange-600 text-4xl font-bold mt-3">
+          APPLY FOR BAIL
         </div>
         <div className="content p-5">
           <form onSubmit={handleSubmit}>
@@ -366,21 +381,23 @@ const Prisoner = () => {
                 {/* crimeCategory */}
                 {/* crimeCategory */}
 
-                <label htmlFor="">Crime Category</label>
+                <label className="text-2xl text-white" htmlFor="">Crime Category</label>
                 <select
+                className="text-xl text-black"
                   value={crimecat}
                   onChange={(e) => setcrimecat(e.target.value)}
                 >
-                  <option value="">Select Crime Category</option>
+                  <option  value="">Select Crime Category</option>
                   {crimeCategory.map((cat) => (
                     <option key={cat}>{cat}</option>
                   ))}
                 </select>
 
                 {/*Crimes*/}
-                <label id="crime1">CRIME</label>
+                <label className="text-2xl text-white" id="crime1">CRIME</label>
                 <select
                   name=""
+                  className="text-xl text-black"
                   value={crime}
                   onChange={(e) => setcrime(e.target.value)}
                   id=""
@@ -392,7 +409,7 @@ const Prisoner = () => {
                 </select>
 
                 {/* JudgeNames */}
-                <label htmlFor="">JudgeNames</label>
+                {/* <label htmlFor="">JudgeNames</label>
                 <select
                   name=""
                   value={JudgeName}
@@ -403,13 +420,14 @@ const Prisoner = () => {
                   {JudgeNamesss.map((JudgeName, i) => (
                     <option key={i} value={JudgeName.profileInfo.Name}>{JudgeName.profileInfo.Name}</option>
                   ))}
-                </select>
+                </select> */}
 
                 {/* LawyerNames */}
 
-                <label htmlFor="">LawyerNames</label>
+                <label className="text-2xl text-white" htmlFor="">LawyerNames</label>
                 <select
                   name=""
+                  className="text-xl text-black "
                   value={LawyerName}
                   onChange={(e) => setLawyerName(e.target.value)}
                   id=""
@@ -504,7 +522,7 @@ const Prisoner = () => {
           "your Crime is applicable for Bail . please download the Application" ? (
             <button
               onClick={() => setshowapplication(!showapplication)}
-              className="button"
+              className="button mx-[900px] my-5 text-2xl "
             >
               Show Application
             </button>
@@ -512,7 +530,7 @@ const Prisoner = () => {
             <div>
               <button
                 onClick={() => setshowapplication(!showapplication)}
-                className=" bail-button text-xl hidden  "
+                className="bail-button text-xl hidden  "
               >
                 Show Application
               </button>
@@ -529,7 +547,7 @@ const Prisoner = () => {
             <div
               ref={ref}
               id="bailapplication"
-              className="text-black bg-white rounded-lg mx-auto px-5  py-5 "
+              className="text-black bg-white rounded-lg mx-auto px-5  py-5  w-[1000px]"
             >
               <div
                 style={{
@@ -730,7 +748,16 @@ const Prisoner = () => {
                       <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      3. That deponent is working as
+                      3. That deponent is
+                      ...................................................................................
+                      <br />
+                      of the deponent and deponent has full control over him/her
+                      and capable to produce him/her <br />
+                      before this hon&#8217;ble court.
+                      <br />
+                    </p>
+                    <p style={{ marginLeft: "20px" }}>
+                      4. That deponent is working as
                       ........................................ at
                       ...............................
                       <br />
@@ -738,11 +765,11 @@ const Prisoner = () => {
                       ................... per month. <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      4. That deponent is the owner of household articles valued
+                      5. That deponent is the owner of household articles valued
                       about of Rs.
                       .............................................................
                       <br />
-                      5. That deponent is the owner of the immovable property
+                      6. That deponent is the owner of the immovable property
                       bearing No. ............................
                       <br />
                     </p>
@@ -755,12 +782,12 @@ const Prisoner = () => {
                       <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      6. That deponent undertakes to produce the accused before
+                      7. That deponent undertakes to produce the accused before
                       the honourable court on every date <br />
                       of hearing. <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      7. That I have an F.D.R. No
+                      8. That I have an F.D.R. No
                       ................................................... Issued
                       by
                       ...........................................................
@@ -770,7 +797,7 @@ const Prisoner = () => {
                       <br />
                     </p>
                     <p style={{ marginLeft: "20px" }}>
-                      8. That I own a vehicle No
+                      9. That I own a vehicle No
                       .......................................................
                       make .......................................
                       <br />
@@ -816,7 +843,7 @@ const Prisoner = () => {
           {showapplication && (
             <div>
               <button
-                className="text-xl bg-blue-400 px-2 py-1 rounded-lg ml-[45%] mt-5 mb-5 "
+                className="button text-xl  px-2  rounded-lg ml-[45%] mt-5 mb-5 "
                 onClick={printpdf}
               >
                 Print Application

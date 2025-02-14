@@ -1,5 +1,4 @@
 import React from 'react';
-import video from '../assets/video03.mp4';
 
 /**
  * About component - Renders the About page with a video background and API information.
@@ -7,13 +6,7 @@ import video from '../assets/video03.mp4';
  */
 const About = () => {
   return (
-    <div>
-      {/* Container for the video background */}
-      <div className="video-container">
-        {/* Video element with autoplay, mute, and loop attributes */}
-        <video autoPlay muted loop className="video-background">
-          <source src={video} type="video/mp4" />
-        </video>
+    <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
 
         {/* Container for the about information */}
         <div className='about-container'>
@@ -51,7 +44,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

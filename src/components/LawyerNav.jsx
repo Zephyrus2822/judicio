@@ -1,10 +1,19 @@
-
-
 import React, { useState, useEffect } from "react";
 import "./lawyernav.css";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { Icon, divIcon, point } from "leaflet";
+import Switch from "./Switch";
+import CityDropdown from './CityDropdown';
+import './CityDropdown.css';
+
+const MapUpdater = ({ center }) => {
+  const map = useMap();
+  useEffect(() => {
+    map.setView(center);
+  }, [center, map]);
+  return null;
+};
 
 const LawyerNav = () => {
   const [selectedCity, setSelectedCity] = useState("Kolkata");
@@ -12,6 +21,7 @@ const LawyerNav = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [initialMapCenter, setInitialMapCenter] = useState(null);
 
+  // Data objects
   const lawyers = {
     Kolkata: [
       {
@@ -26,6 +36,14 @@ const LawyerNav = () => {
         geocode: [22.568225, 88.343366],
         name: "Advocate Monima Khan, Experience: 20 Years.",
       },
+      {
+        geocode: [28.6139, 77.209],
+        name: "Advocate Rajeev Ranjan, Experience: 15 Years.",
+      },
+      {
+        geocode: [19.076, 72.8777],
+        name: "Senior Counsel Meena Harishchandra, Experience: 30+ Years.",
+      },
     ],
     Mumbai: [
       {
@@ -35,6 +53,18 @@ const LawyerNav = () => {
       {
         geocode: [19.0896, 72.8656],
         name: "Advocate Meera Deshmukh, Experience: 18 Years.",
+      },
+      {
+        geocode: [22.7196, 75.8577],
+        name: "Advocate Arun P. Kulkarni, Experience: 18 Years.",
+      },
+      {
+        geocode: [12.9716, 77.5946],
+        name: "Judicial Magistrate R. Natarajan (Retd.), Experience: 25 Years.",
+      },
+      {
+        geocode: [13.0827, 80.2707],
+        name: "Advocate Latha Chandrasekaran, Experience: 10+ Years.",
       },
     ],
     Chennai: [
@@ -46,6 +76,18 @@ const LawyerNav = () => {
         geocode: [13.0674, 80.2376],
         name: "Advocate R. Kamala, Experience: 12 Years.",
       },
+      {
+        geocode: [23.2599, 77.4126],
+        name: "Senior Advocate Subodh V. Mishra, Experience: 22 Years.",
+      },
+      {
+        geocode: [26.9124, 75.7873],
+        name: "Judicial Magistrate K. Prasad (Retd.), Experience: 28+ Years.",
+      },
+      {
+        geocode: [17.385, 78.4867],
+        name: "Advocate Sneha Rao, Experience: 14 Years.",
+      },
     ],
     Belgaum: [
       {
@@ -55,6 +97,18 @@ const LawyerNav = () => {
       {
         geocode: [15.8547, 74.5046],
         name: "Advocate Priya Desai, Experience: 8 Years.",
+      },
+      {
+        geocode: [25.5941, 85.1376],
+        name: "Advocate Bhaskar Choudhary, Experience: 20+ Years.",
+      },
+      {
+        geocode: [15.2993, 74.124],
+        name: "Judicial Magistrate S. Figueiredo (Retd.), Experience: 30 Years.",
+      },
+      {
+        geocode: [21.1458, 79.0882],
+        name: "Senior Advocate Priya Tandon, Experience: 16+ Years.",
       },
     ],
     Bangalore: [
@@ -66,6 +120,18 @@ const LawyerNav = () => {
         geocode: [12.9352, 77.6245],
         name: "Advocate Anjali Rao, Experience: 17 Years.",
       },
+      {
+        geocode: [11.0168, 76.9558],
+        name: "Judicial Magistrate V. Sundaram (Retd.), Experience: 24 Years.",
+      },
+      {
+        geocode: [27.1767, 78.0081],
+        name: "Advocate Nitin Sharma, Experience: 12 Years.",
+      },
+      {
+        geocode: [24.5854, 73.7125],
+        name: "Senior Counsel Aparna Mehta, Experience: 19 Years.",
+      }
     ],
   };
 
@@ -122,20 +188,9 @@ const LawyerNav = () => {
     ],
   };
 
+  // Helper functions
   const handleCityChange = (e) => {
     setSelectedCity(e.target.value);
-  };
-
-  const handleTypeChange = (e) => {
-    setSelectedType(e.target.value);
-  };
-
-  const MapUpdater = ({ center }) => {
-    const map = useMap();
-    useEffect(() => {
-      map.setView(center);
-    }, [center, map]);
-    return null;
   };
 
   const createCustomClusterIcon = (cluster) => {
@@ -146,8 +201,47 @@ const LawyerNav = () => {
     });
   };
 
-  const locations = selectedType === "lawyers" ? lawyers : courts;
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const R = 6371;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) *
+        Math.cos(toRad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
 
+  const toRad = (value) => {
+    return (value * Math.PI) / 180;
+  };
+
+  const findNearestCity = (userCoords) => {
+    let nearestCity = "Kolkata";
+    let shortestDistance = Infinity;
+
+    Object.entries(lawyers).forEach(([city, locations]) => {
+      const cityCoords = locations[0].geocode;
+      const distance = calculateDistance(
+        userCoords[0],
+        userCoords[1],
+        cityCoords[0],
+        cityCoords[1]
+      );
+
+      if (distance < shortestDistance) {
+        shortestDistance = distance;
+        nearestCity = city;
+      }
+    });
+
+    return nearestCity;
+  };
+
+  // Effects
   useEffect(() => {
     const getUserLocation = () => {
       if ("geolocation" in navigator) {
@@ -173,54 +267,18 @@ const LawyerNav = () => {
     getUserLocation();
   }, []);
 
-  const findNearestCity = (userCoords) => {
-    let nearestCity = "Kolkata";
-    let shortestDistance = Infinity;
+  const locations = selectedType === "lawyers" ? lawyers : courts;
 
-    Object.entries(lawyers).forEach(([city, locations]) => {
-      const cityCoords = locations[0].geocode;
-      const distance = calculateDistance(
-        userCoords[0],
-        userCoords[1],
-        cityCoords[0],
-        cityCoords[1]
-      );
-
-      if (distance < shortestDistance) {
-        shortestDistance = distance;
-        nearestCity = city;
-      }
-    });
-
-    return nearestCity;
-  };
-
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const R = 6371;
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(lat1)) *
-        Math.cos(toRad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  };
-
-  const toRad = (value) => {
-    return (value * Math.PI) / 180;
-  };
+  const cities = Object.keys(lawyers);
 
   return (
-    <div className="main-container items-center justify-between p-2">
+    <div className="main-container items-center justify-between p-2 bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10">
       <div className="title w-full items-center mt-[50px]">
-        <h1 className="font-bold text-orangered">LEGAL SERVICES NEAR YOU</h1>
+        <h1 className="font-bold text-black underline">LEGAL SERVICES NEAR YOU</h1>
       </div>
 
-      <div className="dropdown-container mt-[20px]">
-        <select value={selectedCity} onChange={handleCityChange}>
+      <div className="dropdown-container mt-[20px] text-black px-2 py-1">
+        {/* <select value={selectedCity} onChange={handleCityChange}>
 
           {Object.keys(selectedType === "lawyers" ? lawyers : courts).map((city) => (
 
@@ -228,18 +286,33 @@ const LawyerNav = () => {
               {city}
             </option>
           ))}
-        </select>
+        </select> */}
 
         
-        <select 
+        {/* <select 
           value={selectedType} 
-          onChange={handleTypeChange}
-          className="ml-4"
+          
+          className="ml-4 text-black"
         >
 
           <option value="lawyers">Lawyers</option>
           <option value="courts">Courts</option>
-        </select>
+        </select> */}
+      <div className="flex items-center justify-center gap-2 mt-[20px]">
+        <CityDropdown 
+          selectedCity={selectedCity}
+          onCityChange={(city) => setSelectedCity(city)}
+          cities={cities}
+        />
+
+        <div className="inline-flex items-center">
+          <Switch
+            checked={selectedType === "lawyers"}
+            onChange={() => setSelectedType(selectedType === "lawyers" ? "courts" : "lawyers")}
+          >
+            {selectedType === "lawyers" ? "L" : "C"}
+          </Switch>
+        </div>
       </div>
 
       <div className="map-container h-60 w-85 border-rounded border-2px solid black mt-[20px]">
@@ -288,13 +361,13 @@ const LawyerNav = () => {
 
       <div className="help ml-[150px] mt-[130px]">
         <p className="items-center">
-          In case of any complaints, contact us <a href="/contactus">here</a>.
+          <a href="/contactus"></a>.
         </p>
       </div>
     </div>
+  </div>
   );
 };
 
 export default LawyerNav;
-
 

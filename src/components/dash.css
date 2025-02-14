@@ -1,138 +1,171 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* Dark background for contrast */
+  color: #fff; /* Default text color */
+}
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+  height: 100vh; /* Full height for the video background */
+}
+
+.video-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire container */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Send the video behind other elements */
+}
+
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    background-color: #000;
-    opacity: 0.85;
-    color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(255, 69, 0, 0.85);
-    width: 900px;
-    margin-top: 150px;
-    margin-left: 350px;
-  }
-  
-  .title {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-    color: orangered;
-    font-weight: bold;
-    font-size: xx-large;
-    margin-bottom: 15px;
-    padding: 5px;
-  }
-  
-  .profile-crime-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  
-  .profile-container {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    margin-right: 20px;
-  }
-  
-  .crime-container {
-    flex: 1;
-    padding: 10px;
-    gap: 15px;
-  }
-  
-  .crime-container .input-field {
-    margin-bottom: 20px;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    background-color: #444;
-    color: #fff;
-    font-size: 16px;
-  }
-  
-  .input-field:hover {
-    background-color: black;
-  }
-  
-  .profile-image-container {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    padding: 10px;
-    margin-right: 40px;
-    background-color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 20px;
-    position: relative;
-  }
-  
- 
-  
-  .circular-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  
-  .open-webcam-button {
-    margin-top: 300px;
-    margin-right: 50px;
-    padding: 10px 20px;
-    border: 2px solid #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: orangered;
-    color: white;
-    display: block;
-  }
-  
-  .open-webcam-button:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-  }
-  
-  .capture-button {
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: 2px solid #007bff;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .capture-button:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-  }
-  
-  .profile-details-container {
-    display: flex;
-    padding: 15px;
-    gap: 20px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-  
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin: 20px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.85); /* Slightly transparent black */
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(255, 69, 0, 0.5);
+  width: 900px;
+  max-width: 90%; /* Responsive width */
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title {
+  font-family: 'Georgia', serif;
+  text-align: center;
+  color: orangered;
+  font-weight: bold;
+  font-size: 2.5rem; /* Increased font size */
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 35px;
+  background-color: #333;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.circular-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+
+.open-webcam-button {
+  width: 80px; /* Match the width of the profile picture */
+  height: 30px; /* Adjust the height to a suitable value */
+  margin-top: 10px; /* Add some space between the profile picture and the button */
+  border: 2px solid #fff;
+  font-size: 10px;
+  border-radius: 5px;
+  background-color: orangered;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+
+.open-webcam-button:hover {
+  background-color: #ff4500; /* Slightly darker orange */
+  border-color: #ff4500; /* Match border color */
+}
+
+.profile-details-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background-color: #444;
+  color: #fff;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.input-field:hover {
+  background-color: #333;
+  transform: scale(1.02); /* Slightly smaller scale */
+  box-shadow: 0 4px 8px rgba(255, 69, 0, 0.6);
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-5 {
+  margin-top: 5rem; /* Increased margin for better spacing */
+}
+
+.applied-applications {
+  margin-top: 20px; /* Space above the applications section */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Remove space between table cells */
+  margin-top: 20px; /* Space above the table */
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #444; /* Subtle border for table rows */
+}
+
+th {
+  background-color: rgba(255, 69, 0, 0.7); /* Slightly transparent orange for header */
+  color: white; /* White text for better contrast */
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 69, 0, 0.2); /* Highlight row on hover */
+}
+
+.applied-applications h1 {
+  font-size: 2rem; /* Size for the section heading */
+  color: orangered; /* Color for the heading */
+  margin-bottom: 10px; /* Space below the heading */
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 20px 0; /* Space around the grid */
+}

@@ -34,9 +34,21 @@ const addprisoner = async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    resizeBy.json("error adding prisoner ",error);
+    res.json("error adding prisoner");
   }
 };
+
+const updateprisoner = async (req, res) => {
+  const {adharnum,enquiryimageurl}=req.body;
+  console.log(req.body);
+  const response=await Prisoner.findOneAndUpdate({AddharNum:adharnum},{ $set: { EnqiryReport: enquiryimageurl }})
+  if(response){
+    res.json("Enquiry Report updated successfully")
+  }else{
+    res.json("Error updating Enquiry Report")
+  }
+
+}
 
 const getprisoner = async (req, res) => {
   try {
@@ -48,4 +60,4 @@ const getprisoner = async (req, res) => {
   }
 };
 
-export default { addprisoner, getprisoner };
+export default { addprisoner, getprisoner,updateprisoner };

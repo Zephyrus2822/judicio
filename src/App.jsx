@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "leaflet/dist/leaflet.css"; // Don't remove
 import Login from "./components/Login";
@@ -21,6 +21,9 @@ import Dash from "./components/Dashboard";
 import IImage from "./components/IImage"; // Don't remove these testing things
 import LawyerNav from "./components/LawyerNav";
 import VerdictPassed from "./components/VerdictPassed";
+import GovernmentForum from "./components/GovernmentForum.jsx";
+import { generateToken } from "./firebase.js";
+import PrevCases from "./components/PrevCases.jsx";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -51,7 +54,13 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+
+
 function App() {
+
+  useEffect(()=>{
+    generateToken()
+  },[])
   return (
     <ErrorBoundary>
       <BrowserRouter>
@@ -71,8 +80,10 @@ function App() {
           <Route path="/user" element={<UserDashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/judgedashboard" element={<Judgedashboard />} />
+          <Route path="/forums" element={<GovernmentForum />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/test" element={<IImage />} />
+          <Route path="/prevcases" element={<PrevCases />} />
 
           <Route path="/map" element={<LawyerNav />} />
 
