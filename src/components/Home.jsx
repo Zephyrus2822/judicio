@@ -6,7 +6,10 @@ const Home = () => {
 
 
     <div>
-      <div className='bg-gradient-to-br from-amber-200 to-orange-600 min-h-screen py-10 '>
+      <div className="video-container">
+        <video autoPlay muted loop className="video-background">
+          <source src={video} type="video/mp4" />
+        </video>
         <div className="heading">
           Welcome to Judicio!
         </div>
@@ -40,7 +43,7 @@ const Home = () => {
               d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
             ></path>
           </svg>
-          <span class="text"> <a href="/forums">Help Desk</a></span>
+          <span class="text"> <a href="/map">Help Desk</a></span>
           <span class="circle"></span>
           <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -50,10 +53,9 @@ const Home = () => {
         </button>
         </div>
       </div>
-        </div>
 
-    
-    
+
+    </div>
   );
 };
 
