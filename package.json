@@ -33,7 +33,7 @@
     "express": "^4.19.2",
     "express-openid-connect": "^2.17.1",
     "express-session": "^1.18.0",
-    "firebase": "^10.13.1",
+    "firebase": "^11.4.0",
     "framer-motion": "^11.5.4",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
